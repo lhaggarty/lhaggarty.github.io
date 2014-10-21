@@ -9,8 +9,8 @@
 			      function appendResults(text) {
 			        var results = document.getElementById('results');
 			        results.appendChild(document.createElement('P'));
-			        results.appendChild(document.createTextNode(text[id]));
-					console.log('Data: ' + JSON.stringify(text) + text[id] + text);
+			        results.appendChild(document.createTextNode(text));
+					console.log('Data: ' + JSON.stringify(text)  + text);
 			      }
 
 			      function makeRequest() {
@@ -18,7 +18,7 @@
 			          'longUrl': 'http://www.youtube.com/v/8N_tupPBtWQ?start=80&end=137'
 			        });
 			        request.then(function(response) {
-			          appendResults(response.result.shortUrl);
+			          appendResults(response.result);
 			        }, function(reason) {
 			          console.log('Error: ' + reason.result.error.message);
 			        });
