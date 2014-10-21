@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>URL Shortener Test</title>
+			
+			
+			
+			<script>
+			      function appendResults(text) {
+			        var results = document.getElementById('results');
+			        results.appendChild(document.createElement('P'));
+			        results.appendChild(document.createTextNode(text));
+			      }
+
+			      function makeRequest() {
+			        var request = gapi.client.urlshortener.url.insert({
+			          'longUrl': 'http://www.youtube.com/v/8N_tupPBtWQ?start=80&end=137'
+			        });
+			        request.then(function(response) {
+			          appendResults(response.result.shortUrl);
+			        }, function(reason) {
+			          console.log('Error: ' + reason.result.error.message);
+			        });
+			      }
+
+			      function init() {
+			        gapi.client.setApiKey('hY3nMNqEyxqFNeb48KykNB3g');
+			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+			      }
+			    </script>
+			    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+		<body>
+			<div id="results" style="width:500px;height:380px"></div>
+			
+		</body>
+	</html>
