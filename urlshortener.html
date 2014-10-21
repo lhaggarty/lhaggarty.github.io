@@ -9,7 +9,8 @@
 			      function appendResults(text) {
 			        var results = document.getElementById('results');
 			        results.appendChild(document.createElement('P'));
-			        results.appendChild(document.createTextNode(text));
+			        results.appendChild(document.createTextNode(JSON.stringify(obj)));
+					console.log('Data: ' + text);
 			      }
 
 			      function makeRequest() {
