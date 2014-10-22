@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+		<head>
+			<title>Inputs and Outputs</title>
+			<link rel="stylesheet" type="text/css" href="style.css"/>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		</head>
+<body>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="intro-message">
+							<h1>
+								Hot Potato
+							</h1>
+							<h3>
+								Share the best part of your YouTube videos.  Try the tool out!
+							</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<form role="form">
+					<div class="form-group">
+						<div class ="row">
+							<div class="col-md-4 col-md-offset-4">  
+				    <label for="InputYouTubeLink">Enter a YouTube Video Link Here</label>
+				    <input type="InputYTLink" class="form-control" id="InputYouTubeLink" placeholder="www.youtube.com/...">
+				  			</div>
+						</div>
+					</div>
+				</form>
+				<form class="form-inline" role="form">
+					<div class="form-group">
+						<div class ="row">
+							<div class="col-md-8 col-md-offset-11">  
+				    <label for="InputPlayPoint">Enter the video play point</label>
+				    <input type="InputPlPoint" class="form-control" id="InputPlayPoint" placeholder="0...1000">
+				  			</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-8 col-md-offset-8">  
+				    <label for="InputEndPoint">Enter the video end point</label>
+				    <input type="InputEPoint" class="form-control" id="InputEndPoint" placeholder="0...1000">
+				  		</div>
+					</div>
+					
+					<div class ="row">
+						<div class="col-md-4 col-md-offset-5"> 
+							
+							<button type="submit" class="btn btn-default" onclick="myFunction()">Submit</button>
+						</div>
+					</div>
+			  	</form>
+				
+			</div>
+			<script>
+			function myFunction() {
+			    var orgYTlink, text1;
+
+			    // Get the value of input field with id="numb"
+
+			    orgYTlinkVar = document.getElementById("InputYouTubeLink").value;
+
+			    // If x is Not a Number or less than one or greater than 10
+				if (orgYTlinkVar.indexOf('youtube') !== -1) {
+				    text1 = "Your youtube link contains the substring 'youtube'!";
+				}
+				else {
+				    text1 = "Your youtube link does not contain the substring 'youtube'!";
+				}
+					
+					// --------------
+				<p id="InputPlPoint"></p>
+			    document.getElementById("InputPlPoint").innerHTML = text1;
+			}
+			</script>
+			
+
+
+</body>
+</html> 
