@@ -26,7 +26,7 @@
 					<div class="form-group">
 						<div class ="row">
 							<div class="col-md-4 col-md-offset-4">  
-				    <label for="InputYouTubeLink">Enter a YouTube Video Link Here</label>
+				    <label for="InputYouTubeLink" style="color: #FFF">Enter a YouTube Video Link Here</label>
 				    <input type="text" class="form-control" id="InputYouTubeLink" placeholder="www.youtube.com/...">
 				  			</div>
 						</div>
@@ -36,14 +36,14 @@
 					<div class="form-group">
 						<div class ="row">
 							<div class="col-md-8 col-md-offset-11">  
-				    <label for="InputPlayPoint">Enter the video play point</label>
-				    <input type="number" class="form-control" id="InputPlayPoint" placeholder="0...1000">
+				    <label for="InputPlayPoint" style="color: #FFF">Enter the video play point</label>
+				    <input type="number" class="form-control" id="InputPlayPoint" placeholder="0...1000" value="5" required>
 				  			</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-md-8 col-md-offset-8">  
-				    <label for="InputEndPoint">Enter the video end point</label>
+				    <label for="InputEndPoint" style="color: #FFF">Enter the video end point</label>
 				    <input type="number" class="form-control" id="InputEndPoint" placeholder="0...1000">
 				  		</div>
 					</div>
@@ -51,17 +51,36 @@
 					<div class ="row">
 						<div class="col-md-4 col-md-offset-5"> 
 							
-							<button type="submit" class="btn btn-default" onclick="myFunction()">Submit</button>
+							<button type="button" class="btn btn-default" onclick="myFunction()">Submit</button>
 						</div>
 					</div>
+					
 			  	</form>
 				
-			</div>(
+			</div>
+			<div class="container">
+				<div class ="row" style="padding-top: 5%">
+					<div class="col-md-4 col-md-offset-4">
+						<div class="well" id="OutputYouTubeLink"></div>
+					</div>
+				</div>
+			</div>
 			<script>
+			
 			function myFunction(){
 				
-				alert($('input#InputPlayPoint').val());
+				
+				$( "#OutputYouTubeLink" ).html($('#InputYouTubeLink').val() + '?&start=' + $('#InputPlayPoint').val() + '&end=' + $('#InputEndPoint').val());
+				$("form").slideUp();
+				/*alert($('input#InputPlayPoint').val());
+				*/
 			}
+			
+			/*<div class="embed-responsive embed-responsive-16by9">
+			  <iframe class="embed-responsive-item" src="…"></iframe>
+			</div>*/
+			
+			
 			/*function myFunction() {
 			    var orgYTlink, text1;
 

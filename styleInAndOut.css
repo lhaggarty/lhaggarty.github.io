@@ -2,12 +2,15 @@
 	text-align: center;
 	padding-top: 20%;
 	
-	color: #ec971f;
+	color: #fff;
 }
 .intro-message {
 	text-align: center;
-	padding-bottom: 10%;
+	padding-bottom: 5%;
 	color: #fff;
+}
+.OutputYouTubeLink {
+	color: #000;
 }
 body {
 	background: url(storyBackground.jpg) no-repeat center center;
