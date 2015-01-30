@@ -16,10 +16,14 @@
 			<div class="form-group">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-11">
-						<div class="bootstrap-timepicker">
+						<div id="datetimepicker3" class="input-append">
 			   				<label for="InputPlayPoint" style="color: #FFF">Enter video play point</label>
 			   				<input type="text" class="form-control" id="InputPlayPoint" required>
-							<i class="icon-time"></i>
+							<span class="add-on">
+							      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+							      </i>
+							    </span>
+							
 						</div>
 		  			</div>
 				</div>
@@ -45,9 +49,9 @@
 	</script>
 	
 	<script>
-	function myFunction(){
-		var playPointReturn;
-		$("form").slideUp();
-		alert($('input#InputPlayPoint').val());
+	function myFunction(){	
+	alert($('input#InputPlayPoint').val());
+	
+	}
 	</script>					
 </body>
