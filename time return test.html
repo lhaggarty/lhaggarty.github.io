@@ -7,8 +7,9 @@
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 	        <link type="text/css" href="css/bootstrap.min.css" />
 	        <link type="text/css" href="css/bootstrap-timepicker.min.css" />
-	        <script type="text/javascript" src="js/bootstrap-2.2.2.min.js"></script>
-	        <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
 		</head>
 <body>
 	<div class="container">
@@ -49,8 +50,14 @@
 	</script>
 	
 	<script>
-	function myFunction(){	
-	alert($('input#InputPlayPoint').val());
+	function myFunction(){	 
+		var hms = $('input#InputPlayPoint').val();
+		var a = hms.split(':'); // split it at the colons
+
+		// minutes are worth 60 seconds. Hours are worth 60 minutes.
+		var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+		
+		alert(seconds);
 	
 	}
 	</script>					
