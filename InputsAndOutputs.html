@@ -50,7 +50,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-md-8 col-md-offset-8">  
+						<div class="col-md-8 col-md-offset-9">  
 							<div class="bootstrap-timepicker">
 				    			<label for="InputEndPoint" style="color: #FFF">Enter video end point</label>
 				    			<input type="text" class="form-control" id="InputEndPoint">
@@ -71,7 +71,7 @@
 			</div>
 			<div class="container">
 				<div class ="row" style="padding-top: 2%">
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-6 col-md-offset-3">
 						<div class="well" id="OutputYouTubeLink"></div>
 					</div>
 				</div>
@@ -91,7 +91,7 @@
 	                minuteStep: 5,
 					showSeconds: true,
 					showMeridian: false,
-					defaultTime: '0:03:00'
+					defaultTime: '0:02:00'
 	            });
 	        </script>
 			
@@ -109,7 +109,7 @@
 				//shortYTLink = $( '#InputYouTubeLink' ).not( 'www.youtube.com/watch?v=' ).val();
 				
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				$( '#OutputYouTubeLink' ).html( "www.youtube.com/v/" + shortYTLink + '&start=' + secondsIn + '&end=' + secondsOut);
+				$( '#OutputYouTubeLink' ).html( "www.youtube.com/embed/" + shortYTLink + '&start=' + secondsIn + '&end=' + secondsOut);
 				$("form").slideUp();
 				/*alert($('input#InputPlayPoint').val());
 				*/
