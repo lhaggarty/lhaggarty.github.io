@@ -109,7 +109,7 @@
 				//shortYTLink = $( '#InputYouTubeLink' ).not( 'www.youtube.com/watch?v=' ).val();
 				
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				$( '#OutputYouTubeLink' ).html( "https://www.youtube.com/embed/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
+				$( '#OutputYouTubeLink' ).html( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
 				$("form").slideUp();
 				document.getElementById('videoPlaybackFrame').src = $('#OutputYouTubeLink').html();
 				document.getElementById('videoPlayback').style.display ="";
