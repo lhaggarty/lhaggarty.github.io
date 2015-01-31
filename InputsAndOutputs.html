@@ -109,10 +109,10 @@
 				//shortYTLink = $( '#InputYouTubeLink' ).not( 'www.youtube.com/watch?v=' ).val();
 				
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				$( '#OutputYouTubeLink' ).html( "www.youtube.com/embed/" + shortYTLink + '&start=' + secondsIn + '&end=' + secondsOut);
+				$( '#OutputYouTubeLink' ).html( "https://www.youtube.com/embed/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
 				$("form").slideUp();
-				/*alert($('input#InputPlayPoint').val());
-				*/
+				document.getElementById('videoPlaybackFrame').src = $('#OutputYouTubeLink').html();
+				document.getElementById('videoPlayback').style.display ="";
 			}
 			
 			function getQueryVariable(name,url) {
@@ -125,33 +125,11 @@
 			       return(query);
 			}
 			
-			/*<div class="embed-responsive embed-responsive-16by9">
-			  <iframe class="embed-responsive-item" src="…"></iframe>
-			</div>*/
-			
-			
-			/*function myFunction() {
-			    var orgYTlink, text1;
-
-			    // Get the value of input field with id="numb"
-
-			    orgYTlinkVar = document.getElementById("InputYouTubeLink").value;
-
-			    // If x is Not a Number or less than one or greater than 10
-				if (orgYTlinkVar.indexOf('youtube') !== -1) {
-				    text1 = "Your youtube link contains the substring 'youtube'!";
-				}
-				else {
-				    text1 = "Your youtube link does not contain the substring 'youtube'!";
-				}
-					
-					// --------------
-				<p id="InputPlPoint"></p>
-			    document.getElementById("InputPlPoint").innerHTML = text1;
-			}*/
 			</script>
 			
-
+			<div class="col-md-offset-3" id="videoPlayback" style="display: none; padding-top: 1%; padding-left: 3.3%">
+			 	<iframe id="videoPlaybackFrame" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+			</div>
 
 </body>
 </html> 
