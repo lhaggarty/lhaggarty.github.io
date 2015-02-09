@@ -16,7 +16,7 @@
 			      }
 			      function makeRequest() {
 			        var request = gapi.client.urlshortener.url.insert({
-			          'longUrl': 'https://www.youtube.com/v/RNLLPbMThGM%26start=70%26end=110'
+			          'longUrl': 'https://www.youtube.com/v/RNLLPbMThGM%26start=100%26end=130'
 			        });
 			        request.then(function(response) {
 			          appendResults(response.result);
@@ -26,7 +26,7 @@
 			      }
 			      function appendResults(text) {
 					 var results = document.getElementById('results');
-					 results.appendChild(document.createElement('P'));
+					 //results.appendChild(document.createElement('P'));
 					 results.appendChild(document.createTextNode(text.id));
 					console.log('Data: ' + JSON.stringify(text));
 			      }
