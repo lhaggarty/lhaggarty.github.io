@@ -15,9 +15,9 @@
 			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
 			      }
 			      function appendResults(text) {
-			        var results = ( 'OutputYouTubeLink' ).html();
-			        results.appendChild(document.createTextNode(text.id));
-					
+					 var results = document.getElementById('results');
+					 
+					 results.appendChild(document.createTextNode(text.id));
 					console.log('Data: ' + JSON.stringify(text));
 			      }
 			      function makeRequest() {
@@ -33,7 +33,7 @@
 			</script>
 			    
 			
-			<div class="well" id="OutputYouTubeLink">
+			<div id="results">
 				
 			</div>
 			
