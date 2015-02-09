@@ -5,6 +5,7 @@
 			
 			
 			
+		</head>
 			<script>
 			      function appendResults(text) {
 			        var results = document.getElementById('results');
@@ -15,7 +16,7 @@
 
 			      function makeRequest() {
 			        var request = gapi.client.urlshortener.url.insert({
-			          'longUrl': 'http://www.youtube.com/v/8N_tupPBtWQ?start=80&end=137'
+			          'longUrl': 'https://www.youtube.com/v/mXpIbfc21qk&start=783&end=820'
 			        });
 			        request.then(function(response) {
 			          appendResults(response.result);
@@ -29,9 +30,12 @@
 			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
 			      }
 			    </script>
-			    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+			    
 		<body>
-			<div id="results" style="width:500px;height:380px"></div>
+			<script src="https://apis.google.com/js/client.js?onload=init"></script>
+			<div id="results" style="width:500px;height:380px">
+				
+			</div>
 			
 		</body>
 	</html>

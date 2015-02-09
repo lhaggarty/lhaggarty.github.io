@@ -53,7 +53,7 @@
 						<div class ="row">
 							<div class="col-md-4 col-md-offset-4">  
 				    <label for="InputYouTubeLink" style="color: #FFF">Enter YouTube Video Link Here</label>
-				    <input type="text" class="form-control" id="InputYouTubeLink" placeholder="www.youtube.com/...">
+				    <input type="text" class="form-control" id="InputYouTubeLink" placeholder="www.youtube.com..." onclick="displayTimeControls()">
 				  			</div>
 						</div>
 					</div>
@@ -64,7 +64,7 @@
 							<div class="col-md-8 col-md-offset-11">
 								<div class="bootstrap-timepicker">
 				    				<label for="InputPlayPoint" style="color: #FFF">Enter video play point</label>
-				    				<input type="text" class="form-control" id="InputPlayPoint" required>
+				    				<input type="text" class="form-control" id="InputPlayPoint" required disabled>
 									<i class="icon-time"></i>
 								</div>
 				  			</div>
@@ -74,7 +74,7 @@
 						<div class="col-md-8 col-md-offset-9">  
 							<div class="bootstrap-timepicker">
 				    			<label for="InputEndPoint" style="color: #FFF">Enter video end point</label>
-				    			<input type="text" class="form-control" id="InputEndPoint">
+				    			<input type="text" class="form-control" id="InputEndPoint" disabled>
 								<i class="icon-time"></i>
 							</div>
 				  		</div>
@@ -123,6 +123,12 @@
 					defaultTime: '0:02:00'
 	            });
 	        </script>
+			
+			<script>
+				function displayTimeControls(){
+					$("input").removeAttr('disabled');
+				}
+			</script>
 			
 			<script>
 			function myFunction(){
