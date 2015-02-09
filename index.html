@@ -12,6 +12,7 @@
 	        
 			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
 			
+			
 		</head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -105,7 +106,7 @@
 					</div>
 				</div>
 			</div>
-			
+			<script src="https://apis.google.com/js/client.js?onload=init"></script>
 	        <script type="text/javascript">
 	            $('#InputPlayPoint').timepicker({
 	                template: false,
@@ -180,12 +181,12 @@
 	      }
 	      function appendResults(text) {
 	        var results = document.getElementById('OutputYouTubeLink');
-	        //results.appendChild(document.createElement('P'));
+	        results.appendChild(document.createElement('P'));
 	        results.appendChild(document.createTextNode(text.id));
 			console.log('Data: ' + JSON.stringify(text));
 	      }
 			</script>
-			<script src="https://apis.google.com/js/client.js?onload=init"></script>
+			
 			<script>
 			function backFunction(){
 				document.getElementById('videoPlayback').style.display ="none";
