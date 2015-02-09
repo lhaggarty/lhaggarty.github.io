@@ -153,7 +153,7 @@
 				}
 			</script>
 			
-			<script>
+			<script src="https://apis.google.com/js/client.js?onload=init";>
 			
 			function myFunction(){
 				var hms1 = $('input#InputPlayPoint').val();
@@ -172,6 +172,7 @@
 				//$( '#OutputYouTubeLink' ).html( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
 				
 				$("form").slideUp();
+				
 				document.getElementById('videoPlaybackFrame').src = tempOutputLink;
 				document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";
