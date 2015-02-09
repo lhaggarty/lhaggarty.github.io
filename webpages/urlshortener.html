@@ -6,12 +6,7 @@
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			
-			
-		</head>
-		<body>
-			
-			    
-			<script src="https://apis.google.com/js/client.js?onload=init">
+			<script>
 			      function init() {
 			        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
 			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
@@ -33,6 +28,12 @@
 					console.log('Data: ' + JSON.stringify(text));
 			      }
 			</script>
+		</head>
+		<body>
+			
+			    
+			
+			<script src="https://apis.google.com/js/client.js?onload=init"></script>
 			<div class="well" id='results'>
 				
 			</div>
