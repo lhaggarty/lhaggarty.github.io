@@ -13,14 +13,14 @@
 			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
 			
 			<script>
-			var tempOutputLink;
+			
   	      function init() {
   	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
   	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
   	      }
   	      function makeRequest() {
   	        var request = gapi.client.urlshortener.url.insert({
-				'longUrl': '#OutputYouTubeLink'
+				'longUrl': tempOutputLink
   	        });
   	        request.then(function(response) {
   	          appendResults(response.result);
