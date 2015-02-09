@@ -12,7 +12,29 @@
 	        
 			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
 			
-			
+			<script>
+			var tempOutputLink;
+  	      function init() {
+  	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
+  	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+  	      }
+  	      function makeRequest() {
+  	        var request = gapi.client.urlshortener.url.insert({
+				'longUrl': 
+  	        });
+  	        request.then(function(response) {
+  	          appendResults(response.result);
+  	        }, function(reason) {
+  	          console.log('Error: ' + reason.result.error.message);
+  	        });
+  	      }
+  	      function appendResults(text) {
+  	        var results = document.getElementById('OutputYouTubeLink');
+  	        //results.appendChild(document.createElement('P'));
+  	        results.appendChild(document.createTextNode(text.id));
+  			console.log('Data: ' + JSON.stringify(text));
+  	      }
+			</script>
 		</head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -132,7 +154,7 @@
 			</script>
 			
 			<script>
-			var tempOutputLink;
+			
 			function myFunction(){
 				var hms1 = $('input#InputPlayPoint').val();
 				var hms2 = $('input#InputEndPoint').val();
@@ -165,26 +187,7 @@
 			       }
 			       return(query);
 			}
-	      function init() {
-	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
-	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
-	      }
-	      function makeRequest() {
-	        var request = gapi.client.urlshortener.url.insert({
-	          'longUrl': tempOutputLink
-	        });
-	        request.then(function(response) {
-	          appendResults(response.result);
-	        }, function(reason) {
-	          console.log('Error: ' + reason.result.error.message);
-	        });
-	      }
-	      function appendResults(text) {
-	        var results = document.getElementById('OutputYouTubeLink');
-	        results.appendChild(document.createElement('P'));
-	        results.appendChild(document.createTextNode(text.id));
-			console.log('Data: ' + JSON.stringify(text));
-	      }
+	      
 			</script>
 			
 			<script>
