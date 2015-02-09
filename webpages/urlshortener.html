@@ -6,14 +6,12 @@
 			
 			
 		</head>
-			<script>
-			      function appendResults(text) {
-			        var results = document.getElementById('results');
-			        results.appendChild(document.createElement('P'));
-			        results.appendChild(document.createTextNode(text.id));
-					console.log('Data: ' + JSON.stringify(text));
+		<body>
+			<script src="https://apis.google.com/js/client.js?onload=init">
+			      function init() {
+			        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
+			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
 			      }
-
 			      function makeRequest() {
 			        var request = gapi.client.urlshortener.url.insert({
 			          'longUrl': 'https://www.youtube.com/v/mXpIbfc21qk&start=783&end=820'
@@ -24,15 +22,16 @@
 			          console.log('Error: ' + reason.result.error.message);
 			        });
 			      }
-
-			      function init() {
-			        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
-			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+			      function appendResults(text) {
+			        var results = document.getElementById('results');
+			        results.appendChild(document.createElement('P'));
+			        results.appendChild(document.createTextNode(text.id));
+					console.log('Data: ' + JSON.stringify(text));
 			      }
 			    </script>
 			    
-		<body>
-			<script src="https://apis.google.com/js/client.js?onload=init"></script>
+		
+			
 			<div id="results" style="width:500px;height:380px">
 				
 			</div>
