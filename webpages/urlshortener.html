@@ -14,9 +14,15 @@
 			        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
 			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
 			      }
+			      function appendResults(text) {
+					 var results = document.getElementById('results');
+					 results.appendChild(document.createElement('P'));
+					 results.appendChild(document.createTextNode(text.id));
+					console.log('Data: ' + JSON.stringify(text));
+			      }
 			      function makeRequest() {
 			        var request = gapi.client.urlshortener.url.insert({
-			          'longUrl': 'https://www.youtube.com/v/RNLLPbMThGM%26start=60%26end=120'
+			          'longUrl': 'https://www.youtube.com/v/RNLLPbMThGM%26start=70%26end=140'
 			        });
 			        request.then(function(response) {
 			          appendResults(response.result);
@@ -24,12 +30,7 @@
 			          console.log('Error: ' + reason.result.error.message);
 			        });
 			      }
-			      function appendResults(text) {
-					 var results = document.getElementById('results');
-					 results.appendChild(document.createElement('P'));
-					 results.appendChild(document.createTextNode(text.id));
-					console.log('Data: ' + JSON.stringify(text));
-			      }
+			      
 			</script>
 			    
 			
