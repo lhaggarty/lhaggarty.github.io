@@ -15,7 +15,7 @@
 			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
 			      }
 			      function appendResults(text) {
-					 var results = document.getElementById('results');
+					 var results = document.getElementById('tempShortUrl');
 					 results.appendChild(document.createElement('P'));
 					 results.appendChild(document.createTextNode(text.id));
 					console.log('Data: ' + JSON.stringify(text));
@@ -33,7 +33,7 @@
 			</script>
 			    
 			
-			<div id="results">
+			<div id="tempShortUrl">
 				
 			</div>
 			
