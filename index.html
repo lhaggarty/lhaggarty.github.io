@@ -172,14 +172,14 @@
 				//$( '#OutputYouTubeLink' ).html( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
 				
 				$("form").slideUp();
-				loadjscssfile("https://apis.google.com/js/client.js?onload=init", "js");
+				
 				
 				document.getElementById('videoPlaybackFrame').src = tempOutputLink;
 				document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";
 				
 			}
-			
+			loadjscssfile("https://apis.google.com/js/client.js?onload=init", "js");
 			function getQueryVariable(name,url) {
 				   var query = url.split( "?" );
 			       var vars = query[1].split("&");
