@@ -9,7 +9,7 @@
 	        <link type="text/css" href="css/bootstrap-timepicker.min.css" />
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	        <script src="https://apis.google.com/js/client.js?onload=init"></script>
+	        
 			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
 			
 		</head>
@@ -179,13 +179,13 @@
 	        });
 	      }
 	      function appendResults(text) {
-	        var results = document.getElementById('#OutputYouTubeLink');
+	        var results = document.getElementById('OutputYouTubeLink');
 	        results.appendChild(document.createElement('P'));
 	        results.appendChild(document.createTextNode(text.id));
 			console.log('Data: ' + JSON.stringify(text));
 	      }
 			</script>
-			
+			<script src="https://apis.google.com/js/client.js?onload=init"></script>
 			<script>
 			function backFunction(){
 				document.getElementById('videoPlayback').style.display ="none";

@@ -16,7 +16,7 @@
 			      }
 			      function makeRequest() {
 			        var request = gapi.client.urlshortener.url.insert({
-			          'longUrl': 'https://www.youtube.com/v/RNLLPbMThGM%26start=60%26end=120'
+			          'longUrl': 'https://www.youtube.com/v/RNLLPbMThGM%26start=70%26end=110'
 			        });
 			        request.then(function(response) {
 			          appendResults(response.result);
@@ -33,7 +33,7 @@
 			</script>
 			    
 			<script src="https://apis.google.com/js/client.js?onload=init"></script>
-			<div id='results'>
+			<div class="well" id='results'>
 				
 			</div>
 			
