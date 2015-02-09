@@ -20,7 +20,7 @@
   	      }
   	      function makeRequest() {
   	        var request = gapi.client.urlshortener.url.insert({
-				'longUrl': 'tempOutputLink'
+				'longUrl': '#OutputYouTubeLink'
   	        });
   	        request.then(function(response) {
   	          appendResults(response.result);
@@ -169,7 +169,7 @@
 				
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
 				tempOutputLink = ( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
-				//$( '#OutputYouTubeLink' ).html( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
+				$( '#OutputYouTubeLink' ).html( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
 				
 				$("form").slideUp();
 				
