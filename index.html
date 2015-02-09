@@ -13,7 +13,7 @@
 			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
 			
 			<script>
-			
+		  var tempOutputLink=('#OutputYouTubeLink').html();
   	      function init() {
   	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
   	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
@@ -154,7 +154,7 @@
 			</script>
 			
 			<script>
-			var tempOutputLink;
+			
 			function myFunction(){
 				var hms1 = $('input#InputPlayPoint').val();
 				var hms2 = $('input#InputEndPoint').val();

@@ -7,13 +7,14 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			
 			<script>
+			var tempOutputLink="https://www.youtube.com/v/RNLLPbMThGM%26start=92%26end=140";
 			      function init() {
 			        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
 			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
 			      }
 			      function makeRequest() {
 			        var request = gapi.client.urlshortener.url.insert({
-			          'longUrl': 'https://www.youtube.com/v/RNLLPbMThGM%26start=122%26end=140'
+			          'longUrl': tempOutputLink
 			        });
 			        request.then(function(response) {
 			          appendResults(response.result);
