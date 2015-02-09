@@ -2,9 +2,10 @@
 	<html>
 		<head>
 			<title>URL Shortener Test</title>
-			
-			
-			
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+			<script src="https://apis.google.com/js/client.js?onload=init"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 		</head>
 		<body>
 			<script>
@@ -12,9 +13,16 @@
 			        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
 			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
 			      }
+			      function appendResults(text) {
+			        var results = document.getElementById('results');
+			        //results.appendChild(document.createElement('P'));
+			        //results.appendChild(document.createTextNode(text.id));
+					$( '#OutputYouTubeLink' ).html(text.id);
+					console.log('Data: ' + JSON.stringify(text));
+			      }
 			      function makeRequest() {
 			        var request = gapi.client.urlshortener.url.insert({
-			          'longUrl': 'https://www.youtube.com/v/mXpIbfc21qk&start=783&end=820'
+			          'longUrl': 'https://www.youtube.com/v/mXpIbfc21qk%26start=783%26end=820'
 			        });
 			        request.then(function(response) {
 			          appendResults(response.result);
@@ -22,16 +30,10 @@
 			          console.log('Error: ' + reason.result.error.message);
 			        });
 			      }
-			      function appendResults(text) {
-			        var results = document.getElementById('results');
-			        results.appendChild(document.createElement('P'));
-			        results.appendChild(document.createTextNode(text.id));
-					console.log('Data: ' + JSON.stringify(text));
-			      }
-			    </script>
+			</script>
 			    
-			<script src="https://apis.google.com/js/client.js?onload=init"></script>
-			<div id="results" style="width:500px;height:380px">
+			
+			<div class="well" id="results">
 				
 			</div>
 			
