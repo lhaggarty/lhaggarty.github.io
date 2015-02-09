@@ -5,7 +5,7 @@
 			<link rel="stylesheet" type="text/css" href="css/style.css"/>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
-	        
+	        <link type="text/css" href="css/bootstrap.min.css" />
 	        <link type="text/css" href="css/bootstrap-timepicker.min.css" />
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -91,15 +91,9 @@
 				
 			</div>
 			<div class="container">
-				<div class ="row" style="padding-top: 2%; display: none" id="outputButtons">
-					<div class="col-md-6 col-md-offset-3">
-						<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText('OutputYouTubeLink')">Select Link</button>
-						<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()">Reset</button>
-					</div>
-				</div>
 				<div class ="row" style="padding-top: 2%">
 					<div class="col-md-6 col-md-offset-3">
-						
+						<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()" style="display: none;">Reset</button>
 						<div class="well" id="OutputYouTubeLink" ></div>
 						
 					</div>
@@ -142,8 +136,7 @@
 				$("form").slideUp();
 				document.getElementById('videoPlaybackFrame').src = $('#OutputYouTubeLink').html();
 				document.getElementById('videoPlayback').style.display ="";
-				document.getElementById('outputButtons').style.display ="";
-				
+				document.getElementById('backButton').style.display ="";
 			}
 			
 			function getQueryVariable(name,url) {
@@ -161,28 +154,11 @@
 			<script>
 			function backFunction(){
 				document.getElementById('videoPlayback').style.display ="none";
-				document.getElementById('outputButtons').style.display ="none";
+				document.getElementById('backButton').style.display ="none";
 				$( '#OutputYouTubeLink' ).html("");
 				$("form").slideDown();
 				
 			}
-			</script>
-			<script type="text/javascript">
-			function selectText( containerid ) {
-
-			        var node = document.getElementById( containerid );
-
-			        if ( document.selection ) {
-			            var range = document.body.createTextRange();
-			            range.moveToElementText( node  );
-			            range.select();
-			        } else if ( window.getSelection ) {
-			            var range = document.createRange();
-			            range.selectNodeContents( node );
-			            window.getSelection().removeAllRanges();
-			            window.getSelection().addRange( range );
-			        }
-			    }
 			</script>
 			
 			<div class="col-md-offset-3" id="videoPlayback" style="display: none; padding-top: 1%; padding-left: 3.3%">
