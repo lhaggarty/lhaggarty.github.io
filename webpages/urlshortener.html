@@ -7,7 +7,7 @@
 			
 		</head>
 		<body>
-			<script src="https://apis.google.com/js/client.js?onload=init">
+			<script>
 			      function init() {
 			        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
 			        gapi.client.load('urlshortener', 'v1').then(makeRequest);
@@ -30,8 +30,7 @@
 			      }
 			    </script>
 			    
-		
-			
+			<script src="https://apis.google.com/js/client.js?onload=init"></script>
 			<div id="results" style="width:500px;height:380px">
 				
 			</div>

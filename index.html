@@ -9,7 +9,7 @@
 	        <link type="text/css" href="css/bootstrap-timepicker.min.css" />
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	        
+	        <script src="https://apis.google.com/js/client.js?onload=init"></script>
 			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
 			
 		</head>
@@ -131,6 +131,7 @@
 			</script>
 			
 			<script>
+			var tempOutputLink;
 			function myFunction(){
 				var hms1 = $('input#InputPlayPoint').val();
 				var hms2 = $('input#InputEndPoint').val();
@@ -139,14 +140,16 @@
 				// minutes are worth 60 seconds. Hours are worth 60 minutes.
 				var secondsIn = (+secps1[0]) * 60 * 60 + (+secps1[1]) * 60 + (+secps1[2]); 
 				var secondsOut = (+secps2[0]) * 60 * 60 + (+secps2[1]) * 60 + (+secps2[2]);
-				
 				var shortYTLink;
+				
 				//shortYTLink = $( '#InputYouTubeLink' ).not( 'www.youtube.com/watch?v=' ).val();
 				
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
+				tempOutputLink = ( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
 				$( '#OutputYouTubeLink' ).html( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
+				
 				$("form").slideUp();
-				document.getElementById('videoPlaybackFrame').src = $('#OutputYouTubeLink').html();
+				document.getElementById('videoPlaybackFrame').src = tempOutputLink;
 				document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";
 				
@@ -161,7 +164,26 @@
 			       }
 			       return(query);
 			}
-			
+	      function init() {
+	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
+	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+	      }
+	      function makeRequest() {
+	        var request = gapi.client.urlshortener.url.insert({
+	          'longUrl': tempOutputLink
+	        });
+	        request.then(function(response) {
+	          appendResults(response.result);
+	        }, function(reason) {
+	          console.log('Error: ' + reason.result.error.message);
+	        });
+	      }
+	      function appendResults(text) {
+	        var results = document.getElementById('OutputYouTubeLink');
+	        results.appendChild(document.createElement('P'));
+	        results.appendChild(document.createTextNode(text.id));
+			console.log('Data: ' + JSON.stringify(text));
+	      }
 			</script>
 			
 			<script>
