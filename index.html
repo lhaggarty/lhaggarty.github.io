@@ -20,7 +20,7 @@
   	      }
   	      function makeRequest() {
   	        var request = gapi.client.urlshortener.url.insert({
-				'longUrl': 
+				'longUrl': tempOutputLink
   	        });
   	        request.then(function(response) {
   	          appendResults(response.result);
@@ -153,7 +153,7 @@
 				}
 			</script>
 			
-			<script src="https://apis.google.com/js/client.js?onload=init";>
+			<script src="https://apis.google.com/js/client.js?onload=init">
 			
 			function myFunction(){
 				var hms1 = $('input#InputPlayPoint').val();
