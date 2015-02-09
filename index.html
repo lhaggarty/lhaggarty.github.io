@@ -20,7 +20,7 @@
   	      }
   	      function makeRequest() {
   	        var request = gapi.client.urlshortener.url.insert({
-				'longUrl': tempOutputLink
+				'longUrl': 'tempOutputLink'
   	        });
   	        request.then(function(response) {
   	          appendResults(response.result);
