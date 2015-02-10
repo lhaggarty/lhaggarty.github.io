@@ -13,7 +13,7 @@
 			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
 			
 			<script>
-		  var tempOutputLink=$('#OutputYouTubeLink').html();
+		  var tempOutputLink=('OutputYouTubeLink').html();
   	      function init() {
   	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
   	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
@@ -174,10 +174,10 @@
 				$("form").slideUp();
 				
 				
-				document.getElementById('videoPlaybackFrame').src = tempOutputLink;
+				document.getElementById('videoPlaybackFrame').src = $('#OutputYouTubeLink').html();
 				document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";
-				
+				shortURLFunction(); 
 			}
 			
 			function getQueryVariable(name,url) {
@@ -190,9 +190,11 @@
 			       return(query);
 			}
 			</script>
-			<script src="https://apis.google.com/js/client.js?onload=init">
-			</script>
 			
+			<script src="https://apis.google.com/js/client.js?onload=init">
+			function shortURLFunction (){
+			}
+			</script>
 			
 			<script>
 			function backFunction(){
