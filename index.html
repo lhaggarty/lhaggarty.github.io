@@ -16,11 +16,12 @@
 			
 			<script>
 			function shortenURL(url){
-				console.log(url);
+				
 	  		  	var tempOutputLink=url;
 	    	      function init() {
 	    	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
 	    	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+					console.log("hello world!");
 	    	      }
 	    	      function makeRequest() {
 	    	        var request = gapi.client.urlshortener.url.insert({
