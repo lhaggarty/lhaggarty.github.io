@@ -15,7 +15,7 @@
 			<script>
 			function shortenURL(url){
 				console.log(url);
-	  		  /*var tempOutputLink=$('input#OutputYouTubeLink').html();
+	  		  	var tempOutputLink=$('input#OutputYouTubeLink').html();
 	    	      function init() {
 	    	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
 	    	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
@@ -35,7 +35,7 @@
 	    	        //results.appendChild(document.createElement('P'));
 	    	        results.appendChild(document.createTextNode(text.id));
 	    			console.log('Data: ' + JSON.stringify(text));
-	    	      }*/
+	    	      }
 			}
 			
 		  
@@ -183,7 +183,6 @@
 				document.getElementById('videoPlaybackFrame').src = $('#OutputYouTubeLink').html();
 				document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";
-				shortURLFunction(); 
 			}
 			
 			function getQueryVariable(name,url) {
