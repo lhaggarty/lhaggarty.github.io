@@ -23,7 +23,7 @@
 	    	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
 					console.log("hello world!");
 	
-	    	      
+	    	      	function makeRequest(){
 	    	        var request = gapi.client.urlshortener.url.insert({
 	  				'longUrl': tempOutputLink
 	    	        });
@@ -33,6 +33,7 @@
 	    	        }, function(reason) {
 	    	          console.log('Error: ' + reason.result.error.message);
 	    	        });
+					}
 	    	      /*function appendResults(text) {
 	    	        //var results = document.getElementById('OutputYouTubeLink');
 	    	        //results.appendChild(document.createElement('P'));
