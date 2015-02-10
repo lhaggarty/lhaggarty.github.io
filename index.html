@@ -17,15 +17,15 @@
 			<script>
 			function shortenURL(url){
 				
-	  		  	var tempOutputLink=url;
+	  		  	var tempShortLink=url;
 	    	    
 	    	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
 	    	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
-					console.log("hello world!");
+					//console.log("hello world!");
 	
 	    	      	function makeRequest(){
 	    	        var request = gapi.client.urlshortener.url.insert({
-	  				'longUrl': tempOutputLink
+	  				'longUrl': tempShortLink
 	    	        });
 	    	        request.then(function(response) {
 	    	          appendResults(response.result);
@@ -184,7 +184,7 @@
 				$("form").slideUp();
 				
 				
-				document.getElementById('videoPlaybackFrame').src = $('#OutputYouTubeLink').html();
+				document.getElementById('videoPlaybackFrame').src = tempOutputYoutubeLink;
 				document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";
 			}
