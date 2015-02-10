@@ -28,18 +28,19 @@
 	  				'longUrl': tempOutputLink
 	    	        });
 	    	        request.then(function(response) {
+	    	          appendResults(response.result);
 					  console.log("success: "+response.result);
 	    	        }, function(reason) {
 	    	          console.log('Error: ' + reason.result.error.message);
 	    	        });
 					}
-	    	      /*function appendResults(text) {
+	    	      function appendResults(text) {
 	    	        //var results = document.getElementById('OutputYouTubeLink');
 	    	        //results.appendChild(document.createElement('P'));
 	    	        //results.appendChild(document.createTextNode(text.id));
 	    			//console.log('Data: ' + JSON.stringify(text));
 					console.log("success: "+text);
-	    	      }*/
+	    	      }
 			}
 			
 		  
