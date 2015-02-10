@@ -28,7 +28,6 @@
 	  				'longUrl': tempOutputLink
 	    	        });
 	    	        request.then(function(response) {
-	    	          appendResults(response.result);
 					  console.log("success: "+response.result);
 	    	        }, function(reason) {
 	    	          console.log('Error: ' + reason.result.error.message);
