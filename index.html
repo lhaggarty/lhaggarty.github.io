@@ -15,7 +15,7 @@
 			<script>
 			function shortenURL(url){
 				console.log(url);
-	  		  	var tempOutputLink=$('input#OutputYouTubeLink').html();
+	  		  	var tempOutputLink=url;
 	    	      function init() {
 	    	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
 	    	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
