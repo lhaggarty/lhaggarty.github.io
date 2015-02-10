@@ -13,28 +13,32 @@
 			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
 			
 			<script>
-		  var tempOutputLink=$('input#OutputYouTubeLink').html();
-		  alert(tempOutputLink);
-  	      function init() {
-  	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
-  	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
-  	      }
-  	      function makeRequest() {
-  	        var request = gapi.client.urlshortener.url.insert({
-				'longUrl': tempOutputLink
-  	        });
-  	        request.then(function(response) {
-  	          appendResults(response.result);
-  	        }, function(reason) {
-  	          console.log('Error: ' + reason.result.error.message);
-  	        });
-  	      }
-  	      function appendResults(text) {
-  	        var results = document.getElementById('OutputYouTubeLink');
-  	        //results.appendChild(document.createElement('P'));
-  	        results.appendChild(document.createTextNode(text.id));
-  			console.log('Data: ' + JSON.stringify(text));
-  	      }
+			function shortenURL(url){
+				console.log(url);
+	  		  /*var tempOutputLink=$('input#OutputYouTubeLink').html();
+	    	      function init() {
+	    	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
+	    	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+	    	      }
+	    	      function makeRequest() {
+	    	        var request = gapi.client.urlshortener.url.insert({
+	  				'longUrl': tempOutputLink
+	    	        });
+	    	        request.then(function(response) {
+	    	          appendResults(response.result);
+	    	        }, function(reason) {
+	    	          console.log('Error: ' + reason.result.error.message);
+	    	        });
+	    	      }
+	    	      function appendResults(text) {
+	    	        var results = document.getElementById('OutputYouTubeLink');
+	    	        //results.appendChild(document.createElement('P'));
+	    	        results.appendChild(document.createTextNode(text.id));
+	    			console.log('Data: ' + JSON.stringify(text));
+	    	      }*/
+			}
+			
+		  
 			</script>
 		</head>
 <body>
@@ -169,8 +173,9 @@
 				//shortYTLink = $( '#InputYouTubeLink' ).not( 'www.youtube.com/watch?v=' ).val();
 				
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				//tempOutputLink = ( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
-				$( '#OutputYouTubeLink' ).html( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
+				var tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
+				$( '#OutputYouTubeLink' ).html(tempOutputYoutubeLink);
+				shortenURL(tempOutputYoutubeLink);
 				
 				$("form").slideUp();
 				
@@ -192,10 +197,9 @@
 			}
 			</script>
 			
-			<script src="https://apis.google.com/js/client.js?onload=init">
-			function shortURLFunction (){
-			}
-			</script>
+			<script src="https://apis.google.com/js/client.js?onload=init"></script>
+			
+			
 			
 			<script>
 			function backFunction(){
