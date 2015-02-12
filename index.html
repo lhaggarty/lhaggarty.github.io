@@ -92,6 +92,9 @@
 						</div>
 					</div>
 				</form>
+				<div class="col-md-offset-3" id="videoPlayback" style="display: none; padding-top: 0.5%; padding-left: 3.3%">
+				 	<iframe id="initialPlaybackFrame" width="560" height="315" src="input#InputYouTubeLink" frameborder="0" allowfullscreen></iframe>
+				</div>
 				<form  class="form-inline" role="form">
 					<div class="form-group">
 						<div class ="row">
@@ -135,7 +138,6 @@
 					<div class="col-md-6 col-md-offset-3">
 						
 						<div class="well" id="OutputYouTubeLink" ></div>
-						
 					</div>
 				</div>
 			</div>
@@ -161,6 +163,7 @@
 			<script>
 				function displayTimeControls(){
 					$("input").removeAttr('disabled');
+					document.getElementById('initialPlaybackFrame').style.display ="";
 				}
 			</script>
 			
