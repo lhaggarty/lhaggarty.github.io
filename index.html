@@ -190,7 +190,7 @@
 				
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
 				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
-				//$( '#OutputYouTubeLink' ).html(tempOutputYoutubeLink);
+				$( '#OutputYouTubeLink' ).html(tempOutputYoutubeLink);
 				shortenURL(tempOutputYoutubeLink);
 				
 				$("form").slideUp();
