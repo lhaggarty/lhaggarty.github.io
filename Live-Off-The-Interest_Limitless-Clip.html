@@ -46,7 +46,9 @@
 		        width: 640,
 		        height: 360,
 		    });
-			jwplayer("JWvid").play();
+			jwplayer().onReady(function() {
+			jwplayer("JWvid").seek(114);
+		});
 			
 		</script>
 		</div>
