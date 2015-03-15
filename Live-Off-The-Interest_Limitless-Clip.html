@@ -49,7 +49,7 @@
 		    });
 			jwplayer("JWvid").onPlay(function startJWPlayer() {
 				jwplayer("JWvid").seek(114);
-				
+			});	
 			if (endPosition == 118){
 				jwplayer("JWvid").pause();
 				alert('playback is:  ' + endPosition);
@@ -58,7 +58,7 @@
 				endPosition = jwplayer("JWvid").getPosition();
 				alert('playback else is:  ' + endPosition);
 			}
-			});
+			
 			
 		</script>
 		</div>
