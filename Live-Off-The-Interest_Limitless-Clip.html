@@ -52,13 +52,16 @@
 				
 			});
 			
-			endPosition = jwplayer("JWvid").OnTime().getAttribute("position");
-				if (endPosition = 120){
+			function stopJWPlayer() {
+				endPosition = jwplayer("JWvid").getPosition();
+				if (endPosition == 120){
 					jwplayer("JWvid").pause();
-				}
+				};
 				else{
 				}
-				
+				};
+			
+			
 			
 		</script>
 		</div>
