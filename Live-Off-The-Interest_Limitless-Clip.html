@@ -52,7 +52,8 @@
 				
 			});
 			
-			endPosition = jwplayer("JWvid").OnTime();
+			endPosition = jwplayer("JWvid").getPosition();
+			alert('playback is:  ' + endPosition);
 				if (endPosition.position = 118){
 					jwplayer("JWvid").play();
 				}
