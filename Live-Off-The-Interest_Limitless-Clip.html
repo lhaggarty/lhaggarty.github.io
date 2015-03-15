@@ -41,6 +41,7 @@
 		<div id="JWvid"></div>
 
 		<script>
+		var endPosition;
 		    jwplayer("JWvid").setup({
 		        file: "https://www.youtube.com/watch?v=7WpImvsYl98",
 		        width: 640,
@@ -51,8 +52,8 @@
 				
 			});
 			
-			jwplayer("JWvid").onReady(function stopJWPlayer() {
-				var endPosition = jwplayer("JWvid").getPosition();
+			jwplayer("JWvid").onTime(function stopJWPlayer() {
+				endPosition = jwplayer("JWvid").getPosition();
 				if (endPosition = 120){
 					jwplayer("JWvid").pause();
 				}});
