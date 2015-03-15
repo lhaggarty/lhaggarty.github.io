@@ -51,8 +51,8 @@
 				//var endPosition = jwplayer("JWvid").getPosition();
 			});
 			
-			jwplayer("JWvid").onTime(function stopJWPlayer() {
-				if (jwplayer("JWvid").getPosition() = 130){
+			jwplayer("JWvid").onReady(function stopJWPlayer() {
+				if (jwplayer("JWvid").getPosition() = 120){
 					jwplayer("JWvid").pause();
 				}});
 			
