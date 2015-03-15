@@ -52,12 +52,13 @@
 				
 			});
 			jwplayer("JWvid").onTime(function endJWPlayer() {
-			if (endPosition == 118){
+			if (endPosition = 118){
 				jwplayer("JWvid").pause();
 				alert('playback is:  ' + endPosition);
 			}
 			else{
 				endPosition = jwplayer("JWvid").getPosition();
+				alert('playback is:  ' + endPosition);
 			}
 			});
 			
