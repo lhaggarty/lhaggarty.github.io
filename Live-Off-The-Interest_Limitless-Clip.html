@@ -51,15 +51,13 @@
 				jwplayer("JWvid").seek(114);
 				
 			});
-			while (endpostion != 118){
-			endPosition = jwplayer("JWvid").getPosition();
-			};
+			jwplayer("JWvid").onTime(function endJWPlayer() {
 			if (endPosition.position == 118){
-				//jwplayer("JWvid").pause();
+				jwplayer("JWvid").pause();
 				alert('playback is:  ' + endPosition);
 			}
 			else{
-				
+				endPosition = jwplayer("JWvid").getPosition();
 			};
 			
 		</script>
