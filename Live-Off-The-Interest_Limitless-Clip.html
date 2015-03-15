@@ -51,15 +51,16 @@
 				jwplayer("JWvid").seek(114);
 				
 			});
-			
+			while (endpostion != 118){
 			endPosition = jwplayer("JWvid").getPosition();
-			alert('playback is:  ' + endPosition);
-				if (endPosition.position = 118){
-					jwplayer("JWvid").play();
-				}
-				else{
-				};
-			
+			};
+			if (endPosition.position = 118){
+				//jwplayer("JWvid").pause();
+				alert('playback is:  ' + endPosition);
+			}
+			else{
+				
+			};
 			
 		</script>
 		</div>
