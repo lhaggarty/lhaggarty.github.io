@@ -53,7 +53,7 @@
 			while (endPosition != 118){
 				endPosition = jwplayer("JWvid").getPosition();
 			}
-			else{
+			if (endPosition == 118){
 				jwplayer("JWvid").pause();
 				alert('playback is:  ' + endPosition);
 				
