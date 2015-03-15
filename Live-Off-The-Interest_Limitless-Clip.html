@@ -48,11 +48,11 @@
 		    });
 			jwplayer("JWvid").onPlay(function startJWPlayer() {
 				jwplayer("JWvid").seek(114);
-				var endPosition = jwplayer("JWvid").getPosition();
+				//var endPosition = jwplayer("JWvid").getPosition();
 			});
 			
 			jwplayer("JWvid").onTime(function stopJWPlayer() {
-				if (endPosition = 130){
+				if (jwplayer("JWvid").getPosition() = 130){
 					jwplayer("JWvid").pause();
 				}});
 			
