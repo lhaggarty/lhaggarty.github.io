@@ -54,7 +54,7 @@
 			
 			function stopJWPlayer() {
 				endPosition = jwplayer("JWvid").getPosition();
-				if (endPosition == 120){
+				if ((jwplayer("JWvid").getPosition()) = 120){
 					jwplayer("JWvid").pause();
 				}
 				else{
