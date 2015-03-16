@@ -48,13 +48,14 @@
 		        width: 640,
 		        height: 360,
 		    });
-			jwplayer("JWvid").onPlay(function startJWPlayer() {
+			jwplayer("JWvid").onBeforePlay(function () {
 				jwplayer("JWvid").seek(114);
-			});	
+			});
+			jwplayer("JWvid").onTime(function (event){
+				console.log(event);
+			});
 			
-			jwplayer("JWvid").onTime(message){
-				console.log(message);
-			}
+			
 			// while (endPosition != 118){
 // 				endPosition = jwplayer("JWvid").getPosition();
 // 			};
