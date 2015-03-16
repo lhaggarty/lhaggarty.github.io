@@ -52,7 +52,11 @@
 				jwplayer("JWvid").seek(114);
 			});
 			jwplayer("JWvid").onTime(function (event){
-				console.log(event);
+				var realVal = event.position;
+				
+				if (realVal === 133){
+					jwplayer("JWvid").pause();
+				}
 			});
 			
 			
