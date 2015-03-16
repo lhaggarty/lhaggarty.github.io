@@ -42,6 +42,7 @@
 
 		<script>
 		var endPosition;
+		
 		    jwplayer("JWvid").setup({
 		        file: "https://www.youtube.com/watch?v=7WpImvsYl98",
 		        width: 640,
@@ -50,13 +51,18 @@
 			jwplayer("JWvid").onPlay(function startJWPlayer() {
 				jwplayer("JWvid").seek(114);
 			});	
-			while (endPosition != 118){
-				endPosition = jwplayer("JWvid").getPosition();
-			if (endPosition == 118){
-				jwplayer("JWvid").pause();
-				alert('playback is:  ' + endPosition);
-				};
-			};
+			
+			jwplayer("JWvid").onTime(message){
+				console.log(message);
+			}
+			// while (endPosition != 118){
+// 				endPosition = jwplayer("JWvid").getPosition();
+// 			};
+// 			if (endPosition == 118){
+// 				jwplayer("JWvid").pause();
+// 				alert('playback is:  ' + endPosition);
+//
+// 			};
 			
 			
 			
