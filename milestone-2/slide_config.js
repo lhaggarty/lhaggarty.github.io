@@ -1,7 +1,7 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    title: 'DIRECTED STUDIES: VIDEO VIEWING PARADIGM',
+    title: 'VIDEO VIEWING PARADIGM DIRECTED STUDIES',
     subtitle: 'Milestone 2: The Online Video Ecosystem',
     //eventInfo: {
     //  title: 'Google I/O',
