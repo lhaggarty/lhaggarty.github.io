@@ -57,17 +57,19 @@
 			jwplayer("JWvid").onTime(function (event){
 				var realVal = event.position;
 				
-				if (realVal == endPosition){
-					startPosition = 465;
-					jwplayer("JWvid").seek();
+				if (realVal > endPosition3){
+					jwplayer("JWvid").pause();
 				}
-				else if (realVal == endPosition2){
+				
+				else if (realVal > endPosition2){
 					startPosition = 516;
 					jwplayer("JWvid").seek();
 				}
-				else if (realVal == endPosition3){
-					jwplayer("JWvid").pause();
+				else if (realVal > endPosition){
+					startPosition = 465;
+					jwplayer("JWvid").seek();
 				}
+				
 			});
 			
 			
