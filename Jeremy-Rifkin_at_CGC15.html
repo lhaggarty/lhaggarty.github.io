@@ -60,14 +60,16 @@
 				if (realVal > endPosition3){
 					jwplayer("JWvid").pause();
 				}
-				
 				else if (realVal > endPosition2){
 					startPosition = 516;
-					jwplayer("JWvid").seek();
+					jwplayer("JWvid").seek(startPosition);
 				}
 				else if (realVal > endPosition){
 					startPosition = 465;
-					jwplayer("JWvid").seek();
+					jwplayer("JWvid").seek(startPosition);
+				}
+				else if (realVal < 2){
+					jwplayer("JWvid").seek(startPosition);
 				}
 				
 			});
