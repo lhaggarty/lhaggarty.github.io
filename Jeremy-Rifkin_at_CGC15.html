@@ -54,7 +54,7 @@
 			jwplayer("JWvid").onTime(function (event){
 				var realVal = event.position;
 				
-				if (realVal === 433){
+				if (realVal > 432){
 					jwplayer("JWvid").pause();
 				}
 			});
