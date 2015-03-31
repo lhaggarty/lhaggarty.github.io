@@ -1,17 +1,17 @@
 html, body  {
 	background: url(hotpotatoBackground_feb_4_1500.jpg) no-repeat center top;
-	height: 100%;
+	height: 120%;
 	padding-top: 2%;
 }
 
 .title-text {
 	text-align: center;
-	
-	
+	padding-top: 4.5%;
 	color: #fff;
 }
 .intro-message {
-	text-align: center;
+	text-align: left;
+	padding-top: 1.5%;
 	padding-bottom: 5%;
 	color: #fff;
 }
@@ -30,4 +30,13 @@ html, body  {
 }
 .button {
 	color:#000;
+}
+iframe {
+	
+}
+iframe:focus { 
+    outline: none;
+}
+iframe[seamless] { 
+    display: block;
 }
