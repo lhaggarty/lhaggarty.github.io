@@ -41,6 +41,7 @@
 		<div id="JWvid"></div>
 
 		<script>
+		var startPosition = 410;
 		var endPosition;
 		
 		    jwplayer("JWvid").setup({
@@ -49,13 +50,13 @@
 		        height: 360,
 		    });
 			jwplayer("JWvid").onPlay(function () {
-				jwplayer("JWvid").seek(410);
+				jwplayer("JWvid").seek(startPosition);
 			});
 			jwplayer("JWvid").onTime(function (event){
 				var realVal = event.position;
 				
 				if (realVal > 432){
-					jwplayer("JWvid").seek(465);
+					jwplayer("JWvid").seek();
 				}
 			});
 			
