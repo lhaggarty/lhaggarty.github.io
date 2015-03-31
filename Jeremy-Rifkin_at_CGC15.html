@@ -42,7 +42,9 @@
 
 		<script>
 		var startPosition = 410;
-		var endPosition;
+		var endPosition = 432;
+		var endPosition2 = 480;
+		var endPosition3 = 560;
 		
 		    jwplayer("JWvid").setup({
 		        file: "https://www.youtube.com/watch?v=75yiRvi48RQ",
@@ -55,8 +57,16 @@
 			jwplayer("JWvid").onTime(function (event){
 				var realVal = event.position;
 				
-				if (realVal > 432){
+				if (realVal == endPosition){
+					startPosition = 465;
 					jwplayer("JWvid").seek();
+				}
+				else if (realVal == endPosition2){
+					startPosition = 516;
+					jwplayer("JWvid").seek();
+				}
+				else if (realVal == endPosition3){
+					jwplayer("JWvid").pause();
 				}
 			});
 			
