@@ -1,7 +1,8 @@
 html, body  {
 	background: url(hotpotatoBackground_feb_4_1500.jpg) no-repeat center top;
-	height: 120%;
-	padding-top: 2%;
+	/*height: 120%;*/
+	background-size: 100%;
+	
 }
 
 .title-text {
