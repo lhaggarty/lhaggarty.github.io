@@ -32,9 +32,7 @@ html, body  {
 .button {
 	color:#000;
 }
-iframe {
-	
-}
+
 iframe:focus { 
     outline: none;
 }
