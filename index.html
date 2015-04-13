@@ -214,7 +214,7 @@
 				//shortYTLink = $( '#InputYouTubeLink' ).not( 'www.youtube.com/watch?v=' ).val();
 				
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '%26start=' + secondsIn + '%26end=' + secondsOut);
+				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '?start=' + secondsIn + '&amp;end=' + secondsOut);
 				$('#OutputYouTubeLink').html('');
 				$('#collapseAltLink').html(tempOutputYoutubeLink);
 				shortenURL(tempOutputYoutubeLink);
