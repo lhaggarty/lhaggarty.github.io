@@ -285,7 +285,6 @@ g('floodlight.clear');
   __ga('set', "dimension2", 1255);
 </script>
 		<div class="center" id="JWvid"></div>
-
 		<script>
 		var startPosition = 410;
 		var endPosition = 432;
@@ -320,14 +319,6 @@ g('floodlight.clear');
 				
 			});
 </script>
-<script>
-  function playerHeroPlay() {
-    document.getElementById('player-hero').className += ' player-hero--early-request';
-  }
-</script>
-<a class='player-hero__play' href='#' id='player-hero-play' onclick='playerHeroPlay()' ontouchend='playerHeroPlay()' title='Play player'>
-<div class='g-button-play player-hero__play__button'></div>
-</a>
 <script>
   (function () {
     // Must support JSON
@@ -375,11 +366,6 @@ g('floodlight.clear');
         },
   
         B: function () {
-          document.getElementById('player-hero-poster-video').innerHTML = '<video class="player-hero__poster__video" autoplay loop muted src="' + null + '">';
-  
-          document.getElementById('player-hero-poster').className += ' player-hero__poster--video';
-        }
-      },
   
       // 1: Autoplay - no design change
       {
@@ -419,19 +405,6 @@ g('floodlight.clear');
           );
         },
   
-        B: function () {
-          document
-            .getElementById('player-hero-play')
-            .addEventListener('mouseover', function () {
-              playerHeroPlay();
-            });
-  
-          document
-            .getElementById('player-hero')
-            .className += ' player-hero--hover-to-play';
-        }
-      },
-  
       // 4: Preroll autoplay
       {
         percent: 30,
@@ -456,67 +429,8 @@ g('floodlight.clear');
           }
         },
   
-        B: function () {
-          var video = document.createElement('video'),
-              hasOverlayingClass;
-          video.autoplay = true;
-          video.muted = true;
-          video.src = 'http://video.ted.com/videos/test/motion-hero/preroll.mp4';
-          video.className = 'player-hero__preroll__video';
-          video.addEventListener('timeupdate', function () {
-            var currentTime = video.currentTime - 0.25,
-                destinyTime = window.TED.playerOffset || 0;
-  
-            if (!destinyTime || destinyTime < currentTime) {
-              window.TED.playerOffset = currentTime;
-            }
-  
-            if (currentTime > 4.5 && !hasOverlayingClass) {
-              hero.className += ' player-hero--preroll-overlaying';
-              hasOverlayingClass = true;
-            }
-          });
-  
-          document.getElementById('player-hero-preroll-video').appendChild(video);
-  
-          var hero = document.getElementById('player-hero');
-          hero.className += ' player-hero--preroll-overlay';
-          video.addEventListener('ended', function () {
-            hero.className += ' player-hero--preroll-overlaid';
-  
-            window.TED.abapGaSent10 = true;
-            __ga(
-              'send',
-              'event',
-              'player',
-              'progressTime',
-              '10 seconds'
-            );
-          });
-  
-          var videoPaused;
-          function stopVideo() {
-            if (!videoPaused) {
-              video.pause();
-              videoPaused = true;
-            }
-          }
-  
-          var clicker = document.getElementById('player-hero-play');
-          clicker.addEventListener('touchend', stopVideo);
-          clicker.addEventListener('click', stopVideo);
-  
-          window.TED.abapGaSentStart = true;
-          __ga(
-            'send',
-            'event',
-            'player.talk',
-            'start',
-            1255
-          );
-        }
-      }
-    ];
+       
+ 
   
     var lsKey = 'abap';
     localStorage.removeItem(lsKey);
@@ -545,12 +459,7 @@ g('floodlight.clear');
           'off'
         );
   
-      if (isAutoplay) {
-        document.getElementById('player-hero').className += ' player-hero--autoplay-yes';
-      } else {
-        document.getElementById('player-hero').className += ' player-hero--autoplay-no';
-      }
-    }
+      
   
     // Handle forced experiments
     var hrefArray = location.href.split('#ABAP'),
@@ -564,50 +473,7 @@ g('floodlight.clear');
   }());
 </script>
 
-<div class='player-hero__early-request'>
-<div class='player-hero__early-request__content'>
-Loading&hellip;
-</div>
-</div>
-<div class='player-hero__tools'>
-<div class='player-hero__tools__list'>
-<div class='player-hero__tools__list__actions module'>
-<a class='player-hero__tools__tool watch-later-button' href='#' id='player-hero-wl'>
-<i class="icon icon_circle-watchlater player-hero__tools__icon watch-later-button__icon"></i>
-<span class='watch-later-button__label'>
-Watch later
-</span>
-</a>
-<a class='player-hero__tools__tool favorite-button' href='#' id='player-hero-favorite'>
-<i class="icon icon_circle-favorite player-hero__tools__icon favorite-button__icon"></i>
-<span class='favorite-button__label'>
-Favorite
-</span>
-</a>
-<a class='player-hero__tools__tool download-button' href='#'>
-<i class="icon icon_circle-download player-hero__tools__icon"></i>
-<span>Download</span>
-</a>
-<a class='player-hero__tools__tool rate-button' href='#'>
-<i class="icon icon_circle-rate player-hero__tools__icon"></i>
-<span>Rate</span>
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class='player-hero__details player-hero__details--normal'>
-<h1 class='player-hero__header'>
-<div class='player-hero__speaker' lang='en'>
-<span class='player-hero__speaker__content'>
-Malcolm Gladwell:
-</span>
-</div>
-<div class='player-hero__title' lang='en'>
-<span class='player-hero__title__content'>
-The strange tale of the Norden bombsight
-</span>
-</div>
+
 </h1>
 <div class='player-hero__meta'>
 <strong>
