@@ -1,4 +1,12 @@
-div.center {
-margin-left: auto;
-  margin-right: auto;
+html, body{}
+.blackBlock {
+	background-color: #000;
+	
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+  
 }
