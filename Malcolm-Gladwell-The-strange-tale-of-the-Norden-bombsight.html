@@ -315,7 +315,7 @@ g('floodlight.clear');
 				else if (realVal > endPositionz){
 					jwplayer("JWvid").pause();
 				}
-				else if (realVal > endPosition[cutCounter] && realVal < endPosition[cutCounter+1]){
+				else if (realVal > endPosition[cutCounter] && realVal < startPosition[cutCounter+1]){
 					cutCounter++;
 					jwplayer("JWvid").seek(startPosition[cutCounter]);
 				}
