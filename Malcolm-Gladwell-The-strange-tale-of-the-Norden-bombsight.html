@@ -196,10 +196,10 @@ For the best experience, please turn JavaScript on.
 </span>
 
 
-<div class="col-sm-offset-4" id='banner-core' >
-<form class='form-inline main-search' id='main-search' role='search'>
+<div id='banner-core'>
+<form class='main-search' id='main-search' role='search' style="padding-top:14px">
 <div class='main-search__content' >
-<input class='main-search__input' name='q' placeholder='Search...' value=''>
+<input class='form-control' name='q' placeholder='Search...' value=''>
 <input class='main-search__button g-search' type='submit' value='Search'>
 </div>
 </form>
@@ -293,13 +293,13 @@ g('floodlight.clear');
 		<div id="JWvid"></div>
 </div>
 		<script>
-		var startPosition = 410;
-		var endPosition = 432;
-		var endPosition2 = 480;
-		var endPosition3 = 560;
+		var cutCounter = 0;
+		var startPosition = [66,155,220,250,307,398,470,570,627,678,705,752,785,812];
+		var endPosition = [102,206,240,290,328,425,510,592,638,691,717,769,801,821];
+		var endPositionz = 821;
 		
 		    jwplayer("JWvid").setup({
-		        file: "https://www.youtube.com/watch?v=75yiRvi48RQ",
+		        file: "https://www.youtube.com/watch?v=HpiZTvlWx2g",
 		        width: 640,
 		        height: 360,
 		    });
@@ -309,20 +309,17 @@ g('floodlight.clear');
 			jwplayer("JWvid").onTime(function (event){
 				var realVal = event.position;
 				
-				if (realVal > endPosition3){
+				if (realVal < 2){
+					jwplayer("JWvid").seek(startPosition[cutCounter]);
+				}
+				else if (realVal > endPositionz){
 					jwplayer("JWvid").pause();
 				}
-				else if (realVal > endPosition2 && realVal < 481){
-					startPosition = 516;
-					jwplayer("JWvid").seek(startPosition);
+				else if (realVal > endPosition[cutCounter] && realVal < endPosition[cutCounter+1]){
+					cutCounter++;
+					jwplayer("JWvid").seek(startPosition[cutCounter]);
 				}
-				else if (realVal > endPosition && realVal < 433){
-					startPosition = 465;
-					jwplayer("JWvid").seek(startPosition);
-				}
-				else if (realVal < 2){
-					jwplayer("JWvid").seek(startPosition);
-				}
+				
 				
 			});
 </script>
