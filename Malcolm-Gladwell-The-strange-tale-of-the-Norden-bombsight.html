@@ -285,7 +285,8 @@ About
 </div>
 </header><script>
 g('floodlight.clear');
-</script><div class='main talks-main blackBlock' role='main'>
+</script>
+<div class='main talks-main blackBlock' role='main'>
 <script>
   __ga('set', "dimension2", 1255);
 </script>
@@ -343,95 +344,9 @@ g('floodlight.clear');
       return;
     }
   
-    // Build test list
-    var tests = [
-      // 0: Video background test
-      {
-        percent: 100,
-        qualify: function () {
-          try {
-            if (
-              null &&
-              window.matchMedia('(min-width:1024px)').matches &&
+
   
-              !(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) &&
-              !window.matchMedia('(-moz-touch-enabled)').matches
-            ) {
-              var elem = document.createElement('video');
-              if (!elem.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/, '')) {
-                return false;
-              }
-  
-              return true;
-            }
-          } catch (e) {
-            return false;
-          }
-        },
-  
-        B: function () {
-  
-      // 1: Autoplay - no design change
-      {
-        percent: 5,
-        qualify: function () { return true; },
-  
-        A: function () {
-          runAutoplayTest(1, 'A');
-        },
-        B: function () {
-          runAutoplayTest(1, 'B');
-        }
-      },
-  
-      // 2: Autoplay - design change
-      {
-        percent: 5,
-        qualify: function () { return true; },
-  
-        A: function () {
-          runAutoplayTest(2, 'A');
-        },
-        B: function () {
-          runAutoplayTest(2, 'B');
-        }
-      },
-  
-      // 3: Hover-to-play
-      {
-        percent: 20,
-        qualify: function () {
-          return  (
-            window.matchMedia('(min-width:1024px)').matches &&
-  
-            !(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) &&
-            !window.matchMedia('(-moz-touch-enabled)').matches
-          );
-        },
-  
-      // 4: Preroll autoplay
-      {
-        percent: 30,
-        qualify: function () {
-          try {
-            if (
-              1255 > 1604 &&
-              window.matchMedia('(min-width:1024px)').matches &&
-  
-              !(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) &&
-              !window.matchMedia('(-moz-touch-enabled)').matches
-            ) {
-              var elem = document.createElement('video');
-              if (!elem.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/, '')) {
-                return false;
-              }
-  
-              return true;
-            }
-          } catch (e) {
-            return false;
-          }
-        },
+
   
        
  
@@ -477,7 +392,7 @@ g('floodlight.clear');
   }());
 </script>
 
-
+</div>
 </h1>
 <div class='player-hero__meta'>
 <strong>
