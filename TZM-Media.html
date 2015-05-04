@@ -193,15 +193,41 @@ main event. Occurring at The Federal in North Hollywood, Saturday, October 4th, 
 <p><a href="http://www.youtube.com/user/TZMOfficialChannel" target="_blank">http://www.youtube.com/user/TZMOfficialChannel</a></p>
 <p><a href="http://www.youtube.com/user/TZMOfficialChannel" target="_blank"><img src="./TZM - TZM Media Media_files/YwxM9.png" mce_src="http://i.imgur.com/YwxM9.png" height="300" width="400"></a></p>
   <ul>  <li>
-    <h2>
-      <a href="http://www.youtube.com/watch?v=5s69GTcEvUc&feature=youtube_gdata" target="_blank">ZDay LA 2015, Jason Lord - A Technically Unified Earth [ The Zeitgeist Movement ]</a>
-    </h2>
-    <p>LIKE The Zeitgeist Movement @ <a href="https://www.facebook.com/tzmglobal" target="_blank">https://www.facebook.com/tzmglobal</a><br>
-FOLLOW The Zeitgeist Movement  @ <a href="https://twitter.com/tzmglobal" target="_blank">https://twitter.com/tzmglobal</a><br>
-JOIN THE MAILING LIST: <a href="http://www.thezeitgeistmovement.com/" target="_blank">http://www.thezeitgeistmovement.com/</a>  </p>
-
-<p>Jason Lord - A Technically Unified Earth
-Jason speaks how the notion of a unified earth is completely feasible, and not so fictional, when we look at how we are unified now along with some technical trends that are bringing us together into a global commons.  (tags  IoT, 3D Printing, Zero Marginal Cost, Global Commons)</p>
+    <h2>Zeitgeist Day 2013: Jen Wilding | "From the Great Escape to an Improved Reality</h2>
+	<div class="col-md-offset-1" style="">
+			<div id="JWvid"></div>
+	</div>
+			<script>
+			var vid1cutCounter = 0;
+			var vid1startPosition = [150,225,372,469,543,720,823,922,989,1083,1174,1238];
+			var vid1endPosition =   [185,282,426,502,694,790,852,947,996,1136,1189,1315];
+			var vid1endPositionz = 1315;
+		
+			    jwplayer("JWvid").setup({
+			        file: "https://www.youtube.com/watch?v=ymh6_bSLZo4",
+			        width: 850,
+			        height: 478,
+			    });
+				// jwplayer("JWvid").onPlay(function () {
+	// 				jwplayer("JWvid").seek(startPosition);
+	// 			});
+				jwplayer("JWvid").onTime(function (event){
+					var realVal = event.position;
+				
+					if (realVal < 2){
+						jwplayer("JWvid").seek(startPosition[vid1cutCounter]);
+					}
+					else if (realVal > vid1endPositionz){
+						jwplayer("JWvid").pause();
+					}
+					else if (realVal > vid1endPosition[vid1cutCounter] && realVal < vid1startPosition[vid1cutCounter+1]){
+						vid1cutCounter++;
+						jwplayer("JWvid").seek(vid1startPosition[vid1cutCounter]);
+					}
+				
+				
+				});
+	</script>
   </li>
   <li>
     <h2>
