@@ -1,3 +1,7 @@
+h3 {
+     font-size: 200%;
+ } 
+
 html, body  {
 	background: url(hotpotatoBackground_feb_4_1500.jpg) no-repeat center top fixed;
 	/*height: 120%;*/
@@ -33,15 +37,14 @@ html, body  {
 	color:#000;
 }
 
+iframe:focus { 
+    outline: none;
+}
+iframe[seamless] { 
+    display: block;
+}
+
 h1 {
      font-size: 350%;
  }
-h3 {
-     font-size: 1.4em;
- } 
- iframe:focus { 
-     outline: none;
- }
- iframe[seamless] { 
-     display: block;
- }
+
