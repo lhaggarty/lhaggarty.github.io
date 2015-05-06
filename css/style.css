@@ -39,12 +39,10 @@ iframe:focus {
 iframe[seamless] { 
     display: block;
 }
-@media screen 
-(max-device-width: 1250px) and (max-device-height: 680)  {
+
  h1 {
      font-size: 350%;
  }
  h3 {
      font-size: 200%;
  } 
-}
