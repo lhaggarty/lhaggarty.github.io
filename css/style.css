@@ -33,16 +33,15 @@ html, body  {
 	color:#000;
 }
 
-iframe:focus { 
-    outline: none;
-}
-iframe[seamless] { 
-    display: block;
-}
-
- h1 {
+h1 {
      font-size: 350%;
  }
- h3 {
-     font-size: 200%;
+h3 {
+     font-size: 1.4em;
  } 
+ iframe:focus { 
+     outline: none;
+ }
+ iframe[seamless] { 
+     display: block;
+ }
