@@ -1,7 +1,3 @@
-h3 {
-     font-size: 2em;
- } 
-
 html, body  {
 	background: url(hotpotatoBackground_feb_4_1500.jpg) no-repeat center top fixed;
 	/*height: 120%;*/
@@ -44,7 +40,15 @@ iframe[seamless] {
     display: block;
 }
 
+@media screen 
+(max-device-width: 1250px) and (max-device-height: 680)  { 
+
+
 h1 {
      font-size: 350%;
  }
 
+ h3 {
+      font-size: 200%;
+  } 
+}
