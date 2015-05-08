@@ -18,6 +18,9 @@ html, body  {
 	padding-right:0.5%;
 	color: #fff;
 }
+
+
+
 .OutputYouTubeLink {
 	color: #000;
 }
@@ -54,4 +57,7 @@ h1 {
 h3 {
       font-size: 3em;
   } 
+.form-group {
+  	font-size:26px;
+  }
 }
