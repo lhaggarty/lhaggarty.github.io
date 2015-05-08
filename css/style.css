@@ -60,7 +60,7 @@ h3 {
 .form-group {
   	font-size:26px;
   }
-.input {
+.input-medium {
     width: 210px;
     height: 44px !important;
     margin-bottom: 10px !important;
@@ -72,7 +72,7 @@ h3 {
             border-radius: 6px;
   }
 
-.input[class=input] {
+.input-medium[class=input-medium] {
       width: 400px;
   }
 
