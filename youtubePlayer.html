@@ -42,7 +42,7 @@
 			<div class="col-md-12">
 		<iframe id="player" type="text/html" width="640" height="390"
 		  src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"
-		  frameborder="0"></iframe>
+		  frameborder="0" allowscriptaccess="always"></iframe>
 	</div>
 </div>
 		<script>
@@ -58,12 +58,15 @@
 			            height: '390',
 			            width: '640',
 			            videoId: 'M7lc1UVf-VE',
+						  
 			            events: {
 			              'onReady': onPlayerReady,
 			              'onStateChange': onPlayerStateChange
 			            }
 			          });
 			        }
+					loadVideoById({'videoId': 'bHQqvYy5KYo', 'startSeconds': 5, 'endSeconds': 60,});
+					
 					function onPlayerReady(event) {
 					        event.target.playVideo();
 						}
