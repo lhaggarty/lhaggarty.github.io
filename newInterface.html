@@ -14,8 +14,8 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	        
 			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
-			
 			<script src="https://apis.google.com/js/client.js"></script>
+			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
 			
 			<script>
 			function shortenURL(url){
@@ -103,7 +103,7 @@
 	</div>
 			
 				<div class="row">
-					<div class="col-lg-3">
+					<div class="col-md-5">
 						<div class="intro-message" >
 							
 							<h3>
@@ -113,12 +113,41 @@
 					</div>
 				</div>
 			</div>
-			
-			<div class="col-md-offset-3" id="videoPlayback" style="padding-top: 1%;">
-			 	<iframe id="videoPlaybackFrame" width="560" height="315" src="https://www.youtube.com/watch?v=Ds1lcT2Wn3E" frameborder="0" allowfullscreen></iframe>
+			<div class="row col-md-offset-3">
+			 	<div id="videoPlaybackFrame"></div>
 			</div>
-			
-				<div class="col-md-8 col-md-offset-2" style="padding-top: 2.5%"> 
+			<script>
+		    jwplayer("videoPlaybackFrame").setup({
+		        file: "https://www.youtube.com/watch?v=Ds1lcT2Wn3E",
+		        width: 640,
+		        height: 360,
+		    });
+			jwplayer("JWvid").onTime(function (event){
+				var realVal = event.position;
+				var vidDuration = event.getDuration();
+				document.getElementById('preInVis').style.width =(realVal/vidDuration+"%");
+			</script>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-3" id="videoPlayerButtons">
+				<button type="button" class="btn btn-default btn-lg">
+					<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+		
+		<div class="row col-md-5 col-md-offset-3" >
+			<div class="progress" id="videoTimeline">	  
+		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
+		</div>	
+		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style="">
+			</div>
+  		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style="">
+  			</div>
+		</div>
+		  </div>
+		</div>
+				<div class="col-md-8 col-md-offset-2" style="padding-top: 1%"> 
 				<form role="form">
 					<div class="form-group">
 						<div class ="row">
@@ -261,7 +290,7 @@
 			<script>
 			function backFunction(){
 				displayVideoLimiter++;
-				document.getElementById('videoPlayback').style.display ="none";
+				//document.getElementById('videoPlayback').style.display ="none";
 				document.getElementById('outputButtons').style.display ="none";
 				$( '#OutputYouTubeLink' ).html("");
 				$("form").slideDown();
