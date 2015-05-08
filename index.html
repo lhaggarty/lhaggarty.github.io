@@ -125,22 +125,26 @@
 						</div>
 					</div>
 				</form>
-				<form  class="form-inline col-md-offset-4" role="form" style="padding-right:7.5%">
+				<form class="form-inline col-md-offset-2" role="form" style="padding-left:6.5%">
 					<div class="form-group">
 						<div class ="row">
 						<label for="InputPlayPoint" style="color: #FFF">Enter Video Play Point</label>
-						<label for="InputEndPoint" style="color: #FFF; padding-left: 7%">Enter Video Pause Point</label>	
+						<label for="InputEndPoint" style="color: #FFF; padding-left: 38.5%">Enter Video Pause Point</label>	
 						</div>
 						<div class ="row">
 							
 								<div class="bootstrap-timepicker">
 				    				<input type="text" class="form-control" id="InputPlayPoint" onclick="initiateLiveVideoPlayer(); updateEditTimecode()" required disabled>
 									<i class="icon-time"></i>
+									
+									<input type="text" class="form-control" id="HiddenInput" onclick="" disabled style="visibility: hidden">
+									
 				    				<input type="text" class="form-control" id="InputEndPoint" onclick="updateEditTimecode()" disabled>
 									<i class="icon-time"></i>
 							</div>		
-					</div>	
-					<div class ="row" style="padding-left: 140px;padding-bottom: 10px;padding-top: 10px">
+					</div>
+						
+					<div class ="row col-md-offset-5" style="padding-left: 1%;padding-bottom: 10px;padding-top: 10px">
 							
 							<button type="button" class="btn btn-default" onclick="updateEditTimecode(); submitEdit()">Submit</button>
 						</div>
