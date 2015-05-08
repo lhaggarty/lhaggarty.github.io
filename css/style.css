@@ -57,8 +57,10 @@ h1 {
 h3 {
       font-size: 3em;
   } 
-form {
+.form-group {
   	font-size:26px;
   }
-
+.input-large[class="input-medium"] {
+      width: 600px;
+  }
 }
