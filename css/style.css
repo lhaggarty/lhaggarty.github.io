@@ -57,10 +57,8 @@ h1 {
 h3 {
       font-size: 3em;
   } 
-.form-group {
+form {
   	font-size:26px;
   }
-.form-control {
-	font-size:26px;
-}
+
 }
