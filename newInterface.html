@@ -127,7 +127,7 @@
 				var vidDuration = event.getDuration();
 				var progressBar1 = (realVal/vidDuration);
 				progressBar1 = progressBar1.toPrecision(2);
-				alert(progressBar1);
+				$('#OutputYouTubeLink').html(progressBar1);
 				//document.getElementById('preInVis').style.width =((realVal/vidDuration)+"%");
 				
 			});
