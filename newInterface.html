@@ -161,20 +161,20 @@
 				ProgressBarBefore = ProgressBarBefore*100;
 				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
 				
-				document.getElementById('preInVis').style.width =(videoProgress+"%");
+				document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
 				
 				} else if (userEditCounter==1){
 					ProgressBarDuring = ((realVal-inPoint)/vidDuration);
-					ProgressBarDuring = ProgressBarBefore*100;
-					ProgressBarDuring = ProgressBarBefore.toPrecision(2);
-					document.getElementById('editVis').style.width =(videoProgress+"%");
+					ProgressBarDuring = ProgressBarDuring*100;
+					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
+					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
 					
 				} else if (userEditCounter==2){
-				ProgressBarBefore = (realVal-outPoint/vidDuration);
-				ProgressBarBefore = ProgressBarBefore*100;
-				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
+				ProgressBarAfter = (realVal-outPoint/vidDuration);
+				ProgressBarAfter = ProgressBarAfter*100;
+				ProgressBarAfter = ProgressBarAfter.toPrecision(2);
 				//$('#OutputYouTubeLink').html(progressBar1);
-				document.getElementById('postOutVis').style.width =(videoProgress+"%");
+				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
 				
 				}
 			});
