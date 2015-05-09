@@ -124,7 +124,7 @@
 		    });
 			jwplayer("JWvid").onTime(function (event){
 				var realVal = event.position;
-				var vidDuration = getDuration();
+				var vidDuration = event.getDuration();
 				document.getElementById('preInVis').style.width =((realVal/vidDuration)+"%");
 			});
 			</script>
