@@ -124,7 +124,7 @@
 		    });
 			jwplayer("videoPlaybackFrame").onTime(function (event){
 				var realVal = event.position;
-				var vidDuration = getDuration();
+				var vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 				//var progressBar1 = (realVal/vidDuration);
 				//progressBar1 = progressBar1.toPrecision(2);
 				$('#OutputYouTubeLink').html(vidDuration);
