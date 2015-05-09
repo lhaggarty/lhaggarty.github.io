@@ -138,17 +138,17 @@
 			}
 			};
 			function videoInPoint(){
-				userEditCounter=1;
 				jwplayer("videoPlaybackFrame").onTime(function (event){
 				inPoint = event.position;
-				}
+				});
+				userEditCounter=1;
 			};
 			
 			function videoOutPoint(){
-				userEditCounter=2;
 				jwplayer("videoPlaybackFrame").onTime(function (event){
 				outPoint = event.position;
-				}
+				});
+				userEditCounter=2;
 			};
 			
 			jwplayer("videoPlaybackFrame").onTime(function (event){
