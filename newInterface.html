@@ -132,11 +132,16 @@
 				document.getElementById('preInVis').style.width =(progressBar1+"%");
 				
 			});
+			
+			function playPauseVideo(){
+				jwplayer("videoPlaybackFrame").pause();
+			};
+			
 			</script>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-3" id="videoPlayerButtons">
-				<button type="button" class="btn btn-default btn-lg">
+				<button type="button" id="playPauseButton" class="btn btn-default btn-lg" onclick="playPauseVideo()">
 					<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
 				</button>
 			</div>
