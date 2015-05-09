@@ -122,16 +122,12 @@
 		        width: 640,
 		        height: 360,
 		    });
-			jwplayer("videoPlaybackFrame").onTime(function (event){
-				var realVal = event.position;
-				var vidDuration = jwplayer("videoPlaybackFrame").getDuration();
-				var progressBar1 = (realVal/vidDuration);
-				progressBar1 = progressBar1*100;
-				progressBar1 = progressBar1.toPrecision(2);
-				//$('#OutputYouTubeLink').html(progressBar1);
-				document.getElementById('preInVis').style.width =(progressBar1+"%");
-				
-			});
+			var ProgressBarBefore;
+			var ProgressBarDuring;
+			var ProgressBarAfter;
+			var userEditCounter = 0;
+			var inPoint;
+			var outPoint;
 			
 			function playPauseVideo(){
 			jwplayer("videoPlaybackFrame").play();
@@ -140,7 +136,48 @@
 			} else if (jwplayer("videoPlaybackFrame").getState()=="PAUSED" || jwplayer("videoPlaybackFrame").getState()=="BUFFERING"){
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
 			}
-			}
+			};
+			function videoInPoint(){
+				jwplayer("videoPlaybackFrame").onTime(function (event){
+				inPoint = event.position;
+				}
+				userEditCounter=1;
+			};
+			
+			function videoOutPoint(){
+				jwplayer("videoPlaybackFrame").onTime(function (event){
+				outPoint = event.position;
+				}
+				userEditCounter=2;
+			};
+			
+			jwplayer("videoPlaybackFrame").onTime(function (event){
+				var realVal = event.position;
+				var vidDuration = jwplayer("videoPlaybackFrame").getDuration();
+				var videoProgress;
+				
+				if (userEditCounter==0){
+				ProgressBarBefore = (realVal/vidDuration);
+				ProgressBarBefore = ProgressBarBefore*100;
+				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
+				
+				document.getElementById('preInVis').style.width =(videoProgress+"%");
+				
+				} else if (userEditCounter==1){
+					ProgressBarDuring = ((realVal-inPoint)/vidDuration);
+					ProgressBarDuring = ProgressBarBefore*100;
+					ProgressBarDuring = ProgressBarBefore.toPrecision(2);
+					document.getElementById('editVis').style.width =(videoProgress+"%");
+					
+				} else if (userEditCounter==2){
+				ProgressBarBefore = (realVal-outPoint/vidDuration);
+				ProgressBarBefore = ProgressBarBefore*100;
+				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
+				//$('#OutputYouTubeLink').html(progressBar1);
+				document.getElementById('postOutVis').style.width =(videoProgress+"%");
+				
+				}
+			});
 			</script>
 		</div>
 		<div class="row">
@@ -148,8 +185,14 @@
 				<button type="button" class="btn btn-default btn-lg" onclick="playPauseVideo()">
 					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"></span>
 				</button>
-				<button type="button" class="btn btn-default btn-lg">
-					<span class="glyphicon glyphicon-scissors" aria-hidden="true"></span>
+				<button type="button" class="btn btn-default btn-lg" onclick="videoInPoint">
+					<span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default btn-lg" onclick="videoOutPoint">
+					<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default btn-lg" onclick="submitVideoEdit">
+					<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
 				</button>
 			</div>
 		</div>
