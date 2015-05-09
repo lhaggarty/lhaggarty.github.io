@@ -140,14 +140,14 @@
 			function videoInPoint(){
 				jwplayer("videoPlaybackFrame").onTime(function (event){
 				inPoint = event.position;
-				}
+				};
 				userEditCounter=1;
 			};
 			
 			function videoOutPoint(){
 				jwplayer("videoPlaybackFrame").onTime(function (event){
 				outPoint = event.position;
-				}
+				};
 				userEditCounter=2;
 			};
 			
@@ -192,7 +192,7 @@
 					<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
 				</button>
 				<button type="button" class="btn btn-default btn-lg" onclick="submitVideoEdit">
-					<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-film" aria-hidden="true"></span>
 				</button>
 			</div>
 		</div>
