@@ -136,9 +136,9 @@
 			function playPauseVideo(){
 			jwplayer("videoPlaybackFrame").play();
 			if (jwplayer("videoPlaybackFrame").getState()=="PLAYING"){
-				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
-			} else if (jwplayer("videoPlaybackFrame").getState()=="PAUSED" || jwplayer("videoPlaybackFrame").getState()=="BUFFERING"){
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-play";
+			} else if (jwplayer("videoPlaybackFrame").getState()=="PAUSED" || jwplayer("videoPlaybackFrame").getState()=="BUFFERING"){
+				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
 			}
 			}
 			</script>
