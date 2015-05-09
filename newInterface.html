@@ -134,9 +134,9 @@
 			});
 			
 			function playPauseVideo(){
-			if (jwplayer("videoPlaybackFrame").play()=true){
+			if (jwplayer("videoPlaybackFrame").play()==true){
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
-			} else if (jwplayer("videoPlaybackFrame").play()=false){
+			} else if (jwplayer("videoPlaybackFrame").play()==false){
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-play";
 			}
 			jwplayer("videoPlaybackFrame").play();
