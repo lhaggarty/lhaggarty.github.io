@@ -125,9 +125,9 @@
 			jwplayer("JWvid").onTime(function (event){
 				var realVal = event.position;
 				var vidDuration = event.getDuration();
-				var progressBar1 = (realVal/vidDuration);
-				progressBar1 = progressBar1.toPrecision(2);
-				$('#OutputYouTubeLink').html(progressBar1);
+				//var progressBar1 = (realVal/vidDuration);
+				//progressBar1 = progressBar1.toPrecision(2);
+				$('#OutputYouTubeLink').html(realVal);
 				//document.getElementById('preInVis').style.width =((realVal/vidDuration)+"%");
 				
 			});
