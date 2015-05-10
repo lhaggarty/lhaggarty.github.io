@@ -117,8 +117,9 @@
 			 	<div id="videoPlaybackFrame"></div>
 			</div>
 			<script>
+			var inputYTLink;
 		    jwplayer("videoPlaybackFrame").setup({
-		        file: "https://www.youtube.com/watch?v=Ds1lcT2Wn3E",
+		        file: inputYTLink,
 		        width: 640,
 		        height: 360,
 		    });
@@ -129,6 +130,7 @@
 			var inPoint = 0;
 			var outPoint;
 			var vidDuration;
+			
 			
 			function playPauseVideo(){
 			jwplayer("videoPlaybackFrame").play();
@@ -171,7 +173,7 @@
 					ProgressBarDuring = ProgressBarDuring*100;
 					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
 					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
-					$('#OutputYouTubeLink').html(ProgressBarDuring);
+					
 					
 					document.getElementById('postOutVis').style.width ="";
 				} else if (userEditCounter==2){
@@ -250,9 +252,9 @@
 				var shortYTLink;
 				var tempOutputYoutubeLink;
 				
-				
 				function initiateLiveVideoPlayer(){
-					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val()); 
+					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
+					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink); 
 					tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
 					displayVideoLimiter--;
 				}
