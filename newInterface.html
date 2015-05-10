@@ -128,6 +128,7 @@
 			var userEditCounter = 0;
 			var inPoint;
 			var outPoint;
+			var vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 			
 			function playPauseVideo(){
 			jwplayer("videoPlaybackFrame").play();
@@ -141,19 +142,19 @@
 				jwplayer("videoPlaybackFrame").onTime(function (event){
 				inPoint = event.position;
 				});
-				userEditCounter=1;
+				userEditCounter++;
 			};
 			
 			function videoOutPoint(){
 				jwplayer("videoPlaybackFrame").onTime(function (event){
 				outPoint = event.position;
 				});
-				userEditCounter=2;
+				userEditCounter++;
 			};
 			
 			jwplayer("videoPlaybackFrame").onTime(function (event){
 				var realVal = event.position;
-				var vidDuration = jwplayer("videoPlaybackFrame").getDuration();
+				
 				var videoProgress;
 				
 				if (userEditCounter==0){
@@ -170,7 +171,7 @@
 					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
 					
 				} else if (userEditCounter==2){
-				ProgressBarAfter = (realVal-outPoint/vidDuration);
+				ProgressBarAfter = ((realVal-outPoint)/vidDuration);
 				ProgressBarAfter = ProgressBarAfter*100;
 				ProgressBarAfter = ProgressBarAfter.toPrecision(2);
 				//$('#OutputYouTubeLink').html(progressBar1);
