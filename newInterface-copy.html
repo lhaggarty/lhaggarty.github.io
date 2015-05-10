@@ -197,10 +197,10 @@
 				<button type="button" class="btn btn-default btn-lg" onclick="videoInPoint()">
 					<span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
 				</button>
-				<button type="button" class="btn btn-default btn-lg" onclick="videoOutPoint();updateEditTimecode()">
+				<button type="button" class="btn btn-default btn-lg" onclick="videoOutPoint()">
 					<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
 				</button>
-				<button type="button" class="btn btn-default btn-lg" onclick="submitEdit()">
+				<button type="button" class="btn btn-default btn-lg" onclick="submitVideoEdit()">
 					<span class="glyphicon glyphicon-film" aria-hidden="true"></span>
 				</button>
 			</div>
@@ -223,12 +223,36 @@
 						<div class ="row">
 							 
 				    <label for="InputYouTubeLink" style="color: #f9f9f9">Enter YouTube Video Link Here</label>
-				    <input type="text" class="form-control" id="InputYouTubeLink" placeholder="www.youtube.com..." onclick="initiateLiveVideoPlayer()">
+				    <input type="text" class="form-control" id="InputYouTubeLink" placeholder="www.youtube.com..." onclick="displayTimeControls()">
 				  		
 						</div>
 					</div>
 				</form>
-				
+				<form class="form-inline col-md-offset-2" role="form" style="padding-left:6.5%">
+					<div class="form-group">
+						<div class ="row">
+						<label for="InputPlayPoint" style="color: #FFF">Enter Video Play Point</label>
+						<label for="InputEndPoint" style="color: #FFF; padding-left: 38.5%">Enter Video Pause Point</label>	
+						</div>
+						<div class ="row">
+							
+								<div class="bootstrap-timepicker">
+				    				<input type="text" class="form-control" id="InputPlayPoint" onclick="initiateLiveVideoPlayer(); updateEditTimecode()" required disabled>
+									<i class="icon-time"></i>
+									
+									<input type="text" class="form-control" id="HiddenInput" onclick="" disabled style="visibility: hidden">
+									
+				    				<input type="text" class="form-control" id="InputEndPoint" onclick="updateEditTimecode()" disabled>
+									<i class="icon-time"></i>
+							</div>		
+					</div>
+						
+					<div class ="row col-md-offset-5" style="padding-left: 1%;padding-bottom: 10px;padding-top: 10px">
+							
+							<button type="button" class="btn btn-default" onclick="updateEditTimecode(); submitEdit()">Submit</button>
+						</div>
+					</div>
+			  	</form>
 			<div class ="row" style="display: none; padding-top: 2%" id="outputButtons">
 					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText('OutputYouTubeLink')">Select Link</button>
 					<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()">Reset</button>
@@ -246,24 +270,65 @@
 			
 				</div>
 			
+			
+			
+	        <script type="text/javascript">
+	            $('#InputPlayPoint').timepicker({
+	                template: false,
+	                showInputs: false,
+	                minuteStep: 5,
+					showSeconds: true,
+					showMeridian: false,
+					defaultTime: '0:01:00',
+	            });
+	            $('#InputEndPoint').timepicker({
+	                showInputs: false,
+	                minuteStep: 5,
+					showSeconds: true,
+					showMeridian: false,
+					defaultTime: '0:02:00'
+	            });
+	        </script>
+			
 			<script>
 				var shortYTLink;
 				var tempOutputYoutubeLink;
 				
-				
+				var displayVideoLimiter = 1;
+				function displayTimeControls(){
+					$("input#InputPlayPoint").removeAttr('disabled');
+					$("input#InputEndPoint").removeAttr('disabled');
+					//$("videoPlayback").removeAttr('style.display');
+					//document.getElementById('videoPlayback').style.display ="";
+					
+					
+				}
 				function initiateLiveVideoPlayer(){
+					if (displayVideoLimiter > 0){
 					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val()); 
 					tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
+					document.getElementById('videoPlaybackFrame').src = tempOutputYoutubeLink;
 					displayVideoLimiter--;
+				}
 				}
 			</script>
 			
 			<script>
 			
 			function updateEditTimecode(){
-				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '?start=' + inPoint + '&amp;end=' + secondsOut);
+				var hms1 = $('input#InputPlayPoint').val();
+				var hms2 = $('input#InputEndPoint').val();
+				var secps1 = hms1.split(':'); // split it at the colons
+				var secps2 = hms2.split(':'); // split it at the colons
+				// minutes are worth 60 seconds. Hours are worth 60 minutes.
+				var secondsIn = (+secps1[0]) * 60 * 60 + (+secps1[1]) * 60 + (+secps1[2]); 
+				var secondsOut = (+secps2[0]) * 60 * 60 + (+secps2[1]) * 60 + (+secps2[2]);
 				
+				//shortYTLink = $( '#InputYouTubeLink' ).not( 'www.youtube.com/watch?v=' ).val();
+				
+				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
+				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '?start=' + secondsIn + '&amp;end=' + secondsOut);
+				document.getElementById('videoPlaybackFrame').src = tempOutputYoutubeLink;
 			}
 			function submitEdit(){
 				$('#OutputYouTubeLink').html('');
@@ -273,7 +338,7 @@
 				
 				$("form").slideUp();
 				
-				
+				document.getElementById('videoPlaybackFrame').src = tempOutputYoutubeLink;
 				//document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";
 			}
