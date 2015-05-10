@@ -175,7 +175,7 @@
 					
 					document.getElementById('postOutVis').style.width ="";
 				} else if (userEditCounter==2){
-				ProgressBarDuring = ((outPoint)/vidDuration);
+				ProgressBarDuring = ((outPoint-inPoint)/vidDuration);
 				ProgressBarDuring = ProgressBarDuring*100;
 				ProgressBarDuring = ProgressBarDuring.toPrecision(2);
 				document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
