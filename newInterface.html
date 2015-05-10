@@ -139,8 +139,8 @@
 			}
 			};
 			function videoInPoint(){
-				inPoint= jwplayer("videoPlaybackFrame").getPosition();
-				$('#OutputYouTubeLink').html(inPoint);
+				inPoint = jwplayer("videoPlaybackFrame").getPosition();
+				outPoint = jwplayer("videoPlaybackFrame").getDuration();
 				userEditCounter=1;
 			};
 			
@@ -171,6 +171,7 @@
 					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
 					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
 					
+					document.getElementById('postOutVis').style.width ="";
 				} else if (userEditCounter==2){
 					ProgressBarDuring = ((outPoint)/vidDuration);
 					ProgressBarDuring = ProgressBarDuring*100;
