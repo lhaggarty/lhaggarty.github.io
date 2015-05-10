@@ -139,16 +139,13 @@
 			}
 			};
 			function videoInPoint(){
-				jwplayer("videoPlaybackFrame").onTime(function (event){
-				inPoint = event.position;
-				});
+				inPoint= jwplayer("videoPlaybackFrame").getPosition();
+				$('#OutputYouTubeLink').html(inPoint);
 				userEditCounter++;
 			};
 			
 			function videoOutPoint(){
-				jwplayer("videoPlaybackFrame").onTime(function (event){
-				outPoint = event.position;
-				});
+				outPoint= jwplayer("videoPlaybackFrame").getPosition();
 				userEditCounter++;
 			};
 			jwplayer("videoPlaybackFrame").onTime(function (event){
