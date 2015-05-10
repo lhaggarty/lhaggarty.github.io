@@ -161,12 +161,22 @@
 				document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
 				
 				} else if (userEditCounter==1){
+					ProgressBarBefore = ((inPoint)/vidDuration);
+					ProgressBarBefore = ProgressBarBefore*100;
+					ProgressBarBefore = ProgressBarBefore.toPrecision(2);
+					document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
+					
 					ProgressBarDuring = ((realVal-inPoint)/vidDuration);
 					ProgressBarDuring = ProgressBarDuring*100;
 					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
 					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
 					
 				} else if (userEditCounter==2){
+					ProgressBarDuring = ((outPoint)/vidDuration);
+					ProgressBarDuring = ProgressBarDuring*100;
+					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
+					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
+				
 				ProgressBarAfter = ((realVal-outPoint)/vidDuration);
 				ProgressBarAfter = ProgressBarAfter*100;
 				ProgressBarAfter = ProgressBarAfter.toPrecision(2);
