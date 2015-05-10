@@ -126,7 +126,7 @@
 			var ProgressBarDuring;
 			var ProgressBarAfter;
 			var userEditCounter = 0;
-			var inPoint;
+			var inPoint = 0;
 			var outPoint;
 			var vidDuration;
 			
@@ -140,13 +140,14 @@
 			};
 			function videoInPoint(){
 				inPoint = jwplayer("videoPlaybackFrame").getPosition();
-				outPoint = inPoint+1;
+				outPoint = jwplayer("videoPlaybackFrame").getDuration();
 				userEditCounter=1;
 			};
 			
 			function videoOutPoint(){
 				outPoint= jwplayer("videoPlaybackFrame").getPosition();
 				userEditCounter=2;
+				$('#OutputYouTubeLink').html(outPoint);
 			};
 			jwplayer("videoPlaybackFrame").onTime(function (event){
 				var realVal = event.position;
@@ -173,16 +174,16 @@
 					
 					document.getElementById('postOutVis').style.width ="";
 				} else if (userEditCounter==2){
+				ProgressBarDuring = ((outPoint)/vidDuration);
+				ProgressBarDuring = ProgressBarDuring*100;
+				ProgressBarDuring = ProgressBarDuring.toPrecision(2);
+				document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
+				
 				ProgressBarAfter = ((realVal-outPoint)/vidDuration);
 				ProgressBarAfter = ProgressBarAfter*100;
 				ProgressBarAfter = ProgressBarAfter.toPrecision(2);
 				//$('#OutputYouTubeLink').html(progressBar1);
 				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
-				
-				ProgressBarDuring = ((outPoint)/vidDuration);
-				ProgressBarDuring = ProgressBarDuring*100;
-				ProgressBarDuring = ProgressBarDuring.toPrecision(2);
-				document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
 				}
 			});
 			</script>
