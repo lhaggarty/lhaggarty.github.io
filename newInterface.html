@@ -151,10 +151,9 @@
 				});
 				userEditCounter++;
 			};
-			vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 			jwplayer("videoPlaybackFrame").onTime(function (event){
 				var realVal = event.position;
-				
+				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 				var videoProgress;
 				
 				if (userEditCounter==0){
