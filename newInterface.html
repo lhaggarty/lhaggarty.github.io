@@ -131,7 +131,6 @@
 			var vidDuration;
 			
 			function playPauseVideo(){
-			vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 			jwplayer("videoPlaybackFrame").play();
 			if (jwplayer("videoPlaybackFrame").getState()=="PLAYING"){
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-play";
@@ -152,7 +151,7 @@
 				});
 				userEditCounter++;
 			};
-			
+			vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 			jwplayer("videoPlaybackFrame").onTime(function (event){
 				var realVal = event.position;
 				
