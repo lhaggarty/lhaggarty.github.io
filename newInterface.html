@@ -255,7 +255,7 @@
 					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
 					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
 					$('#OutputYouTubeLink').html(shortYTLink); 
-					tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
+					tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + inputYTLink);
 					displayVideoLimiter--;
 					
 				    jwplayer("videoPlaybackFrame").setup({
