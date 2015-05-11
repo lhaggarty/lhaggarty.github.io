@@ -256,10 +256,10 @@
 					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
 					$('#OutputYouTubeLink').html(inputYTLink); 
 					tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
-					displayVideoLimiter--;
+					
 					
 				    jwplayer("videoPlaybackFrame").setup({
-				        file: (inputYTLink),
+				        file: inputYTLink,
 				        width: 640,
 				        height: 360,
 				    });
