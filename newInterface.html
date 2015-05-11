@@ -117,12 +117,7 @@
 			 	<div id="videoPlaybackFrame"></div>
 			</div>
 			<script>
-			var inputYTLink;
-		    jwplayer("videoPlaybackFrame").setup({
-		        file: inputYTLink,
-		        width: 640,
-		        height: 360,
-		    });
+			
 			var ProgressBarBefore;
 			var ProgressBarDuring;
 			var ProgressBarAfter;
@@ -254,12 +249,19 @@
 			<script>
 				var shortYTLink;
 				var tempOutputYoutubeLink;
+				var inputYTLink;
 				
 				function initiateLiveVideoPlayer(){
 					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
 					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink); 
 					tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
 					displayVideoLimiter--;
+					
+				    jwplayer("videoPlaybackFrame").setup({
+				        file: inputYTLink,
+				        width: 640,
+				        height: 360,
+				    });
 				}
 			</script>
 			
