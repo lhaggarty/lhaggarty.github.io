@@ -127,6 +127,11 @@
 			var vidDuration;
 			var videoLoadSwitch = 0;
 			
+		    jwplayer("videoPlaybackFrame").setup({
+		        file: "https://www.youtube.com/watch?v=23lJ2589sQQ",
+		        width: 640,
+		        height: 360,
+		    });
 			
 			function playPauseVideo(){
 			jwplayer("videoPlaybackFrame").play();
