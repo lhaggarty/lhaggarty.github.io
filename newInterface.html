@@ -143,6 +143,11 @@
 				
 				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
 				videoLoadSwitch=1;
+			    jwplayer("videoPlaybackFrame").setup({
+			        file: inputYTLink,
+			        width: 640,
+			        height: 360,
+			    });
 			};
 			
 			function playPauseVideo(){
