@@ -144,9 +144,13 @@
 				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
 				videoLoadSwitch=1;
 			    jwplayer().load([{file:inputYTLink}]);
+				
 				document.getElementById('loadVideoButton').style.display ="none";
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
 				document.getElementById('playPauseButton').style.display ="";
+				document.getElementById('editVis').style.width ="";
+				document.getElementById('postOutVis').style.width ="";
+				userEditCounter=0;
 			};
 			
 			function playPauseVideo(){
@@ -192,7 +196,6 @@
 					ProgressBarDuring = ProgressBarDuring*100;
 					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
 					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
-					
 					
 					document.getElementById('postOutVis').style.width ="";
 				} else if (userEditCounter==2){
