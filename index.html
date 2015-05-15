@@ -277,7 +277,7 @@
 				</div>
 			</div>
 				<div class ="row" >
-						<div class="well" id="OutputYouTubeLink" ></div>
+						<div class="well" style="display: none;" id="OutputYouTubeLink" ></div>
 				</div>
 			
 				</div>
@@ -290,6 +290,7 @@
 				
 			}
 			function submitEdit(){
+				document.getElementById('OutputYouTubeLink').style.display ="";
 				$('#OutputYouTubeLink').html('');
 				$('#collapseAltLink').html(tempOutputYoutubeLink);
 				
