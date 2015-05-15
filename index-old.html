@@ -5,7 +5,7 @@
 			<meta name="description" content="Hot Potato The YouTube Video Editor. Try the tool and share your edits!">
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize">
 			<link rel="stylesheet" type="text/css" href="css/style.css"/>
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 			
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 	        
@@ -14,8 +14,8 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	        
 			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
+			
 			<script src="https://apis.google.com/js/client.js"></script>
-			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
 			
 			<script>
 			function shortenURL(url){
@@ -103,7 +103,7 @@
 	</div>
 			
 				<div class="row">
-					<div class="col-md-5">
+					<div class="col-lg-3">
 						<div class="intro-message" >
 							
 							<h3>
@@ -113,149 +113,43 @@
 					</div>
 				</div>
 			</div>
-			<div class="row col-md-offset-3" style="padding-top:1%;padding-left:0.5%">
-			 	<div id="videoPlaybackFrame"></div>
-			</div>
-			<script>
 			
-			var ProgressBarBefore;
-			var ProgressBarDuring;
-			var ProgressBarAfter;
-			var userEditCounter = 0;
-			var inPoint = 0;
-			var outPoint;
-			var vidDuration;
-			var videoLoadSwitch = 0;
-			
-			var shortYTLink;
-			var tempOutputYoutubeLink;
-			var inputYTLink = "https://www.youtube.com/watch?v=23lJ2589sQQ";
-			
-		    jwplayer("videoPlaybackFrame").setup({
-		        file: inputYTLink,
-		        width: 640,
-		        height: 360,
-		    });
-			
-			function initiateLiveVideoPlayer(){
-				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
-				
-				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
-				videoLoadSwitch=1;
-			    jwplayer().load([{file:inputYTLink}]);
-			};
-			
-			function playPauseVideo(){
-			jwplayer("videoPlaybackFrame").play();
-			if (jwplayer("videoPlaybackFrame").getState()=="PLAYING"){
-				document.getElementById("playPauseSpan").className="glyphicon glyphicon-play";
-			} else if (jwplayer("videoPlaybackFrame").getState()=="PAUSED" || jwplayer("videoPlaybackFrame").getState()=="BUFFERING"){
-				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
-			}
-			};
-			function videoInPoint(){
-				inPoint = jwplayer("videoPlaybackFrame").getPosition();
-				outPoint = jwplayer("videoPlaybackFrame").getDuration();
-				userEditCounter=1;
-			};
-			
-			function videoOutPoint(){
-				outPoint= jwplayer("videoPlaybackFrame").getPosition();
-				userEditCounter=2;
-				
-			};
-			
-			
-			jwplayer("videoPlaybackFrame").onTime(function (event){
-				var realVal = event.position;
-				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
-				var videoProgress;
-				
-				if (userEditCounter==0){
-				ProgressBarBefore = (realVal/vidDuration);
-				ProgressBarBefore = ProgressBarBefore*100;
-				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
-				
-				document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
-				
-				} else if (userEditCounter==1){
-					ProgressBarBefore = ((inPoint)/vidDuration);
-					ProgressBarBefore = ProgressBarBefore*100;
-					ProgressBarBefore = ProgressBarBefore.toPrecision(2);
-					document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
-					
-					ProgressBarDuring = ((realVal-inPoint)/vidDuration);
-					ProgressBarDuring = ProgressBarDuring*100;
-					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
-					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
-					
-					
-					document.getElementById('postOutVis').style.width ="";
-				} else if (userEditCounter==2){
-				ProgressBarDuring = ((outPoint-inPoint)/vidDuration);
-				ProgressBarDuring = ProgressBarDuring*100;
-				ProgressBarDuring = ProgressBarDuring.toPrecision(2);
-				document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
-				
-				ProgressBarAfter = ((realVal-outPoint)/vidDuration);
-				ProgressBarAfter = ProgressBarAfter*100;
-				ProgressBarAfter = ProgressBarAfter.toPrecision(2);
-				//$('#OutputYouTubeLink').html(progressBar1);
-				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
-				}
-			});
-		
-			</script>
-		</div>
-		<div class="row">
-		<div class="col-md-6 col-md-offset-3" style="padding-top:1.5%;padding-right:5%">
-			<div class="progress" id="videoTimeline">	  
-		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
-		</div>	
-		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style="">
-			</div>
-  		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style="">
-  			</div>
-		</div>
-		  </div>
-	  </div>
-		
-		<div class="row">
-			<div class="col-md-offset-3" id="videoPlayerButtons">
-				<button type="button" class="btn btn-default btn-lg" onclick="playPauseVideo();">
-					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"></span>
-				</button>
-				<button type="button" class="btn btn-default btn-lg" onclick="videoInPoint()">
-					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> IN</span>
-					
-				</button>
-				<button type="button" class="btn btn-default btn-lg" onclick="videoOutPoint();updateEditTimecode()">
-					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> OUT</span>
-					
-				</button>
-				<button type="button" class="btn btn-default btn-lg" onclick="submitEdit()">
-					<span class="glyphicon glyphicon-film" aria-hidden="true"></span>
-				</button>
-				<button type="button" class="btn btn-default btn-lg" onclick="initiateLiveVideoPlayer();">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-				</button>
-			</div>
-		</div>
-		
-		
-				<div class="col-md-8 col-md-offset-2" style="padding-top: 1%"> 
+				<div class="col-md-8 col-md-offset-2" style="padding-top: 2.5%"> 
 				<form role="form">
 					<div class="form-group">
 						<div class ="row">
 							 
 				    <label for="InputYouTubeLink" style="color: #f9f9f9">Enter YouTube Video Link Here</label>
-				    <input type="text" class="form-control" id="InputYouTubeLink" placeholder="www.youtube.com..." >
+				    <input type="text" class="form-control" id="InputYouTubeLink" placeholder="www.youtube.com..." onclick="displayTimeControls()">
 				  		
 						</div>
 					</div>
 				</form>
-				
+				<form class="form-inline col-md-offset-2" role="form" style="padding-left:6.5%">
+					<div class="form-group">
+						<div class ="row">
+						<label for="InputPlayPoint" style="color: #FFF">Enter Video Play Point</label>
+						<label for="InputEndPoint" style="color: #FFF; padding-left: 38.5%">Enter Video Pause Point</label>	
+						</div>
+						<div class ="row">
+							
+								<div class="bootstrap-timepicker">
+				    				<input type="text" class="form-control" id="InputPlayPoint" onclick="initiateLiveVideoPlayer(); updateEditTimecode()" required disabled>
+									<i class="icon-time"></i>
+									
+									<input type="text" class="form-control" id="HiddenInput" onclick="" disabled style="visibility: hidden">
+									
+				    				<input type="text" class="form-control" id="InputEndPoint" onclick="updateEditTimecode()" disabled>
+									<i class="icon-time"></i>
+							</div>		
+					</div>
+						
+					<div class ="row col-md-offset-5" style="padding-left: 1%;padding-bottom: 10px;padding-top: 10px">
+							
+							<button type="button" class="btn btn-default" onclick="updateEditTimecode(); submitEdit()">Submit</button>
+						</div>
+					</div>
+			  	</form>
 			<div class ="row" style="display: none; padding-top: 2%" id="outputButtons">
 					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText('OutputYouTubeLink')">Select Link</button>
 					<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()">Reset</button>
@@ -273,12 +167,65 @@
 			
 				</div>
 			
+			
+			
+	        <script type="text/javascript">
+	            $('#InputPlayPoint').timepicker({
+	                template: false,
+	                showInputs: false,
+	                minuteStep: 5,
+					showSeconds: true,
+					showMeridian: false,
+					defaultTime: '0:01:00',
+	            });
+	            $('#InputEndPoint').timepicker({
+	                showInputs: false,
+	                minuteStep: 5,
+					showSeconds: true,
+					showMeridian: false,
+					defaultTime: '0:02:00'
+	            });
+	        </script>
+			
+			<script>
+				var shortYTLink;
+				var tempOutputYoutubeLink;
+				
+				var displayVideoLimiter = 1;
+				function displayTimeControls(){
+					$("input#InputPlayPoint").removeAttr('disabled');
+					$("input#InputEndPoint").removeAttr('disabled');
+					//$("videoPlayback").removeAttr('style.display');
+					document.getElementById('videoPlayback').style.display ="";
+					
+					
+				}
+				function initiateLiveVideoPlayer(){
+					if (displayVideoLimiter > 0){
+					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val()); 
+					tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
+					document.getElementById('videoPlaybackFrame').src = tempOutputYoutubeLink;
+					displayVideoLimiter--;
+				}
+				}
+			</script>
+			
 			<script>
 			
 			function updateEditTimecode(){
-				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '?start=' + inPoint + '&amp;end=' + outPoint);
+				var hms1 = $('input#InputPlayPoint').val();
+				var hms2 = $('input#InputEndPoint').val();
+				var secps1 = hms1.split(':'); // split it at the colons
+				var secps2 = hms2.split(':'); // split it at the colons
+				// minutes are worth 60 seconds. Hours are worth 60 minutes.
+				var secondsIn = (+secps1[0]) * 60 * 60 + (+secps1[1]) * 60 + (+secps1[2]); 
+				var secondsOut = (+secps2[0]) * 60 * 60 + (+secps2[1]) * 60 + (+secps2[2]);
 				
+				//shortYTLink = $( '#InputYouTubeLink' ).not( 'www.youtube.com/watch?v=' ).val();
+				
+				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
+				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '?start=' + secondsIn + '&amp;end=' + secondsOut);
+				document.getElementById('videoPlaybackFrame').src = tempOutputYoutubeLink;
 			}
 			function submitEdit(){
 				$('#OutputYouTubeLink').html('');
@@ -288,7 +235,7 @@
 				
 				$("form").slideUp();
 				
-				
+				document.getElementById('videoPlaybackFrame').src = tempOutputYoutubeLink;
 				//document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";
 			}
@@ -309,8 +256,8 @@
 			
 			<script>
 			function backFunction(){
-				
-				//document.getElementById('videoPlayback').style.display ="none";
+				displayVideoLimiter++;
+				document.getElementById('videoPlayback').style.display ="none";
 				document.getElementById('outputButtons').style.display ="none";
 				$( '#OutputYouTubeLink' ).html("");
 				$("form").slideDown();
@@ -332,8 +279,12 @@
 			            window.getSelection().removeAllRanges();
 			            window.getSelection().addRange( range );
 			        }
-			    };
+			    }
 			</script>
+			
+			<div class="col-md-offset-3" id="videoPlayback" style="display: none; padding-top: 1%;">
+			 	<iframe id="videoPlaybackFrame" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+			</div>
 
 </body>
 <script>
