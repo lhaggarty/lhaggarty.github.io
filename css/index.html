@@ -253,13 +253,13 @@
 		</div>
 		
 		
-				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.5%"> 
+				<div class="col-md-8 col-md-offset-2" style="padding-top: 1%"> 
 				<form role="form">
 					<div class="form-group">
 						<div class ="row">
 							
 				    <label for="InputYouTubeLink" style="color: #f9f9f9">Enter YouTube Video Link Here</label>
-				    <input type="text" class="form-control commentarea" id="InputYouTubeLink" placeholder="www.youtube.com..." >
+				    <input type="text" class="form-control" id="InputYouTubeLink" placeholder="www.youtube.com..." >
 				  		
 						</div>
 					</div>
@@ -284,14 +284,7 @@
 				</div>
 			
 			<script>
-				$(document).ready(function() {
-				    $('.commentarea').keydown(function(event) {
-				        if (event.keyCode == 13) {
-				            this.form.submit();
-				            return false;
-				         }
-				    });
-				});
+			
 			function updateEditTimecode(){
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
 				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '?start=' + inPoint + '&amp;end=' + outPoint);
