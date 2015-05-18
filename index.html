@@ -151,6 +151,8 @@
 				document.getElementById('editVis').style.width ="";
 				document.getElementById('postOutVis').style.width ="";
 				userEditCounter=0;
+				
+				document.getElementById('InputYouTubeLink').form.submit();
 			};
 			
 			function playPauseVideo(){
@@ -296,7 +298,6 @@
 			function updateEditTimecode(){
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
 				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '?start=' + inPoint + '&amp;end=' + outPoint);
-				commentarea.form.submit();
 				
 			}
 			function submitEdit(){
