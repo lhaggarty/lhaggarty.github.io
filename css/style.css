@@ -8,7 +8,7 @@ html, body  {
 .title-text {
 	text-align: center;
 	padding-top: 4.5%;
-	color: #fff;
+	color: #000;
 }
 .intro-message {
 	text-align: left;
@@ -16,7 +16,7 @@ html, body  {
 	padding-bottom: 5%;
 	padding-left:2%;
 	padding-right:0.5%;
-	color: #fff;
+	color: #000;
 }
 
 
@@ -25,7 +25,7 @@ html, body  {
 	color: #000;
 }
 .signup-form {
-	color: #fff;
+	color: #000;
 	text-align: center;
 }
 .email {
