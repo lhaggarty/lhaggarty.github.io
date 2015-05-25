@@ -93,8 +93,8 @@ function templateHTML() {
 		<script>
 	    jwplayer("JWvid").setup({
 	        file: "'.$ytLink.'",
-	        width: 640,
-	        height: 360,
+	        width: 643,
+	        height: 542,
 	    });
 		var startPosition ='.$videoStart.';
 		var endPositionz ='.$videoStop.';
