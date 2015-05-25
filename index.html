@@ -228,12 +228,13 @@
 				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
 				}
 				while (videoLoadSwitch>4){
-						if (realVal < 2){
+					jwplayer("videoPlaybackFrame").pause();
+						if (realVal < 2 || realVal > outPoint){
 							jwplayer("videoPlaybackFrame").seek(inPoint);
 						}
-						else if (realVal > outPoint){
-							jwplayer("videoPlaybackFrame").pause();
-						}
+						// else if (realVal > outPoint){
+// 							jwplayer("videoPlaybackFrame").pause();
+// 						}
 					};
 			});
 			</script>
@@ -361,8 +362,6 @@
 			function previewEdit(){
 				document.getElementById('submitEdit').style.display="";
 				document.getElementById('previewEdit').style.display="none";
-				document.getElementById('videoPlaybackFrame').style.display="none";
-				document.getElementById('JWvid').style.display="none";
 				videoLoadSwitch=5;
 			}
 			function submitEdit(){
