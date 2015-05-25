@@ -1,15 +1,39 @@
-<!DOCTYPE html>
+<?php
+
+// echo "hello world";
+
+if($_GET){
+    if(isset($_GET['createLink'])){
+        createLink();
+    }else {
+		
+    }
+}
+
+function generateRandomString($length = 5) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+function templateHTML() {
+	$ytLink = '7WpImvsYl98';
+	$html = '<!DOCTYPE html>
 	<html>
 		<head>
 			<title>Live Off The Interest Limitless Clip</title>
 			<meta name="description" content="Hot Potato - the online Video Editor. Try the tool and share your edits!  No rendering required.">
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
-			<link rel="stylesheet" type="text/css" href="css/style.css"/>
+			<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 			
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
+			<script src="https://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
 		</head>
 		
 		<body>
@@ -41,7 +65,7 @@
 		var endPosition;
 		
 		    jwplayer("JWvid").setup({
-		        file: "https://www.youtube.com/watch?v=7WpImvsYl98",
+		        file: "https://www.youtube.com/watch?v='.$ytLink.'",
 		        width: 640,
 		        height: 360,
 		    });
@@ -59,6 +83,27 @@
 			
 		</script>
 		</div>
-		<img src="https://i.ytimg.com/vi/7WpImvsYl98/mqdefault.jpg" style="visibility:hidden"/>
+		<img width="10" height="10" src="https://i.ytimg.com/vi/'.$ytLink.'/mqdefault.jpg" style="visibility:hidden"/>
 		</body>
-		</html>
+		</html>';
+	
+	
+	return $html;
+
+}
+
+function createLink(){
+$html = generateRandomString().'.html';
+$create = fopen('links/'.$html, 'w') or die("can't open file");
+fwrite($create, templateHTML());
+fclose($create);
+echo $html; 
+}
+//
+//$url = new simpleUrl('https://www.hotpotato.me');
+//
+// echo $url;
+//
+// echo $_SERVER['REQUEST_URI'];
+
+?>
