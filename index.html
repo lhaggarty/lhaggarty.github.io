@@ -9,44 +9,14 @@
 			
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 	        
-	        <link type="text/css" href="css/bootstrap-timepicker.min.css" />
+	        
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	        
-			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
-			<script src="https://apis.google.com/js/client.js"></script>
+			
+			<!-- <script src="https://apis.google.com/js/client.js"></script>-->
 			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
 			
-			<script>
-			function shortenURL(url){
-				
-	  		  	var tempShortLink=url;
-	    	    
-	    	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
-	    	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
-					//console.log("hello world!");
-	
-	    	      	function makeRequest(){
-	    	        var request = gapi.client.urlshortener.url.insert({
-	  				'longUrl': tempShortLink
-	    	        });
-	    	        request.then(function(response) {
-	    	          appendResults(response.result);
-					  console.log("success: "+response.result);
-	    	        }, function(reason) {
-	    	          console.log('Error: ' + reason.result.error.message);
-	    	        });
-					}
-	    	      function appendResults(text) {
-	    	        var results = document.getElementById('OutputYouTubeLink');
-	    	        //results.appendChild(document.createElement('P'));
-	    	        results.appendChild(document.createTextNode(text.id));
-	    			console.log('Data: ' + JSON.stringify(text));
-	    	      }
-			}
 			
-		  
-			</script>
 			
 			<link rel="apple-touch-icon" sizes="57x57" href="css/favicon/apple-icon-57x57.png">
 			<link rel="apple-touch-icon" sizes="60x60" href="css/favicon/apple-icon-60x60.png">
@@ -164,7 +134,7 @@
 				document.getElementById('changeVideoButton').style.display="";
 				document.getElementById('videoInPoint').disabled=false;
 				userEditCounter=0;
-			
+				
 			};
 			
 			function playPauseVideo(){
@@ -177,7 +147,7 @@
 			};
 			function videoInPoint(){
 				inPoint = jwplayer("videoPlaybackFrame").getPosition();
-				outPoint = jwplayer("videoPlaybackFrame").getDuration();
+				
 				userEditCounter=1;
 				document.getElementById("InTimeCode").value=inPoint;
 				document.getElementById('videoOutPoint').disabled=false;
@@ -195,7 +165,16 @@
 				var realVal = event.position;
 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 				var videoProgress;
-				
+				if (videoLoadSwitch==5){
+				if (realVal > (outPoint+2)){
+					jwplayer("videoPlaybackFrame").seek(inPoint);
+					
+				}
+				else if (realVal < 2 || realVal > outPoint){
+					jwplayer("videoPlaybackFrame").pause();
+					
+				}
+				}
 				if (userEditCounter==0){
 				ProgressBarBefore = (realVal/vidDuration);
 				ProgressBarBefore = ProgressBarBefore*100;
@@ -227,15 +206,6 @@
 				//$('#OutputYouTubeLink').html(progressBar1);
 				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
 				}
-				while (videoLoadSwitch>4){
-					jwplayer("videoPlaybackFrame").pause();
-						if (realVal < 2 || realVal > outPoint){
-							jwplayer("videoPlaybackFrame").seek(inPoint);
-						}
-						// else if (realVal > outPoint){
-// 							jwplayer("videoPlaybackFrame").pause();
-// 						}
-					};
 			});
 			</script>
 		<div class="row">
@@ -247,7 +217,7 @@
 		    <label for="InputYouTubeLink" >Enter YouTube Video Link Here</label>
 		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" placeholder="www.youtube.com..." >
 				</div></div>
-				<input type="text" name="ytVidCode" id="ytVidCode" style="display:none"/>	
+				<input type="text" name="ytVidCode" id="ytVidCode" style="display:none"/>
 				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
 				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
 				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
@@ -256,7 +226,6 @@
 		
 		
 		<div class="row">
-		
 		<div class="col-md-6 col-md-offset-3" style="padding-right:5.1%">
 			<div class="progress" id="videoTimeline" style="display:none">	  
 		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
@@ -327,6 +296,7 @@
 					<div class="well" id="collapseAltLink"></div>
 				</div>
 			</div>
+			
 				</div>
 			
 			<script>
@@ -348,6 +318,9 @@
 					document.getElementById('videoTimeline').style.display="none";
 					document.getElementById('videoInPoint').disabled=true;
 					document.getElementById('videoOutPoint').disabled=true;
+					document.getElementById('submitEdit').style.display="none";
+					document.getElementById('previewEdit').style.display="";
+					document.getElementById('previewEdit').disabled=true;
 					inPoint = 0;
 					outPoint = 0;
 					videoLoadSwitch=1;
@@ -366,13 +339,12 @@
 			}
 			function submitEdit(){
 				document.getElementById('OutputYouTubeLink').style.display ="";
+				
 				//$('#OutputYouTubeLink').html('');
 				$('#collapseAltLink').html(tempOutputYoutubeLink);
 				
-				//shortenURL(tempOutputYoutubeLink);
 				document.getElementById("createLink").click();
 				$("form").slideUp();
-				
 				
 				//document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";

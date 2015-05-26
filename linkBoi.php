@@ -94,7 +94,7 @@ function templateHTML() {
 	    jwplayer("JWvid").setup({
 	        file: "'.$ytLink.'",
 	        width: 643,
-	        height: 542,
+	        height: 362,
 	    });
 		var startPosition ='.$videoStart.';
 		var endPositionz ='.$videoStop.';
@@ -165,6 +165,11 @@ mysqli_close($conn);
 $create = fopen('single_edits/'.$html, 'w') or die("can't open file");
 fwrite($create, templateHTML());
 fclose($create);
+// $_POST['phpLinkResult']=$html;
+// die();
+ // if(isset($_POST['phpLinkResult'])) {
+// 	 $html=$_POST['phpLinkResult'];
+//  }
 header('Location: http://gethotpotato.me/single_edits/'.$html);
 die();
 }
