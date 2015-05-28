@@ -108,16 +108,12 @@
 		    });
 			
 			if (matchMedia('only screen and (max-width: 650px)').matches) {
-			    jwplayer("videoPlaybackFrame").setup({
-			        file: inputYTLink,
-			        width: 960,
-			        height: 540,
-			    });
+			    jwplayer().load([{width: 960,height: 540}]);
 			};
 			
 			function initiateLiveVideoPlayer(){
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				inputYTLink = ( "https://www.youtube.com/v/" + shortYTLink);
+				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
 				document.getElementById('ytVidCode').value=shortYTLink;
 			
 				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
@@ -167,14 +163,8 @@
 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 				var videoProgress;
 				if (videoLoadSwitch==5){
-					document.getElementById('postOutVis').style.width="";
-					userEditCounter=1;
-				if (realVal > (outPoint+2)){
+				if (realVal < inPoint || realVal > outPoint){
 					jwplayer("videoPlaybackFrame").seek(inPoint);
-					
-				}
-				else if (realVal < 2){
-					jwplayer("videoPlaybackFrame").pause();
 					
 				}
 				}
@@ -296,7 +286,7 @@
 						<span> Link Not Appearing?</span>
 					</button>
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
-					<div class="well" id="collapseAltLink"></div>
+					<div class="well" id="collapseAltLink"><iframe width="662" height="450" src="http://gethotpotato.me/single_edits/" style="position: relative; top: -94px; left: -24px; overflow: hidden" frameborder="0" allowfullscreen=</iframe></div>
 				</div>
 			</div>
 			

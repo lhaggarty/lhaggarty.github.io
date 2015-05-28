@@ -254,7 +254,7 @@
 						<span> Embed Link</span>
 					</button>
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
-					<div class="well" id="collapseAltLink"></div>
+					<div class="well" value='<iframe width="662" height="450" src="http://gethotpotato.me/single_edits/'.$html.'" style="position: relative; top: -94px; left: -24px; overflow: hidden" frameborder="0" allowfullscreen=</iframe>' id="collapseAltLink"></div>
 				</div>
 			</div>
 			

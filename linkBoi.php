@@ -260,15 +260,15 @@ echo '<!DOCTYPE html>
 			var ProgressBarBefore;
 			var ProgressBarDuring;
 			var ProgressBarAfter;
-			var userEditCounter = 0;
-			var inPoint = 0;
-			var outPoint;
+			var userEditCounter = 1;
+			var inPoint = '.$videoStart.';
+			var outPoint = '.$videoEnd.';
 			var vidDuration;
-			var videoLoadSwitch = 0;
+			var videoLoadSwitch = 5;
 			
 			var shortYTLink;
 			var tempOutputYoutubeLink;
-			var inputYTLink = "https://www.youtube.com/watch?v=yJDRop2ocFo";
+			var inputYTLink = '.$ytLink.';
 			
 		    jwplayer("videoPlaybackFrame").setup({
 		        file: inputYTLink,
@@ -276,35 +276,14 @@ echo '<!DOCTYPE html>
 		        height: 362,
 		    });
 			
-			if (matchMedia("only screen and (max-width: 650px)").matches) {
-			    jwplayer("videoPlaybackFrame").setup({
-			        file: inputYTLink,
-			        width: 960,
-			        height: 540,
-			    });
-			};
-			
-			function initiateLiveVideoPlayer(){
-				shortYTLink = getQueryVariable("v",$( "#InputYouTubeLink" ).val());
-				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
-				document.getElementById("ytVidCode").value=shortYTLink;
-			
-				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
-				videoLoadSwitch=1;
-			    jwplayer().load([{file:inputYTLink}]);
-			
-				document.getElementById("loadVideoButton").style.display ="none";
-				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
-				document.getElementById("playPauseButton").style.display ="";
-				document.getElementById("videoTimeline").style.display="";
-				document.getElementById("editVis").style.width ="";
-				document.getElementById("postOutVis").style.width ="";
-				document.getElementById("inputRowOne").style.display="none";
-				document.getElementById("changeVideoButton").style.display="";
-				document.getElementById("videoInPoint").disabled=false;
-				userEditCounter=0;
-				
-			};
+			// if (matchMedia("only screen and (max-width: 650px)").matches) {
+// 			    jwplayer().load([{width: 960,height: 540}]);
+// 			};
+			vidDuration = jwplayer("videoPlaybackFrame").getDuration();
+			ProgressBarBefore = ('.$videoStart.'/vidDuration);
+			ProgressBarBefore = ProgressBarBefore*100;
+			ProgressBarBefore = ProgressBarBefore.toPrecision(2);
+			document.getElementById("preInVis").style.width =(ProgressBarBefore+"%");
 			
 			function playPauseVideo(){
 			jwplayer("videoPlaybackFrame").play();
@@ -319,48 +298,16 @@ echo '<!DOCTYPE html>
 				var realVal = event.position;
 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 				var videoProgress;
-				if (videoLoadSwitch==5){
-					document.getElementById("postOutVis").style.width="";
-					userEditCounter=1;
-				if (realVal > (outPoint+2)){
+				if (realVal < inPoint || realVal > outPoint){
 					jwplayer("videoPlaybackFrame").seek(inPoint);
-					
 				}
-				else if (realVal < 2){
-					jwplayer("videoPlaybackFrame").pause();
-					
-				}
-				}
-				if (userEditCounter==0){
-				ProgressBarBefore = (realVal/vidDuration);
-				ProgressBarBefore = ProgressBarBefore*100;
-				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
 				
-				document.getElementById("preInVis").style.width =(ProgressBarBefore+"%");
-				
-				} else if (userEditCounter==1){
-					ProgressBarBefore = ((inPoint)/vidDuration);
-					ProgressBarBefore = ProgressBarBefore*100;
-					ProgressBarBefore = ProgressBarBefore.toPrecision(2);
-					document.getElementById("preInVis").style.width =(ProgressBarBefore+"%");
-					
+				if (userEditCounter==1){
 					ProgressBarDuring = ((realVal-inPoint)/vidDuration);
 					ProgressBarDuring = ProgressBarDuring*100;
 					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
 					document.getElementById("editVis").style.width =(ProgressBarDuring+"%");
 					
-					document.getElementById("postOutVis").style.width ="";
-				} else if (userEditCounter==2){
-				ProgressBarDuring = ((outPoint-inPoint)/vidDuration);
-				ProgressBarDuring = ProgressBarDuring*100;
-				ProgressBarDuring = ProgressBarDuring.toPrecision(2);
-				document.getElementById("editVis").style.width =(ProgressBarDuring+"%");
-				
-				ProgressBarAfter = ((realVal-outPoint)/vidDuration);
-				ProgressBarAfter = ProgressBarAfter*100;
-				ProgressBarAfter = ProgressBarAfter.toPrecision(2);
-				//$("#OutputYouTubeLink").html(progressBar1);
-				document.getElementById("postOutVis").style.width =(ProgressBarAfter+"%");
 				}
 			});
 			</script>
@@ -393,25 +340,12 @@ echo '<!DOCTYPE html>
 		</div>
 		  </div>
 	  </div>
-		
-		<div class="row">
-			
-			<div class="" style=""> 
-			<button type="button" class="btn btn-default btn-lg" id="changeVideoButton" onclick="reloadVideoInput()" style="display:none">
-				<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
-					<span> Change Video</span>
-				</button>
-			</div>
-		</div>
-		
-		
 				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.5%"> 
-				
-				<div class ="row" >
-						<div class="well" style="display: none;" id="OutputYouTubeLink" ></div>
+				<div class = "row">
+						<div class="well" style="" id="OutputYouTubeLink" >'.$html.'</div>
 				</div>
 				
-			<div class ="row" style="display: none;" id="outputButtons">
+			<div class ="row" style="" id="outputButtons">
 					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText("OutputYouTubeLink")">
 						<span class="glyphicon glyphicon-hand-up" aria-hidden="true"> </span><span> Select Link</span></button>
 					<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()">
@@ -423,11 +357,9 @@ echo '<!DOCTYPE html>
 						<span> Embed Link</span>
 					</button>
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
-					<div class="well" id="collapseAltLink"></div>
+					<div class="well" value="<iframe width="662" height="450" src="http://gethotpotato.me/single_edits/'.$html.'" style="position: relative; top: -94px; left: -24px; overflow: hidden" frameborder="0" allowfullscreen=</iframe>" id="collapseAltLink"></div>
 				</div>
 			</div>
-			
-				</div>
 			
 			<script>
 				$(document).ready(function() {
@@ -456,16 +388,11 @@ echo '<!DOCTYPE html>
 					videoLoadSwitch=1;
 				}
 				
-			function previewEdit(){
-				document.getElementById("submitEdit").style.display="";
-				document.getElementById("previewEdit").style.display="none";
-				videoLoadSwitch=5;
-			}
 			function submitEdit(){
 				document.getElementById("OutputYouTubeLink").style.display ="";
 				
 				$( "#OutputYouTubeLink" ).html('.$html.');
-				$("#collapseAltLink").html("Help Information...");
+				$("#collapseAltLink").html("<iframe width="662" height="450" src="http://gethotpotato.me/single_edits/'.$html.'" style="position: relative; top: -94px; left: -24px; overflow: hidden" frameborder="0" allowfullscreen=</iframe>");
 				
 				document.getElementById("createLink").click();
 				$("form").slideUp();
@@ -485,17 +412,13 @@ echo '<!DOCTYPE html>
 			}
 			</script>
 			
-			
-			
-			
 			<script>
 			function backFunction(){
-				
-				//document.getElementById("videoPlayback").style.display ="none";
-				document.getElementById("outputButtons").style.display ="none";
-				$( "#OutputYouTubeLink" ).html("");
 				$("form").slideDown();
-				
+				<?php
+				header("Location: http://gethotpotato.me");
+				die();
+				?>
 			}
 			</script>
 			<script type="text/javascript">
