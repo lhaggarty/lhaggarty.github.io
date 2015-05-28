@@ -273,7 +273,7 @@
 				<div class ="row" >
 						<div class="progress-bar progress-bar-warning progress-bar-striped active" id="outputLoadingBar" role="progressbar" style="width:100%;display:none">EXPORTING
 				</div>
-				
+				</div>
 			<div class ="row" style="display: none;" id="outputButtons">
 					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText('OutputYouTubeLink')">
 						<span class="glyphicon glyphicon-hand-up" aria-hidden="true"> </span><span> Select Link</span></button>
@@ -286,7 +286,7 @@
 						<span> Link Not Appearing?</span>
 					</button>
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
-					<div class="well" id="collapseAltLink"><iframe width="662" height="450" src="http://gethotpotato.me/single_edits/" style="position: relative; top: -94px; left: -24px; overflow: hidden" frameborder="0" allowfullscreen=</iframe></div>
+					<div class="well" id="collapseAltLink"></div>
 				</div>
 			</div>
 			
