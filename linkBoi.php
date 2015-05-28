@@ -352,12 +352,12 @@ echo '<!DOCTYPE html>
 					<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
 						<span> Reset</span>
 					</button>
-					<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseAlt" aria-expanded="false" aria-controls="collapseExample">
+					<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseAlt" aria-expanded="false" aria-controls="collapseAlt">
 						<span class="glyphicon glyphicon-sort" aria-hidden="true"> </span>
 						<span> Embed Link</span>
 					</button>
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
-					<div class="well" value="<iframe width="662" height="450" src="http://gethotpotato.me/single_edits/'.$html.'" style="position: relative; top: -94px; left: -24px; overflow: hidden" frameborder="0" allowfullscreen=</iframe>" id="collapseAltLink"></div>
+					<div class="well" id="collapseAltLink">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://gethotpotato.me/single_edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
 				</div>
 			</div>
 			
