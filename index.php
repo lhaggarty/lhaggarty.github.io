@@ -117,7 +117,7 @@
 			
 			function initiateLiveVideoPlayer(){
 				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
+				inputYTLink = ( "https://www.youtube.com/v/" + shortYTLink);
 				document.getElementById('ytVidCode').value=shortYTLink;
 			
 				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
@@ -147,7 +147,7 @@
 			};
 			function videoInPoint(){
 				inPoint = jwplayer("videoPlaybackFrame").getPosition();
-				
+				videoLoadSwitch=1;
 				userEditCounter=1;
 				document.getElementById("InTimeCode").value=inPoint;
 				document.getElementById('videoOutPoint').disabled=false;
@@ -155,6 +155,7 @@
 			
 			function videoOutPoint(){
 				outPoint= jwplayer("videoPlaybackFrame").getPosition();
+				videoLoadSwitch=1;
 				userEditCounter=2;
 				document.getElementById("OutTimeCode").value=outPoint;
 				document.getElementById('previewEdit').disabled=false;
@@ -166,11 +167,13 @@
 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 				var videoProgress;
 				if (videoLoadSwitch==5){
+					document.getElementById('postOutVis').style.width="";
+					userEditCounter=1;
 				if (realVal > (outPoint+2)){
 					jwplayer("videoPlaybackFrame").seek(inPoint);
 					
 				}
-				else if (realVal < 2 || realVal > outPoint){
+				else if (realVal < 2){
 					jwplayer("videoPlaybackFrame").pause();
 					
 				}
@@ -278,7 +281,7 @@
 				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.5%"> 
 				
 				<div class ="row" >
-						<div class="well" style="display: none;" id="OutputYouTubeLink" ></div>
+						<div class="progress-bar progress-bar-warning progress-bar-striped active" id="outputLoadingBar" role="progressbar" style="width:100%;display:none">EXPORTING
 				</div>
 				
 			<div class ="row" style="display: none;" id="outputButtons">
@@ -338,9 +341,8 @@
 				videoLoadSwitch=5;
 			}
 			function submitEdit(){
-				document.getElementById('OutputYouTubeLink').style.display ="";
+				document.getElementById('outputLoadingBar').style.display ="";
 				
-				//$('#OutputYouTubeLink').html('');
 				$('#collapseAltLink').html(tempOutputYoutubeLink);
 				
 				document.getElementById("createLink").click();
@@ -369,7 +371,7 @@
 				
 				//document.getElementById('videoPlayback').style.display ="none";
 				document.getElementById('outputButtons').style.display ="none";
-				$( '#OutputYouTubeLink' ).html("");
+				document.getElementById('outputLoadingBar').style.display ="";
 				$("form").slideDown();
 				
 			}
