@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+'<!DOCTYPE html>
 <html>
 		<head>
 			<title>Hot Potato Tool</title>
@@ -60,7 +60,7 @@
 	        </div>
 	        <div class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
-	            <li class="active"><a href="index.html">Home</a></li>
+	            <li class="active"><a href="index.php">Home</a></li>
 				<li><a href="feed.html">Feed</a></li>
 				<li><a href="sign-up.html">Sign Up</a></li>
 				
@@ -209,7 +209,7 @@
 				
 		    <label for="InputYouTubeLink" >Enter YouTube Video Link Here</label>
 		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" placeholder="www.youtube.com..." >
-				</div></div>
+				</div>
 				<input type="text" name="ytVidCode" id="ytVidCode" style="display:none"/>
 				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
 				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>

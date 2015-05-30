@@ -7,12 +7,26 @@
 if($_GET){
     if(isset($_GET['createLink'])){
         createLink();
-    }else {
-		
+    }elseif (isset($_GET['openLink'])){
+        openLink();
     }
+	elseif (isset($_GET['backToTool'])){
+	        backToTool();
+	}
 }
 
-function generateRandomString($length = 5) {
+function openLink(){
+	$html=$_GET['hotPotatoLink'];
+	header('Location: http://gethotpotato.me/single_edits/'.$html);
+	die();
+}
+
+function backToTool(){
+	header('Location: http://gethotpotato.me');
+	die();
+}
+
+function generateRandomStringFiveC($length = 5) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -22,13 +36,13 @@ function generateRandomString($length = 5) {
     return $randomString;
 }
 
-function templateHTML() {
+function templateVideoHTML() {
 	$ytLink = $_GET['InputYouTubeLink'];
 	$videoStart = $_GET['InTimeCode'];
 	$videoStop = $_GET['OutTimeCode'];
 	$ytVidCode = $_GET['ytVidCode'];
 	
-	//$ytCode = $_GET['shortCode'];
+	
 	
 	$html = '<!DOCTYPE html>
 	<html>
@@ -76,7 +90,7 @@ function templateHTML() {
 		        </div>
 		        <div class="navbar-collapse collapse">
 		          <ul class="nav navbar-nav">
-		            <li class="active"><a href="../index.html">Home</a></li>
+		            <li class="active"><a href="index.php">Home</a></li>
 					<li><a href="../feed.html">Feed</a></li>
 					<li><a href="../sign-up.html">Sign Up</a></li>
 				
@@ -122,12 +136,15 @@ function templateHTML() {
 
 }
 
+
+
 function createLink(){
 $conn = mysqli_connect('mysql.1freehosting.com','u151108054_squir','squireprods2002','u151108054_1edit');
 $ytLink = $_GET['InputYouTubeLink'];
 $videoStart = $_GET['InTimeCode'];
 $videoStop = $_GET['OutTimeCode'];
-$html = generateRandomString().'.html';
+$html = generateRandomStringFiveC().'.html';
+
 // mysqlconnect('localhost','root','');
 // mysql_select_db('single_edits');
 
@@ -152,7 +169,7 @@ if (mysqli_connect_errno()){
   }
 $query = mysqli_query($conn,"SELECT OutputLink FROM single_edits WHERE OutputLink LIKE '%".$html."%'");
 while ($html==$query){
-	$html = generateRandomString().'.html';
+	$html = generateRandomStringFiveC().'.html';
 }
 
 // Perform queries 
@@ -163,17 +180,16 @@ VALUES ('".$html."','".$ytLink."','".$videoStart."','".$videoStop."')");
 mysqli_close($conn);
 
 $create = fopen('single_edits/'.$html, 'w') or die("can't open file");
-fwrite($create, templateHTML());
+fwrite($create, templateVideoHTML());
 fclose($create);
-// header('Location: http://gethotpotato.me/single_edits/'.$html);
-// die();
+
 echo '<!DOCTYPE html>
 <html>
 		<head>
 			<title>Hot Potato Tool</title>
 			<meta name="description" content="Hot Potato - The Online Video Editor. Try the tool and share your edits!  No rendering required.">
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
-			<link rel="stylesheet" type="text/css" href="css/style.css"/>
+			<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 			
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
@@ -210,7 +226,6 @@ echo '<!DOCTYPE html>
 		</button>
 		<div class="collapse" id="collapseExample">
 		  <div class="well">
-		    ...
 		  </div>
 		</div>
 			-->
@@ -229,7 +244,7 @@ echo '<!DOCTYPE html>
 	        </div>
 	        <div class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
-	            <li class="active"><a href="index.html">Home</a></li>
+	            <li class="active"><a href="index.php">Home</a></li>
 				<li><a href="feed.html">Feed</a></li>
 				<li><a href="sign-up.html">Sign Up</a></li>
 				
@@ -262,13 +277,13 @@ echo '<!DOCTYPE html>
 			var ProgressBarAfter;
 			var userEditCounter = 1;
 			var inPoint = '.$videoStart.';
-			var outPoint = '.$videoEnd.';
+			var outPoint = '.$videoStop.';
 			var vidDuration;
 			var videoLoadSwitch = 5;
 			
 			var shortYTLink;
 			var tempOutputYoutubeLink;
-			var inputYTLink = '.$ytLink.';
+			var inputYTLink = "'.$ytLink.'";
 			
 		    jwplayer("videoPlaybackFrame").setup({
 		        file: inputYTLink,
@@ -279,11 +294,7 @@ echo '<!DOCTYPE html>
 			// if (matchMedia("only screen and (max-width: 650px)").matches) {
 // 			    jwplayer().load([{width: 960,height: 540}]);
 // 			};
-			vidDuration = jwplayer("videoPlaybackFrame").getDuration();
-			ProgressBarBefore = ('.$videoStart.'/vidDuration);
-			ProgressBarBefore = ProgressBarBefore*100;
-			ProgressBarBefore = ProgressBarBefore.toPrecision(2);
-			document.getElementById("preInVis").style.width =(ProgressBarBefore+"%");
+			
 			
 			function playPauseVideo(){
 			jwplayer("videoPlaybackFrame").play();
@@ -298,6 +309,12 @@ echo '<!DOCTYPE html>
 				var realVal = event.position;
 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 				var videoProgress;
+				
+				ProgressBarBefore = ('.$videoStart.'/vidDuration);
+				ProgressBarBefore = ProgressBarBefore*100;
+				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
+				document.getElementById("preInVis").style.width =(ProgressBarBefore+"%");
+				
 				if (realVal < inPoint || realVal > outPoint){
 					jwplayer("videoPlaybackFrame").seek(inPoint);
 				}
@@ -315,14 +332,10 @@ echo '<!DOCTYPE html>
 		
 		<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.1%" id="inputRowOne"> 
 		<form role="form" action="linkBoi.php" method="get">
-			<div class="form-group">
 				
-		    <label for="InputYouTubeLink" >Enter YouTube Video Link Here</label>
-		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" placeholder="www.youtube.com..." >
-				</div></div>
-				<input type="text" name="ytVidCode" id="ytVidCode" style="display:none"/>
-				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
-				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
+				<input type="text" name="ytVidCode" value="'.$ytLink.'" id="ytVidCode" style="display:none"/>
+				<input type="text" name="InTimeCode" value="'.$videoStart.'" id="InTimeCode" style="display:none">
+				<input type="text" name="OutTimeCode" value="'.$videoStop.'" id="OutTimeCode" style="display:none"/>
 				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
 			</form>
 		</div>
@@ -340,15 +353,19 @@ echo '<!DOCTYPE html>
 		</div>
 		  </div>
 	  </div>
-				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.5%"> 
+				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.5%">
+				
 				<div class = "row">
-						<div class="well" style="" id="OutputYouTubeLink" >'.$html.'</div>
+						<div class="well" style="" id="OutputYouTubeLink">http://gethotpotato.me/single_edits/'.$html.'</div>
 				</div>
 				
 			<div class ="row" style="" id="outputButtons">
-					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText("OutputYouTubeLink")">
+			<input type="text" name="hotPotatoLink" value="'.$html.'" id="hotPotatoLink" style="display:none"/>
+					<button type="button" class="btn btn-default" name="openLink" id="openLink" onclick="openLink()">
+						<span class="glyphicon glyphicon-file" aria-hidden="true"> </span><span> Open Link</span></button>
+					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText(OutputYouTubeLink)" style="display:none">
 						<span class="glyphicon glyphicon-hand-up" aria-hidden="true"> </span><span> Select Link</span></button>
-					<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()">
+					<button type="button" class="btn btn-default" id="backToTool" name="backToTool" onclick="backToTool()">
 					<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
 						<span> Reset</span>
 					</button>
@@ -359,66 +376,18 @@ echo '<!DOCTYPE html>
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
 					<div class="well" id="collapseAltLink">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://gethotpotato.me/single_edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
 				</div>
+				
 			</div>
 			
 			<script>
-				$(document).ready(function() {
-				    $(".commentarea").keydown(function(event) {
-				        if (event.keyCode == 13) {
-							initiateLiveVideoPlayer();
-							//this.form.submit();
-				            return false;
-				         }
-				    });
-				});
+			function openLink(){
+				window.location="http://gethotpotato.me/single_edits/'.$html.'";
 				
-				function reloadVideoInput(){
-					document.getElementById("InputYouTubeLink").value="";
-					document.getElementById("inputRowOne").style.display="";
-					document.getElementById("InputYouTubeLink").style.display="";
-					document.getElementById("changeVideoButton").style.display="none";
-					document.getElementById("videoTimeline").style.display="none";
-					document.getElementById("videoInPoint").disabled=true;
-					document.getElementById("videoOutPoint").disabled=true;
-					document.getElementById("submitEdit").style.display="none";
-					document.getElementById("previewEdit").style.display="";
-					document.getElementById("previewEdit").disabled=true;
-					inPoint = 0;
-					outPoint = 0;
-					videoLoadSwitch=1;
-				}
-				
-			function submitEdit(){
-				document.getElementById("OutputYouTubeLink").style.display ="";
-				
-				$( "#OutputYouTubeLink" ).html('.$html.');
-				$("#collapseAltLink").html("<iframe width="662" height="450" src="http://gethotpotato.me/single_edits/'.$html.'" style="position: relative; top: -94px; left: -24px; overflow: hidden" frameborder="0" allowfullscreen=</iframe>");
-				
-				document.getElementById("createLink").click();
-				$("form").slideUp();
-				
-				//document.getElementById("videoPlayback").style.display ="";
-				document.getElementById("outputButtons").style.display ="";
 			}
 			
-			function getQueryVariable(name,url) {
-				   var query = url.split( "?" );
-			       var vars = query[1].split("&");
-			       for (var i=0;i<vars.length;i++) {
-			               var pair = vars[i].split("=");
-			               if(pair[0] == name){return pair[1];}
-			       }
-			       return(query);
-			}
-			</script>
-			
-			<script>
-			function backFunction(){
-				$("form").slideDown();
-				<?php
-				header("Location: http://gethotpotato.me");
-				die();
-				?>
+			function backToTool(){
+				window.location="http://gethotpotato.me";
+				
 			}
 			</script>
 			<script type="text/javascript">
@@ -451,6 +420,7 @@ echo '<!DOCTYPE html>
 
 </script>
 </html>';
+die();
 }
 //
 //$url = new simpleUrl('https://www.hotpotato.me');
@@ -458,5 +428,4 @@ echo '<!DOCTYPE html>
 // echo $url;
 //
 // echo $_SERVER['REQUEST_URI'];
-
 ?>
