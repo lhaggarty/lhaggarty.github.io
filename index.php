@@ -73,18 +73,18 @@
 	</div>
 			
 				<div class="row">
-					<div class="col-md-5">
+					<div class="col-md-4">
 						<div class="intro-message" >
 							
 							<h3>
-								Try the tool and share your edits!
+								Every video can be a Hot Potato
 							</h3>
 						</div>
 					</div>
-				</div>
 				
-			<div class="row col-md-offset-3" style="padding-top:1%;padding-left:0.5%">
+			<div class="col-md-6 col-md-offset-3" style="padding-top:0.75%">
 			 	<div id="videoPlaybackFrame"></div>
+			</div>
 			</div>
 			<script>
 			
@@ -203,7 +203,7 @@
 			</script>
 		<div class="row">
 		
-		<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.1%" id="inputRowOne"> 
+		<div class="col-md-8 col-md-offset-3" style="padding-top: 1%; padding-right:21.75%" id="inputRowOne"> 
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
 				
@@ -216,10 +216,11 @@
 				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
 			</form>
 		</div>
+	</div>
 		
 		
 		<div class="row">
-		<div class="col-md-6 col-md-offset-3" style="padding-right:5.1%">
+		<div class="col-md-8 col-md-offset-3" style="padding-right:21.75%">
 			<div class="progress" id="videoTimeline" style="display:none">	  
 		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
 		</div>	
@@ -232,7 +233,7 @@
 	  </div>
 		
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons" >
+			<div class="col-md-8 col-md-offset-3" id="videoPlayerButtons" >
 				<button type="button" class="btn btn-default btn-lg" id="loadVideoButton" onclick="initiateLiveVideoPlayer();">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
@@ -259,12 +260,12 @@
 					<span> SUBMIT</span>
 				</button>
 			
-			<div class="" style=""> 
+			
 			<button type="button" class="btn btn-default btn-lg" id="changeVideoButton" onclick="reloadVideoInput()" style="display:none">
 				<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
 					<span> Change Video</span>
 				</button>
-			</div>
+			
 			</div>
 		</div>
 		
@@ -280,7 +281,7 @@
 						<span class="glyphicon glyphicon-hand-up" aria-hidden="true"> </span><span> Select Link</span></button>
 					<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()">
 					<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
-						<span> Reset</span>
+						<span> Cut Again</span>
 					</button>
 					<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseAlt" aria-expanded="false" aria-controls="collapseExample">
 						<span class="glyphicon glyphicon-sort" aria-hidden="true"> </span>
