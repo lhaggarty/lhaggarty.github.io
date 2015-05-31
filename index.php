@@ -232,7 +232,7 @@
 	  </div>
 		
 		<div class="row">
-			<div class="col-md-4 col-md-offset-3" id="videoPlayerButtons" >
+			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons" >
 				<button type="button" class="btn btn-default btn-lg" id="loadVideoButton" onclick="initiateLiveVideoPlayer();">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
@@ -258,12 +258,13 @@
 					<span class="glyphicon glyphicon-film" aria-hidden="true"></span>
 					<span> SUBMIT</span>
 				</button>
-			</div>
+			
 			<div class="" style=""> 
 			<button type="button" class="btn btn-default btn-lg" id="changeVideoButton" onclick="reloadVideoInput()" style="display:none">
 				<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
 					<span> Change Video</span>
 				</button>
+			</div>
 			</div>
 		</div>
 		
@@ -329,6 +330,8 @@
 				document.getElementById('submitEdit').style.display="";
 				document.getElementById('previewEdit').style.display="none";
 				videoLoadSwitch=5;
+				userEditCounter=1;
+				document.getElementById('postOutVis').style.width="";
 			}
 			function submitEdit(){
 				document.getElementById('outputLoadingBar').style.display ="";
