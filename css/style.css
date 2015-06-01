@@ -9,6 +9,7 @@ html, body  {
 	text-align: center;
 	padding-top: 4.5%;
 	color: #000;
+	
 }
 .intro-message {
 	text-align: left;
@@ -17,8 +18,12 @@ html, body  {
 	padding-left:2%;
 	padding-right:0.5%;
 	color: #000;
+	
 }
 
+.form-group {
+  	font-size:17px;
+  }
 
 
 .OutputYouTubeLink {

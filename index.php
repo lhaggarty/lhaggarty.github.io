@@ -73,11 +73,11 @@
 	</div>
 			
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-4" style="padding-left:7%">
 						<div class="intro-message" >
 							
 							<h3>
-								Every video can be a Hot Potato
+								Quickly Cut Videos
 							</h3>
 						</div>
 					</div>
@@ -207,7 +207,7 @@
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
 				
-		    <label for="InputYouTubeLink" >Enter YouTube Video Link Here</label>
+		    <label for="InputYouTubeLink">YouTube Video Link</label>
 		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" placeholder="www.youtube.com..." >
 				</div>
 				<input type="text" name="ytVidCode" id="ytVidCode" style="display:none"/>
@@ -387,6 +387,7 @@
 			        }
 			    };
 			</script>
+<img style="display:none" src="/css/hot-potato-functions-image.jpg" alt="" width="5" height="5" />
 
 </body>
 <script>
