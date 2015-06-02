@@ -156,6 +156,7 @@
 				userEditCounter=2;
 				document.getElementById("OutTimeCode").value=outPoint;
 				document.getElementById('previewEdit').disabled=false;
+				document.getElementById('addEdit').style.display="";
 			};
 			
 			
@@ -261,12 +262,15 @@
 					<span> SUBMIT</span>
 				</button>
 			
-			
 			<button type="button" class="btn btn-default btn-lg" id="changeVideoButton" onclick="reloadVideoInput()" style="display:none">
 				<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
 					<span> Change Video</span>
 				</button>
 			
+				<button type="button" class="btn btn-default btn-lg" id="addEdit" onclick="addEdit();" style="display:none">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				<span> ADD EDIT</span>
+				</button>
 			</div>
 		</div>
 		
@@ -311,6 +315,7 @@
 					document.getElementById('inputRowOne').style.display="";
 					document.getElementById('InputYouTubeLink').style.display="";
 					document.getElementById('changeVideoButton').style.display="none";
+					document.getElementById('addEdit').style.display="none";
 					document.getElementById('videoTimeline').style.display="none";
 					document.getElementById('videoInPoint').disabled=true;
 					document.getElementById('videoOutPoint').disabled=true;

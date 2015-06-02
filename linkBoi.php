@@ -183,7 +183,8 @@ $create = fopen('single_edits/'.$html, 'w') or die("can't open file");
 fwrite($create, templateVideoHTML());
 fclose($create);
 
-echo '<!DOCTYPE html>
+$createPreview = fopen('previews/'.$html, 'w') or die("can't open file");
+fwrite($createPreview,'<!DOCTYPE html>
 <html>
 		<head>
 			<title>Hot Potato Tool</title>
@@ -419,7 +420,9 @@ echo '<!DOCTYPE html>
   ga("send", "pageview");
 
 </script>
-</html>';
+</html>');
+fclose($createPreview);
+header('Location: http://gethotpotato.me/previews/'.$html);
 die();
 }
 //
