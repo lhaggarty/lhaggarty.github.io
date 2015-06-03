@@ -243,12 +243,12 @@
 				<button type="button" class="btn btn-default btn-lg" id="playPauseButton" onclick="playPauseVideo();" style="display:none">
 					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"></span>
 				</button>
-				<button type="button" class="btn btn-default btn-lg" id="videoInPoint" onclick="videoInPoint();updateEditTimecode()" disabled>
+				<button type="button" class="btn btn-default btn-lg" id="videoInPoint" onclick="videoInPoint()" disabled>
 					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> </span>
 					<span> IN</span>
 				</button>
 				
-				<button type="button" class="btn btn-default btn-lg" id="videoOutPoint" onclick="videoOutPoint();updateEditTimecode()" disabled>
+				<button type="button" class="btn btn-default btn-lg" id="videoOutPoint" onclick="videoOutPoint()" disabled>
 					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> </span>
 					<span> OUT</span>
 				</button>
@@ -323,12 +323,7 @@
 				}
 				
 			
-			function updateEditTimecode(){
-				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '?start=' + inPoint + '&end=' + outPoint);
-				document.getElementById('submitEdit').style.display="";
-				document.getElementById('previewEdit').style.display="none";
-				
-			}
+			
 			function previewEdit(){
 				document.getElementById('submitEdit').style.display="";
 				document.getElementById('previewEdit').style.display="none";
