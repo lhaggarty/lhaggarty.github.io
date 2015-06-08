@@ -7,7 +7,7 @@
 			<link rel="stylesheet" type="text/css" href="css/style.css"/>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 			
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
 	        
 	        
 			<!-- Latest compiled and minified JavaScript -->
@@ -82,8 +82,9 @@
 						</div>
 					</div>
 				
-			<div class="col-md-6 col-md-offset-3" style="padding-top:0.75%">
-			 	<div id="videoPlaybackFrame"></div>
+			<div class="col-md-6 col-md-offset-3" style="padding-top:0.75%;">
+				<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
+			 	<div id="videoPlaybackFrame"></div></div>
 			</div>
 			</div>
 			<script>
@@ -100,26 +101,33 @@
 			var shortYTLink;
 			var tempOutputYoutubeLink;
 			var inputYTLink = "https://www.youtube.com/watch?v=yJDRop2ocFo";
+			var vidWidth=$("#responsiveVideoFrame").width();
+			var vidHeight=(vidWidth*0.5625);
+			
 			
 		    jwplayer("videoPlaybackFrame").setup({
 		        file: inputYTLink,
-		        width: 643,
-		        height: 362,
+		        width: vidWidth,
+		        height: vidHeight,
 		    });
 			
-			if (matchMedia('only screen and (max-width: 650px)').matches) {
-			    jwplayer().load([{width: 960,height: 540}]);
-			};
+			// if (matchMedia('only screen and (max-width: 650px)').matches) {
+			//     jwplayer().load([{width: 960,height: 540}]);
+			// };
 			
 			function initiateLiveVideoPlayer(){
-				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
-				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
-				document.getElementById('ytVidCode').value=shortYTLink;
-			
-				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
+				shortYTLink = "yJDRop2ocFo";
+				if ($( '#InputYouTubeLink' ).val() != ""){
+					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
+					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
+					jwplayer().load([{file:inputYTLink}]);
+				}
+				
 				videoLoadSwitch=1;
-			    jwplayer().load([{file:inputYTLink}]);
-			
+			    
+				// outPoint = jwplayer("videoPlaybackFrame").getDuration();
+// 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
+				
 				document.getElementById('loadVideoButton').style.display ="none";
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
 				document.getElementById('playPauseButton').style.display ="";
@@ -130,7 +138,7 @@
 				document.getElementById('changeVideoButton').style.display="";
 				document.getElementById('videoInPoint').disabled=false;
 				userEditCounter=0;
-				
+				jwplayer("videoPlaybackFrame").play();
 			};
 			
 			function playPauseVideo(){
@@ -143,7 +151,6 @@
 			};
 			function videoInPoint(){
 				inPoint = jwplayer("videoPlaybackFrame").getPosition();
-				outPoint = jwplayer("videoPlaybackFrame").getDuration();
 				videoLoadSwitch=1;
 				userEditCounter=1;
 				document.getElementById("InTimeCode").value=inPoint;
@@ -163,12 +170,7 @@
 				var realVal = event.position;
 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
 				var videoProgress;
-				if (videoLoadSwitch==5){
-				if (realVal < inPoint || realVal > outPoint){
-					jwplayer("videoPlaybackFrame").seek(inPoint);
-					
-				}
-				}
+				
 				if (userEditCounter==0){
 				ProgressBarBefore = (realVal/vidDuration);
 				ProgressBarBefore = ProgressBarBefore*100;
@@ -201,17 +203,36 @@
 				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
 				}
 			});
+			if (videoLoadSwitch==5){
+			if (realVal < inPoint || realVal > outPoint){
+				jwplayer("videoPlaybackFrame").seek(inPoint);
+				
+			}
+			}
 			</script>
+  		<div class="row">
+  		<div class="col-md-6 col-md-offset-3" style="">
+  			<div class="progress" id="videoTimeline" style="">	  
+  		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
+  		</div>	
+  		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style="">
+  			</div>
+    		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style="">
+    			</div>
+  		</div>
+  		  </div>
+  	  </div>
+	  
 		<div class="row">
 		
-		<div class="col-md-8 col-md-offset-3" style="padding-top: 1%; padding-right:21.75%" id="inputRowOne"> 
+		<div class="col-md-6 col-md-offset-3" style="" id="inputRowOne"> 
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
 				
 		    <label for="InputYouTubeLink">YouTube Video Link</label>
-		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" placeholder="www.youtube.com..." >
+		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" placeholder="www.youtube.com...">
 				</div>
-				<input type="text" name="ytVidCode" id="ytVidCode" style="display:none"/>
+				<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style="display:none"/>
 				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
 				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
 				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
@@ -219,29 +240,15 @@
 		</div>
 	</div>
 		
-		
 		<div class="row">
-		<div class="col-md-8 col-md-offset-3" style="padding-right:21.75%">
-			<div class="progress" id="videoTimeline" style="display:none">	  
-		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
-		</div>	
-		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style="">
-			</div>
-  		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style="">
-  			</div>
-		</div>
-		  </div>
-	  </div>
-		
-		<div class="row">
-			<div class="col-md-8 col-md-offset-3" id="videoPlayerButtons" >
+			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons" >
 				<button type="button" class="btn btn-default btn-lg" id="loadVideoButton" onclick="initiateLiveVideoPlayer();">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
 				</button>
 				
 				<button type="button" class="btn btn-default btn-lg" id="playPauseButton" onclick="playPauseVideo();" style="display:none">
-					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"> </span>
 				</button>
 				<button type="button" class="btn btn-default btn-lg" id="videoInPoint" onclick="videoInPoint()" disabled>
 					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> </span>
@@ -253,11 +260,11 @@
 					<span> OUT</span>
 				</button>
 				<button type="button" class="btn btn-default btn-lg" id="previewEdit" onclick="previewEdit();" disabled>
-					<span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 					<span> PREVIEW</span>
 				</button>
 				<button type="button" class="btn btn-default btn-lg" id="submitEdit" onclick="submitEdit();" style="display:none">
-					<span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 					<span> SUBMIT</span>
 				</button>
 			
@@ -265,14 +272,11 @@
 			<button type="button" class="btn btn-default btn-lg" id="changeVideoButton" onclick="reloadVideoInput()" style="display:none">
 				<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
 					<span> Change Video</span>
-				</button>
-			
+				</button>	
 			</div>
 		</div>
 		
-		
-				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.5%"> 
-				
+				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%;"> 
 				<div class ="row" >
 						<div class="progress-bar progress-bar-warning progress-bar-striped active" id="outputLoadingBar" role="progressbar" style="width:100%;display:none">EXPORTING
 				</div>
@@ -320,6 +324,7 @@
 					inPoint = 0;
 					outPoint = 0;
 					videoLoadSwitch=1;
+					jwplayer("videoPlaybackFrame").play();
 				}
 				
 			
@@ -334,7 +339,7 @@
 			function submitEdit(){
 				document.getElementById('outputLoadingBar').style.display ="";
 				
-				$('#collapseAltLink').html(tempOutputYoutubeLink);
+				$('#collapseAltLink').html(inputYTLink);
 				
 				document.getElementById("createLink").click();
 				$("form").slideUp();
@@ -393,8 +398,8 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-57874990-4', 'auto');
-  ga('send', 'pageview');
+  ga("create", "UA-57874990-5", "auto");
+  ga("send", "pageview");
 
 </script>
 </html> 
