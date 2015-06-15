@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>Slowmo</title>
+    <script type='text/javascript' src='https://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js'></script>
+    <style type="text/css">
+      body { padding-left: 25px; }
+  </style>
+</head>
+<body>
+
+<div id="player"></div>
+<script type="text/javascript">
+
+// Basic player setup, like always...
+jwplayer("player").setup({
+  width: "640",
+  height: "360",
+  stretching: "fill",
+  playlist: [{
+    image: "http://content.bitsontherun.com/thumbs/H9WNnmnD-480.jpg",
+    sources: [{
+      file: "https://www.youtube.com/watch?v=Q4PE2hSqVnk"
+    },]
+  }]
+});
+
+// Store references to tag and rates
+var videoTag;
+var currentRate = 1;
+
+// Setup slomo if supported
+jwplayer().onReady(function() {
+    // Slomo only works for HTML5 and ...
+    if (jwplayer().getRenderingMode() == "html5") {
+        videoTag = document.querySelector('video');
+        // ... browsers that support playbackRate
+        if(videoTag.playbackRate) {
+             jwplayer().addButton("slomo.png","Toggle Slow Motion", toggleSlomo,"slomo");
+        }
+    }
+});
+
+// Toggle rate between 1 and 0.2 
+function toggleSlomo() {
+    currentRate == 1 ? currentRate = 2: currentRate = 2;
+    // Change the current rate and default (for seeks)
+    videoTag.playbackRate = currentRate;
+    videoTag.defaultPlaybackRate = currentRate;
+    // Do a quick seek, to work around a Firefox bug.
+    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+        jwplayer().seek(jwplayer().getPosition());
+    }
+};
+</script>
+</body>
+</html>

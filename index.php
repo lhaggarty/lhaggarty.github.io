@@ -1,12 +1,11 @@
-'<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 		<head>
 			<title>Hot Potato Tool</title>
 			<meta name="description" content="Hot Potato - The Online Video Editor. Try the tool and share your edits!  No rendering required.">
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
-			<link rel="stylesheet" type="text/css" href="css/style.css"/>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-			
+			<link rel="stylesheet" type="text/css" href="css/style.css"/>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
 	        
 	        
@@ -15,7 +14,7 @@
 			
 			<!-- <script src="https://apis.google.com/js/client.js"></script>-->
 			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
-			
+			<meta name="viewport" content="width=device-width, initial-scale=1">
 			
 			
 			<link rel="apple-touch-icon" sizes="57x57" href="css/favicon/apple-icon-57x57.png">
@@ -31,9 +30,9 @@
 			<link rel="icon" type="image/png" sizes="32x32" href="css/favicon/favicon-32x32.png">
 			<link rel="icon" type="image/png" sizes="96x96" href="css/favicon/favicon-96x96.png">
 			<link rel="icon" type="image/png" sizes="16x16" href="css/favicon/favicon-16x16.png">
-			<link rel="manifest" href="/manifest.json">
+			<link rel="manifest" href="css/favicon/manifest.json">
 			
-			<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+			<meta name="msapplication-TileImage" content="css/favicon/ms-icon-144x144.png">
 		</head>
 		<!-- 
 		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -46,9 +45,10 @@
 		</div>
 			-->
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="padding-left:4.7%">
+	
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	      
-	        <div class="navbar-header">
+	        <div class="navbar-header" style="height:30px">
 	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 	            <span class="sr-only">Toggle navigation</span>
 	            <span class="icon-bar"></span>
@@ -59,30 +59,30 @@
 	          </button>
 	        </div>
 	        <div class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav">
-	            <li class="active"><a href="index.php">Home</a></li>
-				<li><a href="feed.html">Feed</a></li>
-				<li><a href="sign-up.html">Sign Up</a></li>
+	          <ul class="nav nav-pills" style="padding-left:4.7%;">
+	            <li role="presentation" class="active"><a href="index.php"><img src="css/hot-potato-logo-120.png" alt="Hot Potato" width="13" height="19"> Hot Potato</a></li>
+				<li role="presentation"><a href="feed.html">Feed</a></li>
+				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 				
-				<li><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
-	            <li><a href="about.html">About &amp; Contact</a></li>
-				<li><a href="but_why.html">Tell Me More</a></li>
+				<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
+	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
+				<li role="presentation"><a href="but_why.html">Tell Me More</a></li>
 	        </div><!--/.nav-collapse -->
 	      </div>
 	    
 	</div>
-			
+	<div class="video-part">		
 				<div class="row">
-					<div class="col-md-4" style="padding-left:7%">
+					<div class="col-md-6 col-md-offset-3">
 						<div class="intro-message" >
 							
 							<h3>
-								Quickly Cut Videos
+								
 							</h3>
 						</div>
 					</div>
 				
-			<div class="col-md-6 col-md-offset-3" style="padding-top:0.75%;">
+			<div class="col-md-6 col-md-offset-3" style="padding-top:2%;">
 				<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
 			 	<div id="videoPlaybackFrame"></div></div>
 			</div>
@@ -97,6 +97,7 @@
 			var outPoint;
 			var vidDuration;
 			var videoLoadSwitch = 0;
+			var videoProgress;
 			
 			var shortYTLink;
 			var tempOutputYoutubeLink;
@@ -109,11 +110,17 @@
 		        file: inputYTLink,
 		        width: vidWidth,
 		        height: vidHeight,
+				stretching: "fill",
+				image: "css/video-demo-thumbnail.jpg",
 		    });
 			
 			// if (matchMedia('only screen and (max-width: 650px)').matches) {
 			//     jwplayer().load([{width: 960,height: 540}]);
 			// };
+			
+			jwplayer("videoPlaybackFrame").onPlay(function() {
+				document.getElementById('videoTimeline').style.display="";
+			});
 			
 			function initiateLiveVideoPlayer(){
 				shortYTLink = "yJDRop2ocFo";
@@ -168,8 +175,8 @@
 			
 			jwplayer("videoPlaybackFrame").onTime(function (event){
 				var realVal = event.position;
+				
 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
-				var videoProgress;
 				
 				if (userEditCounter==0){
 				ProgressBarBefore = (realVal/vidDuration);
@@ -202,17 +209,20 @@
 				//$('#OutputYouTubeLink').html(progressBar1);
 				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
 				}
-			});
+			
 			if (videoLoadSwitch==5){
 			if (realVal < inPoint || realVal > outPoint){
 				jwplayer("videoPlaybackFrame").seek(inPoint);
 				
 			}
 			}
+			});
 			</script>
+		
+		
   		<div class="row">
   		<div class="col-md-6 col-md-offset-3" style="">
-  			<div class="progress" id="videoTimeline" style="">	  
+  			<div class="progress" id="videoTimeline" style="display:none">	  
   		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
   		</div>	
   		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style="">
@@ -222,10 +232,9 @@
   		</div>
   		  </div>
   	  </div>
-	  
 		<div class="row">
 		
-		<div class="col-md-6 col-md-offset-3" style="" id="inputRowOne"> 
+		<div class="col-md-6 col-md-offset-3" style="height:62.5px" id="inputRowOne"> 
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
 				
@@ -239,49 +248,51 @@
 			</form>
 		</div>
 	</div>
-		
+	</div>
+		<div class="dashboard-part">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons" >
-				<button type="button" class="btn btn-default btn-lg" id="loadVideoButton" onclick="initiateLiveVideoPlayer();">
+			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons">
+				<button type="button" class="btn btn-default" id="loadVideoButton" onclick="initiateLiveVideoPlayer();">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
 				</button>
 				
-				<button type="button" class="btn btn-default btn-lg" id="playPauseButton" onclick="playPauseVideo();" style="display:none">
+				<button type="button" class="btn btn-default" id="playPauseButton" onclick="playPauseVideo();" style="display:none">
 					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"> </span>
 				</button>
-				<button type="button" class="btn btn-default btn-lg" id="videoInPoint" onclick="videoInPoint()" disabled>
+				<button type="button" class="btn btn-default" id="videoInPoint" onclick="videoInPoint()" disabled>
 					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> </span>
 					<span> IN</span>
 				</button>
 				
-				<button type="button" class="btn btn-default btn-lg" id="videoOutPoint" onclick="videoOutPoint()" disabled>
+				<button type="button" class="btn btn-default" id="videoOutPoint" onclick="videoOutPoint()" disabled>
 					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> </span>
 					<span> OUT</span>
 				</button>
-				<button type="button" class="btn btn-default btn-lg" id="previewEdit" onclick="previewEdit();" disabled>
+				<button type="button" class="btn btn-default" id="previewEdit" onclick="previewEdit();" disabled>
 					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 					<span> PREVIEW</span>
 				</button>
-				<button type="button" class="btn btn-default btn-lg" id="submitEdit" onclick="submitEdit();" style="display:none">
+				<button type="button" class="btn btn-default" id="submitEdit" onclick="submitEdit();" style="display:none">
 					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 					<span> SUBMIT</span>
 				</button>
 			
 			
-			<button type="button" class="btn btn-default btn-lg" id="changeVideoButton" onclick="reloadVideoInput()" style="display:none">
-				<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
+			<button type="button" class="btn btn-default" id="changeVideoButton" onclick="reloadVideoInput()" style="display:none">
+				<span class="glyphicon glyphicon-refresh" aria-hidden="true"> </span>
 					<span> Change Video</span>
 				</button>	
 			</div>
 		</div>
 		
+				<div class ="row">
 				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%;"> 
-				<div class ="row" >
-						<div class="progress-bar progress-bar-warning progress-bar-striped active" id="outputLoadingBar" role="progressbar" style="width:100%;display:none">EXPORTING
-				</div>
-				</div>
-			<div class ="row" style="display: none;" id="outputButtons">
+						<div class="progress-bar progress-bar-warning progress-bar-striped active" id="outputLoadingBar" role="progressbar" style="width:100%;display:none">EXPORTING</div>
+				</div></div>
+				
+			<div class ="row">
+			<div class="col-md-6 col-md-offset-3" style="display: none;" id="outputButtons">
 					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText('OutputYouTubeLink')">
 						<span class="glyphicon glyphicon-hand-up" aria-hidden="true"> </span><span> Select Link</span></button>
 					<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()">
@@ -295,10 +306,8 @@
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
 					<div class="well" id="collapseAltLink"></div>
 				</div>
-			</div>
-			
-				</div>
-			
+			</div></div>
+		</div>
 			<script>
 				$(document).ready(function() {
 				    $('.commentarea').keydown(function(event) {
@@ -349,18 +358,24 @@
 			}
 			
 			function getQueryVariable(name,url) {
-				   var query = url.split( "?" );
-			       var vars = query[1].split("&");
+				var query;
+				var vars;
+				if (url.indexOf("youtube") > -1){
+				   query = url.split( "?" );
+			       vars = query[1].split("&");
 			       for (var i=0;i<vars.length;i++) {
 			               var pair = vars[i].split("=");
 			               if(pair[0] == name){return pair[1];}
 			       }
-			       return(query);
+				   return(query);
+			   }else if (url.indexOf("youtu.be") > -1){
+			   		query = url.split( ".be/" );
+					return(query[1]);
+			   }else {
+				   alert("YouTube Link Error.  Preferably enter a YouTube link that starts with 'youtube.com/...' or 'youtu.be/...'");
+			   }
 			}
 			</script>
-			
-			
-			
 			
 			<script>
 			function backFunction(){

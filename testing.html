@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<body>
+	<div class="row">
+	
+	<div class="col-md-6 col-md-offset-3" style=""> 
+	<form role="form">
+		<div class="form-group">
+	    <label for="linkInput">Link Grabber</label>
+	    <input type="text" name="linkInput" id="linkInput" placeholder="www.yourlink.com...">
+		<button class="button" id="linkGrab" onclick="linkGrabber()">submit</button>
+	</div>
+	</form>
+</div>
+</div>
+	<div class="row">
+	
+	<div class="col-md-6 col-md-offset-3" style=""> 
+	<iframe src="http://hotpotato.me" width="500px" height="500px" id="iframeWindow" style="position: relative; overflow: hidden" frameborder="0" seamless></iframe>
+</div>
+</div>
+<script>
+	function linkGrabber(){
+		alert("hello")
+		// var link=document.getElementById("linkInput").value;
+// 		document.getElementById("iframeWindow").src=link;
+		
+	}
+</script>
+</body>
+</html>

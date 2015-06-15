@@ -4,13 +4,16 @@
 			<title>Hot Potato Edit</title>
 			<meta name="description" content="Hot Potato - the online Video Editor. Try the tool and share your edits!  No rendering required.">
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
-			<link rel="stylesheet" type="text/css" href="css/style.css"/>
+			<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 			
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			<script src="https://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
-		
+			
+			
+			
+			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="apple-touch-icon" sizes="57x57" href="css/favicon/apple-icon-57x57.png">
 			<link rel="apple-touch-icon" sizes="60x60" href="css/favicon/apple-icon-60x60.png">
 			<link rel="apple-touch-icon" sizes="72x72" href="css/favicon/apple-icon-72x72.png">
@@ -44,7 +47,7 @@
 		        </div>
 		        <div class="navbar-collapse collapse">
 		          <ul class="nav navbar-nav">
-		            <li class="active"><a href="index.php">Home</a></li>
+		            <li class="active"><a href="../index.php">Home</a></li>
 					<li><a href="../feed.html">Feed</a></li>
 					<li><a href="../sign-up.html">Sign Up</a></li>
 				
@@ -55,51 +58,91 @@
 		      </div>
 		
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2" style="padding-top:1%;padding-right:4.5%">
-				<div class="title-text">
-					<h1> 
-						
-					</h1>
-				</div>
-				<div class="intro-message">
-					<h3>
-						
-					</h3>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row col-md-offset-3" id="videoPlayback" style="padding-left: 5%">
-		 
+		<div class="col-md-6 col-md-offset-3" id="videoPlayback" style="padding-top: 8%;">
+		<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
 		<div id="JWvid"></div>
-
+		</div></div></div>
+		
+		<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+		<div class="progress">
+	  	<div class="progress-bar progress-bar-info" id="progressBarVis" role="progressbar" style="">
+	</div>	
+		</div></div></div>
+		
+		<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+		<button type="button" class="btn btn-default" id="repeatVid" name="repeatVid" onclick="repeatVid()">
+		<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
+			<span> Loop Video</span>
+		</button></div></div>
+		
 		<script>
+		var vidWidth=$("#responsiveVideoFrame").width();
+		var vidHeight=(vidWidth*0.5625);
+		var ProgressBar;
+		var realVal;
+		var editEnd=44;
+		var relativePos;
+		var userViewMode=0;
+		
 	    jwplayer("JWvid").setup({
-	        file: "https://www.dropbox.com/home/Public?preview=Quickly+Cut+Videos+With+Hot+Potato.mp4",
-	        width: 643,
-	        height: 362,
+	        file: "https://www.youtube.com/watch?v=6-hYSBghEn0",
+	        width: vidWidth,
+	        height: vidHeight,
+			stretching: "fill",
+			playbackRate: 0.25,
+			defaultPlaybackRate: 0.25,
 			
-			// playlist: [
-// 				           { file: "https://www.dropbox.com/playlist/Public/Quickly%20Cut%20Videos%20With%20Hot%20Potato.mp4?_subject_uid=67744277",}
-// 			        ],
 	    });
-		// var startPosition =30;
-// 		var endPositionz =60;
-//
-// 			jwplayer("JWvid").onTime(function (event){
-// 				var realVal = event.position;
-//
-// 				if (realVal < 2){
-// 					jwplayer("JWvid").seek(startPosition);
-// 				}
-// 				else if (realVal > endPositionz){
-// 					jwplayer("JWvid").pause();
-// 				}
-// 			});
+		
+		// jwplayer("JWvid").onReady(function() {
+// 		        jwplayer("JWvid").querySelector("video").defaultPlaybackRate = 0.25;
+// 		});
+		
+		function repeatVid(){
+			jwplayer("JWvid").seek(inPoint);
+			userViewMode=2;
+		}
+		var inPoint =17.6;
+		var outPoint =61.6;
+		
+			jwplayer("JWvid").onTime(function (event){
+				realVal = event.position;
+				relativePos = realVal - inPoint;
+			if (userViewMode==0){
+				if (realVal < 2){
+					jwplayer("JWvid").seek(inPoint);
+				}
+				else if (realVal > outPoint){
+					jwplayer("JWvid").pause();
+				}
+			} else if (userViewMode==2){
+				if (realVal < inPoint || realVal > outPoint){
+					jwplayer("JWvid").seek(inPoint);
+				}
+			}
+				
+				ProgressBar = (relativePos/editEnd);
+				ProgressBar = ProgressBar*100;
+				ProgressBar = ProgressBar.toPrecision(2);
+				
+				document.getElementById("progressBarVis").style.width =(ProgressBar+"%");
+			});
 			
-			
+				
 		</script>
-		</div>
-		<!-- <img width="10" height="10" src="https://i.ytimg.com/vi/'.$ytVidCode.'/mqdefault.jpg" style="visibility:hidden"/> -->
+		
+		<img width="10" height="10" src="https://i.ytimg.com/vi/yJDRop2ocFo/hqdefault.jpg" style="visibility:hidden"/>
 		</body>
+		<script>
+		  (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
+
+		  ga("create", "UA-57874990-5", "auto");
+		  ga("send", "pageview");
+
+		</script>
 		</html>

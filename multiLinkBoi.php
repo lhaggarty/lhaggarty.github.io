@@ -50,29 +50,29 @@ function templateVideoHTML() {
 			<title>Hot Potato Edit</title>
 			<meta name="description" content="Hot Potato - the online Video Editor. Try the tool and share your edits!  No rendering required.">
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
-			<link rel="stylesheet" type="text/css" href="../css/style-outro.css"/>
+			<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 			
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			<script src="https://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link rel="apple-touch-icon" sizes="57x57" href="../css/favicon/apple-icon-57x57.png">
-			<link rel="apple-touch-icon" sizes="60x60" href="../css/favicon/apple-icon-60x60.png">
-			<link rel="apple-touch-icon" sizes="72x72" href="../css/favicon/apple-icon-72x72.png">
+		
+			<link rel="apple-touch-icon" sizes="57x57" href="css/favicon/apple-icon-57x57.png">
+			<link rel="apple-touch-icon" sizes="60x60" href="css/favicon/apple-icon-60x60.png">
+			<link rel="apple-touch-icon" sizes="72x72" href="css/favicon/apple-icon-72x72.png">
 			<link rel="apple-touch-icon" sizes="76x76" href="css/favicon/apple-icon-76x76.png">
-			<link rel="apple-touch-icon" sizes="114x114" href="../css/favicon/apple-icon-114x114.png">
-			<link rel="apple-touch-icon" sizes="120x120" href="../css/favicon/apple-icon-120x120.png">
-			<link rel="apple-touch-icon" sizes="144x144" href="../css/favicon/apple-icon-144x144.png">
-			<link rel="apple-touch-icon" sizes="152x152" href="../css/favicon/apple-icon-152x152.png">
-			<link rel="apple-touch-icon" sizes="180x180" href="../css/favicon/apple-icon-180x180.png">
-			<link rel="icon" type="image/png" sizes="192x192"  href="../css/favicon/android-icon-192x192.png">
-			<link rel="icon" type="image/png" sizes="32x32" href="../css/favicon/favicon-32x32.png">
-			<link rel="icon" type="image/png" sizes="96x96" href="../css/favicon/favicon-96x96.png">
-			<link rel="icon" type="image/png" sizes="16x16" href="../css/favicon/favicon-16x16.png">
-			<link rel="manifest" href="../css/favicon/manifest.json">
+			<link rel="apple-touch-icon" sizes="114x114" href="css/favicon/apple-icon-114x114.png">
+			<link rel="apple-touch-icon" sizes="120x120" href="css/favicon/apple-icon-120x120.png">
+			<link rel="apple-touch-icon" sizes="144x144" href="css/favicon/apple-icon-144x144.png">
+			<link rel="apple-touch-icon" sizes="152x152" href="css/favicon/apple-icon-152x152.png">
+			<link rel="apple-touch-icon" sizes="180x180" href="css/favicon/apple-icon-180x180.png">
+			<link rel="icon" type="image/png" sizes="192x192"  href="css/favicon/android-icon-192x192.png">
+			<link rel="icon" type="image/png" sizes="32x32" href="css/favicon/favicon-32x32.png">
+			<link rel="icon" type="image/png" sizes="96x96" href="css/favicon/favicon-96x96.png">
+			<link rel="icon" type="image/png" sizes="16x16" href="css/favicon/favicon-16x16.png">
+			<link rel="manifest" href="/manifest.json">
 			
-			<meta name="msapplication-TileImage" content="../css/favicon/ms-icon-144x144.png">
+			<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 		</head>
 		
 		<body>
@@ -90,7 +90,7 @@ function templateVideoHTML() {
 		        </div>
 		        <div class="navbar-collapse collapse">
 		          <ul class="nav navbar-nav">
-		            <li class="active"><a href="../index.php"><img src="css/hot-potato-logo-120.png" alt="Hot Potato" width="13" height="19"> Home</a></li>
+		            <li class="active"><a href="../index.php">Home</a></li>
 					<li><a href="../feed.html">Feed</a></li>
 					<li><a href="../sign-up.html">Sign Up</a></li>
 				
@@ -113,13 +113,6 @@ function templateVideoHTML() {
 	</div>	
 		</div></div></div>
 		
-		<div class="row">
-		<div class="col-md-6 col-md-offset-3">
-		<button type="button" class="btn btn-default" id="repeatVid" name="repeatVid" onclick="repeatVid()">
-		<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
-			<span> Loop Video</span>
-		</button></div></div>
-		
 		<script>
 		var vidWidth=$("#responsiveVideoFrame").width();
 		var vidHeight=(vidWidth*0.5625);
@@ -127,38 +120,24 @@ function templateVideoHTML() {
 		var realVal;
 		var editEnd='.$cutLength.';
 		var relativePos;
-		var userViewMode=0;
 		
 	    jwplayer("JWvid").setup({
 	        file: "'.$ytLink.'",
 	        width: vidWidth,
 	        height: vidHeight,
-			stretching: "fill",
 	    });
-		
-		function repeatVid(){
-			jwplayer("JWvid").seek(inPoint);
-			userViewMode=2;
-		}
-		var inPoint ='.$videoStart.';
-		var outPoint ='.$videoStop.';
+		var startPosition ='.$videoStart.';
+		var endPositionz ='.$videoStop.';
 		
 			jwplayer("JWvid").onTime(function (event){
 				realVal = event.position;
-				relativePos = realVal - inPoint;
-			if (userViewMode==0){
+				relativePos = realVal - startPosition;
 				if (realVal < 2){
-					jwplayer("JWvid").seek(inPoint);
+					jwplayer("JWvid").seek(startPosition);
 				}
-				else if (realVal > outPoint){
+				else if (realVal > endPositionz){
 					jwplayer("JWvid").pause();
 				}
-			} else if (userViewMode==2){
-				if (realVal < inPoint || realVal > outPoint){
-					jwplayer("JWvid").seek(inPoint);
-				}
-			}
-				
 				ProgressBar = (relativePos/editEnd);
 				ProgressBar = ProgressBar*100;
 				ProgressBar = ProgressBar.toPrecision(2);
@@ -243,18 +222,19 @@ echo '<!DOCTYPE html>
 			<title>Hot Potato Tool</title>
 			<meta name="description" content="Hot Potato - The Online Video Editor. Try the tool and share your edits!  No rendering required.">
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
+			<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-			<link rel="stylesheet" type="text/css" href="css/style.css"/>
+			
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
-	        	
+	        
 	        
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			
 			<!-- <script src="https://apis.google.com/js/client.js"></script>-->
 			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
-			<script type="text/javascript" src="js/jquery.zclip.js"></script>
-			<meta name="viewport" content="width=device-width, initial-scale=1">
+			
+			
 			
 			<link rel="apple-touch-icon" sizes="57x57" href="css/favicon/apple-icon-57x57.png">
 			<link rel="apple-touch-icon" sizes="60x60" href="css/favicon/apple-icon-60x60.png">
@@ -269,9 +249,9 @@ echo '<!DOCTYPE html>
 			<link rel="icon" type="image/png" sizes="32x32" href="css/favicon/favicon-32x32.png">
 			<link rel="icon" type="image/png" sizes="96x96" href="css/favicon/favicon-96x96.png">
 			<link rel="icon" type="image/png" sizes="16x16" href="css/favicon/favicon-16x16.png">
-			<link rel="manifest" href="css/favicon/manifest.json">
+			<link rel="manifest" href="/manifest.json">
 			
-			<meta name="msapplication-TileImage" content="css/favicon/ms-icon-144x144.png">
+			<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 		</head>
 		<!-- 
 		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -297,7 +277,7 @@ echo '<!DOCTYPE html>
 	        </div>
 	        <div class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
-	            <li class="active"><a href="index.php"><img src="css/hot-potato-logo-120.png" alt="Hot Potato" width="13" height="19"> Home</a></li>
+	            <li class="active"><a href="index.php">Home</a></li>
 				<li><a href="feed.html">Feed</a></li>
 				<li><a href="sign-up.html">Sign Up</a></li>
 				
@@ -308,18 +288,18 @@ echo '<!DOCTYPE html>
 	      </div>
 	    
 	</div>
-	<div class="video-part">		
+			
 	<div class="row">
 		<div class="col-md-4" style="padding-left:7%">
 			<div class="intro-message" >
 				
 				<h3>
-					
+					Quickly Cut Videos
 				</h3>
 			</div>
 		</div>
 	
-<div class="col-md-6 col-md-offset-3" style="padding-top:6%;">
+<div class="col-md-6 col-md-offset-3" style="padding-top:0.75%;">
 	<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
  	<div id="videoPlaybackFrame"></div></div>
 </div>
@@ -345,14 +325,11 @@ echo '<!DOCTYPE html>
 		        file: inputYTLink,
 		        width: vidWidth,
 		        height: vidHeight,
-				stretching: "fill",
-				
 		    });
 			
-			if (matchMedia("only screen and (max-width: 650px)").matches) {
- 			    //jwplayer().load([{width: 960,height: 540}]);
-				document.getElementById("copy-button").style.display="none";
- 			};
+			// if (matchMedia("only screen and (max-width: 650px)").matches) {
+// 			    jwplayer().load([{width: 960,height: 540}]);
+// 			};
 			
 			
 			function playPauseVideo(){
@@ -399,6 +376,7 @@ echo '<!DOCTYPE html>
 			</form>
 		</div>
 		
+		
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3" style="">
 			<div class="progress" id="videoTimeline" style="display:none">	  
@@ -411,41 +389,32 @@ echo '<!DOCTYPE html>
 		</div>
 		  </div>
 	  </div>
-	  
-	  			<div class = "row">
-				 
-				<div class="col-md-6 col-md-offset-3" style="">
+				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%;">
 				
+				<div class = "row">
 						<div class="well" style="" id="OutputYouTubeLink">www.hotpotato.me/single_edits/'.$html.'</div>
-						
 				</div>
 				
-				</div>
-	</div>
-	<div class="dashboard-part">		
-			<div class ="row" >
-			<div class="col-md-6 col-md-offset-3" style="" id="outputButtons">
+			<div class ="row" style="" id="outputButtons">
 			<input type="text" name="hotPotatoLink" value="'.$html.'" id="hotPotatoLink" style="display:none"/>
-			<button type="button" class="btn btn-default" id="copy-button">
-			<span class="glyphicon glyphicon-paperclip" aria-hidden="true"> </span><span id="copy-button-text"> Copy</span></button>
 					<button type="button" class="btn btn-default" name="openLink" id="openLink" onclick="openLink()">
-						<span class="glyphicon glyphicon-file" aria-hidden="true"> </span><span> Open</span></button>
+						<span class="glyphicon glyphicon-file" aria-hidden="true"> </span><span> Open Link</span></button>
 					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText(OutputYouTubeLink)" style="display:none">
 						<span class="glyphicon glyphicon-hand-up" aria-hidden="true"> </span><span> Select Link</span></button>
 					<button type="button" class="btn btn-default" id="backToTool" name="backToTool" onclick="backToTool()">
-					<span class="glyphicon glyphicon-refresh" aria-hidden="true"> </span>
+					<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
 						<span> Reset</span>
 					</button>
 					<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseAlt" aria-expanded="false" aria-controls="collapseAlt">
 						<span class="glyphicon glyphicon-sort" aria-hidden="true"> </span>
-						<span> Embed</span>
+						<span> Embed Link</span>
 					</button>
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
-					<div class="well" id="collapseAltLink" style="color:#000">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://www.hotpotato.me/single_edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
+					<div class="well" id="collapseAltLink">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://www.hotpotato.me/single_edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
 				</div>
 				
 			</div>
-			</div>
+			
 			<script>
 			function openLink(){
 				window.location="http://www.hotpotato.me/single_edits/'.$html.'";
@@ -457,7 +426,7 @@ echo '<!DOCTYPE html>
 				
 			}
 			</script>
-			<script>
+			<script type="text/javascript">
 			function selectText( containerid ) {
 
 			        var node = document.getElementById( containerid );
@@ -476,19 +445,6 @@ echo '<!DOCTYPE html>
 			</script>
 
 </body>
-<script>
-$(document).ready(function(){				
-    $("button#copy-button").zclip({
-        path:"js/ZeroClipboard.swf",
-        copy:$("div#OutputYouTubeLink").text(),
-		afterCopy:function(){
-			
-			document.getElementById("copy-button-text").innerHTML=" Copied";
-			
-		}
-    });
-});
-</script>
 <script>
   (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

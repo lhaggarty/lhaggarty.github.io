@@ -83,7 +83,8 @@
 					</div>
 				
 			<div class="col-md-6 col-md-offset-3" style="padding-top:0.75%">
-			 	<div id="videoPlaybackFrame"></div>
+				<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
+			 	<div id="videoPlaybackFrame"></div></div>
 			</div>
 			</div>
 			<script>
@@ -92,39 +93,38 @@
 			var ProgressBarBefore;
 			var ProgressBarDuring;
 			var ProgressBarAfter;
+			var multiEditProgressBar;
 			var userEditCounter = 0;
 			var inPoint = [];
 			var outPoint = [];
+			var editLength = [];
+			var cumulativeEditLength = [];
 			var vidDuration;
 			var videoLoadSwitch = 0;
+			var relativePos;
 			
 			var shortYTLink;
-			var tempOutputYoutubeLink;
 			var inputYTLink = "https://www.youtube.com/watch?v=yJDRop2ocFo";
+			var vidWidth=$("#responsiveVideoFrame").width();
+			var vidHeight=(vidWidth*0.5625);
 			
 		    jwplayer("videoPlaybackFrame").setup({
 		        file: inputYTLink,
-		        width: 643,
-		        height: 362,
+		        width: vidWidth,
+		        height: vidHeight,
 		    });
 			
-			if (matchMedia('only screen and (max-width: 650px)').matches) {
-			    jwplayer().load([{width: 960,height: 540}]);
-			};
+			// if (matchMedia('only screen and (max-width: 650px)').matches) {
+// 			    jwplayer().load([{width: 960,height: 540}]);
+// 			};
 			
 			function initiateLiveVideoPlayer(){
-				if (inputYTLink == "https://www.youtube.com/watch?v=yJDRop2ocFo"){
-					shortYTLink = inputYTLink;
-					
-				}else if (inputYTLink != "https://www.youtube.com/watch?v=yJDRop2ocFo") {
+				shortYTLink = "yJDRop2ocFo";
+				if ($( '#InputYouTubeLink' ).val() != ""){
 					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
 					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
 					jwplayer().load([{file:inputYTLink}]);
-					tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
 				}
-				
-				document.getElementById('ytVidCode').value=shortYTLink;
-		
 				
 				videoLoadSwitch=1;
 			    
@@ -163,6 +163,13 @@
 			
 			function videoOutPoint(){
 				outPoint[currentCut] = jwplayer("videoPlaybackFrame").getPosition();
+				editLength[currentCut] = outPoint[currentCut]-inPoint[currentCut];
+				if(cumulativeEditLength[currentCut-1] != null){
+					cumulativeEditLength[currentCut] = (editLength[currentCut]+cumulativeEditLength[currentCut-1]);
+				}else {
+					cumulativeEditLength[currentCut]= editLength[currentCut];
+				}
+				
 				videoLoadSwitch=1;
 				userEditCounter=2;
 				document.getElementById("OutTimeCode").value=outPoint[currentCut];
@@ -174,9 +181,6 @@
 			jwplayer("videoPlaybackFrame").onTime(function (event){
 				var realVal = event.position;
 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
-				var videoProgress;
-				
-				
 				
 				if (userEditCounter==0){
 				ProgressBarBefore = (realVal/vidDuration);
@@ -208,39 +212,67 @@
 				ProgressBarAfter = ProgressBarAfter.toPrecision(2);
 				//$('#OutputYouTubeLink').html(progressBar1);
 				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
+				} else if (userEditCounter==4){
+					if(cumulativeEditLength[currentCut-1] != null){
+						relativePos = ((realVal - inPoint[currentCut])+ cumulativeEditLength[currentCut-1]);
+					}else {
+						relativePos = realVal - inPoint[currentCut];
+					}
+					multiEditProgressBar = (relativePos/cumulativeEditLength[totalCutNumber]);
+					multiEditProgressBar = multiEditProgressBar*100;
+					multiEditProgressBar = multiEditProgressBar.toPrecision(2);
+					
+					document.getElementById('multiEditProgressBar').style.width =(multiEditProgressBar+"%");
+					
 				}
-			});
-			if (videoLoadSwitch==5){
+				
+			if (videoLoadSwitch==4){
+				if (currentCut == -1){
+					currentCut++;
+					jwplayer("videoPlaybackFrame").seek(inPoint[currentCut]);
+				}
+				else if (currentCut >= totalCutNumber){
+					
+					jwplayer("videoPlaybackFrame").pause();
+				}
+				else if (realVal > outPoint[currentCut] && realVal < inPoint[currentCut+1]){
+					currentCut++;
+					jwplayer("videoPlaybackFrame").seek(inPoint[currentCut]);
+				}		
+			}else if (videoLoadSwitch==3){
 			if (realVal < inPoint[currentCut] || realVal > outPoint[currentCut]){
 				jwplayer("videoPlaybackFrame").seek(inPoint[currentCut]);
 				
 			}
 			}
-			if (videoLoadSwitch==2){
-				jwplayer("videoPlaybackFrame").seek(outPoint[currentCut-1]);
-				videoLoadSwitch=1;
-			}
-			if (videoLoadSwitch==-1){
+			// else if (videoLoadSwitch==2){
+//
+// 				jwplayer("videoPlaybackFrame").seek(outPoint[currentCut-1]);
+// 				videoLoadSwitch=1;
+// 			}
+			else if (videoLoadSwitch==-1){
+				
 				jwplayer("videoPlaybackFrame").seek(inPoint[currentCut]);
 				videoLoadSwitch=1;
 			}
+			});
 			</script>	
   		<div class="row">
-  		<div class="col-md-8 col-md-offset-3" style="padding-right:21.75%">
+  		<div class="col-md-6 col-md-offset-3" style="">
   			<div class="progress" id="videoTimeline" style="">	  
-  		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
-  		</div>	
-  		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style="">
-  			</div>
-    		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style="">
-    			</div>
+  		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style=""></div>	
+		  
+  		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style=""></div>
+		  
+		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style=""></div>
+		  
+		  <div class="progress-bar progress-bar-info" id="multiEditProgressBar" role="progressbar" style=""></div>
   		</div>
   		  </div>
   	  </div>
 	  
 		<div class="row">
-		
-		<div class="col-md-8 col-md-offset-3" style="padding-right:21.75%" id="inputRowOne"> 
+		<div class="col-md-6 col-md-offset-3" style="" id="inputRowOne"> 
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
 				
@@ -255,8 +287,8 @@
 		</div>
 	</div>
 		
-		<div class="col-md-8 col-md-offset-3" id="videoPlayerButtons" >
 		<div class="row">
+		<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons" >
 				<button type="button" class="btn btn-default btn-lg" id="loadVideoButton" onclick="initiateLiveVideoPlayer();">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
@@ -292,8 +324,10 @@
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				<span> CUT</span>
 				</button>
-			</div>
-			<div class="row" id="editTimelineButtons" style="display:none">
+			</div></div>
+			
+			<div class="row">
+			<div class="col-md-6 col-md-offset-3" id="editTimelineButtons" style="display:none">
 			<button type="button" class="btn btn-default" id="playbackAllEdits" onclick="playbackAllEdits();" style="">
 			<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 			<span> PLAY ALL</span>
@@ -313,14 +347,13 @@
 		</div>
 		</div>
 		
-		
-				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.5%"> 
+				<div class ="row">
+				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%;"> 
+						<div class="progress-bar progress-bar-warning progress-bar-striped active" id="outputLoadingBar" role="progressbar" style="width:100%;display:none">EXPORTING</div>
+				</div></div>
 				
-				<div class ="row" >
-						<div class="progress-bar progress-bar-warning progress-bar-striped active" id="outputLoadingBar" role="progressbar" style="width:100%;display:none">EXPORTING
-				</div>
-				</div>
-			<div class ="row" style="display: none;" id="outputButtons">
+			<div class ="row">
+			<div class="col-md-6 col-md-offset-3" style="display: none;" id="outputButtons">
 					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText('OutputYouTubeLink')">
 						<span class="glyphicon glyphicon-hand-up" aria-hidden="true"> </span><span> Select Link</span></button>
 					<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()">
@@ -334,9 +367,7 @@
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
 					<div class="well" id="collapseAltLink"></div>
 				</div>
-			</div>
-			
-				</div>
+			</div></div>
 			
 			<script>
 				$(document).ready(function() {
@@ -365,6 +396,17 @@
 					outPoint[currentCut] = 0;
 					videoLoadSwitch=1;
 			}
+			function playbackAllEdits(){
+				//document.getElementById('videoTimeline').style.display="";
+				document.getElementById('preInVis').style.width="";
+				document.getElementById('editVis').style.width="";
+				document.getElementById('postOutVis').style.width="";
+				currentCut=-1;
+				userEditCounter=4;
+				videoLoadSwitch=4;
+				
+			}
+			
 			function addEdit(){
 					totalCutNumber++;
 					currentCut++;
@@ -374,7 +416,7 @@
 					document.getElementById('editVis').style.width="";
 					document.getElementById('postOutVis').style.width="";
 					userEditCounter=0;
-					videoLoadSwitch=2;
+					videoLoadSwitch=1;
 					document.getElementById('editTimelineButtons').style.display="";
 			}
 			
@@ -382,15 +424,16 @@
 				currentCut--;
 				videoLoadSwitch=-1;
 				userEditCounter=1;
-				document.getElementById("previousEditText").innerHTML = (" EDIT"+(currentCut-1));
-				document.getElementById("nextEditText").innerHTML = (" EDIT"+(currentCut+1));
+				document.getElementById("previousEditText").innerHTML = (" EDIT"+(currentCut));
+				document.getElementById("nextEditText").innerHTML = (" EDIT"+(currentCut+2));
+				//document.getElementById('postOutVis').style.width =("");
 			}
 			function nextEdit(){
 				currentCut++;
 				videoLoadSwitch=-1;
 				userEditCounter=1;
-				document.getElementById("previousEditText").innerHTML = (" EDIT"+(currentCut-1));
-				document.getElementById("nextEditText").innerHTML = (" EDIT"+(currentCut+1));
+				document.getElementById("previousEditText").innerHTML = (" EDIT"+(currentCut));
+				document.getElementById("nextEditText").innerHTML = (" EDIT"+(currentCut+2));
 			}
 			function lastEdit(){
 				currentCut=totalCutNumber;
@@ -401,7 +444,7 @@
 			function previewEdit(){
 				document.getElementById('submitEdit').style.display="";
 				document.getElementById('previewEdit').style.display="none";
-				videoLoadSwitch=5;
+				videoLoadSwitch=3;
 				userEditCounter=1;
 				document.getElementById('postOutVis').style.width="";
 			}
@@ -410,11 +453,14 @@
 				while (currentCut < (totalCutNumber+1)){
 					document.getElementById('OutTimeCode').value =($( '#OutTimeCode' ).val(),'"',outPoint[currentCut],'",');
 					document.getElementById('InTimeCode').value =($( '#InTimeCode' ).val(),'"',inPoint[currentCut],'",');
+					// document.getElementById('editLength').value =($( '#editLength' ).val(),'"',editLength[currentCut],'",');
+// 					document.getElementById('cumulativeEditLength').value =($( '#cumulativeEditLength' ).val(),'"',cumulativeEditLength[currentCut],'",');
+					currentCut++;
 				}
 				
 				document.getElementById('outputLoadingBar').style.display ="";
 				
-				$('#collapseAltLink').html(tempOutputYoutubeLink);
+				$('#collapseAltLink').html(inputYTLink);
 				
 				document.getElementById("createLink").click();
 				$("form").slideUp();
