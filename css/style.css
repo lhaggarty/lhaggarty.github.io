@@ -1,0 +1,122 @@
+@font-face {
+    font-family: Harabara-Mais;
+    src: url(Harabara-Mais.otf);
+}
+html, body  {
+	
+	font-family: Harabara-Mais !important;
+	
+}
+
+.navbar {
+	background-color: #73695a;
+	padding-top:4.5px;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #000;
+    background-color: #fff
+}
+.nav-pills>li>a {
+	color: #fff;
+}
+
+.nav-pills>li>a:focus, .nav-pills>li>a:hover {
+    color: #000;
+    background-color: #ccc
+}
+
+.video-part {
+	background: url(hotPotato-yellowBackground.jpg) no-repeat center top fixed;
+	/*height: 120%;*/
+	background-size: cover;
+	
+}
+
+.dashboard-part {
+	background-color: #73695a;
+	padding-top: 1%;
+	padding-bottom: 15%;
+	color: #fff;
+}
+
+.title-text {
+	text-align: center;
+	padding-top: 3%;
+	color: #000;
+	
+}
+.intro-message {
+	text-align: center;
+	
+	
+/*	padding-left:2%;
+	padding-right:0.5%;*/
+	color: #000;
+	
+}
+a.howToGallery {
+	
+}
+
+.howToGallery.active {
+	padding: 5px;
+
+}
+
+.howToGallery:focus, .howToGallery:hover {
+	padding: 4px;
+	-webkit-transition: all .1s ease-in-out;
+	-o-transition: all .1s ease-in-out;
+	transition: all .1s ease-in-out
+}
+
+/*a.howToGallery:focus.img a.howToGallery:hover.img{
+	width:90%;
+	height:90%
+}*/
+
+.form-group {
+  	font-size:17px;
+}
+
+.OutputYouTubeLink {
+	color: #000;
+}
+.signup-form {
+	color: #000;
+	text-align: center;
+}
+.email {
+	color:#000;
+}
+.text {
+	color:#000;
+}
+.button {
+	color:#000;
+}
+
+iframe:focus { 
+    outline: none;
+}
+iframe[seamless] { 
+    display: block;
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 650px)
+  {
+	  
+.btn{
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px
+}
+
+#copy-button{
+	display: none;
+}
+  }
