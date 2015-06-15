@@ -127,6 +127,7 @@
 				if ($( '#InputYouTubeLink' ).val() != ""){
 					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
 					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
+					document.getElementById('ytVidCode').value=inputYTLink;
 					jwplayer().load([{file:inputYTLink}]);
 				}
 				
