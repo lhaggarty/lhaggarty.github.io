@@ -45,8 +45,8 @@
 		</div>
 			-->
 <body>
-	
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="padding-left:4.7%">
 	      
 	        <div class="navbar-header" style="height:30px">
 	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -58,17 +58,18 @@
 				<span class="icon-bar"></span>
 	          </button>
 	        </div>
-	        <div class="navbar-collapse collapse">
-	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-	            <li role="presentation" class="active"><a href="index.php"><img src="css/hot-potato-logo-120.png" alt="Hot Potato" width="13" height="19"> Hot Potato</a></li>
-				<li role="presentation"><a href="feed.html">Feed</a></li>
-				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
+  		  	        <div class="navbar-collapse collapse">
+  		  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
+  						<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="95" height="22"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="95" height="22"></a></li>
+  						<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
+  		  	            <li role="presentation" class="active"hot-potato-black-text-with-logo.png><a href="editor.php"> Video Editor</a></li>
+  		  				<li role="presentation"><a href="feed.html">Feed</a></li>
+  		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 				
-				<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
-	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
-				<li role="presentation"><a href="but_why.html">Tell Me More</a></li>
-	        </div><!--/.nav-collapse -->
-	      </div>
+  		  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
+		  				
+  		  	        </div><!--/.nav-collapse -->
+  		  	      </div>
 	    
 	</div>
 	<div class="video-part">		
@@ -82,7 +83,7 @@
 						</div>
 					</div>
 				
-			<div class="col-md-6 col-md-offset-3" style="padding-top:2%;">
+			<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
 				<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
 			 	<div id="videoPlaybackFrame"></div></div>
 			</div>
@@ -127,7 +128,7 @@
 				if ($( '#InputYouTubeLink' ).val() != ""){
 					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
 					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
-					document.getElementById('ytVidCode').value=inputYTLink;
+					document.getElementById('ytVidCode').value=shortYTLink;
 					jwplayer().load([{file:inputYTLink}]);
 				}
 				
@@ -250,7 +251,7 @@
 		</div>
 	</div>
 	</div>
-		<div class="dashboard-part">
+		<div class="dashboard-part" style="padding-bottom:259px">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons">
 				<button type="button" class="btn btn-default" id="loadVideoButton" onclick="initiateLiveVideoPlayer();">
@@ -406,7 +407,7 @@
 			    };
 			</script>
 <img style="display:none" src="/css/hot-potato-functions-image.jpg" alt="" width="5" height="5" />
-
+</div>
 </body>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

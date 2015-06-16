@@ -28,3 +28,59 @@
 </script>
 </body>
 </html>
+
+<div class="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
+		<div class="jwplayer playlist-none jw-user-inactive" id="JWvid">
+</div></div>
+		
+<script>
+
+var vidWidth=$("#responsiveVideoFrame").width();
+var vidHeight=(vidWidth*0.5625);
+var ProgressBar;
+var realVal;
+var editEnd=5.8;
+var relativePos;
+var userViewMode=0;
+
+jwplayer("JWvid").setup({
+    file: "https://youtu.be/KlE--TWCsX0",
+    width: vidWidth,
+    height: vidHeight,
+	stretching: "fill",
+});
+
+function repeatVid(){
+	jwplayer("JWvid").seek(inPoint);
+	userViewMode=2;
+}
+var inPoint =13.2;
+var outPoint =19;
+
+	jwplayer("JWvid").onTime(function (event){
+		realVal = event.position;
+		relativePos = realVal - inPoint;
+	if (userViewMode==0){
+		if (realVal < 2){
+			jwplayer("JWvid").seek(inPoint);
+		}
+		else if (realVal > outPoint){
+			jwplayer("JWvid").pause();
+		}
+	} else if (userViewMode==2){
+		if (realVal < inPoint || realVal > outPoint){
+			jwplayer("JWvid").seek(inPoint);
+		}
+	}
+		
+		ProgressBar = (relativePos/editEnd);
+		ProgressBar = ProgressBar*100;
+		ProgressBar = ProgressBar.toPrecision(2);
+		
+		document.getElementById("progressBarVis").style.width =(ProgressBar+"%");
+	});
+		
+		
+		
+
+</script>

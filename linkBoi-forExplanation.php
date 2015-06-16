@@ -50,9 +50,9 @@ function templateVideoHTML() {
 			<title>Hot Potato Edit</title>
 			<meta name="description" content="Hot Potato - the online Video Editor. Try the tool and share your edits!  No rendering required.">
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
-			
+			<link rel="stylesheet" type="text/css" href="../css/style-outro.css"/>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-			<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+			
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			<script src="https://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
@@ -90,17 +90,17 @@ function templateVideoHTML() {
 		        </div>
 	  	        <div class="navbar-collapse collapse">
 	  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-					<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" alt="Hot Potato" width="84" height="18"></a></li>
-					<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
+					<li role="presentation"><a href="index.html"><img src="css/hot-potato-text-with-logo.png" alt="Hot Potato" width="84" height="18"></a></li>
 	  	            <li role="presentation"><a href="editor.php"> Video Editor</a></li>
 	  				<li role="presentation"><a href="feed.html">Feed</a></li>
 	  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
-			
+		
+	  				<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
 	  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
-	  				
+  				
 	  	        </div><!--/.nav-collapse -->
 	  	      </div>
-		<div class="video-part">
+		
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3" id="videoPlayback" style="padding-top: 8%;">
 		<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
@@ -113,15 +113,14 @@ function templateVideoHTML() {
 	  	<div class="progress-bar progress-bar-info" id="progressBarVis" role="progressbar" style="">
 	</div>	
 		</div></div></div>
-		</div>
-		<div class="dashboard-part">
+		
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 		<button type="button" class="btn btn-default" id="repeatVid" name="repeatVid" onclick="repeatVid()">
 		<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
 			<span> Loop Video</span>
 		</button></div></div>
-		</div>
+		
 		<script>
 		var vidWidth=$("#responsiveVideoFrame").width();
 		var vidHeight=(vidWidth*0.5625);
@@ -199,7 +198,7 @@ $conn = mysqli_connect('141.117.161.98','leonhaggarty','mdm123','hotpotato');
 $ytLink = $_GET['InputYouTubeLink'];
 $videoStart = $_GET['InTimeCode'];
 $videoStop = $_GET['OutTimeCode'];
-$html = generateRandomStringFiveC().'.html';
+$html = 'jsTj5.html';
 
 // mysqlconnect('localhost','root','');
 // mysql_select_db('single_edits');
@@ -220,24 +219,24 @@ $html = generateRandomStringFiveC().'.html';
 // 		echo "Please try again";
 // 	}
 
-if (mysqli_connect_errno()){
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
-$query = mysqli_query($conn,"SELECT OutputLink FROM single_edits WHERE OutputLink LIKE '%".$html."%'");
-while ($html==$query){
-	$html = generateRandomStringFiveC().'.html';
-}
-
-// Perform queries 
-mysqli_query($conn,"SELECT * FROM single_edits");
-mysqli_query($conn,"INSERT INTO single_edits (OutputLink,OriginalLink,EditIn,EditOut) 
-VALUES ('".$html."','".$ytLink."','".$videoStart."','".$videoStop."')");
-
-mysqli_close($conn);
-
-$create = fopen('single_edits/'.$html, 'w') or die("can't open file");
-fwrite($create, templateVideoHTML());
-fclose($create);
+// if (mysqli_connect_errno()){
+//   echo "Failed to connect to MySQL: " . mysqli_connect_error();
+//   }
+// $query = mysqli_query($conn,"SELECT OutputLink FROM single_edits WHERE OutputLink LIKE '%".$html."%'");
+// while ($html==$query){
+// 	$html = generateRandomStringFiveC().'.html';
+// }
+//
+// // Perform queries
+// mysqli_query($conn,"SELECT * FROM single_edits");
+// mysqli_query($conn,"INSERT INTO single_edits (OutputLink,OriginalLink,EditIn,EditOut)
+// VALUES ('".$html."','".$ytLink."','".$videoStart."','".$videoStop."')");
+//
+// mysqli_close($conn);
+//
+// $create = fopen('single_edits/'.$html, 'w') or die("can't open file");
+// fwrite($create, templateVideoHTML());
+// fclose($create);
 
 echo '<!DOCTYPE html>
 <html>
@@ -299,12 +298,12 @@ echo '<!DOCTYPE html>
 	        </div>
   	        <div class="navbar-collapse collapse">
   	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-				<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" alt="Hot Potato" width="84" height="18"></a></li>
-				<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
+				<li role="presentation"><a href="index.html"><img src="css/hot-potato-text-with-logo.png" alt="Hot Potato" width="84" height="18"></a></li>
   	            <li role="presentation"><a href="editor.php"> Video Editor</a></li>
   				<li role="presentation"><a href="feed.html">Feed</a></li>
   				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 		
+  				<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
   	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
   				
   	        </div><!--/.nav-collapse -->
