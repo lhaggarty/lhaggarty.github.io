@@ -50,9 +50,9 @@ function templateVideoHTML() {
 			<title>Hot Potato Edit</title>
 			<meta name="description" content="Hot Potato - the online Video Editor. Try the tool and share your edits!  No rendering required.">
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
-			<link rel="stylesheet" type="text/css" href="../css/style-outro.css"/>
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 			
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+			<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			<script src="https://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
@@ -90,17 +90,21 @@ function templateVideoHTML() {
 		        </div>
 	  	        <div class="navbar-collapse collapse">
 	  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-					<li role="presentation"><a href="index.html"><img src="css/hot-potato-text-with-logo.png" alt="Hot Potato" width="84" height="18"></a></li>
-	  	            <li role="presentation"><a href="editor.php"> Video Editor</a></li>
-	  				<li role="presentation"><a href="feed.html">Feed</a></li>
-	  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
-		
-	  				<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
-	  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
-  				
+					<li role="presentation"><a href="../index.html"><img src="../css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="../css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+					
+					<li role="presentation"><a href="../potatoes-to-cut.html"><img src="../css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="../css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> New YouTube Videos</a></li>
+					
+	  	            <li role="presentation"><a href="../editor.php"><img src="../css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="../css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+					
+	  				<li role="presentation"><a href="../feed.html"><img src="../css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="../css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
+	  				<li role="presentation"><a href="../sign-up.html">Sign Up</a></li>
+			
+	  	            <li role="presentation"><a href="../about.html">About &amp; Contact</a></li>
+	  				
 	  	        </div><!--/.nav-collapse -->
 	  	      </div>
-		
+			  
+		<div class="video-part">
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3" id="videoPlayback" style="padding-top: 8%;">
 		<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
@@ -113,14 +117,15 @@ function templateVideoHTML() {
 	  	<div class="progress-bar progress-bar-info" id="progressBarVis" role="progressbar" style="">
 	</div>	
 		</div></div></div>
-		
+		</div>
+		<div class="dashboard-part" style="padding-bottom:200px">
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 		<button type="button" class="btn btn-default" id="repeatVid" name="repeatVid" onclick="repeatVid()">
 		<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
 			<span> Loop Video</span>
 		</button></div></div>
-		
+		</div>
 		<script>
 		var vidWidth=$("#responsiveVideoFrame").width();
 		var vidHeight=(vidWidth*0.5625);
@@ -219,24 +224,9 @@ $html = 'jsTj5.html';
 // 		echo "Please try again";
 // 	}
 
-// if (mysqli_connect_errno()){
-//   echo "Failed to connect to MySQL: " . mysqli_connect_error();
-//   }
-// $query = mysqli_query($conn,"SELECT OutputLink FROM single_edits WHERE OutputLink LIKE '%".$html."%'");
-// while ($html==$query){
-// 	$html = generateRandomStringFiveC().'.html';
-// }
-//
-// // Perform queries
-// mysqli_query($conn,"SELECT * FROM single_edits");
-// mysqli_query($conn,"INSERT INTO single_edits (OutputLink,OriginalLink,EditIn,EditOut)
-// VALUES ('".$html."','".$ytLink."','".$videoStart."','".$videoStop."')");
-//
-// mysqli_close($conn);
-//
-// $create = fopen('single_edits/'.$html, 'w') or die("can't open file");
-// fwrite($create, templateVideoHTML());
-// fclose($create);
+$create = fopen('single_edits/'.$html, 'w') or die("can't open file");
+fwrite($create, templateVideoHTML());
+fclose($create);
 
 echo '<!DOCTYPE html>
 <html>
@@ -298,12 +288,15 @@ echo '<!DOCTYPE html>
 	        </div>
   	        <div class="navbar-collapse collapse">
   	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-				<li role="presentation"><a href="index.html"><img src="css/hot-potato-text-with-logo.png" alt="Hot Potato" width="84" height="18"></a></li>
-  	            <li role="presentation"><a href="editor.php"> Video Editor</a></li>
-  				<li role="presentation"><a href="feed.html">Feed</a></li>
+				<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+				
+				<li role="presentation"><a href="potatoes-to-cut.html"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> New YouTube Videos</a></li>
+				
+  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+				
+  				<li role="presentation"><a href="feed.html"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
   				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 		
-  				<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
   	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
   				
   	        </div><!--/.nav-collapse -->
@@ -429,7 +422,7 @@ echo '<!DOCTYPE html>
 			<div class="col-md-6 col-md-offset-3" style="" id="outputButtons">
 			<input type="text" name="hotPotatoLink" value="'.$html.'" id="hotPotatoLink" style="display:none"/>
 			<button type="button" class="btn btn-default" id="copy-button">
-			<span class="glyphicon glyphicon-paperclip" aria-hidden="true"> </span><span id="copy-button-text"> Copy</span></button>
+			<span class="glyphicon glyphicon-paperclip" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button>
 					<button type="button" class="btn btn-default" name="openLink" id="openLink" onclick="openLink()">
 						<span class="glyphicon glyphicon-file" aria-hidden="true"> </span><span> Open</span></button>
 					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText(OutputYouTubeLink)" style="display:none">
@@ -484,9 +477,10 @@ $(document).ready(function(){
         path:"js/ZeroClipboard.swf",
         copy:$("div#OutputYouTubeLink").text(),
 		afterCopy:function(){
-			
+			setInterval(function(){myTimer()},300);
+			function myTimer() {
 			document.getElementById("copy-button-text").innerHTML=" Copied";
-			
+			}
 		}
     });
 });

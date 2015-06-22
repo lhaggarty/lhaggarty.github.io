@@ -30,12 +30,12 @@ html, body  {
 }
 .nav-pills>li>a .blackImage, .nav-pills>li>a .blackImage {
 	padding-top:0px;
-	padding-bottom:3px;
+	
 	
 }
 .nav-pills>li>a .whiteImage, .nav-pills>li>a .whiteImage {
 	padding-top:0px;
-	padding-bottom:3px;
+	
 }
 
 .nav-pills>li>a:focus .blackImage, .nav-pills>li>a:hover .blackImage {
@@ -116,7 +116,8 @@ a.howToGallery {
 
 }
 #closing-window-intro{
-	background: url(closing-yt-video5.png)  no-repeat 50% 25%;
+	background: url(closing-yt-video6.png)  no-repeat 50% -85%;
+	
 }
 
 .whiteImage {
@@ -135,7 +136,7 @@ a.howToGallery {
 	color: #000;
 }
 .signup-form {
-	color: #000;
+	color: #fff;
 	text-align: center;
 }
 .email {

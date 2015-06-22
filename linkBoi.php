@@ -37,10 +37,11 @@ function generateRandomStringFiveC($length = 5) {
 }
 
 function templateVideoHTML() {
-	$ytLink = $_GET['InputYouTubeLink'];
+	
 	$videoStart = $_GET['InTimeCode'];
 	$videoStop = $_GET['OutTimeCode'];
 	$ytVidCode = $_GET['ytVidCode'];
+	$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
 	$cutLength = $videoStop-$videoStart;
 	
 	
@@ -90,16 +91,20 @@ function templateVideoHTML() {
 		        </div>
 	  	        <div class="navbar-collapse collapse">
 	  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-					<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" alt="Hot Potato" width="84" height="18"></a></li>
-					<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
-	  	            <li role="presentation"><a href="editor.php"> Video Editor</a></li>
-	  				<li role="presentation"><a href="feed.html">Feed</a></li>
-	  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
+					<li role="presentation"><a href="../index.html"><img src="../css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="../css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+					
+					<li role="presentation"><a href="../potatoes-to-cut.html"><img src="../css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="../css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> New YouTube Videos</a></li>
+					
+	  	            <li role="presentation"><a href="../editor.php"><img src="../css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="../css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+					
+	  				<li role="presentation"><a href="../feed.html"><img src="../css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="../css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
+	  				<li role="presentation"><a href="../sign-up.html">Sign Up</a></li>
 			
-	  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
+	  	            <li role="presentation"><a href="../about.html">About &amp; Contact</a></li>
 	  				
 	  	        </div><!--/.nav-collapse -->
 	  	      </div>
+			  
 		<div class="video-part">
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3" id="videoPlayback" style="padding-top: 8%;">
@@ -114,7 +119,7 @@ function templateVideoHTML() {
 	</div>	
 		</div></div></div>
 		</div>
-		<div class="dashboard-part">
+		<div class="dashboard-part" style="padding-bottom:200px">
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 		<button type="button" class="btn btn-default" id="repeatVid" name="repeatVid" onclick="repeatVid()">
@@ -145,14 +150,15 @@ function templateVideoHTML() {
 		var inPoint ='.$videoStart.';
 		var outPoint ='.$videoStop.';
 		
-			jwplayer("JWvid").onTime(function (event){
-				realVal = event.position;
-				relativePos = realVal - inPoint;
+		jwplayer("JWvid").onPlay(function (event){
+			jwplayer("JWvid").seek(inPoint);
+		});
+		
+		jwplayer("JWvid").onTime(function (event){
+			realVal = event.position;
+			relativePos = realVal - inPoint;
 			if (userViewMode==0){
-				if (realVal < 2){
-					jwplayer("JWvid").seek(inPoint);
-				}
-				else if (realVal > outPoint){
+				if (realVal > outPoint){
 					jwplayer("JWvid").pause();
 				}
 			} else if (userViewMode==2){
@@ -161,13 +167,12 @@ function templateVideoHTML() {
 				}
 			}
 				
-				ProgressBar = (relativePos/editEnd);
-				ProgressBar = ProgressBar*100;
-				ProgressBar = ProgressBar.toPrecision(2);
+			ProgressBar = (relativePos/editEnd);
+			ProgressBar = ProgressBar*100;
+			ProgressBar = ProgressBar.toPrecision(2);
 				
-				document.getElementById("progressBarVis").style.width =(ProgressBar+"%");
-			});
-				
+			document.getElementById("progressBarVis").style.width =(ProgressBar+"%");
+		});		
 				
 				
 		</script>
@@ -196,9 +201,11 @@ function templateVideoHTML() {
 function createLink(){
 $conn = mysqli_connect('141.117.161.98','leonhaggarty','mdm123','hotpotato');
 //$conn = mysqli_connect('mysql.1freehosting.com','u151108054_squir','squireprods2002','u151108054_1edit');
-$ytLink = $_GET['InputYouTubeLink'];
+
 $videoStart = $_GET['InTimeCode'];
 $videoStop = $_GET['OutTimeCode'];
+$ytVidCode = $_GET['ytVidCode'];
+$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
 $html = generateRandomStringFiveC().'.html';
 
 // mysqlconnect('localhost','root','');
@@ -299,10 +306,13 @@ echo '<!DOCTYPE html>
 	        </div>
   	        <div class="navbar-collapse collapse">
   	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-				<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" alt="Hot Potato" width="84" height="18"></a></li>
-				<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
-  	            <li role="presentation"><a href="editor.php"> Video Editor</a></li>
-  				<li role="presentation"><a href="feed.html">Feed</a></li>
+				<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+				
+				<li role="presentation"><a href="potatoes-to-cut.html"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> New YouTube Videos</a></li>
+				
+  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+				
+  				<li role="presentation"><a href="feed.html"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
   				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 		
   	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
@@ -313,30 +323,27 @@ echo '<!DOCTYPE html>
 	</div>
 	<div class="video-part">		
 	<div class="row">
-		<div class="col-md-4" style="padding-left:7%">
-			<div class="intro-message" >
-				
-				<h3>
-					
-				</h3>
-			</div>
-		</div>
 	
 <div class="col-md-6 col-md-offset-3" style="padding-top:6%;">
 	<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
  	<div id="videoPlaybackFrame"></div></div>
 </div>
 </div>
+	<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+	<div class="progress">
+  	<div class="progress-bar progress-bar-info" id="progressBarVis" role="progressbar" style="">
+</div>	
+	</div></div></div>
 			<script>
 			
-			var ProgressBarBefore;
-			var ProgressBarDuring;
-			var ProgressBarAfter;
+			var relativePos;
+			var ProgressBar;
 			var userEditCounter = 1;
 			var inPoint = '.$videoStart.';
 			var outPoint = '.$videoStop.';
-			var vidDuration;
 			var videoLoadSwitch = 5;
+			var editEnd=outPoint-inPoint;
 			
 			var shortYTLink;
 			var tempOutputYoutubeLink;
@@ -366,33 +373,27 @@ echo '<!DOCTYPE html>
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
 			}
 			};
+			jwplayer("videoPlaybackFrame").onPlay(function (event){
+				jwplayer("videoPlaybackFrame").seek(inPoint);
+			});
 			
 			jwplayer("videoPlaybackFrame").onTime(function (event){
 				var realVal = event.position;
-				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
-				var videoProgress;
+				relativePos = realVal - inPoint;
 				
-				ProgressBarBefore = ('.$videoStart.'/vidDuration);
-				ProgressBarBefore = ProgressBarBefore*100;
-				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
-				document.getElementById("preInVis").style.width =(ProgressBarBefore+"%");
-				
-				if (realVal < inPoint || realVal > outPoint){
+				if (realVal > outPoint){
 					jwplayer("videoPlaybackFrame").seek(inPoint);
 				}
+				ProgressBar = (relativePos/editEnd);
+				ProgressBar = ProgressBar*100;
+				ProgressBar = ProgressBar.toPrecision(2);
 				
-				if (userEditCounter==1){
-					ProgressBarDuring = ((realVal-inPoint)/vidDuration);
-					ProgressBarDuring = ProgressBarDuring*100;
-					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
-					document.getElementById("editVis").style.width =(ProgressBarDuring+"%");
-					
-				}
+				document.getElementById("progressBarVis").style.width =(ProgressBar+"%");
 			});
 			</script>
 		<div class="row">
 		
-		<div class="col-md-6 col-md-offset-3" style="padding-top: 1%;" id="inputRowOne"> 
+		<div class="col-md-6 col-md-offset-3" style="" id="inputRowOne"> 
 		<form role="form" action="linkBoi.php" method="get">
 				
 				<input type="text" name="ytVidCode" value="'.$ytLink.'" id="ytVidCode" style="display:none"/>
@@ -401,19 +402,6 @@ echo '<!DOCTYPE html>
 				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
 			</form>
 		</div>
-		
-		<div class="row">
-		<div class="col-md-6 col-md-offset-3" style="">
-			<div class="progress" id="videoTimeline" style="display:none">	  
-		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
-		</div>	
-		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style="">
-			</div>
-  		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style="">
-  			</div>
-		</div>
-		  </div>
-	  </div>
 	  
 	  			<div class = "row">
 				 
@@ -430,7 +418,7 @@ echo '<!DOCTYPE html>
 			<div class="col-md-6 col-md-offset-3" style="" id="outputButtons">
 			<input type="text" name="hotPotatoLink" value="'.$html.'" id="hotPotatoLink" style="display:none"/>
 			<button type="button" class="btn btn-default" id="copy-button">
-			<span class="glyphicon glyphicon-paperclip" aria-hidden="true"> </span><span id="copy-button-text"> Copy</span></button>
+			<span class="glyphicon glyphicon-paperclip" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button>
 					<button type="button" class="btn btn-default" name="openLink" id="openLink" onclick="openLink()">
 						<span class="glyphicon glyphicon-file" aria-hidden="true"> </span><span> Open</span></button>
 					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText(OutputYouTubeLink)" style="display:none">
@@ -485,9 +473,10 @@ $(document).ready(function(){
         path:"js/ZeroClipboard.swf",
         copy:$("div#OutputYouTubeLink").text(),
 		afterCopy:function(){
-			
+			setInterval(function(){myTimer()},300);
+			function myTimer() {
 			document.getElementById("copy-button-text").innerHTML=" Copied";
-			
+			}
 		}
     });
 });

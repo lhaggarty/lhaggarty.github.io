@@ -29,10 +29,13 @@
 			        </div>
   		  	        <div class="navbar-collapse collapse">
   		  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-  						<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="95" height="22"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="95" height="22"></a></li>
-  						<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
-  		  	            <li role="presentation"><a href="editor.php"> Video Editor</a></li>
-  		  				<li role="presentation"><a href="feed.html">Feed</a></li>
+  						<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+						
+  						<li role="presentation"><a href="potatoes-to-cut.html"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> New YouTube Videos</a></li>
+						
+  		  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+						
+  		  				<li role="presentation"><a href="feed.html"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
   		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 				
   		  	            <li role="presentation" class="active"><a href="about.html">About &amp; Contact</a></li>
@@ -42,19 +45,27 @@
 			    
 			</div>
 			<div class="video-part">
+				<div class="row" id="closing-window-intro" style="padding-top:20px;padding-bottom:160px">
+					<div class="col-md-6 col-md-offset-3" style="text-align:center">
+					
+						<h3>Most people stop watching an online video before it ends</h3> 
+						<!-- <div class="col-md-8 col-md-offset-1" style="padding-left:5%">
+							<img src="css/closing-yt-video3.png" class="img-responsive">
+						</div> -->
+							
+					</div>
+				</div>
 				<div class="row">
-					<div class="col-md-8 col-md-offset-2" style="padding-top:1%;padding-right:4.5%">
+					<div class="col-md-8 col-md-offset-2" style="">
 						<div class="title-text">
 							<h1> 
 							</h1>
 						</div>
 						<div class="intro-message">
 							<h3>
-								 In Hot Potato a single YouTube video can have one or more non-destructive edits.  The same video can be tailored for different audiences.  Whether you're sharing a video with your BFF, or in a presentation, Hot Potato has you covered. 
-								 
-								Historically videos have been shot, edited, and published.  But now videos can now be shot, published, and then edited.  This new model allows for personalized editing for different audiences.
-								
-								Contact Hot Potato at <a href="mailto:squireproductions@live.ca?Subject=Hot%20Potato%20Inquiry" target="_top">squireproductions(at)live(dot)ca</a>
+								 Analysts have identified 4.4 minutes as the average YouTube video length (Mini Matters). I estimate most viewers watch only a portion the online videos. If users are able to specific the part of the video you want, video viewing and sharing potential increases. Hot Potato is a render-free video editing and sharing platform.  Whether you're sharing a video with your BFF, or in a presentation, Hot Potato is a perfect online editor. 
+							</h3><h3>	 
+								Contact Hot Potato at <a href="mailto:squireproductions@live.ca?Subject=Hot%20Potato%20Inquiry" target="_top">squireproductions(at)live(dot)ca</a> Or fill out the contact form below
 							</h3>
 						</div>
 					</div>
@@ -62,7 +73,36 @@
 			</div>
 			<div class="dashboard-part">
 				<div class="row">
-					<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.5%"> 
+					<div class="col-md-7 col-md-offset-2" style="padding-top:1%;">
+						<form name="htmlform" method="post" action="html_form_send.php" class="form-horizontal">
+						
+						<div class="form-group">
+						  <label for="name" class="col-sm-4 control-label">Name</label>
+						  <div class="col-sm-8">
+						  <input type="text" class="form-control" name="name" maxlength="30" style="color:#000">
+						</div></div>
+
+						<div class="form-group">
+						  <label for="email" class="col-sm-4 control-label">Email Address</label>
+						  <div class="col-sm-8">
+						  <input  type="text" class="form-control" name="email" maxlength="30" style="color:#000">
+						</div></div>
+						
+						<div class="form-group">
+						  <label for="comments" class="col-sm-4 control-label">Comments</label>
+						  <div class="col-sm-8">
+						  <textarea  class="form-control" name="comments" maxlength="1000" rows="5" style="color:#000"></textarea>
+						</div></div>
+						<div class="form-group">
+						<div class="col-sm-offset-4" style="padding-left:15px">
+						 <button type="submit" class="btn btn-default" style="color:#000">Submit</button>
+					 </div></div>
+						</form>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3" style="padding-top: 1%; padding-right:5.5%;display:none"> 
 						<div class="signup-form">
 							<!-- Begin MailChimp Signup Form -->
 							<link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">

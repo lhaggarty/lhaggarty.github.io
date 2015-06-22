@@ -46,10 +46,13 @@
 			        </div>
 		  	        <div class="navbar-collapse collapse">
 		  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-						<li role="presentation" class="active"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="95" height="22"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="95" height="22"></a></li>
-						<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
-		  	            <li role="presentation"><a href="editor.php"> Video Editor</a></li>
-		  				<li role="presentation"><a href="feed.html">Feed</a></li>
+						<li role="presentation" class="active"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+						
+						<li role="presentation"><a href="potatoes-to-cut.html"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> New YouTube Videos</a></li>
+						
+		  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+						
+		  				<li role="presentation"><a href="feed.html"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
 		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 				
 		  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
@@ -59,27 +62,20 @@
 			    
 			</div>
 			<div class="video-part">
-				<div class="row" id="closing-window-intro" style="padding-top:30px;padding-bottom:5%">
-					<div class="col-md-6 col-md-offset-3" style="text-align:center">
-					<div class="col-md-12">	
-						<h3>Most people stop watching an online video before it ends</h3> 
-						<!-- <div class="col-md-8 col-md-offset-1" style="padding-left:5%">
-							<img src="css/closing-yt-video3.png" class="img-responsive">
-						</div> -->
-						</div>
-					
+				<div class="row" style="padding-top:20px;padding-bottom:4%">
+					<div class="col-md-6 col-md-offset-3" style="text-align:center">		
 				
-					<div class="col-md-12" style="padding-top:20.5%">	
+					<div class="col-md-12" >	
 						<!-- <h3>Video helps us understand ideas and communicate clearly.</h3>  -->
-						<h3 >Craft your video communication with</h3>
+						<h3 >Edit a video and pass it along</h3>
 					</div>
-					<div class="col-md-8 col-md-offset-2">	
+					<div class="col-md-8 col-md-offset-2" id="video-comparison">	
 						<img src="css/hot-potato-black-text-with-logo.png" alt="youtube video" class="img-responsive howToImage" >
 						</div>
 				</div></div>
 						
 				
-					<div class="row" id="video-comparison">
+					<div class="row" id="video-player">
 						<div class="col-md-8 col-md-offset-2">
 					<div class="col-xs-6" style="">
 						<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame1">
@@ -93,7 +89,7 @@
 						</div></div>
 					</div>
 					<div class="col-xs-4">
-						<a href="#video-comparison"  class="howToGallery" onclick="" style="" id=""><img src="css/original-video.png" alt="original video" class="img-responsive howToImage" style="padding:6%"></a>
+						<a href="#video-comparison"  class="howToGallery" onclick="playOriginalVideo()" style="" id=""><img src="css/original-video.png" alt="original video" class="img-responsive howToImage" style="padding:6%"></a>
 					</div>
 					<div class="col-xs-1" style="padding-bottom:8.5%">
 						<a id="cutVideo" onclick="">
@@ -101,7 +97,8 @@
 						</a>	
 					</div>
 						<div class="col-xs-6">
-						<h3>Edit, combine, or create online video with <img src="css/hot-potato-black-text-with-logo.png" alt="Hot Potato" width="143" height="33" style="padding-bottom:3px"></h3>
+						
+						<h3>Shorten, join, or mash up online video with <img src="css/hot-potato-black-text-with-logo.png" alt="Hot Potato" width="143" height="33" style="padding-bottom:3px"></h3>
 							</div>
 						</div></div>
 						
@@ -115,7 +112,7 @@
 						<div class="col-md-8 col-md-offset-2">
 					<div class="col-xs-6">
 					<div class="col-xs-10">
-						<a href="#video-comparison"  class="howToGallery" onclick="" style="" id=""><img src="css/single-edit.png" alt="single edit" class="img-responsive howToImage" style="padding-top:6%"></a>
+						<a href="#video-player"  class="howToGallery" onclick="playSingleEdit()" style="" id=""><img src="css/single-edit.png" alt="single edit" class="img-responsive howToImage" style="padding-top:6%"></a>
 					</div>
 					<div class="col-xs-1" style="padding-bottom:16%">
 						<a id="cutVideo" onclick="">
@@ -123,7 +120,10 @@
 						</a>	
 					</div>
 						<div class="col-xs-12">
-						<h3>Watch and share the desired section, or  sections, of a video</h3>
+						<h3>Try the 
+							<a href="editor.php"><button class="btn btn-default" type="button"><img src="css/cut-video-image-black.png" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Video Editor</button></a> now <img src="css/hot-potato-black-text-with-logo.png" alt="Hot Potato" width="80" height="33" style="visibility:hidden"> For a step-by-step guide continue on below
+						</h3>
+						
 					</div>
 					</div>
 					
@@ -151,7 +151,7 @@
 			<div class="dashboard-part" id="dashboard-part">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
-						<h3 style="text-align:center">Click The Icons For A Step-By-Step Guide</h3>
+						<h3 style="text-align:center">Click An Icon</h3>
 					</div>
 				</div>
 				
@@ -159,13 +159,13 @@
 					<div class="col-md-8 col-md-offset-2"> 
 						
 					<div class="col-xs-3">
-						<a href="#dashboard-part" class="howToGallery" onclick="explainStep('findVideo')" style="" id="findVideo"><img src="css/find-video-invert.png" alt="find video" class="img-responsive howToImage" ></a>
+						<a href="#dashboard-part" class="howToGallery" onclick="explainStep('findVideo')" style="" id="findVideo"><img src="css/find-video-white.png" alt="find video" class="img-responsive howToImage" ></a>
 					</div>
 					<div class="col-xs-3">
-						<a href="#dashboard-part" class="howToGallery" id="cutVideo" onclick="explainStep('cutVideo')"><img src="css/cut-video-image-invert.png" alt="cut video" class="img-responsive howToImage" ></a>	
+						<a href="#dashboard-part" class="howToGallery" id="cutVideo" onclick="explainStep('cutVideo')"><img src="css/cut-video-image-white.png" alt="cut video" class="img-responsive howToImage" ></a>	
 					</div>
 					<div class="col-xs-4">
-						<a href="#dashboard-part" class="howToGallery" id="shareVideo" onclick="explainStep('shareVideo')"><img src="css/share-image-invert.png" alt="share video" class="img-responsive howToImage" ></a>	
+						<a href="#dashboard-part" class="howToGallery" id="shareVideo" onclick="explainStep('shareVideo')"><img src="css/share-image-white.png" alt="share video" class="img-responsive howToImage" ></a>	
 					</div>
 					<div class="col-xs-1" style="padding-bottom:12%">
 						<a id="cutVideo" onclick="explainStep('cutVideo')">
@@ -224,6 +224,13 @@
 					stretching: "fill",
 
 			    });
+				function playOriginalVideo(){
+					jwplayer("videoPlaybackFrame1").seek(0);
+				}
+				function playSingleEdit(){
+					jwplayer("videoPlaybackFrame2").seek(inPoint);
+				}
+				
 				function repeatVid(){
 							jwplayer("videoPlaybackFrame2").seek(inPoint);
 							userViewMode=2;
@@ -232,6 +239,16 @@
 				var outPoint =19;
 				var userViewMode=0;
 				var editEnd=outPoint-inPoint;
+				
+				jwplayer("videoPlaybackFrame1").onTime(function (event){
+					var realVal2 = event.position;
+					var vidDuration = jwplayer("videoPlaybackFrame1").getDuration();
+					var ProgressBar = (realVal2/vidDuration);
+					ProgressBar = ProgressBar*100;
+					ProgressBar = ProgressBar.toPrecision(2);
+					document.getElementById("progressBarVis1").style.width =(ProgressBar+"%");
+				});
+				
 				jwplayer("videoPlaybackFrame2").onTime(function (event){
 					var realVal = event.position;
 					var relativePos = realVal - inPoint;
@@ -247,11 +264,11 @@
 						jwplayer("videoPlaybackFrame2").seek(inPoint);
 					}
 				}
-					ProgressBar = (relativePos/editEnd);
-					ProgressBar = ProgressBar*100;
-					ProgressBar = ProgressBar.toPrecision(2);
+					var ProgressBar2 = (relativePos/editEnd);
+					ProgressBar2 = ProgressBar2*100;
+					ProgressBar2 = ProgressBar2.toPrecision(2);
 				
-					document.getElementById("progressBarVis").style.width =(ProgressBar+"%");
+					document.getElementById("progressBarVis2").style.width =(ProgressBar2+"%");
 					});
 			
 				

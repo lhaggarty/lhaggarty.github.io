@@ -12,7 +12,7 @@
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			
-			<!-- <script src="https://apis.google.com/js/client.js"></script>-->
+			<script src="https://apis.google.com/js/client.js"></script>
 			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			
@@ -60,10 +60,13 @@
 	        </div>
   		  	        <div class="navbar-collapse collapse">
   		  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-  						<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="95" height="22"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="95" height="22"></a></li>
-  						<li role="presentation"><a href="potatoes-to-cut.html">New YouTube Videos</a></li>
-  		  	            <li role="presentation" class="active"hot-potato-black-text-with-logo.png><a href="editor.php"> Video Editor</a></li>
-  		  				<li role="presentation"><a href="feed.html">Feed</a></li>
+  						<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+						
+  						<li role="presentation"><a href="potatoes-to-cut.html"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> New YouTube Videos</a></li>
+						
+  		  	            <li role="presentation" class="active"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+						
+  		  				<li role="presentation"><a href="feed.html"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
   		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 				
   		  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
@@ -89,7 +92,9 @@
 			</div>
 			</div>
 			<script>
-			
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip();
+			})
 			var ProgressBarBefore;
 			var ProgressBarDuring;
 			var ProgressBarAfter;
@@ -124,19 +129,18 @@
 			});
 			
 			function initiateLiveVideoPlayer(){
-				shortYTLink = "yJDRop2ocFo";
+				
 				if ($( '#InputYouTubeLink' ).val() != ""){
-					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
+					getQueryVariable($( '#InputYouTubeLink' ).val());
 					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
 					document.getElementById('ytVidCode').value=shortYTLink;
 					jwplayer().load([{file:inputYTLink}]);
 				}
+				else {
+					shortYTLink = "yJDRop2ocFo";
+				}
 				
 				videoLoadSwitch=1;
-			    
-				// outPoint = jwplayer("videoPlaybackFrame").getDuration();
-// 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
-				
 				document.getElementById('loadVideoButton').style.display ="none";
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
 				document.getElementById('playPauseButton').style.display ="";
@@ -163,7 +167,10 @@
 				videoLoadSwitch=1;
 				userEditCounter=1;
 				document.getElementById("InTimeCode").value=inPoint;
-				document.getElementById('videoOutPoint').disabled=false;
+				document.getElementById('videoOutPoint').style.display="";
+				document.getElementById('videoInPoint').style.display="none";
+				document.getElementById('submitEdit').style.display="none";
+				document.getElementById('previewEdit').style.display="";
 			};
 			
 			function videoOutPoint(){
@@ -172,6 +179,9 @@
 				userEditCounter=2;
 				document.getElementById("OutTimeCode").value=outPoint;
 				document.getElementById('previewEdit').disabled=false;
+				
+				document.getElementById('videoOutPoint').style.display="none";
+				document.getElementById('videoInPoint').style.display="";
 			};
 			
 			
@@ -227,34 +237,197 @@
   			<div class="progress" id="videoTimeline" style="display:none">	  
   		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
   		</div>	
-  		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style="">
-  			</div>
+  		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style=""> NEW VIDEO</div>
     		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style="">
     			</div>
   		</div>
   		  </div>
   	  </div>
-		<div class="row">
+	  	<script>
+	  		var OAUTH2_SCOPES = [
+	  		  'https://www.googleapis.com/auth/youtube'
+	  		];
+	  		function checkAuth() {
+	  		  gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
+	  		  gapi.auth.authorize({
+	  		    client_id: '321851057404-2pop70e54shcdv8kpcfud8fmaubo486v.apps.googleusercontent.com',
+	  		    scope: OAUTH2_SCOPES,
+	  		    immediate: true
+	  		  });
+	  		 loadAPIClientInterfaces();
+	  		}
+	  		function handleAuthResult(authResult) {
+	  		  if (authResult && !authResult.error) {
+	  		    // Authorization was successful. Hide authorization prompts and show
+	  		    // content that should be visible after authorization succeeds.
+	  		    $('.pre-auth').hide();
+	  		    $('.post-auth').show();
+	  		    loadAPIClientInterfaces();
+			
+	  		  } else {
+	  		  }
+	  	  }
+	  	  // Load the client interfaces for the YouTube Analytics and Data APIs, which
+	  	  // are required to use the Google APIs JS client. More info is available at
+	  	  // http://code.google.com/p/google-api-javascript-client/wiki/GettingStarted#Loading_the_Client
+	  	  function loadAPIClientInterfaces() {
+	  	    gapi.client.load('youtube', 'v3', function() {
+	  	      handleAPILoaded();
+	  	    });
+	  	  }
 		
+	  		// After the API loads, call a function to enable the search box.
+	  		function handleAPILoaded() {
+	  		  $('#createLink').attr('disabled', false);
+		  
+	  		}
+
+	  		// Search for a specified string.
+	  		function getYouTubeVideoSearchData() {
+	  		  var searchTerm = $('#InputYouTubeLink').val();
+		  
+	  		  var request = gapi.client.youtube.search.list({
+	  			type: 'video',
+	  			videoSyndicated: 'true',
+	  			q: searchTerm,
+	  			part: 'snippet',
+	  		  });
+	  		  request.execute(function(response) {
+	  		    var str = JSON.stringify(response.result);
+	  		    $('#search-raw-data').html('<pre>' + str + '</pre>');
+			
+	  		  });
+	  		  setTimeout(function(){turnYouTubeDataIntoPresentableInformation($('#search-raw-data').html())},300);
+	  		}
+			
+			function getQueryVariable(userInput) {
+				var query;
+				var vars;
+				if (userInput.indexOf("youtube") > -1){
+				   query = userInput.split( "?" );
+			       vars = query[1].split("&");
+			       for (var i=0;i<vars.length;i++) {
+			               var pair = vars[i].split("=");
+			               if(pair[0] == "v"){return pair[1];}
+			       }
+				   shortYTLink = query[1];
+			   }else if (userInput.indexOf("youtu.be") > -1){
+			   		vars = userInput.split( ".be/" );
+					query = vars[1].split("?");
+					shortYTLink = query[1];
+			   }else {
+				   getYouTubeVideoSearchData();
+				   // alert("YouTube Link Error.  Preferably enter a YouTube link that starts with 'youtube.com/...' or 'youtu.be/...'");
+			   }
+			}
+	  		function turnYouTubeDataIntoPresentableInformation(searchResult) {
+	  			var queryMatch = searchResult.match(/videoId/g);
+	  			var maxQuery = queryMatch.length;
+	  			var query;
+	  			var value;
+				
+	  			query = searchResult.split("videoId");
+	  			value = query[1].substr(3,11);
+	  			document.getElementById("videoLinkArray").value=('"'+value+'"');
+	  			document.getElementById("videoThumbnail"+1).src=("https://i.ytimg.com/vi/"+value+"/mqdefault.jpg");
+	  			// var value[maxQuery];
+			
+	  		    for (var i=2;i<=maxQuery;i++) {
+	  				query[i].split("videoId");
+	  				value = query[i].substr(3,11);
+	  				document.getElementById("videoLinkArray").value=($("#videoLinkArray").val()+', "'+value+'"');
+	  				document.getElementById("videoThumbnail"+[i]).src=("https://i.ytimg.com/vi/"+value+"/mqdefault.jpg");
+	  		    }
+	  			query = searchResult.split("title");
+	    			value = query[1].substr(3,65);
+	  			value = value.split('"');
+	  			document.getElementById("videoTitle"+[1]).innerHTML=(value[0]);
+	     		    for (var i=2;i<=maxQuery;i++) {
+	  				query[i].split("title");
+	     				value = query[i].substr(3,65);
+	  				value = value.split('"');
+	     				document.getElementById("videoTitle"+[i]).innerHTML=(value[0]);
+	     		    }
+	  			document.getElementById("resultListing").style.display="";  
+	  			  // $('#search-results').html(value);
+	  		}
+			assignSearchVideoPlayback(videoSearchNumber){
+				videoLinkArray=document.getElementById("videoLinkArray").value;
+				shortlink=videoLinkArray[videoSearchNumber];
+				initiateLiveVideoPlayer();
+			}
+	  	</script>
+		<div class="row">
 		<div class="col-md-6 col-md-offset-3" style="height:62.5px" id="inputRowOne"> 
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
-				
-		    <label for="InputYouTubeLink">YouTube Video Link</label>
-		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" placeholder="www.youtube.com...">
+		    <label for="InputYouTubeLink">YouTube Video</label>
+		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter a search term OR a youtube.com/watch.. link">
+			<input id="videoLinkArray" type="text" style="display:none"/>
 				</div>
 				<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style="display:none"/>
 				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
 				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
 				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
 			</form>
+			<div class="well" id="search-raw-data" style="display:none"></div>
 		</div>
 	</div>
+		<div class="row" id="resultListing" style="display:none">
+		<div class="col-md-6 col-md-offset-3" style="padding-top:0.5%;">
+		<table class="table table-hover">
+		<tr onclick="assignSearchVideoPlayback(1)">
+			<td>
+				<img id="videoThumbnail1" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="185" height="104"/>
+			</td>
+			
+			<td>
+				<h3 id="videoTitle1">Title</h3>
+			</td>
+		</tr>
+		<tr onclick="assignSearchVideoPlayback(2)">
+			<td>
+				<img id="videoThumbnail2" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="185" height="104"/>
+			</td>
+			
+			<td>
+				<h3 id="videoTitle2">Title</h3>
+			</td>
+		</tr>
+		<tr onclick="assignSearchVideoPlayback(3)">
+			<td>
+				<img id="videoThumbnail3" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="185" height="104"/>
+			</td>
+			
+			<td>
+				<h3 id="videoTitle3">Title</h3>
+			</td>
+		</tr>
+		<tr onclick="assignSearchVideoPlayback(4)">
+			<td>
+				<img id="videoThumbnail4" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="185" height="104"/>
+			</td>
+			
+			<td>
+				<h3 id="videoTitle4">Title</h3>
+			</td>
+		</tr>
+		<tr onclick="assignSearchVideoPlayback(5)">
+			<td>
+				<img id="videoThumbnail5" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="185" height="104"/>
+			</td>
+			
+			<td>
+				<h3 id="videoTitle5">Title</h3>
+			</td>
+		</tr>
+	</table>
+		</div></div>
 	</div>
 		<div class="dashboard-part" style="padding-bottom:259px">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons">
-				<button type="button" class="btn btn-default" id="loadVideoButton" onclick="initiateLiveVideoPlayer();">
+				<button type="button" class="btn btn-default" id="loadVideoButton" onclick="initiateLiveVideoPlayer();" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Click here, or press enter, when you have a video input">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
 				</button>
@@ -262,26 +435,26 @@
 				<button type="button" class="btn btn-default" id="playPauseButton" onclick="playPauseVideo();" style="display:none">
 					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"> </span>
 				</button>
-				<button type="button" class="btn btn-default" id="videoInPoint" onclick="videoInPoint()" disabled>
-					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> </span>
-					<span> IN</span>
+				<button type="button" class="btn btn-default" id="videoInPoint" onclick="videoInPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Begin your edit" disabled>
+					<img src="css/scissors-closed.png"  width="15.1" height="14">
+					<span> CUT</span>
 				</button>
 				
-				<button type="button" class="btn btn-default" id="videoOutPoint" onclick="videoOutPoint()" disabled>
-					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> </span>
-					<span> OUT</span>
+				<button type="button" class="btn btn-default" id="videoOutPoint" onclick="videoOutPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="End your edit" style="display:none">
+					<img src="css/scissors-open.png" width="15.1" height="14">
+					<span> CUT</span>
 				</button>
-				<button type="button" class="btn btn-default" id="previewEdit" onclick="previewEdit();" disabled>
+				<button type="button" class="btn btn-default" id="previewEdit" onclick="previewEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Video will playback from the &quot;IN&quot; to the &quot;OUT&quot; time selected" disabled>
 					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 					<span> PREVIEW</span>
 				</button>
-				<button type="button" class="btn btn-default" id="submitEdit" onclick="submitEdit();" style="display:none">
+				<button type="button" class="btn btn-default" id="submitEdit" onclick="submitEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Creates a web link of the video edit" style="display:none">
 					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 					<span> SUBMIT</span>
 				</button>
 			
 			
-			<button type="button" class="btn btn-default" id="changeVideoButton" onclick="reloadVideoInput()" style="display:none">
+			<button type="button" class="btn btn-default" id="changeVideoButton" onclick="reloadVideoInput()" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Change the video input source" style="display:none">
 				<span class="glyphicon glyphicon-refresh" aria-hidden="true"> </span>
 					<span> Change Video</span>
 				</button>	
@@ -314,6 +487,7 @@
 				$(document).ready(function() {
 				    $('.commentarea').keydown(function(event) {
 				        if (event.keyCode == 13) {
+							
 							initiateLiveVideoPlayer();
 							//this.form.submit();
 				            return false;
@@ -357,25 +531,6 @@
 				
 				//document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";
-			}
-			
-			function getQueryVariable(name,url) {
-				var query;
-				var vars;
-				if (url.indexOf("youtube") > -1){
-				   query = url.split( "?" );
-			       vars = query[1].split("&");
-			       for (var i=0;i<vars.length;i++) {
-			               var pair = vars[i].split("=");
-			               if(pair[0] == name){return pair[1];}
-			       }
-				   return(query);
-			   }else if (url.indexOf("youtu.be") > -1){
-			   		query = url.split( ".be/" );
-					return(query[1]);
-			   }else {
-				   alert("YouTube Link Error.  Preferably enter a YouTube link that starts with 'youtube.com/...' or 'youtu.be/...'");
-			   }
 			}
 			</script>
 			

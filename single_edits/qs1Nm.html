@@ -107,14 +107,15 @@
 		var inPoint =17.6;
 		var outPoint =61.6;
 		
-			jwplayer("JWvid").onTime(function (event){
-				realVal = event.position;
-				relativePos = realVal - inPoint;
+		jwplayer("JWvid").onPlay(function (event){
+			jwplayer("JWvid").seek(inPoint);
+		});
+		
+		jwplayer("JWvid").onTime(function (event){
+			realVal = event.position;
+			relativePos = realVal - inPoint;
 			if (userViewMode==0){
-				if (realVal < 2){
-					jwplayer("JWvid").seek(inPoint);
-				}
-				else if (realVal > outPoint){
+				if (realVal > outPoint){
 					jwplayer("JWvid").pause();
 				}
 			} else if (userViewMode==2){
@@ -123,12 +124,12 @@
 				}
 			}
 				
-				ProgressBar = (relativePos/editEnd);
-				ProgressBar = ProgressBar*100;
-				ProgressBar = ProgressBar.toPrecision(2);
+			ProgressBar = (relativePos/editEnd);
+			ProgressBar = ProgressBar*100;
+			ProgressBar = ProgressBar.toPrecision(2);
 				
-				document.getElementById("progressBarVis").style.width =(ProgressBar+"%");
-			});
+			document.getElementById("progressBarVis").style.width =(ProgressBar+"%");
+		});
 			
 				
 		</script>
