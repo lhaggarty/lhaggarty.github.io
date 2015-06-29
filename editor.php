@@ -130,16 +130,13 @@
 			
 			function initiateLiveVideoPlayer(){
 				
-				if ($( '#InputYouTubeLink' ).val() != ""){
-					getQueryVariable($( '#InputYouTubeLink' ).val());
-					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
-					document.getElementById('ytVidCode').value=shortYTLink;
-					jwplayer().load([{file:inputYTLink}]);
-				}
-				else {
+				if ($( '#InputYouTubeLink' ).val() != "" && waitForUserSelection==0){
+					getQueryVariable();
+				}else if (shortYTLink = "" && waitForUserSelection==0) {
 					shortYTLink = "yJDRop2ocFo";
 				}
-				
+				if (waitForUserSelection<1){
+				jwplayer("videoPlaybackFrame").load([{file:inputYTLink}]);
 				videoLoadSwitch=1;
 				document.getElementById('loadVideoButton').style.display ="none";
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
@@ -150,8 +147,10 @@
 				document.getElementById('inputRowOne').style.display="none";
 				document.getElementById('changeVideoButton').style.display="";
 				document.getElementById('videoInPoint').disabled=false;
+				
 				userEditCounter=0;
 				jwplayer("videoPlaybackFrame").play();
+			}
 			};
 			
 			function playPauseVideo(){
@@ -171,6 +170,7 @@
 				document.getElementById('videoInPoint').style.display="none";
 				document.getElementById('submitEdit').style.display="none";
 				document.getElementById('previewEdit').style.display="";
+				document.getElementById('videoOutPoint').disabled=false;
 			};
 			
 			function videoOutPoint(){
@@ -179,7 +179,6 @@
 				userEditCounter=2;
 				document.getElementById("OutTimeCode").value=outPoint;
 				document.getElementById('previewEdit').disabled=false;
-				
 				document.getElementById('videoOutPoint').style.display="none";
 				document.getElementById('videoInPoint').style.display="";
 			};
@@ -244,6 +243,9 @@
   		  </div>
   	  </div>
 	  	<script>
+	  var waitForUserSelection=0;
+	  var videoLinkArray=[];
+	  var videoTitleArray=[];
 	  		var OAUTH2_SCOPES = [
 	  		  'https://www.googleapis.com/auth/youtube'
 	  		];
@@ -282,13 +284,43 @@
 		  
 	  		}
 
+			function getQueryVariable() {
+				var userInput=$( '#InputYouTubeLink' ).val();
+				var query;
+				var vars;
+				if (userInput.indexOf("youtube") > -1){
+				   query = userInput.split( "?" );
+			       vars = query[1].split("&");
+				   
+			       for (var i=0;i<vars.length;i++) {
+			               var pair = vars[i].split("=");
+			               if(pair[0] == "v"){query= pair[1];}
+			       }
+				shortYTLink = query;
+				
+				document.getElementById('ytVidCode').value=shortYTLink;
+				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
+				waitForUserSelection=-2;
+			   }else if (userInput.indexOf("youtu.be") > -1){
+			   		vars = userInput.split( ".be/" );
+					query = vars[1].split("?");
+					shortYTLink = query[1];
+					document.getElementById('ytVidCode').value=shortYTLink;
+					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
+					waitForUserSelection=-2;
+			   }else {
+				   waitForUserSelection=1;
+				   getYouTubeVideoSearchData();
+				   // alert("YouTube Link Error.  Preferably enter a YouTube link that starts with 'youtube.com/...' or 'youtu.be/...'");
+			   }
+			}
 	  		// Search for a specified string.
 	  		function getYouTubeVideoSearchData() {
 	  		  var searchTerm = $('#InputYouTubeLink').val();
 		  
 	  		  var request = gapi.client.youtube.search.list({
 	  			type: 'video',
-	  			videoSyndicated: 'true',
+	  			// videoSyndicated: 'true',
 	  			q: searchTerm,
 	  			part: 'snippet',
 	  		  });
@@ -297,63 +329,48 @@
 	  		    $('#search-raw-data').html('<pre>' + str + '</pre>');
 			
 	  		  });
-	  		  setTimeout(function(){turnYouTubeDataIntoPresentableInformation($('#search-raw-data').html())},300);
+	  		  setTimeout(function(){turnYouTubeDataIntoPresentableInformation()},300);
 	  		}
-			
-			function getQueryVariable(userInput) {
-				var query;
-				var vars;
-				if (userInput.indexOf("youtube") > -1){
-				   query = userInput.split( "?" );
-			       vars = query[1].split("&");
-			       for (var i=0;i<vars.length;i++) {
-			               var pair = vars[i].split("=");
-			               if(pair[0] == "v"){return pair[1];}
-			       }
-				   shortYTLink = query[1];
-			   }else if (userInput.indexOf("youtu.be") > -1){
-			   		vars = userInput.split( ".be/" );
-					query = vars[1].split("?");
-					shortYTLink = query[1];
-			   }else {
-				   getYouTubeVideoSearchData();
-				   // alert("YouTube Link Error.  Preferably enter a YouTube link that starts with 'youtube.com/...' or 'youtu.be/...'");
-			   }
-			}
-	  		function turnYouTubeDataIntoPresentableInformation(searchResult) {
-	  			var queryMatch = searchResult.match(/videoId/g);
+	  		function turnYouTubeDataIntoPresentableInformation() {
+	  			var searchResult = $('#search-raw-data').html();
+				var queryMatch = searchResult.match(/videoId/g);
 	  			var maxQuery = queryMatch.length;
 	  			var query;
-	  			var value;
+				var title;
 				
 	  			query = searchResult.split("videoId");
-	  			value = query[1].substr(3,11);
-	  			document.getElementById("videoLinkArray").value=('"'+value+'"');
-	  			document.getElementById("videoThumbnail"+1).src=("https://i.ytimg.com/vi/"+value+"/mqdefault.jpg");
+	  			videoLinkArray[1] = query[1].substr(3,11);
+	  			
+	  			document.getElementById("videoThumbnail"+1).src=("https://i.ytimg.com/vi/"+videoLinkArray[1]+"/mqdefault.jpg");
 	  			// var value[maxQuery];
 			
 	  		    for (var i=2;i<=maxQuery;i++) {
 	  				query[i].split("videoId");
-	  				value = query[i].substr(3,11);
-	  				document.getElementById("videoLinkArray").value=($("#videoLinkArray").val()+', "'+value+'"');
-	  				document.getElementById("videoThumbnail"+[i]).src=("https://i.ytimg.com/vi/"+value+"/mqdefault.jpg");
+	  				videoLinkArray[i] = query[i].substr(3,11);
+	  				document.getElementById("videoThumbnail"+[i]).src=("https://i.ytimg.com/vi/"+videoLinkArray[i]+"/mqdefault.jpg");
 	  		    }
 	  			query = searchResult.split("title");
-	    			value = query[1].substr(3,65);
-	  			value = value.split('"');
-	  			document.getElementById("videoTitle"+[1]).innerHTML=(value[0]);
+	    		query[1] = query[1].substr(3,65);
+	  			title = query[1].split('"');
+				videoTitleArray[1]=title[0];
+	  			document.getElementById("videoTitle"+[1]).innerHTML=(videoTitleArray[1]);
 	     		    for (var i=2;i<=maxQuery;i++) {
-	  				query[i].split("title");
-	     				value = query[i].substr(3,65);
-	  				value = value.split('"');
-	     				document.getElementById("videoTitle"+[i]).innerHTML=(value[0]);
+	  					query[i].split("title");
+	     				query[i] = query[i].substr(3,65);
+	  					title = query[i].split('"');
+						videoTitleArray[i]=title[0];
+	     				document.getElementById("videoTitle"+[i]).innerHTML=(videoTitleArray[i]);
 	     		    }
 	  			document.getElementById("resultListing").style.display="";  
 	  			  // $('#search-results').html(value);
 	  		}
-			assignSearchVideoPlayback(videoSearchNumber){
-				videoLinkArray=document.getElementById("videoLinkArray").value;
-				shortlink=videoLinkArray[videoSearchNumber];
+			function assignSearchVideoPlayback(videoSearchNumber){
+				shortYTLink=videoLinkArray[videoSearchNumber];
+				waitForUserSelection=-1;
+				console.log(shortYTLink);
+				document.getElementById('ytVidCode').value=shortYTLink;
+				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
+				document.getElementById('resultListing').style.display="none";
 				initiateLiveVideoPlayer();
 			}
 	  	</script>
@@ -361,8 +378,8 @@
 		<div class="col-md-6 col-md-offset-3" style="height:62.5px" id="inputRowOne"> 
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
-		    <label for="InputYouTubeLink">YouTube Video</label>
-		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter a search term OR a youtube.com/watch.. link">
+		    <label for="InputYouTubeLink"></label>
+		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter Keyword Or YouTube Link">
 			<input id="videoLinkArray" type="text" style="display:none"/>
 				</div>
 				<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style="display:none"/>
@@ -372,13 +389,14 @@
 			</form>
 			<div class="well" id="search-raw-data" style="display:none"></div>
 		</div>
+		
 	</div>
-		<div class="row" id="resultListing" style="display:none">
-		<div class="col-md-6 col-md-offset-3" style="padding-top:0.5%;">
+		<div class="row">
+		<div class="col-md-6 col-md-offset-3" id="resultListing" style="padding-top:0.5%;display:none">
 		<table class="table table-hover">
 		<tr onclick="assignSearchVideoPlayback(1)">
 			<td>
-				<img id="videoThumbnail1" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="185" height="104"/>
+				<img id="videoThumbnail1" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="169" height="95"/>
 			</td>
 			
 			<td>
@@ -387,7 +405,7 @@
 		</tr>
 		<tr onclick="assignSearchVideoPlayback(2)">
 			<td>
-				<img id="videoThumbnail2" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="185" height="104"/>
+				<img id="videoThumbnail2" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="169" height="95"/>
 			</td>
 			
 			<td>
@@ -396,7 +414,7 @@
 		</tr>
 		<tr onclick="assignSearchVideoPlayback(3)">
 			<td>
-				<img id="videoThumbnail3" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="185" height="104"/>
+				<img id="videoThumbnail3" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="169" height="95"/>
 			</td>
 			
 			<td>
@@ -405,7 +423,7 @@
 		</tr>
 		<tr onclick="assignSearchVideoPlayback(4)">
 			<td>
-				<img id="videoThumbnail4" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="185" height="104"/>
+				<img id="videoThumbnail4" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" width="169" height="95"/>
 			</td>
 			
 			<td>
@@ -440,7 +458,7 @@
 					<span> CUT</span>
 				</button>
 				
-				<button type="button" class="btn btn-default" id="videoOutPoint" onclick="videoOutPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="End your edit" style="display:none">
+				<button type="button" class="btn btn-warning" id="videoOutPoint" onclick="videoOutPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="End your edit" style="display:none">
 					<img src="css/scissors-open.png" width="15.1" height="14">
 					<span> CUT</span>
 				</button>
@@ -496,20 +514,21 @@
 				});
 				
 				function reloadVideoInput(){
-					document.getElementById('InputYouTubeLink').value="";
-					document.getElementById('inputRowOne').style.display="";
-					document.getElementById('InputYouTubeLink').style.display="";
-					document.getElementById('changeVideoButton').style.display="none";
-					document.getElementById('videoTimeline').style.display="none";
-					document.getElementById('videoInPoint').disabled=true;
-					document.getElementById('videoOutPoint').disabled=true;
-					document.getElementById('submitEdit').style.display="none";
-					document.getElementById('previewEdit').style.display="";
-					document.getElementById('previewEdit').disabled=true;
-					inPoint = 0;
-					outPoint = 0;
-					videoLoadSwitch=1;
-					jwplayer("videoPlaybackFrame").play();
+					location.reload();
+					// document.getElementById('InputYouTubeLink').value="";
+// 					document.getElementById('inputRowOne').style.display="";
+// 					document.getElementById('InputYouTubeLink').style.display="";
+// 					document.getElementById('changeVideoButton').style.display="none";
+// 					document.getElementById('videoTimeline').style.display="none";
+// 					document.getElementById('videoInPoint').disabled=true;
+// 					document.getElementById('videoOutPoint').disabled=true;
+// 					document.getElementById('submitEdit').style.display="none";
+// 					document.getElementById('previewEdit').style.display="";
+// 					document.getElementById('previewEdit').disabled=true;
+// 					inPoint = 0;
+// 					outPoint = 0;
+// 					videoLoadSwitch=1;
+// 					jwplayer("videoPlaybackFrame").play();
 				}
 				
 			

@@ -22,7 +22,7 @@ function openLink(){
 }
 
 function backToTool(){
-	header('Location: http://hotpotato.me');
+	header('Location: http://www.hotpotato.me');
 	die();
 }
 
@@ -115,7 +115,7 @@ function templateVideoHTML() {
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 		<div class="progress">
-	  	<div class="progress-bar progress-bar-info" id="progressBarVis" role="progressbar" style="">
+	  	<div class="progress-bar progress-bar-warning" id="progressBarVis" role="progressbar" style="">
 	</div>	
 		</div></div></div>
 		</div>
@@ -125,7 +125,16 @@ function templateVideoHTML() {
 		<button type="button" class="btn btn-default" id="repeatVid" name="repeatVid" onclick="repeatVid()">
 		<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
 			<span> Loop Video</span>
-		</button></div></div>
+		</button>
+		<button type="button" class="btn btn-default" id="viewOriginalVideo" onclick="viewOriginalVideo()">
+		<span class="glyphicon glyphicon-transfer" aria-hidden="true"> </span>
+			<span> Original Video</span>
+		</button>
+		<button type="button" class="btn btn-default" id="viewVideoEdit" onclick="viewVideoEdit()" style="display:none">
+		<span class="glyphicon glyphicon-transfer" aria-hidden="true"> </span>
+			<span> Video Edit</span>
+		</button>
+		</div></div>
 		</div>
 		<script>
 		var vidWidth=$("#responsiveVideoFrame").width();
@@ -135,6 +144,10 @@ function templateVideoHTML() {
 		var editEnd='.$cutLength.';
 		var relativePos;
 		var userViewMode=0;
+		var vidDuration;
+		var inPoint ='.$videoStart.';
+		var outPoint ='.$videoStop.';
+		var vidDuration;
 		
 	    jwplayer("JWvid").setup({
 	        file: "'.$ytLink.'",
@@ -142,38 +155,63 @@ function templateVideoHTML() {
 	        height: vidHeight,
 			stretching: "fill",
 	    });
-		
-		function repeatVid(){
-			jwplayer("JWvid").seek(inPoint);
-			userViewMode=2;
+	
+	function repeatVid(){
+		jwplayer("JWvid").seek(inPoint);
+		userViewMode=2;
+	}
+	function viewOriginalVideo(){
+		userViewMode=-2;
+		document.getElementById("viewOriginalVideo").style.display="none";
+		document.getElementById("viewVideoEdit").style.display="";
+	}
+	function viewVideoEdit(){
+		userViewMode=1;
+		document.getElementById("viewVideoEdit").style.display="none";
+		document.getElementById("viewOriginalVideo").style.display="";
+	}
+	
+	jwplayer("JWvid").onPlay(function (event){
+		if (userViewMode>-1){
+		jwplayer("JWvid").seek(inPoint);
 		}
-		var inPoint ='.$videoStart.';
-		var outPoint ='.$videoStop.';
+		vidDuration=jwplayer("JWvid").getDuration();
 		
-		jwplayer("JWvid").onPlay(function (event){
-			jwplayer("JWvid").seek(inPoint);
-		});
-		
-		jwplayer("JWvid").onTime(function (event){
-			realVal = event.position;
-			relativePos = realVal - inPoint;
-			if (userViewMode==0){
-				if (realVal > outPoint){
-					jwplayer("JWvid").pause();
-				}
-			} else if (userViewMode==2){
-				if (realVal < inPoint || realVal > outPoint){
-					jwplayer("JWvid").seek(inPoint);
-				}
+	});
+	
+	jwplayer("JWvid").onTime(function (event){
+		realVal = event.position;
+		relativePos = realVal - inPoint;
+		if (userViewMode==0){
+			if (realVal > outPoint){
+				jwplayer("JWvid").pause();
 			}
-				
-			ProgressBar = (relativePos/editEnd);
-			ProgressBar = ProgressBar*100;
-			ProgressBar = ProgressBar.toPrecision(2);
-				
-			document.getElementById("progressBarVis").style.width =(ProgressBar+"%");
-		});		
-				
+		} else if (userViewMode==2){
+			if (realVal < inPoint || realVal > outPoint){
+				jwplayer("JWvid").seek(inPoint);
+			}
+		} else if (userViewMode==-2) {
+			userViewMode=-1;
+			jwplayer("JWvid").seek(realVal);
+		} else if (userViewMode==1) {
+			userViewMode=0;
+			jwplayer("JWvid").seek(realVal);
+		}
+		
+		if 	(userViewMode>-1){
+		ProgressBar = (relativePos/editEnd);
+		document.getElementById("progressBarVis").className="progress-bar progress-bar-warning";
+		}
+		else if (userViewMode<0){
+		ProgressBar = (realVal/vidDuration);
+		document.getElementById("progressBarVis").className="progress-bar progress-bar-info";
+		}
+		ProgressBar = ProgressBar*100;
+		ProgressBar = ProgressBar.toPrecision(2);
+			
+		document.getElementById("progressBarVis").style.width =(ProgressBar+"%");
+		
+	});		
 				
 		</script>
 		
@@ -332,7 +370,7 @@ echo '<!DOCTYPE html>
 	<div class="row">
 	<div class="col-md-6 col-md-offset-3">
 	<div class="progress">
-  	<div class="progress-bar progress-bar-info" id="progressBarVis" role="progressbar" style="">
+  	<div class="progress-bar progress-bar-warning" id="progressBarVis" role="progressbar" style="">
 </div>	
 	</div></div></div>
 			<script>
