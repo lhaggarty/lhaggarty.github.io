@@ -16,7 +16,6 @@ if ($query==""){
 	echo "nothing";
 }
 else{
-	echo 'query ';
 	// $OriginalLinks=array();
 // 	$EditInPoints[];
 // 	$EditOutPoints[];
@@ -25,7 +24,7 @@ $i=0;
 		$OriginalLinks[$i]= $obj->OriginalLink;
 		$EditInPoints[$i]=$obj->EditIn;
 		$EditOutPoints[$i]=$obj->EditOut;
-		$video-title[$i]=$obj->title;
+		$videoTitle[$i]=$obj->title;
 		$i++;
 	}
 	mysqli_free_result($query);
@@ -75,8 +74,22 @@ $i=0;
 			<div class="video-part">
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
+						<div id="video-title0" style="text-align:center">
+							<h3>'.$videoTitle[0].'</h3>
+						</div>
+					</div>
+				
+				<div class="col-md-6 col-md-offset-3">
+					<img id="videoThumbnail0" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:100%" onclick="initiateVideoPlayer(0)"/>
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame0" style="display:none">
+					<div id="videoPlaybackFrame0"></div>
+				</div></div>
+			</div>
+			
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
 						<div id="video-title1" style="text-align:center">
-							<h3>title</h3>
+							<h3>'.$videoTitle[1].'</h3>
 						</div>
 					</div>
 				
@@ -86,31 +99,17 @@ $i=0;
 					<div id="videoPlaybackFrame1"></div>
 				</div></div>
 			</div>
-			
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
 						<div id="video-title2" style="text-align:center">
-							<h3>title</h3>
+							<h3>'.$videoTitle[2].'</h3>
 						</div>
 					</div>
 				
 				<div class="col-md-6 col-md-offset-3">
-					<img id="videoThumbnail2" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:100%" onclick="initiateVideoPlayer(1)"/>
-					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame1" style="display:none">
+					<img id="videoThumbnail2" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:100%" onclick="initiateVideoPlayer(2)"/>
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame2" style="display:none">
 					<div id="videoPlaybackFrame2"></div>
-				</div></div>
-			</div>
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
-						<div id="video-title3" style="text-align:center">
-							<h3>title</h3>
-						</div>
-					</div>
-				
-				<div class="col-md-6 col-md-offset-3">
-					<img id="videoThumbnail3" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:100%" onclick="initiateVideoPlayer(1)"/>
-					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame1" style="display:none">
-					<div id="videoPlaybackFrame3"></div>
 				</div></div>
 			</div>
 			
@@ -128,16 +127,25 @@ $i=0;
 	</div>		
 		<script>
 		var videoMultiple=0;
+		var OriginalLink='.json_encode($OriginalLinks).';
+		document.getElementById("videoThumbnail"+(videoMultiple)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple])+"/mqdefault.jpg";
+		document.getElementById("videoThumbnail"+(videoMultiple+1)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple+1])+"/mqdefault.jpg";
+		document.getElementById("videoThumbnail"+(videoMultiple+2)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple+2])+"/mqdefault.jpg";
+		
 		var inputYTLink = "https://www.youtube.com/watch?v=yJDRop2ocFo";
 		var vidWidth=$("#responsiveVideoFrame").width();
 		var vidHeight=(vidWidth*0.5625);
-		var OriginalLink='.json_encode($OriginalLinks).';
+		
 		var EditIn='.json_encode($EditInPoints).';
 		var EditOut='.json_encode($EditOutPoints).';
-		var title='.json_encode($video-title).';
+		var title='.json_encode($videoTitle).';
 		
 		function initiateVideoPlayer(videoNumber){
-			inputYTLink = videoLinkArray[videoNumber-1];
+			inputYTLink = OriginalLink[videoNumber];
+			var vidWidth=$("#videoThumbnail"+videoNumber).width();
+			var vidHeight=(vidWidth*0.5625);
+			document.getElementById("videoThumbnail"+videoNumber).style.display="none";
+			document.getElementById("responsiveVideoFrame"+videoNumber).style.display="";
 			
 		    jwplayer("videoPlaybackFrame"+videoNumber).setup({
 		        file: inputYTLink,
@@ -162,23 +170,23 @@ $i=0;
 		}
 		function nextPage(){
 			videoMultiple=videoMultiple+3;
-			document.getElementById("videoThumbnail"+(videoMultiple-2)).id="videoThumbnail"+(videoMultiple+1);
+			document.getElementById("videoThumbnail"+(videoMultiple-3)).id="videoThumbnail"+(videoMultiple);
+			document.getElementById("videoThumbnail1").id="videoThumbnail"+(videoMultiple+1);
 			document.getElementById("videoThumbnail2").id="videoThumbnail"+(videoMultiple+2);
-			document.getElementById("videoThumbnail3").id="videoThumbnail"+(videoMultiple+3);
-			document.getElementById("videoThumbnail"+(videoMultiple+1)).onclick="videoThumbnail"+(videoMultiple+1);
-			document.getElementById("videoThumbnail"+(videoMultiple+2)).onclick="videoThumbnail"+(videoMultiple+2);
-			document.getElementById("videoThumbnail"+(videoMultiple+3)).onclick="videoThumbnail"+(videoMultiple+3);
+			document.getElementById("videoThumbnail"+(videoMultiple)).onclick="initiateVideoPlayer("+(videoMultiple)+")";
+			document.getElementById("videoThumbnail"+(videoMultiple+1)).onclick="initiateVideoPlayer("+(videoMultiple+1)+")";
+			document.getElementById("videoThumbnail"+(videoMultiple+2)).onclick="initiateVideoPlayer("+(videoMultiple+2)+")";
 			
+			document.getElementById("videoThumbnail"+(videoMultiple)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple])+"/mqdefault.jpg";
 			document.getElementById("videoThumbnail"+(videoMultiple+1)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple+1])+"/mqdefault.jpg";
 			document.getElementById("videoThumbnail"+(videoMultiple+2)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple+2])+"/mqdefault.jpg";
-			document.getElementById("videoThumbnail"+(videoMultiple+3)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple+3])+"/mqdefault.jpg";
 			
-			document.getElementById("video-title"+(videoMultiple-2)).id="videoThumbnail"+(videoMultiple+1);
-			document.getElementById("video-title2").id="videoThumbnail"+(videoMultiple+2);
-			document.getElementById("video-title3").id="videoThumbnail"+(videoMultiple+3);
+			document.getElementById("video-title"+(videoMultiple-3)).id="video-title"+(videoMultiple);
+			document.getElementById("video-title1").id="video-title"+(videoMultiple+1);
+			document.getElementById("video-title2").id="video-title"+(videoMultiple+2);
+			document.getElementById("video-title"+(videoMultiple)).innerHTML="<h3>"+title[videoMultiple]+"</h3>";
 			document.getElementById("video-title"+(videoMultiple+1)).innerHTML="<h3>"+title[videoMultiple+1]+"</h3>";
 			document.getElementById("video-title"+(videoMultiple+2)).innerHTML="<h3>"+title[videoMultiple+2]+"</h3>";
-			document.getElementById("video-title"+(videoMultiple+3)).innerHTML="<h3>"+title[videoMultiple+3]+"</h3>";
 			
 		}
 		</script>	
@@ -193,8 +201,7 @@ $i=0;
 		  ga("send", "pageview");
 
 		</script>
-	</html>
-	';
+	</html>';
 }
 
 // $lastEntry = mysqli_insert_id();
