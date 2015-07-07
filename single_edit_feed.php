@@ -80,8 +80,8 @@ $i=0;
 					</div>
 				
 				<div class="col-md-6 col-md-offset-3">
-					<img id="videoThumbnail0" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:100%" onclick="initiateVideoPlayer(0)"/>
-					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame0" style="display:none">
+					
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame0" style="">
 					<div id="videoPlaybackFrame0"></div>
 				</div></div>
 			</div>
@@ -94,8 +94,8 @@ $i=0;
 					</div>
 				
 				<div class="col-md-6 col-md-offset-3">
-					<img id="videoThumbnail1" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:100%" onclick="initiateVideoPlayer(1)"/>
-					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame1" style="display:none">
+					
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame1" style="">
 					<div id="videoPlaybackFrame1"></div>
 				</div></div>
 			</div>
@@ -107,8 +107,8 @@ $i=0;
 					</div>
 				
 				<div class="col-md-6 col-md-offset-3">
-					<img id="videoThumbnail2" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:100%" onclick="initiateVideoPlayer(2)"/>
-					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame2" style="display:none">
+					
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame2" style="">
 					<div id="videoPlaybackFrame2"></div>
 				</div></div>
 			</div>
@@ -128,9 +128,6 @@ $i=0;
 		<script>
 		var videoMultiple=0;
 		var OriginalLink='.json_encode($OriginalLinks).';
-		document.getElementById("videoThumbnail"+(videoMultiple)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple])+"/mqdefault.jpg";
-		document.getElementById("videoThumbnail"+(videoMultiple+1)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple+1])+"/mqdefault.jpg";
-		document.getElementById("videoThumbnail"+(videoMultiple+2)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple+2])+"/mqdefault.jpg";
 		
 		var inputYTLink = "https://www.youtube.com/watch?v=yJDRop2ocFo";
 		var vidWidth=$("#responsiveVideoFrame").width();
@@ -139,20 +136,21 @@ $i=0;
 		var EditIn='.json_encode($EditInPoints).';
 		var EditOut='.json_encode($EditOutPoints).';
 		var title='.json_encode($videoTitle).';
+		var vidWidth=$("#responsiveVideoFrame"+videoMultiple).width();
+		var vidHeight=(vidWidth*0.5625);
 		
-		function initiateVideoPlayer(videoNumber){
-			inputYTLink = OriginalLink[videoNumber];
-			var vidWidth=$("#videoThumbnail"+videoNumber).width();
-			var vidHeight=(vidWidth*0.5625);
-			document.getElementById("videoThumbnail"+videoNumber).style.display="none";
-			document.getElementById("responsiveVideoFrame"+videoNumber).style.display="";
+		initiateVideoPlayer();
+		function initiateVideoPlayer(){
 			
-		    jwplayer("videoPlaybackFrame"+videoNumber).setup({
-		        file: inputYTLink,
+			for (var i=videoMultiple;i<(videoMultiple+3);i++){
+			// inputYTLink = OriginalLink[i];
+		    jwplayer("videoPlaybackFrame"+i).setup({
+		        file: OriginalLink[i],
 		        width: vidWidth,
 		        height: vidHeight,
 				stretching: "fill",
 		    });
+			}
 		}
 		function getYtShortcode(YtLink){
 			var query;
@@ -169,25 +167,33 @@ $i=0;
 			}
 		}
 		function nextPage(){
+			
 			videoMultiple=videoMultiple+3;
-			document.getElementById("videoThumbnail"+(videoMultiple-3)).id="videoThumbnail"+(videoMultiple);
-			document.getElementById("videoThumbnail1").id="videoThumbnail"+(videoMultiple+1);
-			document.getElementById("videoThumbnail2").id="videoThumbnail"+(videoMultiple+2);
-			document.getElementById("videoThumbnail"+(videoMultiple)).onclick="initiateVideoPlayer("+(videoMultiple)+")";
-			document.getElementById("videoThumbnail"+(videoMultiple+1)).onclick="initiateVideoPlayer("+(videoMultiple+1)+")";
-			document.getElementById("videoThumbnail"+(videoMultiple+2)).onclick="initiateVideoPlayer("+(videoMultiple+2)+")";
 			
-			document.getElementById("videoThumbnail"+(videoMultiple)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple])+"/mqdefault.jpg";
-			document.getElementById("videoThumbnail"+(videoMultiple+1)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple+1])+"/mqdefault.jpg";
-			document.getElementById("videoThumbnail"+(videoMultiple+2)).src="https://i.ytimg.com/vi/"+getYtShortcode(OriginalLink[videoMultiple+2])+"/mqdefault.jpg";
+			for (var i=videoMultiple;i<(videoMultiple+3);i++){
+				var j=i-3;
+				document.getElementById("video-title"+(j)).id="video-title"+(i);
+				document.getElementById("video-title"+(i)).innerHTML="<h3>"+title[i]+"</h3>";
+				document.getElementById("responsiveVideoFrame"+(j)).id="responsiveVideoFrame"+(i);
+				document.getElementById("videoPlaybackFrame"+(j)).id="videoPlaybackFrame"+(i);
+				j++;
+			}
 			
-			document.getElementById("video-title"+(videoMultiple-3)).id="video-title"+(videoMultiple);
-			document.getElementById("video-title1").id="video-title"+(videoMultiple+1);
-			document.getElementById("video-title2").id="video-title"+(videoMultiple+2);
-			document.getElementById("video-title"+(videoMultiple)).innerHTML="<h3>"+title[videoMultiple]+"</h3>";
-			document.getElementById("video-title"+(videoMultiple+1)).innerHTML="<h3>"+title[videoMultiple+1]+"</h3>";
-			document.getElementById("video-title"+(videoMultiple+2)).innerHTML="<h3>"+title[videoMultiple+2]+"</h3>";
-			
+			// document.getElementById("video-title"+(videoMultiple-3)).id="video-title"+(videoMultiple);
+// 			document.getElementById("video-title"+(videoMultiple-2)).id="video-title"+(videoMultiple+1);
+// 			document.getElementById("video-title"+(videoMultiple-1)).id="video-title"+(videoMultiple+2);
+// 			document.getElementById("video-title"+(videoMultiple)).innerHTML="<h3>"+title[videoMultiple]+"</h3>";
+// 			document.getElementById("video-title"+(videoMultiple+1)).innerHTML="<h3>"+title[videoMultiple+1]+"</h3>";
+// 			document.getElementById("video-title"+(videoMultiple+2)).innerHTML="<h3>"+title[videoMultiple+2]+"</h3>";
+//
+// 			document.getElementById("responsiveVideoFrame"+(videoMultiple-3)).id="responsiveVideoFrame"+(videoMultiple);
+// 			document.getElementById("responsiveVideoFrame"+(videoMultiple-2)).id="responsiveVideoFrame"+(videoMultiple+1);
+// 			document.getElementById("responsiveVideoFrame"+(videoMultiple-1)).id="responsiveVideoFrame"+(videoMultiple+2);
+//
+// 			document.getElementById("videoPlaybackFrame"+(videoMultiple-3)).id="videoPlaybackFrame"+(videoMultiple);
+// 			document.getElementById("videoPlaybackFrame"+(videoMultiple-2)).id="videoPlaybackFrame"+(videoMultiple+1);
+// 			document.getElementById("videoPlaybackFrame"+(videoMultiple-1)).id="videoPlaybackFrame"+(videoMultiple+2);
+			initiateVideoPlayer();
 		}
 		</script>	
 		</body>
