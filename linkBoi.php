@@ -42,6 +42,7 @@ function templateVideoHTML() {
 	$videoStop = $_GET['OutTimeCode'];
 	$ytVidCode = $_GET['ytVidCode'];
 	$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+	$ytVideoTitle = $_GET['ytVideoTitle'];
 	$cutLength = $videoStop-$videoStart;
 	
 	
@@ -106,8 +107,12 @@ function templateVideoHTML() {
 	  	      </div>
 			  
 		<div class="video-part">
+		<div class="row" style="padding-top:20px;padding-bottom:1%">
+			<div class="col-md-6 col-md-offset-3" style="text-align:center">
+			<h3>'.$ytVideoTitle.'</h3>
+		</div></div>
 		<div class="row">
-		<div class="col-md-6 col-md-offset-3" id="videoPlayback" style="padding-top: 8%;">
+		<div class="col-md-6 col-md-offset-3" id="videoPlayback">
 		<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
 		<div id="JWvid"></div>
 		</div></div></div>
@@ -244,6 +249,7 @@ $videoStart = $_GET['InTimeCode'];
 $videoStop = $_GET['OutTimeCode'];
 $ytVidCode = $_GET['ytVidCode'];
 $ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+$ytVideoTitle = $_GET['ytVideoTitle'];
 $html = generateRandomStringFiveC().'.html';
 
 // mysqlconnect('localhost','root','');
@@ -275,8 +281,8 @@ while ($html==$query){
 
 // Perform queries 
 mysqli_query($conn,"SELECT * FROM single_edits");
-mysqli_query($conn,"INSERT INTO single_edits (OutputLink,OriginalLink,EditIn,EditOut) 
-VALUES ('".$html."','".$ytLink."','".$videoStart."','".$videoStop."')");
+mysqli_query($conn,"INSERT INTO single_edits (OutputLink,OriginalLink,EditIn,EditOut,title) 
+VALUES ('".$html."','".$ytLink."','".$videoStart."','".$videoStop."','".$ytVideoTitle."')");
 
 mysqli_close($conn);
 
@@ -359,10 +365,13 @@ echo '<!DOCTYPE html>
   	      </div>
 	    
 	</div>
-	<div class="video-part">		
+	<div class="video-part">
+	<div class="row" style="padding-top:20px;padding-bottom:1%">
+		<div class="col-md-6 col-md-offset-3" style="text-align:center">
+		<h3>'.$ytVideoTitle.'</h3>
+	</div></div>		
 	<div class="row">
-	
-<div class="col-md-6 col-md-offset-3" style="padding-top:6%;">
+<div class="col-md-6 col-md-offset-3">
 	<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
  	<div id="videoPlaybackFrame"></div></div>
 </div>
@@ -511,9 +520,9 @@ $(document).ready(function(){
         path:"js/ZeroClipboard.swf",
         copy:$("div#OutputYouTubeLink").text(),
 		afterCopy:function(){
-			setInterval(function(){myTimer()},300);
+			setInterval(function(){myTimer()},500);
 			function myTimer() {
-			document.getElementById("copy-button-text").innerHTML=" Copied";
+			document.getElementById("copy-button-text").innerHTML=" Copied To Clipboard";
 			}
 		}
     });

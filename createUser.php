@@ -1,6 +1,9 @@
 <?php
 if($_GET){
-    if(isset($_GET['createUser'])){
+    if(isset($_GET['submitUser'])){
+		<script>
+			console.log('1');
+		</script>
         createUser();
 	}
 }
@@ -16,6 +19,9 @@ function generateRandomStringFiveC() {
     return $randomString;
 }
 function createUser(){
+	<script>
+		console.log('1');
+	</script>
 	$username=$_GET['username'];
 	$email=$_GET['email'];
 	$password=generateRandomStringFiveC();
@@ -49,15 +55,16 @@ function createUser(){
 	fwrite($create, templateProfileHTML());
 	fclose($create);
 
-	echo '<!DOCTYPE html>';
+	echo 'The user profile page has been created';
 	die();
 }else if {
 	echo 'Error creating user account';
+	die();
 }
 }
 function templateProfileHTML() {
 	$username=$_GET['username'];
-	$html = '<!DOCTYPE html>';
+	$html = 'test '.$username.'&rsquo;s profile page';
 }
 
 ?>
