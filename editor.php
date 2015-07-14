@@ -66,7 +66,7 @@
 						
   		  	            <li role="presentation" class="active"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
 						
-  		  				<li role="presentation"><a href="feed.html"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
+  		  				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
   		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 				
   		  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
@@ -114,7 +114,7 @@
 		        width: vidWidth,
 		        height: vidHeight,
 				stretching: "fill",
-				image: "css/video-demo-thumbnail.jpg",
+				image: "css/demo-video-dark.jpg",
 		    });
 			
 			// if (matchMedia('only screen and (max-width: 650px)').matches) {
@@ -409,7 +409,7 @@
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
 		    <label for="InputYouTubeLink"></label>
-		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter Keyword Or YouTube Link">
+		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter Keyword Or YouTube Link" style="color:#000">
 			<input id="videoLinkArray" type="text" style="display:none"/>
 				</div>
 				<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style="display:none"/>
@@ -476,15 +476,15 @@
 		<div class="dashboard-part" style="padding-bottom:259px">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons">
-				<button type="button" class="btn btn-default" id="loadVideoButton" onclick="initiateLiveVideoPlayer();" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Click here, or press enter, when you have a video input">
+				<button type="button" class="btn btn-default bg-dark" id="loadVideoButton" onclick="initiateLiveVideoPlayer();" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Click here, or press enter, when you have a video input">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
 				</button>
 				
-				<button type="button" class="btn btn-default" id="playPauseButton" onclick="playPauseVideo();" style="display:none">
+				<button type="button" class="btn btn-default bg-dark" id="playPauseButton" onclick="playPauseVideo();" style="display:none">
 					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"> </span>
 				</button>
-				<button type="button" class="btn btn-default" id="videoInPoint" onclick="videoInPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Begin your edit" disabled>
+				<button type="button" class="btn btn-default bg-dark" id="videoInPoint" onclick="videoInPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Begin your edit" disabled>
 					<img src="css/scissors-closed.png"  width="15.1" height="14">
 					<span> CUT</span>
 				</button>
@@ -493,7 +493,7 @@
 					<img src="css/scissors-open.png" width="15.1" height="14">
 					<span> CUT</span>
 				</button>
-				<button type="button" class="btn btn-default" id="previewEdit" onclick="previewEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Video will playback from the &quot;IN&quot; to the &quot;OUT&quot; time selected" disabled>
+				<button type="button" class="btn btn-default bg-dark" id="previewEdit" onclick="previewEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Video will playback from the &quot;IN&quot; to the &quot;OUT&quot; time selected" disabled>
 					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 					<span> DONE</span>
 				</button>
@@ -503,7 +503,7 @@
 				</button>
 			
 			
-			<button type="button" class="btn btn-default" id="changeVideoButton" onclick="reloadVideoInput()" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Change the video input source" style="display:none">
+			<button type="button" class="btn btn-default bg-dark" id="changeVideoButton" onclick="reloadVideoInput()" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Change the video input source" style="display:none">
 				<span class="glyphicon glyphicon-refresh" aria-hidden="true"> </span>
 					<span> Change Video</span>
 				</button>	

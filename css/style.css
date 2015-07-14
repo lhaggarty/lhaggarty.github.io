@@ -9,7 +9,7 @@ html, body  {
 }
 
 .navbar {
-	background-color: #73695a;
+	background-color: #fff;
 	
 }
 .nav-pills>li {
@@ -17,20 +17,19 @@ html, body  {
 }
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
-    color: #000;
-    background-color: #fff
+    color: #fff;
+    background-color: #73695a
 }
 .nav-pills>li>a {
-	color: #fff;
+	color: #000;
 }
 
 .nav-pills>li>a:focus, .nav-pills>li>a:hover {
-    color: #000;
-    background-color: #ccc
+    color: #fff;
+    background-color: #b1a28b
 }
 .nav-pills>li>a .blackImage, .nav-pills>li>a .blackImage {
 	padding-top:0px;
-	
 	
 }
 .nav-pills>li>a .whiteImage, .nav-pills>li>a .whiteImage {
@@ -39,33 +38,33 @@ html, body  {
 }
 
 .nav-pills>li>a:focus .blackImage, .nav-pills>li>a:hover .blackImage {
-	display:inline;
+	display:none;
 }
 
 .nav-pills>li>a.active .blackImage, .nav-pills>li.active>a .blackImage {
-	display:inline;
+	display:none;
 }
 
 .nav-pills>li>a.active .whiteImage, .nav-pills>li.active>a .whiteImage {
-	display:none;
+	display:inline;
 }
 
 .nav-pills>li>a:focus .whiteImage, .nav-pills>li>a:hover .whiteImage {
-	display:none;
+	display:inline;
 }
 
 .video-part {
-	background: url(hotPotato-yellowBackground2.jpg) no-repeat center top fixed;
+	background-color: #73695a;
 	/*height: 120%;*/
 	background-size: cover;
-	
+	color: #fff;
 }
 
 .dashboard-part {
-	background-color: #73695a;
+	background-color: #fff;
 	padding-top: 1%;
 	padding-bottom: 50px;
-	color: #fff;
+	color: #000;
 }
 
 .title-text {
@@ -97,12 +96,8 @@ a.howToGallery {
 
 .howToGallery:focus, .howToGallery:hover {
 	padding: 4px;
-	/*-webkit-transition: all .1s ease-in-out;
-	-o-transition: all .1s ease-in-out;
-	transition: all .1s ease-in-out*/
 	
 }
-
 /*a.howToGallery:focus.img a.howToGallery:hover.img{
 	width:90%;
 	height:90%
@@ -112,23 +107,36 @@ a.howToGallery {
 	visibility:hidden;
 
 }
+
 #closing-window-intro{
 	background: url(closing-yt-video6.png)  no-repeat 50% -85%;
 	
 }
 
 .whiteImage {
-	
+	display:none;
 }
 
 .blackImage {
-	display:none;
+	
 }
 
 .form-group {
   	font-size:17px;
 }
 
+.bg-dark {
+	background-color: #73695a;
+	color: #fff;
+}
+.bg-dark.focus, .bg-dark:focus, .bg-dark:hover {
+	background-color: #b1a28b;
+	color: #fff;
+}
+.bg-dark:disabled {
+	background-color: #73695a;
+	color: #fff;
+}
 .OutputYouTubeLink {
 	color: #000;
 }

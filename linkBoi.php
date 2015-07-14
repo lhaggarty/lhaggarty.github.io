@@ -98,7 +98,7 @@ function templateVideoHTML() {
 					
 	  	            <li role="presentation"><a href="../editor.php"><img src="../css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="../css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
 					
-	  				<li role="presentation"><a href="../feed.html"><img src="../css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="../css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
+	  				<li role="presentation"><a href="../feed.php"><img src="../css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="../css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
 	  				<li role="presentation"><a href="../sign-up.html">Sign Up</a></li>
 			
 	  	            <li role="presentation"><a href="../about.html">About &amp; Contact</a></li>
@@ -356,7 +356,7 @@ echo '<!DOCTYPE html>
 				
   	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
 				
-  				<li role="presentation"><a href="feed.html"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
+  				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
   				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 		
   	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
