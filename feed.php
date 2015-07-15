@@ -117,7 +117,7 @@ $i=0;
 		<div class="dashboard-part">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
-				<button type="button" class="btn btn-default" id="previousPage" onclick="previousPage();" style="visibility:hidden">
+				<button type="button" class="btn btn-default bg-dark" id="previousPage" onclick="previousPage();" style="visibility:hidden">
 					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 					<span> PREVIOUS PAGE</span>
 				</button>

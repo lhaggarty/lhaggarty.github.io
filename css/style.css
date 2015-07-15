@@ -52,6 +52,11 @@ html, body  {
 .nav-pills>li>a:focus .whiteImage, .nav-pills>li>a:hover .whiteImage {
 	display:inline;
 }
+.navbar-default .navbar-toggle {
+    color: #000
+}
+
+
 
 .video-part {
 	background-color: #73695a;
