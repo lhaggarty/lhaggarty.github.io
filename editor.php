@@ -365,33 +365,37 @@
 	  			  // $('#search-results').html(value);
 	  		}
 	  		function getYouTubeVideoIdData() {
-	  		  var videoId = shortYTLink;
-		  
-	  		  var request = gapi.client.youtube.search.list({
-	  			type: 'video',
-	  			part: 'id',
+	  		  // var videoId = shortYTLink;
+	  		  var request = gapi.client.youtube.videos.list({
+				  id: shortYTLink,
+	  			part: 'snippet',
 	  		  });
 	  		  request.execute(function(response) {
 	  		    var str = JSON.stringify(response.result);
 	  		    $('#search-raw-data').html('<pre>' + str + '</pre>');
-			
-	  		  });
-	  		  setTimeout(function(){turnYtVideoIdDataIntoPresentableInformation()},315);
-	  		}
-	  		function turnYtVideoIdDataIntoPresentableInformation() {
-	  			var searchResult = $('#search-raw-data').html();
-				var queryMatch = searchResult.match(/videoId/g);
-	  			var maxQuery = queryMatch.length;
-	  			var query;
-				var title;
-				
-	  			query = searchResult.split("title");
+				var searchIdResult = document.getElementById("search-raw-data").innerHTML;
+				var query = searchIdResult.split("title");
 	    		query[1] = query[1].substr(3,65);
 	  			title = query[1].split('"');
-				videoTitleArray[1]=title[0];
-	  			document.getElementById("ytVideoTitle").value=(videoTitleArray[1]);
-	     		document.getElementById("video-title").innerHTML="<h3>"+videoTitleArray[1]+"</h3>";
+	  			document.getElementById("ytVideoTitle").value=(title[0]);
+	     		document.getElementById("video-title").innerHTML="<h3>"+title[0]+"</h3>";
+	  		  });
+	  		  // setTimeout(function(){turnYtVideoIdDataIntoPresentableInformation()},315);
 	  		}
+	  		// function turnYtVideoIdDataIntoPresentableInformation() {
+// 	  			var searchResult = document.getElementById("search-raw-data").innerHTML;
+//
+// 	  			var query;
+// 				var title;
+// 				console.log(searchResult);
+// 	  			query = searchResult.split("title");
+//
+// 	    		query[1] = query[1].substr(3,65);
+// 	  			title = query[1].split('"');
+// 				videoTitleArray[1]=title;
+// 	  			document.getElementById("ytVideoTitle").value=(title);
+// 	     		document.getElementById("video-title").innerHTML="<h3>"+title+"</h3>";
+// 	  		}
 			function assignSearchVideoPlayback(videoSearchNumber){
 				shortYTLink=videoLinkArray[videoSearchNumber];
 				waitForUserSelection=-1;
