@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php
+if($_GET){
+    if(isset($_GET['originalVideo-to-editor'])){
+        originalVideo-to-editor();
+    }
+}
+function originalVideo-to-editor(){
+	$ytVidCode = $_GET['ytVidCode'];
+	$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+	
+	echo '<!DOCTYPE html>
 <html>
 		<head>
 			<title>Hot Potato Tool</title>
@@ -15,7 +25,7 @@
 			<script src="https://apis.google.com/js/client.js"></script>
 			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<meta property="og:image" content="http://www.hotpotato.me/css/web-thumbnail.png"/>
+			
 			
 			<link rel="apple-touch-icon" sizes="57x57" href="css/favicon/apple-icon-57x57.png">
 			<link rel="apple-touch-icon" sizes="60x60" href="css/favicon/apple-icon-60x60.png">
@@ -45,7 +55,7 @@
 		</div>
 			-->
 <body>
-	
+	<div class="container-fluid">
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="padding-left:4.7%">
 	      
 	        <div class="navbar-header" style="height:30px">
@@ -58,20 +68,21 @@
 				<span class="icon-bar"></span>
 	          </button>
 	        </div>
-  	        <div class="navbar-collapse collapse">
-  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-				<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
-			
-				<li role="presentation"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
-  	            <li role="presentation" class="active"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
-			
-  				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
-  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
-	
-  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
+  		  	        <div class="navbar-collapse collapse">
+  		  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
+  						<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+						
+  						<li role="presentation"><a href="potatoes-to-cut.html"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> New YouTube Videos</a></li>
+						
+  		  	            <li role="presentation" class="active"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+						
+  		  				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
+  		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
 				
-  	        </div><!--/.nav-collapse -->
-  	      </div>
+  		  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
+		  				
+  		  	        </div><!--/.nav-collapse -->
+  		  	      </div>
 	    
 	</div>
 	<div class="video-part">		
@@ -89,7 +100,7 @@
 			</div>
 			<script>
 			$(function () {
-				$('[data-toggle="tooltip"]').tooltip();
+				$("[data-toggle="tooltip"]").tooltip();
 			})
 			var ProgressBarBefore;
 			var ProgressBarDuring;
@@ -101,9 +112,9 @@
 			var videoLoadSwitch = 0;
 			var videoProgress;
 			
-			var shortYTLink;
+			var shortYTLink="'.$ytVidCode.'";
 			var tempOutputYoutubeLink;
-			var inputYTLink = "https://www.youtube.com/watch?v=yJDRop2ocFo";
+			var inputYTLink = "'.$ytLink.'";
 			var vidWidth=$("#responsiveVideoFrame").width();
 			var vidHeight=(vidWidth*0.5625);
 			
@@ -115,18 +126,18 @@
 				stretching: "fill",
 				image: "css/demo-video-dark.jpg",
 		    });
-			
-			// if (matchMedia('only screen and (max-width: 650px)').matches) {
+			"
+			// if (matchMedia("only screen and (max-width: 650px)").matches) {
 			//     jwplayer().load([{width: 960,height: 540}]);
 			// };
 			
 			jwplayer("videoPlaybackFrame").onPlay(function() {
-				document.getElementById('videoTimeline').style.display="";
+				document.getElementById("videoTimeline").style.display="";
 			});
 			
 			function initiateLiveVideoPlayer(){
 				
-				if ($( '#InputYouTubeLink' ).val() != "" && waitForUserSelection==0){
+				if ($( "#InputYouTubeLink" ).val() != "" && waitForUserSelection==0){
 					getQueryVariable();
 				}else if (shortYTLink = "" && waitForUserSelection==0) {
 					shortYTLink = "yJDRop2ocFo";
@@ -134,15 +145,15 @@
 				if (waitForUserSelection<1){
 				jwplayer("videoPlaybackFrame").load([{file:inputYTLink}]);
 				videoLoadSwitch=1;
-				document.getElementById('loadVideoButton').style.display ="none";
+				document.getElementById("loadVideoButton").style.display ="none";
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
-				document.getElementById('playPauseButton').style.display ="";
-				document.getElementById('videoTimeline').style.display="";
-				document.getElementById('editVis').style.width ="";
-				document.getElementById('postOutVis').style.width ="";
-				document.getElementById('inputRowOne').style.display="none";
-				document.getElementById('changeVideoButton').style.display="";
-				document.getElementById('videoInPoint').disabled=false;
+				document.getElementById("playPauseButton").style.display ="";
+				document.getElementById("videoTimeline").style.display="";
+				document.getElementById("editVis").style.width ="";
+				document.getElementById("postOutVis").style.width ="";
+				document.getElementById("inputRowOne").style.display="none";
+				document.getElementById("changeVideoButton").style.display="";
+				document.getElementById("videoInPoint").disabled=false;
 				
 				userEditCounter=0;
 				jwplayer("videoPlaybackFrame").play();
@@ -162,11 +173,11 @@
 				videoLoadSwitch=1;
 				userEditCounter=1;
 				document.getElementById("InTimeCode").value=inPoint;
-				document.getElementById('videoOutPoint').style.display="";
-				document.getElementById('videoInPoint').style.display="none";
-				document.getElementById('submitEdit').style.display="none";
-				document.getElementById('previewEdit').style.display="";
-				document.getElementById('videoOutPoint').disabled=false;
+				document.getElementById("videoOutPoint").style.display="";
+				document.getElementById("videoInPoint").style.display="none";
+				document.getElementById("submitEdit").style.display="none";
+				document.getElementById("previewEdit").style.display="";
+				document.getElementById("videoOutPoint").disabled=false;
 			};
 			
 			function videoOutPoint(){
@@ -174,9 +185,9 @@
 				videoLoadSwitch=1;
 				userEditCounter=2;
 				document.getElementById("OutTimeCode").value=outPoint;
-				document.getElementById('previewEdit').disabled=false;
-				document.getElementById('videoOutPoint').style.display="none";
-				document.getElementById('videoInPoint').style.display="";
+				document.getElementById("previewEdit").disabled=false;
+				document.getElementById("videoOutPoint").style.display="none";
+				document.getElementById("videoInPoint").style.display="";
 			};
 			
 			
@@ -190,31 +201,31 @@
 				ProgressBarBefore = ProgressBarBefore*100;
 				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
 				
-				document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
+				document.getElementById("preInVis").style.width =(ProgressBarBefore+"%");
 				
 				} else if (userEditCounter==1){
 					ProgressBarBefore = ((inPoint)/vidDuration);
 					ProgressBarBefore = ProgressBarBefore*100;
 					ProgressBarBefore = ProgressBarBefore.toPrecision(2);
-					document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
+					document.getElementById("preInVis").style.width =(ProgressBarBefore+"%");
 					
 					ProgressBarDuring = ((realVal-inPoint)/vidDuration);
 					ProgressBarDuring = ProgressBarDuring*100;
 					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
-					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
+					document.getElementById("editVis").style.width =(ProgressBarDuring+"%");
 					
-					document.getElementById('postOutVis').style.width ="";
+					document.getElementById("postOutVis").style.width ="";
 				} else if (userEditCounter==2){
 				ProgressBarDuring = ((outPoint-inPoint)/vidDuration);
 				ProgressBarDuring = ProgressBarDuring*100;
 				ProgressBarDuring = ProgressBarDuring.toPrecision(2);
-				document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
+				document.getElementById("editVis").style.width =(ProgressBarDuring+"%");
 				
 				ProgressBarAfter = ((realVal-outPoint)/vidDuration);
 				ProgressBarAfter = ProgressBarAfter*100;
 				ProgressBarAfter = ProgressBarAfter.toPrecision(2);
-				//$('#OutputYouTubeLink').html(progressBar1);
-				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
+				//$("#OutputYouTubeLink").html(progressBar1);
+				document.getElementById("postOutVis").style.width =(ProgressBarAfter+"%");
 				}
 			
 			if (videoLoadSwitch==5){
@@ -223,7 +234,6 @@
 				
 			}
 			}
-			return;
 			});
 			</script>
 		
@@ -244,12 +254,12 @@
 	  var videoLinkArray=[];
 	  var videoTitleArray=[];
 	  		var OAUTH2_SCOPES = [
-	  		  'https://www.googleapis.com/auth/youtube'
+	  		  "https://www.googleapis.com/auth/youtube"
 	  		];
 	  		function checkAuth() {
-	  		  gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
+	  		  gapi.client.setApiKey("AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y");
 	  		  gapi.auth.authorize({
-	  		    client_id: '321851057404-2pop70e54shcdv8kpcfud8fmaubo486v.apps.googleusercontent.com',
+	  		    client_id: "321851057404-2pop70e54shcdv8kpcfud8fmaubo486v.apps.googleusercontent.com",
 	  		    scope: OAUTH2_SCOPES,
 	  		    immediate: true
 	  		  });
@@ -259,8 +269,8 @@
 	  		  if (authResult && !authResult.error) {
 	  		    // Authorization was successful. Hide authorization prompts and show
 	  		    // content that should be visible after authorization succeeds.
-	  		    $('.pre-auth').hide();
-	  		    $('.post-auth').show();
+	  		    $(".pre-auth").hide();
+	  		    $(".post-auth").show();
 	  		    loadAPIClientInterfaces();
 			
 	  		  } else {
@@ -270,19 +280,19 @@
 	  	  // are required to use the Google APIs JS client. More info is available at
 	  	  // http://code.google.com/p/google-api-javascript-client/wiki/GettingStarted#Loading_the_Client
 	  	  function loadAPIClientInterfaces() {
-	  	    gapi.client.load('youtube', 'v3', function() {
+	  	    gapi.client.load("youtube", "v3", function() {
 	  	      handleAPILoaded();
 	  	    });
 	  	  }
 		
 	  		// After the API loads, call a function to enable the search box.
 	  		function handleAPILoaded() {
-	  		  $('#createLink').attr('disabled', false);
+	  		  $("#createLink").attr("disabled", false);
 		  
 	  		}
 
 			function getQueryVariable() {
-				var userInput=$( '#InputYouTubeLink' ).val();
+				var userInput=$( "#InputYouTubeLink" ).val();
 				var query;
 				var vars;
 				if (userInput.indexOf("youtube") > -1){
@@ -295,44 +305,44 @@
 			       }
 				shortYTLink = query;
 				
-				document.getElementById('ytVidCode').value=shortYTLink;
+				document.getElementById("ytVidCode").value=shortYTLink;
 				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
-				getYouTubeVideoIdData();
+				// getYouTubeVideoIdData();
 				waitForUserSelection=-2;
 			   }else if (userInput.indexOf("youtu.be") > -1){
 			   		vars = userInput.split( ".be/" );
 					query = vars[1].split("?");
 					shortYTLink = query[1];
-					document.getElementById('ytVidCode').value=shortYTLink;
+					document.getElementById("ytVidCode").value=shortYTLink;
 					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
-					getYouTubeVideoIdData();
+					// getYouTubeVideoIdData();
 					waitForUserSelection=-2;
 			   }else {
 				   waitForUserSelection=1;
 				   getYouTubeVideoSearchData();
-				   // alert("YouTube Link Error.  Preferably enter a YouTube link that starts with 'youtube.com/...' or 'youtu.be/...'");
+				   // alert("YouTube Link Error.  Preferably enter a YouTube link that starts with "youtube.com/..." or "youtu.be/..."");
 			   }
 			}
 	  		// Search for a specified string.
 	  		function getYouTubeVideoSearchData() {
-	  		  var searchTerm = $('#InputYouTubeLink').val();
+	  		  var searchTerm = $("#InputYouTubeLink").val();
 		  
 	  		  var request = gapi.client.youtube.search.list({
-	  			type: 'video',
-	  			// videoSyndicated: 'true',
+	  			type: "video",
+	  			// videoSyndicated: "true",
 	  			q: searchTerm,
-	  			part: 'snippet',
+	  			part: "snippet",
 	  		  });
 	  		  request.execute(function(response) {
 	  		    var str = JSON.stringify(response.result);
-	  		    $('#search-raw-data').html('<pre>' + str + '</pre>');
+	  		    $("#search-raw-data").html("<pre>" + str + "</pre>");
 			
 	  		  });
 	  		  setTimeout(function(){turnYouTubeDataIntoPresentableInformation()},315);
 	  		}
 	  		
 	  		function turnYouTubeDataIntoPresentableInformation() {
-	  			var searchResult = $('#search-raw-data').html();
+	  			var searchResult = $("#search-raw-data").html();
 				var queryMatch = searchResult.match(/videoId/g);
 	  			var maxQuery = queryMatch.length;
 	  			var query;
@@ -351,60 +361,56 @@
 	  		    }
 	  			query = searchResult.split("title");
 	    		query[1] = query[1].substr(3,65);
-	  			title = query[1].split('"');
+	  			title = query[1].split("&quot;");
 				videoTitleArray[1]=title[0];
 	  			document.getElementById("videoTitle"+[1]).innerHTML=(videoTitleArray[1]);
 	     		    for (var i=2;i<=maxQuery;i++) {
 	  					query[i].split("title");
 	     				query[i] = query[i].substr(3,65);
-	  					title = query[i].split('"');
+	  					title = query[i].split("&quot;");
 						videoTitleArray[i]=title[0];
 	     				document.getElementById("videoTitle"+[i]).innerHTML=(videoTitleArray[i]);
 	     		    }
 	  			document.getElementById("resultListing").style.display="";  
-	  			  // $('#search-results').html(value);
+	  			  // $("#search-results").html(value);
 	  		}
 	  		function getYouTubeVideoIdData() {
 	  		  // var videoId = shortYTLink;
-	  		  var request = gapi.client.youtube.videos.list({
-				  id: shortYTLink,
-	  			part: 'snippet',
+		  
+	  		  var request = gapi.client.youtube.search.list({
+	  			
+	  			part: "snippet",
 	  		  });
 	  		  request.execute(function(response) {
 	  		    var str = JSON.stringify(response.result);
-	  		    $('#search-raw-data').html('<pre>' + str + '</pre>');
-				var searchIdResult = document.getElementById("search-raw-data").innerHTML;
-				var query = searchIdResult.split("title");
-	    		query[1] = query[1].substr(3,65);
-	  			title = query[1].split('"');
-	  			document.getElementById("ytVideoTitle").value=(title[0]);
-	     		document.getElementById("video-title").innerHTML="<h3>"+title[0]+"</h3>";
+	  		    $("#search-raw-data").html("<pre>" + str + "</pre>");
+			
 	  		  });
-	  		  // setTimeout(function(){turnYtVideoIdDataIntoPresentableInformation()},315);
+	  		  setTimeout(function(){turnYtVideoIdDataIntoPresentableInformation()},315);
 	  		}
-	  		// function turnYtVideoIdDataIntoPresentableInformation() {
-// 	  			var searchResult = document.getElementById("search-raw-data").innerHTML;
-//
-// 	  			var query;
-// 				var title;
-// 				console.log(searchResult);
-// 	  			query = searchResult.split("title");
-//
-// 	    		query[1] = query[1].substr(3,65);
-// 	  			title = query[1].split('"');
-// 				videoTitleArray[1]=title;
-// 	  			document.getElementById("ytVideoTitle").value=(title);
-// 	     		document.getElementById("video-title").innerHTML="<h3>"+title+"</h3>";
-// 	  		}
+	  		function turnYtVideoIdDataIntoPresentableInformation() {
+	  			var searchResult = $("#search-raw-data").html();
+				var queryMatch = searchResult.match(/videoId/g);
+	  			var maxQuery = queryMatch.length;
+	  			var query;
+				var title;
+				
+	  			query = searchResult.split("title");
+	    		query[1] = query[1].substr(3,65);
+	  			title = query[1].split("&quot;");
+				// videoTitleArray[1]=title;
+	  			document.getElementById("ytVideoTitle").value=(title);
+	     		document.getElementById("video-title").innerHTML="<h3>"+title+"</h3>";
+	  		}
 			function assignSearchVideoPlayback(videoSearchNumber){
 				shortYTLink=videoLinkArray[videoSearchNumber];
 				waitForUserSelection=-1;
 				
-				document.getElementById('ytVidCode').value=shortYTLink;
+				document.getElementById("ytVidCode").value=shortYTLink;
 				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
-				document.getElementById('ytVideoTitle').value=(videoTitleArray[videoSearchNumber]);
-				document.getElementById('video-title').innerHTML="<h3>"+videoTitleArray[videoSearchNumber]+"</h3>";
-				document.getElementById('resultListing').style.display="none";
+				document.getElementById("ytVideoTitle").value=(videoTitleArray[videoSearchNumber]);
+				document.getElementById("video-title").innerHTML="<h3>"+videoTitleArray[videoSearchNumber]+"</h3>";
+				document.getElementById("resultListing").style.display="none";
 				initiateLiveVideoPlayer();
 			}
 	  	</script>
@@ -413,10 +419,10 @@
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
 		    <label for="InputYouTubeLink"></label>
-		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter Keyword Or YouTube Link" style="color:#000">
+		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick="checkAuth()" placeholder="Enter Keyword Or YouTube Link" style="color:#000" value="'.$ytLink.'">
 			<input id="videoLinkArray" type="text" style="display:none"/>
 				</div>
-				<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style="display:none"/>
+				<input type="text" name="ytVidCode" id="ytVidCode" value="'.$ytVidCode.'" style="display:none"/>
 				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
 				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
 				<input type="text" name="ytVideoTitle" id="ytVideoTitle" style="display:none"/>
@@ -521,7 +527,7 @@
 				
 			<div class ="row">
 			<div class="col-md-6 col-md-offset-3" style="display: none;" id="outputButtons">
-					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText('OutputYouTubeLink')">
+					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText("OutputYouTubeLink")">
 						<span class="glyphicon glyphicon-hand-up" aria-hidden="true"> </span><span> Select Link</span></button>
 					<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()">
 					<span class="glyphicon glyphicon-repeat" aria-hidden="true"> </span>
@@ -538,7 +544,7 @@
 		</div>
 			<script>
 				$(document).ready(function() {
-				    $('.commentarea').keydown(function(event) {
+				    $(".commentarea").keydown(function(event) {
 				        if (event.keyCode == 13) {
 							
 							initiateLiveVideoPlayer();
@@ -550,16 +556,16 @@
 				
 				function reloadVideoInput(){
 					// location.reload();
-					document.getElementById('InputYouTubeLink').value="";
-					document.getElementById('inputRowOne').style.display="";
-					document.getElementById('InputYouTubeLink').style.display="";
-					document.getElementById('changeVideoButton').style.display="none";
-					document.getElementById('videoTimeline').style.display="none";
-					document.getElementById('videoInPoint').disabled=true;
-					document.getElementById('videoOutPoint').disabled=true;
-					document.getElementById('submitEdit').style.display="none";
-					document.getElementById('previewEdit').style.display="";
-					document.getElementById('previewEdit').disabled=true;
+					document.getElementById("InputYouTubeLink").value="";
+					document.getElementById("inputRowOne").style.display="";
+					document.getElementById("InputYouTubeLink").style.display="";
+					document.getElementById("changeVideoButton").style.display="none";
+					document.getElementById("videoTimeline").style.display="none";
+					document.getElementById("videoInPoint").disabled=true;
+					document.getElementById("videoOutPoint").disabled=true;
+					document.getElementById("submitEdit").style.display="none";
+					document.getElementById("previewEdit").style.display="";
+					document.getElementById("previewEdit").disabled=true;
 					inPoint = 0;
 					outPoint = 0;
 					videoLoadSwitch=1;
@@ -571,31 +577,31 @@
 			
 			
 			function previewEdit(){
-				document.getElementById('submitEdit').style.display="";
-				document.getElementById('previewEdit').style.display="none";
+				document.getElementById("submitEdit").style.display="";
+				document.getElementById("previewEdit").style.display="none";
 				videoLoadSwitch=5;
 				userEditCounter=1;
-				document.getElementById('postOutVis').style.width="";
+				document.getElementById("postOutVis").style.width="";
 			}
 			function submitEdit(){
-				document.getElementById('outputLoadingBar').style.display ="";
+				document.getElementById("outputLoadingBar").style.display ="";
 				
-				$('#collapseAltLink').html(inputYTLink);
+				$("#collapseAltLink").html(inputYTLink);
 				
 				document.getElementById("createLink").click();
 				$("form").slideUp();
 				
-				//document.getElementById('videoPlayback').style.display ="";
-				document.getElementById('outputButtons').style.display ="";
+				//document.getElementById("videoPlayback").style.display ="";
+				document.getElementById("outputButtons").style.display ="";
 			}
 			</script>
 			
 			<script>
 			function backFunction(){
 				
-				//document.getElementById('videoPlayback').style.display ="none";
-				document.getElementById('outputButtons').style.display ="none";
-				document.getElementById('outputLoadingBar').style.display ="";
+				//document.getElementById("videoPlayback").style.display ="none";
+				document.getElementById("outputButtons").style.display ="none";
+				document.getElementById("outputLoadingBar").style.display ="";
 				$("form").slideDown();
 				
 			}
@@ -618,16 +624,20 @@
 			    };
 			</script>
 <img style="display:none" src="/css/hot-potato-functions-image.jpg" alt="" width="5" height="5" />
-
+</div>
 </body>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
 
   ga("create", "UA-57874990-5", "auto");
   ga("send", "pageview");
 
 </script>
-</html> 
+</html>';
+	
+}
+die();
+?>

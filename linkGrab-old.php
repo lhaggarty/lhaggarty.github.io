@@ -50,14 +50,15 @@ function grabLink (){
 			<div class="video-part" style="padding-bottom:20px">
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
-					<div class="well" id="youtube-rss-data" style="color: #000" onclick="getVideos()">'.$webpage.'</div>
+					<div class="well" id="youtube-rss-data" style="color: #000" onclick="getVideoIds()">'.$webpage.'</div>
 					</div>
 				</div>
 			</div>
 			<script>
 			rssFeed = document.getElementById("youtube-rss-data").innerHTML;
 			var links=[];
-			function getVideos(){
+			var titles=[];
+			function getVideoIds(){
 			if (rssFeed.indexOf("v=") > -1){
 				var queryMatch = rssFeed.match(/v=/g);
 	  			var maxQuery = queryMatch.length;
@@ -72,14 +73,43 @@ function grabLink (){
 		           // links[i] = query[1].split("&quot;");
 				   links[i] = query[i].substr(0,11);
 		       }
-			console.log(links);   
+		       for (var i=1;i<(maxQuery+1);i++) {
+				   links.splice(i,1);
+		       }
+			console.log(links);
+			   
 			// getYouTubeVideoIdData();
 			}
 			else {
 				console.log("nadda");
 			}
 			}
+			function getVideoTitles(){
+			if (rssFeed.indexOf("description") > -1){
+				var queryMatch = rssFeed.match(/title/g);
+	  			var maxQuery = queryMatch.length;
+				var vars;
+				var query;
+		       // vars = query[1].split("&");
+			   query = rssFeed.split( "&lt;p&gt;" );
+			   // links[1] = query[1].split("&quot;");
+			   vars = query[1].split( ". A" );
+			   titles[1]= vars[0];
+			   console.log(titles[1]);
+		       for (var i=2;i<(maxQuery+1/2);i++) {
+				   query[i].split( "&gt;p&gt;" );
+		           // links[i] = query[1].split("&quot;");
+				   vars = query[i].split( ". A" );
+				   titles[i] = vars[0];
+				   console.log(titles[i]);   
+		       }
 			
+			// getYouTubeVideoIdData();
+			}
+			else {
+				console.log("nadda");
+			}
+			}
 			</script>
 			</body>
 			</html>
