@@ -1,16 +1,15 @@
 @font-face {
     font-family: Harabara-Mais;
-    src: url(Roboto-Light.ttf);
+    src: url(Harabara-Mais.otf);
 }
 html, body  {
 	padding-top: 20px;
-	font-family: Roboto-Light !important;
+	font-family: Harabara-Mais !important;
 	
 }
 
 .navbar {
-	color: #fff;
-	background-color: #4c453b;
+	background-color: #fff;
 	
 }
 .nav-pills>li {
@@ -18,23 +17,23 @@ html, body  {
 }
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
-    color: #000;
-    background-color: #fff
+    color: #fff;
+    background-color: #4c453b
 }
 
-.nav-pills>li>a .blackImage {
+.nav-pills>li>a .whiteImage {
     display:none;
 }
-/*.nav-pills>li>a .whiteImage {
+/*.nav-pills>li>a .blackImage {
     display:inline-block;
 }*/
 .nav-pills>li>a {
-	color: #fff;
+	color: #000;
 }
 
 .nav-pills>li>a:focus, .nav-pills>li>a:hover {
-    color: #000;
-    background-color: #c0b4a2
+    color: #fff;
+    background-color: #b1a28b
 }
 .nav-pills>li>a .blackImage, .nav-pills>li>a .blackImage {
 	padding-top:0px;
@@ -45,24 +44,25 @@ html, body  {
 	
 }
 
-.nav-pills>li>a:focus .whiteImage, .nav-pills>li>a:hover .whiteImage {
-	display:none;
-}
-
-.nav-pills>li>a.active .whiteImage, .nav-pills>li.active>a .whiteImage {
+.nav-pills>li>a:focus .blackImage, .nav-pills>li>a:hover .blackImage {
 	display:none;
 }
 
 .nav-pills>li>a.active .blackImage, .nav-pills>li.active>a .blackImage {
+	display:none;
+}
+
+.nav-pills>li>a.active .whiteImage, .nav-pills>li.active>a .whiteImage {
 	display:inline;
 }
 
-.nav-pills>li>a:focus .blackImage, .nav-pills>li>a:hover .blackImage {
+.nav-pills>li>a:focus .whiteImage, .nav-pills>li>a:hover .whiteImage {
 	display:inline;
 }
 .navbar-default .navbar-toggle {
-    color: #fff
+    color: #000
 }
+
 
 
 .video-part {
@@ -90,11 +90,6 @@ html, body  {
 	color: #000;
 	
 }
-
-.video-part tr:focus, .video-part tr:hover {
-	color: #000;
-}
-
 a.howToGallery {
 	-webkit-transition-property: padding;
 	-webkit-transition-duration: 0.4s;
@@ -130,27 +125,9 @@ a.howToGallery {
 
 }
 
-#index-top-background {
-	
-}
-
-#index-cta-arrow{
-	background: url(curved-arrow-white.png) 20% 120%;
-	background-size: 5%;
-	background-repeat: no-repeat;
-}
-
-#videoPlayerButtons button.active, #videoPlayerButtons button:hover, #videoPlayerButtons button:focus {
-	color: #000;
-}
-
 #closing-window-intro{
 	background: url(closing-yt-video6.png)  no-repeat 50% -130%;
 	
-}
-#indexIntro {
-	background: url(sergeiEisenstein-05pct.png)  no-repeat 50% 10%;
-	background-size: 99%;
 }
 #uncutVideoIntro {
 	background: url(browse-original-videos.png)  no-repeat 5% 40%;
@@ -173,7 +150,7 @@ a.howToGallery {
 	color: #fff;
 }
 .bg-dark.focus, .bg-dark:focus, .bg-dark:hover {
-	background-color: #c0b4a2;
+	background-color: #b1a28b;
 	color: #fff;
 }
 .bg-dark:disabled {
@@ -188,7 +165,7 @@ a.howToGallery {
 }
 
 .bg-white.focus, .bg-white:focus, .bg-white.hover, .bg-white:hover {
-	background-color: #c0b4a2;
+	background-color: #b1a28b;
 	color: #fff;
 }
 .bg-white:focus .blackImage, .bg-white:hover .blackImage {

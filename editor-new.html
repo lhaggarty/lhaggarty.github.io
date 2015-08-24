@@ -2,7 +2,6 @@
 <html>
 		<head>
 			<title>Hot Potato Tool</title>
-			<meta charset="UTF-8">
 			<meta name="description" content="Hot Potato - The Online Video Editor. Try the tool and share your edits!  No rendering required.">
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -168,17 +167,11 @@
 				videoLoadSwitch=1;
 				userEditCounter=1;
 				document.getElementById("InTimeCode").value=inPoint;
-				document.getElementById('videoNoPoint').style.display="";
+				document.getElementById('videoOutPoint').style.display="";
 				document.getElementById('videoInPoint').style.display="none";
-				// document.getElementById('submitEdit').style.display="none";
-				// document.getElementById('previewEdit').style.display="";
+				document.getElementById('submitEdit').style.display="none";
+				document.getElementById('previewEdit').style.display="";
 				document.getElementById('videoOutPoint').disabled=false;
-				
-				setTimeout(function(){myTimer()},200);
-				function myTimer() {
-					document.getElementById('videoNoPoint').style.display="none";
-					document.getElementById('videoOutPoint').style.display="";
-				}
 			};
 			
 			function videoOutPoint(){
@@ -186,20 +179,9 @@
 				videoLoadSwitch=1;
 				userEditCounter=2;
 				document.getElementById("OutTimeCode").value=outPoint;
-				document.getElementById('submitEdit').disabled=false;
 				document.getElementById('previewEdit').disabled=false;
-				document.getElementById('previewEdit').style.visibility="";
 				document.getElementById('videoOutPoint').style.display="none";
-				document.getElementById('videoNoPoint').style.display="";
-				document.getElementById("submitEdit").className = "btn btn-warning";
-				document.getElementById("submitEdit").style.color="#000";
-				
-				setTimeout(function(){myTimer()},200);
-				function myTimer() {
-					document.getElementById('videoNoPoint').style.display="none";
-					document.getElementById('videoInPoint').style.display="";
-				}
-				
+				document.getElementById('videoInPoint').style.display="";
 			};
 			
 			
@@ -256,7 +238,7 @@
   			<div class="progress" id="videoTimeline" style="display:none">	  
   		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
   		</div>	
-  		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style=""> NEW VIDEO</div>
+  		  <div class="progress-bar progress-bar-striped" id="editVis" role="progressbar" style="background-color:#dab764"> NEW VIDEO</div>
     		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style="">
     			</div>
   		</div>
@@ -431,23 +413,36 @@
 			}
 	  	</script>
 		<div class="row">
-		<div class="col-md-6 col-md-offset-3" style="height:62.5px" id="inputRowOne"> 
-		<form role="form" action="linkBoi.php" method="get">
-			<div class="form-group">
-		    <label for="InputYouTubeLink"></label>
-		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter Keyword Or YouTube Link" style="color:#000">
-			<input id="videoLinkArray" type="text" style="display:none"/>
+			<div class="col-md-6 col-md-offset-3" style="height:62.5px" id="inputRowOne">
+				<div style="padding:0;" class="col-sm-3">
+					<div class="btn-group">
+				  <button type="button" class="btn btn-default bg-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    YouTube<span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <li><a href="#">YouTube</a></li>
+				    <li role="separator" class="divider"></li>
+				    <li><a href="#">Other</a></li>
+				  </ul>
+					</div>
 				</div>
-				<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style="display:none"/>
-				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
-				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
-				<input type="text" name="ytVideoTitle" id="ytVideoTitle" style="display:none"/>
-				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
-			</form>
-			<div class="well" id="search-raw-data" style="display:none;width:100px;height:100px"></div>
+			
+		
+				<div class="col-sm-9">
+					<form role="form" action="linkBoi.php" method="get">
+					<div class="form-group">
+				    	<input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter Keyword Or YouTube Link" style="color:#000">
+						</div>
+						<input type="text" name="ytVidCode" id="ytVidCode" value="OFu_cHz4_ww" style="display:none"/>
+						<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
+						<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
+						<input type="text" name="ytVideoTitle" id="ytVideoTitle" style="display:none"/>
+						<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
+					</form>
+					<div class="well" id="search-raw-data" style="display:none;width:100px;height:100px"></div>
+				</div></div>
 		</div>
 		
-	</div>
 		<div class="row">
 		<div class="col-sm-6 col-sm-offset-3" id="resultListing" style="padding-top:0.5%;display:none">
 		<table class="table table-hover">
@@ -511,31 +506,27 @@
 					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"> </span>
 				</button>
 				<button type="button" class="btn btn-default bg-dark" id="videoInPoint" onclick="videoInPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Begin your edit" disabled>
-					<img src="css/scissors-open-white.png"  width="15.1" height="14">
-					<span> CUT</span>
-				</button>
-				<button type="button" class="btn btn-default bg-dark" id="videoNoPoint" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Edit in progress" style="display:none">
 					<img src="css/scissors-closed-white.png"  width="15.1" height="14">
 					<span> CUT</span>
 				</button>
+				
 				<button type="button" class="btn btn-warning" id="videoOutPoint" onclick="videoOutPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="End your edit" style="display:none">
 					<img src="css/scissors-open-white.png" width="15.1" height="14">
 					<span> CUT</span>
 				</button>
-				
-				<button type="button" class="btn btn-default bg-dark" id="submitEdit" onclick="submitEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Creates a web link of the video edit" disabled>
+				<button type="button" class="btn btn-default bg-dark" id="previewEdit" onclick="previewEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Video will playback from the &quot;IN&quot; to the &quot;OUT&quot; time selected" disabled>
+					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
+					<span> DONE</span>
+				</button>
+				<button type="button" class="btn btn-warning" id="submitEdit" onclick="submitEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Creates a web link of the video edit" style="display:none">
 					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 					<span> SUBMIT</span>
 				</button>
 			
-			<button type="button" class="btn btn-default bg-dark col-xs-offset-4" id="previewEdit" onclick="previewEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Video will playback from the &quot;IN&quot; to the &quot;OUT&quot; time selected" style="visibility:hidden" disabled>
-				<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
-				<span> PREVIEW</span>
-			</button>
 			
 			<button type="button" class="btn btn-default bg-dark" id="changeVideoButton" onclick="reloadVideoInput()" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Change the video input source" style="display:none">
 				<span class="glyphicon glyphicon-refresh" aria-hidden="true"> </span>
-					<span> RESET</span>
+					<span> Reset</span>
 				</button>	
 			</div>
 		</div>

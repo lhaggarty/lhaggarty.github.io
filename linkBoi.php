@@ -102,20 +102,21 @@ function postToFeed(){
 					<span class="icon-bar"></span>
 		          </button>
 		        </div>
-		  	    <div class="navbar-collapse collapse">
-		  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-						<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+	    	        <div class="navbar-collapse collapse">
+	    	          <ul class="nav nav-pills" style="padding-left:4.7%;">
+	  				<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+			
+	  				<li role="presentation"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
+			
+	    	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+			
+	    				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
+	    				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
+	
+	    	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
 				
-						<li role="presentation"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
-		  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
-				
-		  				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
-		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
-		
-		  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
-  				
-		  	        </div><!--/.nav-collapse -->
-		  	      </div>
+	    	        </div><!--/.nav-collapse -->
+	    	      </div>
 	    
 		</div>
 		<div class="video-part">
@@ -132,7 +133,7 @@ function postToFeed(){
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 		<div class="progress">
-	  	<div class="progress-bar progress-bar-warning" id="progressBarVis" role="progressbar" style="">
+	  	<div class="progress-bar" id="progressBarVis" role="progressbar" style="background-color:#dab764">
 	</div>	
 		</div></div></div>
 				<script>
@@ -244,7 +245,7 @@ function postToFeed(){
 				}
 				
 				function backToTool(){
-					window.location="http://www.hotpotato.me";
+					window.location="http://www.hotpotato.me/editor.php";
 				
 				}
 				</script>
@@ -323,10 +324,9 @@ function templateVideoHTML() {
 	$html = '<!DOCTYPE html>
 	<html>
 		<head>
-			<title>Hot Potato Edit</title>
-			<meta name="description" content="Hot Potato - the online Video Editor. Try the tool and share your edits!  No rendering required.">
-			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
+			<title>'.$ytVideoTitle.'</title>
 			
+			<meta charset="UTF-8">
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 			<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
@@ -347,7 +347,7 @@ function templateVideoHTML() {
 			<link rel="icon" type="image/png" sizes="96x96" href="../css/favicon/favicon-96x96.png">
 			<link rel="icon" type="image/png" sizes="16x16" href="../css/favicon/favicon-16x16.png">
 			<link rel="manifest" href="../css/favicon/manifest.json">
-			
+			<meta property="og:image" content="https://i.ytimg.com/vi/'.$ytVidCode.'/mqdefault.jpg" />
 			<meta name="msapplication-TileImage" content="../css/favicon/ms-icon-144x144.png">
 		</head>
 		
@@ -364,20 +364,20 @@ function templateVideoHTML() {
 					<span class="icon-bar"></span>
 		          </button>
 		        </div>
-		  	        <div class="navbar-collapse collapse">
-		  	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-						<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+	      	        <div class="navbar-collapse collapse">
+	      	          <ul class="nav nav-pills" style="padding-left:4.7%;">
+	    				<li role="presentation"><a href="../index.html"><img src="../css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="../css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+			
+	    				<li role="presentation"><a href="../original-youtube-video-feed.php"><img src="../css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="../css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
+	      	            <li role="presentation"><a href="../editor.php"><img src="../css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="../css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+			
+	      				<li role="presentation"><a href="../feed.php"><img src="../css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="../css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
+	      				<li role="presentation"><a href="../sign-up.html">Sign Up</a></li>
+	
+	      	            <li role="presentation"><a href="../about.html">About &amp; Contact</a></li>
 				
-						<li role="presentation"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
-		  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
-				
-		  				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
-		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
-		
-		  	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
-  				
-		  	        </div><!--/.nav-collapse -->
-		  	      </div>
+	      	        </div><!--/.nav-collapse -->
+	      	      </div>
 			  </div>
 			  
 		<div class="video-part">
@@ -394,7 +394,7 @@ function templateVideoHTML() {
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 		<div class="progress">
-	  	<div class="progress-bar progress-bar-warning" id="progressBarVis" role="progressbar" style="">
+	  	<div class="progress-bar" id="progressBarVis" role="progressbar" style="background-color:#dab764">
 	</div>	
 		</div></div></div>
 		</div>
@@ -426,7 +426,6 @@ function templateVideoHTML() {
 		var vidDuration;
 		var inPoint ='.$videoStart.';
 		var outPoint ='.$videoStop.';
-		var vidDuration;
 		
 	    jwplayer("JWvid").setup({
 	        file: "'.$ytLink.'",
@@ -479,7 +478,7 @@ function templateVideoHTML() {
 		
 		if 	(userViewMode>-1){
 		ProgressBar = (relativePos/editEnd);
-		document.getElementById("progressBarVis").className="progress-bar progress-bar-warning";
+		document.getElementById("progressBarVis").className="progress-bar";
 		}
 		else if (userViewMode<0){
 		ProgressBar = (realVal/vidDuration);
@@ -567,9 +566,8 @@ fclose($create);
 echo '<!DOCTYPE html>
 <html>
 		<head>
-			<title>Hot Potato Tool</title>
-			<meta name="description" content="Hot Potato - The Online Video Editor. Try the tool and share your edits!  No rendering required.">
-			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
+			<title>'.$ytVideoTitle.'</title>
+			<meta charset="UTF-8">
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 			<link rel="stylesheet" type="text/css" href="css/style.css"/>
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
@@ -597,7 +595,7 @@ echo '<!DOCTYPE html>
 			<link rel="icon" type="image/png" sizes="96x96" href="css/favicon/favicon-96x96.png">
 			<link rel="icon" type="image/png" sizes="16x16" href="css/favicon/favicon-16x16.png">
 			<link rel="manifest" href="css/favicon/manifest.json">
-			
+			<meta property="og:image" content="https://i.ytimg.com/vi/'.$ytVidCode.'/mqdefault.jpg" />
 			<meta name="msapplication-TileImage" content="css/favicon/ms-icon-144x144.png">
 		</head>
 		<!-- 
@@ -626,7 +624,7 @@ echo '<!DOCTYPE html>
   	          <ul class="nav nav-pills" style="padding-left:4.7%;">
 				<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
 				
-				<li role="presentation"><a href="potatoes-to-cut.html"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> New YouTube Videos</a></li>
+				<li role="presentation"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
 				
   	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
 				
@@ -768,7 +766,7 @@ echo '<!DOCTYPE html>
 				document.getElementById("resubmitLink").click();
 			}
 			function backToTool(){
-				window.location="http://www.hotpotato.me";
+				window.location="http://www.hotpotato.me/editor.php";
 				
 			}
 			</script>
@@ -797,7 +795,7 @@ $(document).ready(function(){
         path:"js/ZeroClipboard.swf",
         copy:$("div#OutputYouTubeLink").text(),
 		afterCopy:function(){
-			setInterval(function(){myTimer()},500);
+			setTimeout(function(){myTimer()},500);
 			function myTimer() {
 			document.getElementById("copy-button-text").innerHTML=" Copied To Clipboard";
 			}

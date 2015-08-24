@@ -2,7 +2,7 @@
 if(isset($_POST['email'])) {
      
     // CHANGE THE TWO LINES BELOW
-    $email_to = "info@hotpotato.me";
+    $email_from = "info@hotpotato.me";
      
     $email_subject = "website html form submissions";
      
@@ -25,13 +25,13 @@ if(isset($_POST['email'])) {
      
     $name = $_POST['name']; // required
     
-    $email_from = $_POST['email']; // required
+    $email_to = $_POST['email']; // required
     
     $comments = $_POST['comments']; // required
      
     $error_message = "";
     $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
-  if(!preg_match($email_exp,$email_from)) {
+  if(!preg_match($email_exp,$email_to)) {
     $error_message .= 'The Email Address you entered does not appear to be valid.<br />';
   }
     $string_exp = "/^[A-Za-z .'-]+$/";
@@ -53,7 +53,7 @@ if(isset($_POST['email'])) {
      
     $email_message .= "Name: ".clean_string($name)."\n";
     
-    $email_message .= "Email: ".clean_string($email_from)."\n";
+    $email_message .= "Email: ".clean_string($email_to)."\n";
     
     $email_message .= "Comments: ".clean_string($comments)."\n";
      
@@ -64,14 +64,22 @@ if(isset($_POST['email'])) {
 	// Perform queries 
 	mysqli_query($conn,"SELECT * FROM email_form_comments");
 	mysqli_query($conn,"INSERT INTO email_form_comments (name,email,comments) 
-	VALUES ('".$name."','".$email_from."','".$comments."')");
+	VALUES ('".$name."','".$email_to."','".$comments."')");
 
 	mysqli_close($conn); 
-// create email headers
-$headers = 'From: '.$email_from."\r\n".
-'Reply-To: '.$email_from."\r\n" .
-'X-Mailer: PHP/' . phpversion();
-@mail($email_to, $email_subject, $email_message, $headers);  
+	// create email headers
+	$headers = 'From: '.$email_from."\r\n".
+				'Reply-To: '.$email_to."\r\n" .
+				'X-Mailer: PHP/' . phpversion();
+	
+	if(@mail($email_to, $email_subject, $email_message, $headers)){
+		echo 'Mail sent';
+	}
+	else {
+		echo 'Mail not sent';
+	}
+	
+}
 ?>
  
 <!-- place your own success html below -->
@@ -79,6 +87,6 @@ $headers = 'From: '.$email_from."\r\n".
 Thank you for contacting us. We will be in touch with you very soon.
  
 <?php
-}
+
 die();
 ?>

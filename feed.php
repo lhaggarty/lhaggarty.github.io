@@ -32,7 +32,7 @@ $i=0;
 	echo '<!DOCTYPE html>
 	<html>
 		<head>
-			<title>Feed</title>
+			<title>Hot Potato Edit Feed</title>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -73,8 +73,9 @@ $i=0;
 			    
 			</div>
 			<div class="video-part" style="padding-bottom:20px">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
+				<div class="row" style="padding-top:30px">
+					<div class="col-md-12" id="hpVideoFeedIntro">
+					<div class="col-md-6 col-md-offset-3" style="">
 						<div id="video-title0" style="text-align:center">
 							<h3>'.$videoTitle[0].'</h3>
 						</div>
@@ -82,15 +83,18 @@ $i=0;
 				
 				<div class="col-md-6 col-md-offset-3">
 					
-					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame0" onmouseover="changeCurrentVideo(0)" onclick="changeCurrentVideoClick()">
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame0" onmouseover="changeCurrentVideo(this.id)" onclick="changeCurrentVideoClick()">
 					<div id="videoPlaybackFrame0"></div>
 				</div>
+				<div class="col-sm-7 noLeftPadding">
+				<div class="well well-sm" id="outputLink0" style="color: #000;text-align:center">www.hotpotato.me/single_edits/'.$OutputLink[0].'</div></div>
 				<!-- <button type="button" class="btn btn-default" id="copy-button">
 				<span class="glyphicon glyphicon-link" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button> -->
-				<button type="button" class="btn btn-default bg-white" id="openLink0" onclick="openIndividualVideoPage(0)">
+				<button type="button" class="btn btn-default bg-white btn-mod" id="openLink0" onclick="openIndividualVideoPage(this.id)">
 					<span class="glyphicon glyphicon-file" aria-hidden="true"></span><span> Open</span>
 				</button>
 			</div></div>
+		</div>
 			
 			
 				<div class="row">
@@ -102,12 +106,14 @@ $i=0;
 				
 				<div class="col-md-6 col-md-offset-3">
 					
-					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame1" onmouseover="changeCurrentVideo(1)" onclick="changeCurrentVideoClick()">
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame1" onmouseover="changeCurrentVideo(this.id)" onclick="changeCurrentVideoClick()">
 					<div id="videoPlaybackFrame1"></div>
 				</div>
+				<div class="col-sm-7 noLeftPadding">
+				<div class="well well-sm" id="outputLink1" style="color: #000;text-align:center">www.hotpotato.me/single_edits/'.$OutputLink[1].'</div></div>
 				<!-- <button type="button" class="btn btn-default" id="copy-button">
 				<span class="glyphicon glyphicon-link" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button> -->
-				<button type="button" class="btn btn-default bg-white" id="openLink1" onclick="openIndividualVideoPage(1)">
+				<button type="button" class="btn btn-default bg-white btn-mod" id="openLink1" onclick="openIndividualVideoPage(this.id)">
 					<span class="glyphicon glyphicon-file" aria-hidden="true"></span><span> Open</span>
 				</button>
 			</div></div>
@@ -120,12 +126,14 @@ $i=0;
 				
 				<div class="col-md-6 col-md-offset-3" >
 					
-					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame2" onmouseover="changeCurrentVideo(2)" onclick="changeCurrentVideoClick()">
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame2" onmouseover="changeCurrentVideo(this.id)" onclick="changeCurrentVideoClick()">
 					<div id="videoPlaybackFrame2"></div>
 				</div>
+				<div class="col-sm-7 noLeftPadding">
+				<div class="well well-sm" id="outputLink2" style="color: #000;text-align:center">www.hotpotato.me/single_edits/'.$OutputLink[2].'</div></div>
 				<!-- <button type="button" class="btn btn-default" id="copy-button">
 				<span class="glyphicon glyphicon-link" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button> -->
-				<button type="button" class="btn btn-default bg-white" id="openLink2" onclick="openIndividualVideoPage(2)">
+				<button type="button" class="btn btn-default bg-white btn-mod" id="openLink2" onclick="openIndividualVideoPage(this.id)">
 					<span class="glyphicon glyphicon-file" aria-hidden="true"></span><span> Open</span>
 				</button>
 			</div></div>
@@ -184,13 +192,14 @@ $i=0;
 		    });
 			}
 		}
-		function changeCurrentVideo (currentVidNumber){
-			setInterval(function(){
-				if (currentVid!=currentVidNumber){	
-			currentVid=currentVidNumber;
-			document.getElementById("copyText").innerHTML="http://www.hotpotato.me/single_edits/"+OutputLink[currentVid];
-				}
-			},400);
+		function changeCurrentVideo (currentElementId){
+			var currentVidNumber;
+			currentVidNumber=currentElementId.split("Frame");
+			if (currentVid!=currentVidNumber[1]){	
+				currentVid=currentVidNumber[1];
+			
+			}
+			
 		}
 		function changeCurrentVideoClick (){
 			jwplayer("videoPlaybackFrame"+currentVid).onPlay(function (event){
@@ -225,9 +234,14 @@ $i=0;
 				}
 		    });
 		});
-		function openIndividualVideoPage(currentVidNumber){
+		function openIndividualVideoPage(currentElementId){
+			var currentVidNumber;
+			currentVidNumber=currentElementId.split("openLink");
+			if (currentVid!=currentVidNumber[1]){	
+				currentVid=currentVidNumber[1];
 			
-			window.location="http://www.hotpotato.me/single_edits/"+OutputLink[currentVidNumber];
+			}
+			window.location="http://www.hotpotato.me/single_edits/"+OutputLink[currentVid];
 		}
 		
 		function getYtShortcode(YtLink){
@@ -251,11 +265,13 @@ $i=0;
 				document.getElementById("video-title"+(j)).id="video-title"+(i);
 				document.getElementById("video-title"+(i)).innerHTML="<h3>"+title[i]+"</h3>";
 				document.getElementById("responsiveVideoFrame"+(j)).id="responsiveVideoFrame"+(i);
-				document.getElementById("responsiveVideoFrame"+(i)).onmouseover="changeCurrentVideo("+i+")";
 				jwplayer("videoPlaybackFrame"+j).remove();
 				document.getElementById("videoPlaybackFrame"+(j)).id="videoPlaybackFrame"+(i);
 				document.getElementById("openLink"+(j)).id="openLink"+(i);
-				document.getElementById("openLink"+(i)).onclick="openIndividualVideoPage("+i+")";
+				
+				document.getElementById("outputLink"+j).id="outputLink"+i;
+				document.getElementById("outputLink"+i).innerHTML="www.hotpotato.me/single_edits/"+OutputLink[i];
+				
 				j++;
 			    jwplayer("videoPlaybackFrame"+i).setup({
 			        file: OriginalLink[i],
@@ -288,11 +304,12 @@ $i=0;
 				document.getElementById("video-title"+(j)).id="video-title"+(i);
 				document.getElementById("video-title"+(i)).innerHTML="<h3>"+title[i]+"</h3>";
 				document.getElementById("responsiveVideoFrame"+(j)).id="responsiveVideoFrame"+(i);
-				document.getElementById("responsiveVideoFrame"+(i)).onmouseover="changeCurrentVideo("+i+")";
 				jwplayer("videoPlaybackFrame"+j).remove();
 				document.getElementById("videoPlaybackFrame"+(j)).id="videoPlaybackFrame"+(i);
 				document.getElementById("openLink"+(j)).id="openLink"+(i);
-				document.getElementById("openLink"+(i)).onclick="openIndividualVideoPage("+i+")";
+				
+				document.getElementById("outputLink"+j).id="outputLink"+i;
+				document.getElementById("outputLink"+i).innerHTML="www.hotpotato.me/single_edits/"+OutputLink[i];
 				j++;
 			}
 			initiateVideoPlayer();

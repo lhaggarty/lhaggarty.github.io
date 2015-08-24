@@ -7,8 +7,7 @@ function grabLink (){
 	echo '<!DOCTYPE html>
 	<html>
 		<head>
-			<title>Uncut Video</title>
-			<meta charset="UTF-8">
+			<title>Uncut Videos</title>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -36,7 +35,6 @@ function grabLink (){
     						<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
 						
     						<li role="presentation" class="active"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
-						
     		  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
 						
     		  				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
@@ -51,11 +49,11 @@ function grabLink (){
 			<div id="rss-info" style="display:none">
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
-					<form role="form" action="originalVideoFeedToEditor.php" method="get">
+					<form role="form" action="originalVideoFeed-to-editor.php" method="get">
 						<div class="form-group">
 						<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style=""/>
 						<input type="text" name="ytVideoTitle" id="ytVideoTitle" style=""/>
-						<input type="submit" class="button" name="originalVideo-to-editor" id="originalVideo-to-editor" style="display:none"/>
+						<input type="submit" class="button" name="originalVideo-to-editor-button" id="originalVideo-to-editor-button" style=""/>
 						</div>
 					</form>
 					<div class="well" id="youtube-rss-data" style="color: #000">'.$webpage.'</div>
@@ -127,26 +125,21 @@ function grabLink (){
 			
 			</script>
 			<div class="video-part" style="padding-bottom:20px">
-				
-				<div class="row" style="padding-top:30px">
-					<div class="col-md-12" id="uncutVideoIntro">
-					<div class="col-md-6 col-md-offset-3">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
 						<div id="video-title0" style="text-align:center">
 							<h3></h3>
 						</div>
 					</div>
-
-					<div class="col-md-6 col-md-offset-3">
-					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame0" onmouseout="changeCurrentVideo(this.id)" onclick="changeCurrentVideoClick()">
+				
+				<div class="col-md-6 col-md-offset-3">
+					
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame0" onclick="changeCurrentVideo(0)">
 					<div id="videoPlaybackFrame0"></div>
 				</div>
 			
-			
-			<button type="button" class="btn btn-default bg-white" id="launchEditor" onclick="launchEditor()">
-				<img src="css/cut-video-image-black.png" class="blackImage" alt="cut video" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImageAlt" alt="edit video" width="35.24" height="23.5" style="padding-top:2px">
-				<span> Edit Video</span></button>
-			</div></div>
-		</div>
+			</div>
+			</div>
 			
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
@@ -157,14 +150,10 @@ function grabLink (){
 				
 				<div class="col-md-6 col-md-offset-3">
 					
-					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame1" onmouseout="changeCurrentVideo(this.id)" onclick="changeCurrentVideoClick()">
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame1" onclick="changeCurrentVideo(1)">
 					<div id="videoPlaybackFrame1"></div>
-				</div>
-				<button type="button" class="btn btn-default bg-white" id="launchEditor" onclick="launchEditor()">
-					<img src="css/cut-video-image-black.png" class="blackImage" alt="cut video" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImageAlt" alt="edit video" width="35.24" height="23.5" style="padding-top:2px">
-					<span> Edit Video</span></button>
-			</div></div>
-			
+				</div></div>
+			</div>
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
 						<div id="video-title2" style="text-align:center">
@@ -174,13 +163,10 @@ function grabLink (){
 				
 				<div class="col-md-6 col-md-offset-3" >
 					
-					<div id="responsiveVideoFrame2" class="embed-responsive embed-responsive-16by9" onmouseout="changeCurrentVideo(this.id)" onclick="changeCurrentVideoClick()">
+					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame2" onclick="changeCurrentVideo(2)">
 					<div id="videoPlaybackFrame2"></div>
-				</div>
-				<button type="button" class="btn btn-default bg-white" id="launchEditor" onclick="launchEditor()">
-					<img src="css/cut-video-image-black.png" class="blackImage" alt="cut video" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImageAlt" alt="edit video" width="35.24" height="23.5" style="padding-top:2px">
-					<span> Edit Video</span></button>
-			</div></div>
+				</div></div>
+			</div>
 			
 			</div>	
 		<div class="dashboard-part">
@@ -202,6 +188,8 @@ function grabLink (){
 		var videoMultiple=0;
 		
 		var inputYTLink = "https://www.youtube.com/watch?v=yJDRop2ocFo";
+		var vidWidth=$("#responsiveVideoFrame").width();
+		var vidHeight=(vidWidth*0.5625);
 		
 		var vidWidth=$("#responsiveVideoFrame"+videoMultiple).width();
 		var vidHeight=(vidWidth*0.5625);
@@ -218,8 +206,7 @@ function grabLink (){
 		}
 		}
 		function initiateVideoPlayer(){
-			vidWidth=$("#responsiveVideoFrame"+videoMultiple).width();
-			vidHeight=(vidWidth*0.5625);
+			
 			for (var i=videoMultiple;i<(videoMultiple+3);i++){
 			// inputYTLink = OriginalLink[i];
 		    jwplayer("videoPlaybackFrame"+i).setup({
@@ -230,16 +217,9 @@ function grabLink (){
 		    });
 			}
 		}
-		function changeCurrentVideo (currentElementId){
-			var currentVidNumber;
-			currentVidNumber=currentElementId.split("Frame");
-			if (currentVid!=currentVidNumber[1]){	
-				currentVid=currentVidNumber[1];
+		function changeCurrentVideo (currentVidNumber){
 			
-			}
-			
-		}
-		function changeCurrentVideoClick (){
+			currentVid=currentVidNumber;
 			jwplayer("videoPlaybackFrame"+currentVid).onPause(function (event){
 				
 				// ProgressBar = (relativePos/editEnd);
@@ -252,7 +232,7 @@ function grabLink (){
 		function launchEditor(){
 			document.getElementById("ytVidCode").value=links[currentVid];
 			document.getElementById("ytVideoTitle").value=title[currentVid];
-			document.getElementById("originalVideo-to-editor").click();
+			document.getElementById("originalVideo-to-editor-button").click();
 		}
 		function previousPage(){
 			videoMultiple=videoMultiple-3;
@@ -270,7 +250,6 @@ function grabLink (){
 			        height: vidHeight,
 					stretching: "fill",
 			    });
-				
 			}
 			
 			document.getElementById("nextPage").style.visibility="visible";
@@ -287,7 +266,6 @@ function grabLink (){
 				document.getElementById("video-title"+(j)).id="video-title"+(i);
 				document.getElementById("video-title"+(i)).innerHTML="<h3>"+title[i]+"</h3>";
 				document.getElementById("responsiveVideoFrame"+(j)).id="responsiveVideoFrame"+(i);
-				// $( "div#responsiveVideoFrame"+i ).mouseout("changeCurrentVideo("+i+")");
 				jwplayer("videoPlaybackFrame"+j).remove();
 				document.getElementById("videoPlaybackFrame"+(j)).id="videoPlaybackFrame"+(i);
 				j++;
@@ -297,7 +275,6 @@ function grabLink (){
 			if (OriginalLink.length<=(videoMultiple+3)){
 			document.getElementById("nextPage").style.visibility="hidden";		
 			}
-			
 			
 		}
 		</script>	

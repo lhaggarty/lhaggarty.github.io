@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+		<head>
+			<title>Hot Potato Tool</title>
+			<meta name="description" content="Hot Potato The YouTube Video Editor. Try the tool and share your edits!">
+			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize">
+			<link rel="stylesheet" type="text/css" href="css/style.css"/>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+			
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
+	        
+	        <link type="text/css" href="css/bootstrap-timepicker.min.css" />
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	        
+			<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
+			<script src="https://apis.google.com/js/client.js"></script>
+			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
+			
+			<script>
+			function shortenURL(url){
+				
+	  		  	var tempShortLink=url;
+	    	    
+	    	        gapi.client.setApiKey('AIzaSyACLrao747cjeAEyK_xBMZNQKtiE2Cyo8Y');
+	    	        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+					//console.log("hello world!");
+	
+	    	      	function makeRequest(){
+	    	        var request = gapi.client.urlshortener.url.insert({
+	  				'longUrl': tempShortLink
+	    	        });
+	    	        request.then(function(response) {
+	    	          appendResults(response.result);
+					  console.log("success: "+response.result);
+	    	        }, function(reason) {
+	    	          console.log('Error: ' + reason.result.error.message);
+	    	        });
+					}
+	    	      function appendResults(text) {
+	    	        var results = document.getElementById('OutputYouTubeLink');
+	    	        //results.appendChild(document.createElement('P'));
+	    	        results.appendChild(document.createTextNode(text.id));
+	    			console.log('Data: ' + JSON.stringify(text));
+	    	      }
+			}
+			
+		  
+			</script>
+			
+			<link rel="apple-touch-icon" sizes="57x57" href="css/favicon/apple-icon-57x57.png">
+			<link rel="apple-touch-icon" sizes="60x60" href="css/favicon/apple-icon-60x60.png">
+			<link rel="apple-touch-icon" sizes="72x72" href="css/favicon/apple-icon-72x72.png">
+			<link rel="apple-touch-icon" sizes="76x76" href="css/favicon/apple-icon-76x76.png">
+			<link rel="apple-touch-icon" sizes="114x114" href="css/favicon/apple-icon-114x114.png">
+			<link rel="apple-touch-icon" sizes="120x120" href="css/favicon/apple-icon-120x120.png">
+			<link rel="apple-touch-icon" sizes="144x144" href="css/favicon/apple-icon-144x144.png">
+			<link rel="apple-touch-icon" sizes="152x152" href="css/favicon/apple-icon-152x152.png">
+			<link rel="apple-touch-icon" sizes="180x180" href="css/favicon/apple-icon-180x180.png">
+			<link rel="icon" type="image/png" sizes="192x192"  href="css/favicon/android-icon-192x192.png">
+			<link rel="icon" type="image/png" sizes="32x32" href="css/favicon/favicon-32x32.png">
+			<link rel="icon" type="image/png" sizes="96x96" href="css/favicon/favicon-96x96.png">
+			<link rel="icon" type="image/png" sizes="16x16" href="css/favicon/favicon-16x16.png">
+			<link rel="manifest" href="/manifest.json">
+			
+			<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+		</head>
+		<!-- 
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		  Button with data-target
+		</button>
+		<div class="collapse" id="collapseExample">
+		  <div class="well">
+		    ...
+		  </div>
+		</div>
+			-->
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="padding-left:4.7%">
+	      
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+	          </button>
+	        </div>
+	        <div class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li class="active"><a href="index.html">Home</a></li>
+				<li><a href="feed.html">Feed</a></li>
+				<li><a href="sign-up.html">Sign Up</a></li>
+				<li><a href="post-anonymously.html">Post Anonymously</a></li>
+				<li><a href="potatoes-to-cut.html">Need Some Potatoes To Cut?</a></li>
+	            <li><a href="about.html">About &amp; Contact</a></li>
+				<li><a href="but_why.html">But Why?</a></li>
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    
+	</div>
+			
+				<div class="row">
+					<div class="col-md-5">
+						<div class="intro-message" >
+							
+							<h3>
+								Try the tool and share your edits!
+							</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row col-md-offset-3" style="padding-top:1%;padding-left:0.5%">
+			 	<div id="videoPlaybackFrame"></div>
+			</div>
+			<script>
+			
+			var ProgressBarBefore;
+			var ProgressBarDuring;
+			var ProgressBarAfter;
+			var userEditCounter = 0;
+			var inPoint = 0;
+			var outPoint;
+			var vidDuration;
+			var videoLoadSwitch = 0;
+			
+			
+			function playPauseVideo(){
+			jwplayer("videoPlaybackFrame").play();
+			if (jwplayer("videoPlaybackFrame").getState()=="PLAYING"){
+				document.getElementById("playPauseSpan").className="glyphicon glyphicon-play";
+			} else if (jwplayer("videoPlaybackFrame").getState()=="PAUSED" || jwplayer("videoPlaybackFrame").getState()=="BUFFERING"){
+				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
+			}
+			};
+			function videoInPoint(){
+				inPoint = jwplayer("videoPlaybackFrame").getPosition();
+				outPoint = jwplayer("videoPlaybackFrame").getDuration();
+				userEditCounter=1;
+			};
+			
+			function videoOutPoint(){
+				outPoint= jwplayer("videoPlaybackFrame").getPosition();
+				userEditCounter=2;
+				
+			};
+			
+			
+			jwplayer("videoPlaybackFrame").onTime(function (event){
+				var realVal = event.position;
+				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
+				var videoProgress;
+				
+				if (userEditCounter==0){
+				ProgressBarBefore = (realVal/vidDuration);
+				ProgressBarBefore = ProgressBarBefore*100;
+				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
+				
+				document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
+				
+				} else if (userEditCounter==1){
+					ProgressBarBefore = ((inPoint)/vidDuration);
+					ProgressBarBefore = ProgressBarBefore*100;
+					ProgressBarBefore = ProgressBarBefore.toPrecision(2);
+					document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
+					
+					ProgressBarDuring = ((realVal-inPoint)/vidDuration);
+					ProgressBarDuring = ProgressBarDuring*100;
+					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
+					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
+					
+					
+					document.getElementById('postOutVis').style.width ="";
+				} else if (userEditCounter==2){
+				ProgressBarDuring = ((outPoint-inPoint)/vidDuration);
+				ProgressBarDuring = ProgressBarDuring*100;
+				ProgressBarDuring = ProgressBarDuring.toPrecision(2);
+				document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
+				
+				ProgressBarAfter = ((realVal-outPoint)/vidDuration);
+				ProgressBarAfter = ProgressBarAfter*100;
+				ProgressBarAfter = ProgressBarAfter.toPrecision(2);
+				//$('#OutputYouTubeLink').html(progressBar1);
+				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
+				}
+			});
+		
+			</script>
+		</div>
+		<div class="row">
+		<div class="col-md-6 col-md-offset-3" style="padding-top:1.5%;padding-right:5%">
+			<div class="progress" id="videoTimeline">	  
+		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
+		</div>	
+		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style="">
+			</div>
+  		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style="">
+  			</div>
+		</div>
+		  </div>
+	  </div>
+		
+		<div class="row">
+			<div class="col-md-offset-3" id="videoPlayerButtons">
+				<button type="button" class="btn btn-default btn-lg" onclick="playPauseVideo();">
+					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default btn-lg" onclick="videoInPoint()">
+					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> IN</span>
+					
+				</button>
+				<button type="button" class="btn btn-default btn-lg" onclick="videoOutPoint();updateEditTimecode()">
+					<span class="glyphicon glyphicon-scissors" aria-hidden="true"> OUT</span>
+					
+				</button>
+				<button type="button" class="btn btn-default btn-lg" onclick="submitEdit()">
+					<span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default btn-lg" onclick="initiateLiveVideoPlayer();">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+		
+		
+				<div class="col-md-8 col-md-offset-2" style="padding-top: 1%"> 
+				<form role="form">
+					<div class="form-group">
+						<div class ="row">
+							 
+				    <label for="InputYouTubeLink" style="color: #f9f9f9">Enter YouTube Video Link Here</label>
+				    <input type="text" class="form-control" id="InputYouTubeLink" placeholder="www.youtube.com..." >
+				  		
+						</div>
+					</div>
+				</form>
+				
+			<div class ="row" style="display: none; padding-top: 2%" id="outputButtons">
+					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText('OutputYouTubeLink')">Select Link</button>
+					<button type="button" class="btn btn-default" id="backButton" onclick="backFunction()">Reset</button>
+					<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseAlt" aria-expanded="false" aria-controls="collapseExample">Link Not Appearing?</button>
+				
+				<div class="collapse" id="collapseAlt">
+					<div class="well" id="collapseAltLink">
+						
+					</div>
+				</div>
+			</div>
+				<div class ="row" >
+						<div class="well" id="OutputYouTubeLink" ></div>
+				</div>
+			
+				</div>
+			
+			<script>
+				var shortYTLink;
+				var tempOutputYoutubeLink;
+				var inputYTLink;
+				
+				function initiateLiveVideoPlayer(){
+					shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
+					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
+					
+					tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink);
+					videoLoadSwitch=1;
+					
+				    jwplayer("videoPlaybackFrame").setup({
+				        file: inputYTLink,
+				        width: 640,
+				        height: 360,
+				    });
+				}
+			</script>
+			
+			<script>
+			
+			function updateEditTimecode(){
+				shortYTLink = getQueryVariable("v",$( '#InputYouTubeLink' ).val());
+				tempOutputYoutubeLink = ( "https://www.youtube.com/v/" + shortYTLink + '?start=' + inPoint + '&amp;end=' + secondsOut);
+				
+			}
+			function submitEdit(){
+				$('#OutputYouTubeLink').html('');
+				$('#collapseAltLink').html(tempOutputYoutubeLink);
+				
+				shortenURL(tempOutputYoutubeLink);
+				
+				$("form").slideUp();
+				
+				
+				//document.getElementById('videoPlayback').style.display ="";
+				document.getElementById('outputButtons').style.display ="";
+			}
+			
+			function getQueryVariable(name,url) {
+				   var query = url.split( "?" );
+			       var vars = query[1].split("&");
+			       for (var i=0;i<vars.length;i++) {
+			               var pair = vars[i].split("=");
+			               if(pair[0] == name){return pair[1];}
+			       }
+			       return(query);
+			}
+			</script>
+			
+			
+			
+			
+			<script>
+			function backFunction(){
+				displayVideoLimiter++;
+				//document.getElementById('videoPlayback').style.display ="none";
+				document.getElementById('outputButtons').style.display ="none";
+				$( '#OutputYouTubeLink' ).html("");
+				$("form").slideDown();
+				
+			}
+			</script>
+			<script type="text/javascript">
+			function selectText( containerid ) {
+
+			        var node = document.getElementById( containerid );
+
+			        if ( document.selection ) {
+			            var range = document.body.createTextRange();
+			            range.moveToElementText( node  );
+			            range.select();
+			        } else if ( window.getSelection ) {
+			            var range = document.createRange();
+			            range.selectNodeContents( node );
+			            window.getSelection().removeAllRanges();
+			            window.getSelection().addRange( range );
+			        }
+			    };
+			</script>
+
+</body>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57874990-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</html> 
