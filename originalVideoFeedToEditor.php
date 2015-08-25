@@ -269,7 +269,7 @@ function originalVideoToEditor(){
 		
   		<div class="row">
   		<div class="col-md-6 col-md-offset-3" style="">
-  			<div class="progress" id="videoTimeline" style="display:none">	  
+  			<div class="progress" id="videoTimeline" style="">	  
   		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
   		</div>	
   		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style=""> NEW VIDEO</div>
@@ -515,7 +515,7 @@ function originalVideoToEditor(){
 	
 		
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons">
+			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons" style="padding-bottom:20px">
 				<button type="button" class="btn btn-default bg-dark" id="loadVideoButton" onclick="initiateLiveVideoPlayer();" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Click here, or press enter, when you have a video input" style="display:none">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
@@ -525,15 +525,18 @@ function originalVideoToEditor(){
 					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"> </span>
 				</button>
 				<button type="button" class="btn btn-default bg-dark" id="videoInPoint" onclick="videoInPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Begin your edit">
-					<img src="css/scissors-open-white.png"  width="15.1" height="14">
+					<img src="css/scissors-open-white.png" class="whiteImage" width="15.1" height="14">
+					<img src="css/scissors-open-black.png" class="blackImage" width="15.1" height="14">
 					<span> CUT</span>
 				</button>
 				<button type="button" class="btn btn-default bg-dark" id="videoNoPoint" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Edit in progress" style="display:none">
-					<img src="css/scissors-closed-white.png"  width="15.1" height="14">
+					<img src="css/scissors-closed-white.png" class="whiteImage" width="15.1" height="14">
+					<img src="css/scissors-closed-black.png" class="blackImage" width="15.1" height="14">
 					<span> CUT</span>
 				</button>
 				<button type="button" class="btn btn-warning" id="videoOutPoint" onclick="videoOutPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="End your edit" style="display:none">
-					<img src="css/scissors-open-white.png" width="15.1" height="14">
+					<img src="css/scissors-open-white.png" class="whiteImage" width="15.1" height="14">
+					<img src="css/scissors-open-black.png" class="blackImage" width="15.1" height="14">
 					<span> CUT</span>
 				</button>
 				

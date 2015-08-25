@@ -35,7 +35,7 @@ html, body  {
 
 .nav-pills>li>a:focus, .nav-pills>li>a:hover {
     color: #000;
-    background-color: #c0b4a2
+    background-color: #dfd9d0
 }
 .nav-pills>li>a .blackImage, .nav-pills>li>a .blackImage {
 	padding-top:0px;
@@ -79,7 +79,7 @@ html, body  {
 
 .dashboard-part {
 	background-color: #fff;
-	padding-top: 1%;
+	padding-top: 5px;
 	padding-bottom: 50px;
 	color: #000;
 }
@@ -145,10 +145,6 @@ a.howToGallery {
 	background-repeat: no-repeat;
 }
 
-#videoPlayerButtons button.active, #videoPlayerButtons button:hover, #videoPlayerButtons button:focus {
-	color: #000;
-}
-
 #closing-window-intro{
 	background: url(closing-yt-video6.png)  no-repeat 50% -130%;
 	
@@ -177,14 +173,47 @@ a.howToGallery {
 	background-color: #4c453b;
 	color: #fff;
 }
-.bg-dark.focus, .bg-dark:focus, .bg-dark:hover {
-	background-color: #c0b4a2;
-	color: #fff;
-}
+
 .bg-dark:disabled {
 	background-color: #4c453b;
 	color: #fff;
 }
+.bg-dark:hover, .bg-dark:focus {
+	background-color: #dfd9d0;
+	color: #000;
+}
+.bg-dark.active {
+	background-color: #fff;
+	color: #000;
+}
+
+.bg-dark .whiteImage {
+	display:inline;
+}
+
+.bg-dark .blackImage {
+	display:none;
+}
+.bg-dark:focus .whiteImage, .bg-dark:hover .whiteImage {
+	display:none;
+}
+
+.bg-dark.active .whiteImage {
+	display:none;
+}
+
+.bg-dark.active .blackImage {
+	display:inline;
+}
+
+.bg-dark:focus .blackImage, .bg-dark:hover .blackImage {
+	display:inline;
+}
+
+.btn-warning>.whiteImage {
+	display:none;
+}
+
 .bg-white .whiteImageAlt {
 	display:none;
 }
@@ -193,7 +222,7 @@ a.howToGallery {
 }
 
 .bg-white.focus, .bg-white:focus, .bg-white.hover, .bg-white:hover {
-	background-color: #c0b4a2;
+	background-color: #dfd9d0;
 	color: #fff;
 }
 .bg-white:focus .blackImage, .bg-white:hover .blackImage {

@@ -510,16 +510,19 @@
 				<button type="button" class="btn btn-default bg-dark" id="playPauseButton" onclick="playPauseVideo();" style="display:none">
 					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"> </span>
 				</button>
-				<button type="button" class="btn btn-default bg-dark" id="videoInPoint" onclick="videoInPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Begin your edit" disabled>
-					<img src="css/scissors-open-white.png"  width="15.1" height="14">
+				<button type="button" class="btn btn-default bg-dark" id="videoInPoint" onclick="videoInPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Begin your edit">
+					<img src="css/scissors-open-white.png" class="whiteImage" width="15.1" height="14">
+					<img src="css/scissors-open-black.png" class="blackImage" width="15.1" height="14">
 					<span> CUT</span>
 				</button>
 				<button type="button" class="btn btn-default bg-dark" id="videoNoPoint" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Edit in progress" style="display:none">
-					<img src="css/scissors-closed-white.png"  width="15.1" height="14">
+					<img src="css/scissors-closed-white.png" class="whiteImage" width="15.1" height="14">
+					<img src="css/scissors-closed-black.png" class="blackImage" width="15.1" height="14">
 					<span> CUT</span>
 				</button>
 				<button type="button" class="btn btn-warning" id="videoOutPoint" onclick="videoOutPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="End your edit" style="display:none">
-					<img src="css/scissors-open-white.png" width="15.1" height="14">
+					<img src="css/scissors-open-white.png" class="whiteImage" width="15.1" height="14">
+					<img src="css/scissors-open-black.png" class="blackImage" width="15.1" height="14">
 					<span> CUT</span>
 				</button>
 				

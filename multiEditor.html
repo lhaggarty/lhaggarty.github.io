@@ -274,7 +274,7 @@
 	  <div class="dashboard-part" id="dashboard-part" style="padding-bottom:150px">
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3" style="" id="inputRowOne"> 
-		<form role="form" action="linkBoi.php" method="get">
+		<form role="form" action="multiEditTest.php" method="get">
 			<div class="form-group">
 				
 		    <label for="InputYouTubeLink">YouTube Video Link</label>
@@ -450,10 +450,10 @@
 				document.getElementById('postOutVis').style.width="";
 			}
 			function submitEdit(){
-				currentCut=0;
+				
 				document.getElementById('OutTimeCode').value=('"',outPoint[currentCut],'"');
 				document.getElementById('InTimeCode').value =('"',inPoint[currentCut],'"');
-				while (currentCut < (totalCutNumber+1)){
+				for (currentCut=0;currentCut<=(totalCutNumber+1);currentCut++) {
 					document.getElementById('OutTimeCode').value =($( '#OutTimeCode' ).val(),', "',outPoint[currentCut],'"');
 					document.getElementById('InTimeCode').value =($( '#InTimeCode' ).val(),', "',inPoint[currentCut],'"');
 					// document.getElementById('editLength').value =($( '#editLength' ).val(),'"',editLength[currentCut],'",');

@@ -33,6 +33,7 @@ $i=0;
 	<html>
 		<head>
 			<title>Hot Potato Edit Feed</title>
+			<meta charset="UTF-8">
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -90,7 +91,7 @@ $i=0;
 				<div class="well well-sm" id="outputLink0" style="color: #000;text-align:center">www.hotpotato.me/single_edits/'.$OutputLink[0].'</div></div>
 				<!-- <button type="button" class="btn btn-default" id="copy-button">
 				<span class="glyphicon glyphicon-link" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button> -->
-				<button type="button" class="btn btn-default bg-white btn-mod" id="openLink0" onclick="openIndividualVideoPage(this.id)">
+				<button type="button" class="btn btn-default bg-dark btn-mod" id="openLink0" onclick="openIndividualVideoPage(this.id)">
 					<span class="glyphicon glyphicon-file" aria-hidden="true"></span><span> Open</span>
 				</button>
 			</div></div>
@@ -113,7 +114,7 @@ $i=0;
 				<div class="well well-sm" id="outputLink1" style="color: #000;text-align:center">www.hotpotato.me/single_edits/'.$OutputLink[1].'</div></div>
 				<!-- <button type="button" class="btn btn-default" id="copy-button">
 				<span class="glyphicon glyphicon-link" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button> -->
-				<button type="button" class="btn btn-default bg-white btn-mod" id="openLink1" onclick="openIndividualVideoPage(this.id)">
+				<button type="button" class="btn btn-default bg-dark btn-mod" id="openLink1" onclick="openIndividualVideoPage(this.id)">
 					<span class="glyphicon glyphicon-file" aria-hidden="true"></span><span> Open</span>
 				</button>
 			</div></div>
@@ -133,7 +134,7 @@ $i=0;
 				<div class="well well-sm" id="outputLink2" style="color: #000;text-align:center">www.hotpotato.me/single_edits/'.$OutputLink[2].'</div></div>
 				<!-- <button type="button" class="btn btn-default" id="copy-button">
 				<span class="glyphicon glyphicon-link" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button> -->
-				<button type="button" class="btn btn-default bg-white btn-mod" id="openLink2" onclick="openIndividualVideoPage(this.id)">
+				<button type="button" class="btn btn-default bg-dark btn-mod" id="openLink2" onclick="openIndividualVideoPage(this.id)">
 					<span class="glyphicon glyphicon-file" aria-hidden="true"></span><span> Open</span>
 				</button>
 			</div></div>

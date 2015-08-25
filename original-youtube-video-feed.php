@@ -54,6 +54,7 @@ function grabLink (){
 					<form role="form" action="originalVideoFeedToEditor.php" method="get">
 						<div class="form-group">
 						<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style=""/>
+						<input type="text" name="VideoSource" id="VideoSource" value="1" style="display:none"/>
 						<input type="text" name="ytVideoTitle" id="ytVideoTitle" style=""/>
 						<input type="submit" class="button" name="originalVideo-to-editor" id="originalVideo-to-editor" style="display:none"/>
 						</div>
@@ -142,8 +143,8 @@ function grabLink (){
 				</div>
 			
 			
-			<button type="button" class="btn btn-default bg-white" id="launchEditor" onclick="launchEditor()">
-				<img src="css/cut-video-image-black.png" class="blackImage" alt="cut video" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImageAlt" alt="edit video" width="35.24" height="23.5" style="padding-top:2px">
+			<button type="button" class="btn btn-default bg-dark" id="launchEditor" onclick="launchEditor()">
+				<img src="css/cut-video-image-black.png" class="blackImage" alt="cut video" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="edit video" width="35.24" height="23.5" style="padding-top:2px">
 				<span> Edit Video</span></button>
 			</div></div>
 		</div>
@@ -160,8 +161,8 @@ function grabLink (){
 					<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame1" onmouseout="changeCurrentVideo(this.id)" onclick="changeCurrentVideoClick()">
 					<div id="videoPlaybackFrame1"></div>
 				</div>
-				<button type="button" class="btn btn-default bg-white" id="launchEditor" onclick="launchEditor()">
-					<img src="css/cut-video-image-black.png" class="blackImage" alt="cut video" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImageAlt" alt="edit video" width="35.24" height="23.5" style="padding-top:2px">
+				<button type="button" class="btn btn-default bg-dark" id="launchEditor" onclick="launchEditor()">
+					<img src="css/cut-video-image-black.png" class="blackImage" alt="cut video" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="edit video" width="35.24" height="23.5" style="padding-top:2px">
 					<span> Edit Video</span></button>
 			</div></div>
 			
@@ -177,8 +178,8 @@ function grabLink (){
 					<div id="responsiveVideoFrame2" class="embed-responsive embed-responsive-16by9" onmouseout="changeCurrentVideo(this.id)" onclick="changeCurrentVideoClick()">
 					<div id="videoPlaybackFrame2"></div>
 				</div>
-				<button type="button" class="btn btn-default bg-white" id="launchEditor" onclick="launchEditor()">
-					<img src="css/cut-video-image-black.png" class="blackImage" alt="cut video" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImageAlt" alt="edit video" width="35.24" height="23.5" style="padding-top:2px">
+				<button type="button" class="btn btn-default bg-dark" id="launchEditor" onclick="launchEditor()">
+					<img src="css/cut-video-image-black.png" class="blackImage" alt="cut video" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="edit video" width="35.24" height="23.5" style="padding-top:2px">
 					<span> Edit Video</span></button>
 			</div></div>
 			
