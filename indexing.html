@@ -76,7 +76,7 @@
 	    
 	</div>
 	<div class="video-part">
-	<div style="padding-bottom:100px">	
+	<div>	
 				<div class="row" id="indexIntro">
 					<div class="col-md-12">
 					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
@@ -89,7 +89,7 @@
 				
 				<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
 			 		
-					<img src="css/video-demo-transarency.png" class="img-responsive" id="demo-video-img">
+					<img src="css/video-demo-transarency.png" class="img-responsive" id="demo-video-img" onmouseenter="changeDemoImage(1)" onmouseout="changeDemoImage(0)" onclick="demoVideoChange(0)">
 					<div id="videoPlaybackFrame" style="display:none"></div>
 					</div>
 			</div></div>
@@ -109,6 +109,7 @@
 			var videoLoadSwitch = 0;
 			var videoProgress;
 			var waitForUserSelection=0;
+			var videoSource=1;
 			
 			var shortYTLink;
 			var tempOutputYoutubeLink;
@@ -116,6 +117,13 @@
 			var vidWidth=$("#responsiveVideoFrame").width();
 			var vidHeight=(vidWidth*0.5625);
 			
+			function changeDemoImage (demoImage){
+				if (demoImage==0){
+					document.getElementById("demo-video-img").src="css/video-demo-transarency.png";
+				}else if (demoImage==1){
+					document.getElementById("demo-video-img").src="css/video-demo-transarency-hover.png";
+				}
+			}
 			
 		    jwplayer("videoPlaybackFrame").setup({
 		        file: inputYTLink,
@@ -338,10 +346,17 @@
 					getYouTubeVideoIdData();
 					waitForUserSelection=-2;
 					launchEditor();
-			   }else {
+			   }else if (videoSource==1){
 				   waitForUserSelection=1;
 				   getYouTubeVideoSearchData();
 				   // alert("YouTube Link Error.  Preferably enter a YouTube link that starts with 'youtube.com/...' or 'youtu.be/...'");
+			   }else if (videoSource==0){
+				   shortYTLink = userInput;
+				   document.getElementById('ytVidCode').value=shortYTLink;
+				   document.getElementById("VideoSource").value=0;
+				   inputYTLink = (shortYTLink);
+				   waitForUserSelection=-2;
+				   launchEditor();
 			   }
 			}
 	  		// Search for a specified string.
@@ -439,8 +454,34 @@
 				launchEditor();
 			}
 			
+			function inputVideoType (inputType){
+				videoSource=inputType;
+				if (inputType==0){
+					document.getElementById("InputYouTubeLink").placeholder="Enter a Web Video Link";
+				}
+			}
+			
 			function launchEditor(){
 				document.getElementById("originalVideo-to-editor").click();
+			}
+			function demoVideoChange(videoValue){
+				
+				document.getElementById("videoPlaybackFrame").style.display="";
+				document.getElementById("demo-video-img").style.display="none";
+				var demoVideoValue;
+				if (videoValue==1){
+					demoVideoValue="https://www.youtube.com/watch?v=wl7Nh_aj6nA";
+				}else if (videoValue==2){
+					demoVideoValue="https://www.youtube.com/watch?v=YsjHGdZoiaY";
+				}else if (videoValue==3){
+					demoVideoValue="https://www.youtube.com/watch?v=jxsl17mH7hs";
+				}
+				if (videoValue>0){   
+				jwplayer("videoPlaybackFrame").load([{file:demoVideoValue}]);
+				}else if (videoValue==0){
+					jwplayer("videoPlaybackFrame").play();
+				}
+				
 			}
 	  	</script>
 		<div class="row" style="padding-bottom:15px" id="videoPlayerButtons">
@@ -451,9 +492,9 @@
 			    YouTube<span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li><a href="#">YouTube</a></li>
+			    <li><a href="javascript:inputVideoType(1)">YouTube</a></li>
 			    <li role="separator" class="divider"></li>
-			    <li><a href="#">Other</a></li>
+			    <li><a href="javascript:inputVideoType(0)">Other</a></li>
 			  </ul>
 				</div>
 		</div>
@@ -461,13 +502,13 @@
 		<form role="form" action="originalVideoFeedToEditor.php" method="get">
 			<div class="form-group">
 		    <!-- <label for="InputYouTubeLink"></label> -->
-		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter Keyword Or YouTube Link" style="color:#000">
+		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter Keyword Or Web Link" style="color:#000">
 			<input id="videoLinkArray" type="text" style="display:none"/>
 				</div>
 				<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style="display:none"/>
 				
 				<input type="text" name="ytVideoTitle" id="ytVideoTitle" style="display:none"/>
-				
+				<input type="text" name="VideoSource" id="VideoSource" value="1" style="display:none"/>
 				<input type="submit" class="button" name="originalVideo-to-editor" id="originalVideo-to-editor" style="display:none"/>
 			</form>
 			<div class="well" id="search-raw-data" style="display:none;width:100px;height:100px"></div>
@@ -536,26 +577,45 @@
 		<div class="col-md-8 col-md-offset-2"> 
 			
 		<div class="col-xs-3">
-			<a href="original-youtube-video-feed.php" class="howToGallery" style="" id="findVideo"><img src="css/find-video-white-resize.png" alt="find video" class="img-responsive howToImage" ></a>
+			<a href="javascript:demoVideoChange(1)" class="howToGallery" style="" id="findVideo" ><img src="css/find-video-white-resize.png" alt="find video" class="img-responsive howToImage" ></a>
 		</div>
 		<div class="col-xs-3">
-			<a href="editor.php" class="howToGallery" id="cutVideo" ><img src="css/cut-video-image-white.png" alt="cut video" class="img-responsive howToImage" ></a>	
+			<a href="javascript:demoVideoChange(2)" class="howToGallery" id="cutVideo" ><img src="css/cut-video-image-white.png" alt="cut video" class="img-responsive howToImage" ></a>	
 		</div>
 		<div class="col-xs-4">
-			<a href="feed.php" class="howToGallery" id="shareVideo" ><img src="css/share-image-white.png" alt="share video" class="img-responsive howToImage" ></a>	
+			<a href="javascript:demoVideoChange(3)" class="howToGallery" id="shareVideo"><img src="css/share-image-white.png" alt="share video" class="img-responsive howToImage" ></a>	
 		</div>
 		<div class="col-xs-1" style="padding-bottom:12%">
-			<a id="cutVideo" onclick="explainStep('cutVideo')">
+			
 			<img src="css/vertical-object.png" alt="" class="img-responsive howToImage hiddenFramingHelp" style="height:55px;">
-			</a>	
+				
 		</div>	
 		</div>
 	</div>
-	<div class="col-md-5 col-md-offset-3" style="text-align:center">
-		<h1>Edit a Video & Pass it Along</h1>
-	</div>	
+	
 	</div>
-	<div class="dashboard-part" style="padding-top:100px;padding-bottom:259px">	
+	<div class="dashboard-part" style="padding-top:10px;padding-bottom:259px">	
+		<div class="col-md-6 col-md-offset-3">
+			<h1 style="text-align:center;">Edit a Video & Pass it Along</h1>
+			<h1 style="text-align:center;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"> </span></h1>
+			
+			<h3 style="text-align:center">Works on any platform</h3>
+			<div class="col-xs-offset-3">
+			<img src="css/laptop-icon.png" style="width:23%">
+			<img src="css/mobile-icon.png" style="width:16%">
+			<img src="css/tablet-icon.png" style="width:19%">
+			</div>
+			
+			<h3 style="text-align:center">With <img src="css/YouTube-icon.png" style="width:26%"></h3>
+			
+			<h3 style="text-align:center">Compatability Coming Soon For</h3>
+			<div class="col-xs-offset-3">
+			<img src="css/vimeo-icon.jpg" style="width:27%;padding-bottom:8px">
+			<img src="css/mobile-icon.png" style="visibility:hidden;width:6%">
+			<img src="css/dropbox-horizontal-icon.png" style="width:33%">
+		</div>
+		</div>
+		
 		
 				<div class ="row">
 				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%;"> 

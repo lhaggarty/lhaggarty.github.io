@@ -23,11 +23,16 @@ function openLink(){
 }
 function postToFeed(){
 	$html=$_GET['hotPotatoLink'];
-	
+	$VideoSource = $_GET['VideoSource'];
 	$videoStart = $_GET['InTimeCode'];
 	$videoStop = $_GET['OutTimeCode'];
 	$ytVidCode = $_GET['ytVidCode'];
-	$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+	if ($VideoSource == 0){
+		$ytLink=$ytVidCode;
+	}else {
+		$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+	}
+	
 	$ytVideoTitle = $_GET['ytVideoTitle'];
 	$conn = mysqli_connect('141.117.161.98','leonhaggarty','mdm123','hotpotato');
 	if (mysqli_connect_errno()){
@@ -312,11 +317,16 @@ function generateRandomStringFiveC($length = 5) {
 }
 
 function templateVideoHTML() {
-	
+	$VideoSource = $_GET['VideoSource'];
 	$videoStart = $_GET['InTimeCode'];
 	$videoStop = $_GET['OutTimeCode'];
 	$ytVidCode = $_GET['ytVidCode'];
-	$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+	if ($VideoSource == 0){
+		$ytLink=$ytVidCode;
+	}else {
+		$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+	}
+	
 	$ytVideoTitle = $_GET['ytVideoTitle'];
 	$cutLength = $videoStop-$videoStart;
 	
@@ -518,10 +528,16 @@ function createLink(){
 $conn = mysqli_connect('141.117.161.98','leonhaggarty','mdm123','hotpotato');
 //$conn = mysqli_connect('mysql.1freehosting.com','u151108054_squir','squireprods2002','u151108054_1edit');
 
+$VideoSource = $_GET['VideoSource'];
+$ytVideoTitle = $_GET['ytVideoTitle'];
 $videoStart = $_GET['InTimeCode'];
 $videoStop = $_GET['OutTimeCode'];
 $ytVidCode = $_GET['ytVidCode'];
-$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+if ($VideoSource == 0){
+	$ytLink=$ytVidCode;
+}else {
+	$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+}
 $ytVideoTitle = $_GET['ytVideoTitle'];
 $html = generateRandomStringFiveC().'.html';
 

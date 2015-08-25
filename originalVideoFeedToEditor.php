@@ -5,9 +5,15 @@ if($_GET){
     }
 }
 function originalVideoToEditor(){
+	$VideoSource = $_GET['VideoSource'];
 	$ytVidCode = $_GET['ytVidCode'];
 	$ytVideoTitle = $_GET['ytVideoTitle'];
-	$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+	if ($VideoSource == 0){
+		$ytLink=$ytVidCode;
+	}else {
+		$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+	}
+	
 	
 	echo '<!DOCTYPE html>
 <html>
@@ -135,6 +141,10 @@ function originalVideoToEditor(){
 			
 			jwplayer("videoPlaybackFrame").onPlay(function() {
 				document.getElementById("videoTimeline").style.display="";
+				document.getElementById("loadVideoButton").style.display ="none";
+				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
+				document.getElementById("playPauseButton").style.display ="";
+				document.getElementById("changeVideoButton").style.display="";
 			});
 			
 			function initiateLiveVideoPlayer(){
@@ -156,7 +166,7 @@ function originalVideoToEditor(){
 				document.getElementById("inputRowOne").style.display="none";
 				document.getElementById("changeVideoButton").style.display="";
 				document.getElementById("videoInPoint").disabled=false;
-				
+
 				userEditCounter=0;
 				jwplayer("videoPlaybackFrame").play();
 			}
@@ -175,16 +185,16 @@ function originalVideoToEditor(){
 				videoLoadSwitch=1;
 				userEditCounter=1;
 				document.getElementById("InTimeCode").value=inPoint;
-				document.getElementById('videoNoPoint').style.display="";
-				document.getElementById('videoInPoint').style.display="none";
-				// document.getElementById('submitEdit').style.display="none";
-				// document.getElementById('previewEdit').style.display="";
-				document.getElementById('videoOutPoint').disabled=false;
+				document.getElementById("videoNoPoint").style.display="";
+				document.getElementById("videoInPoint").style.display="none";
+				// document.getElementById("submitEdit").style.display="none";
+				// document.getElementById("previewEdit").style.display="";
+				document.getElementById("videoOutPoint").disabled=false;
 				
 				setTimeout(function(){myTimer()},200);
 				function myTimer() {
-					document.getElementById('videoNoPoint').style.display="none";
-					document.getElementById('videoOutPoint').style.display="";
+					document.getElementById("videoNoPoint").style.display="none";
+					document.getElementById("videoOutPoint").style.display="";
 				}
 			};
 			
@@ -193,18 +203,18 @@ function originalVideoToEditor(){
 				videoLoadSwitch=1;
 				userEditCounter=2;
 				document.getElementById("OutTimeCode").value=outPoint;
-				document.getElementById('submitEdit').disabled=false;
-				document.getElementById('previewEdit').disabled=false;
-				document.getElementById('previewEdit').style.visibility="";
-				document.getElementById('videoOutPoint').style.display="none";
-				document.getElementById('videoNoPoint').style.display="";
+				document.getElementById("submitEdit").disabled=false;
+				document.getElementById("previewEdit").disabled=false;
+				document.getElementById("previewEdit").style.visibility="";
+				document.getElementById("videoOutPoint").style.display="none";
+				document.getElementById("videoNoPoint").style.display="";
 				document.getElementById("submitEdit").className = "btn btn-warning";
 				document.getElementById("submitEdit").style.color="#000";
 				
 				setTimeout(function(){myTimer()},200);
 				function myTimer() {
-					document.getElementById('videoNoPoint').style.display="none";
-					document.getElementById('videoInPoint').style.display="";
+					document.getElementById("videoNoPoint").style.display="none";
+					document.getElementById("videoInPoint").style.display="";
 				}
 				
 			};
@@ -433,17 +443,18 @@ function originalVideoToEditor(){
 				initiateLiveVideoPlayer();
 			}
 	  	</script>
-		<div class="row">
-		<div class="col-md-6 col-md-offset-3" style="height:62.5px" id="inputRowOne"> 
+		<div class="row" id="inputRowOne" style="display:none">
+		<div class="col-md-6 col-md-offset-3"> 
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
-		    <label for="InputYouTubeLink"></label>
+		    
 		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick="checkAuth()" placeholder="Enter Keyword Or YouTube Link" style="color:#000;display:none" value="'.$ytLink.'">
 			<input id="videoLinkArray" type="text" style="display:none"/>
 				</div>
 				<input type="text" name="ytVidCode" id="ytVidCode" value="'.$ytVidCode.'" style="display:none"/>
 				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
 				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
+				<input type="text" name="VideoSource" id="VideoSource" value="'.$VideoSource.'" style="display:none"/>
 				<input type="text" name="ytVideoTitle" id="ytVideoTitle" value="'.$ytVideoTitle.'" style="display:none"/>
 				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
 			</form>
@@ -505,15 +516,15 @@ function originalVideoToEditor(){
 		
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons">
-				<button type="button" class="btn btn-default bg-dark" id="loadVideoButton" onclick="initiateLiveVideoPlayer();" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Click here, or press enter, when you have a video input">
+				<button type="button" class="btn btn-default bg-dark" id="loadVideoButton" onclick="initiateLiveVideoPlayer();" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Click here, or press enter, when you have a video input" style="display:none">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
 				</button>
 				
-				<button type="button" class="btn btn-default bg-dark" id="playPauseButton" onclick="playPauseVideo();" style="display:none">
+				<button type="button" class="btn btn-default bg-dark" id="playPauseButton" onclick="playPauseVideo();">
 					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"> </span>
 				</button>
-				<button type="button" class="btn btn-default bg-dark" id="videoInPoint" onclick="videoInPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Begin your edit" disabled>
+				<button type="button" class="btn btn-default bg-dark" id="videoInPoint" onclick="videoInPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Begin your edit">
 					<img src="css/scissors-open-white.png"  width="15.1" height="14">
 					<span> CUT</span>
 				</button>
@@ -588,7 +599,7 @@ function originalVideoToEditor(){
 					document.getElementById("videoTimeline").style.display="none";
 					document.getElementById("videoInPoint").disabled=true;
 					document.getElementById("videoOutPoint").disabled=true;
-					document.getElementById("submitEdit").style.display="none";
+					// document.getElementById("submitEdit").style.display="none";
 					document.getElementById("previewEdit").style.display="";
 					document.getElementById("previewEdit").disabled=true;
 					inPoint = 0;

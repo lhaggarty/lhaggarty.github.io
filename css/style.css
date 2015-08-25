@@ -1,7 +1,8 @@
 @font-face {
-    font-family: Harabara-Mais;
+    font-family: Roboto-Light;
     src: url(Roboto-Light.ttf);
 }
+
 html, body  {
 	padding-top: 20px;
 	font-family: Roboto-Light !important;
@@ -64,12 +65,16 @@ html, body  {
     color: #fff
 }
 
+#progessBarVis {
+	background-color:#dab764;
+}
 
 .video-part {
 	background-color: #4c453b;
 	/*height: 120%;*/
 	background-size: cover;
 	color: #fff;
+	
 }
 
 .dashboard-part {
