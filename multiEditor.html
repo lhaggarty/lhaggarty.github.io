@@ -281,8 +281,8 @@
 		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" placeholder="www.youtube.com..." >
 				</div>
 				<input type="text" name="ytVidCode" id="ytVidCode" style="display:none"/>
-				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
-				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
+				<input type="text" name="InTimeCode" id="InTimeCode" style="">
+				<input type="text" name="OutTimeCode" id="OutTimeCode" style=""/>
 				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
 			</form>
 		</div>
@@ -450,22 +450,22 @@
 				document.getElementById('postOutVis').style.width="";
 			}
 			function submitEdit(){
-				
-				document.getElementById('OutTimeCode').value=('"',outPoint[currentCut],'"');
-				document.getElementById('InTimeCode').value =('"',inPoint[currentCut],'"');
-				for (currentCut=0;currentCut<=(totalCutNumber+1);currentCut++) {
-					document.getElementById('OutTimeCode').value =($( '#OutTimeCode' ).val(),', "',outPoint[currentCut],'"');
-					document.getElementById('InTimeCode').value =($( '#InTimeCode' ).val(),', "',inPoint[currentCut],'"');
+				document.getElementById('InTimeCode').value="";
+				document.getElementById('OutTimeCode').value="";
+				for (currentCut=0;currentCut<=(totalCutNumber);currentCut++) {
+					document.getElementById('InTimeCode').value =($( '#InTimeCode' ).val()+'"'+inPoint[currentCut]+'", ');
+					document.getElementById('OutTimeCode').value =($( '#OutTimeCode' ).val()+'"'+outPoint[currentCut]+'", ');
+					
 					// document.getElementById('editLength').value =($( '#editLength' ).val(),'"',editLength[currentCut],'",');
 // 					document.getElementById('cumulativeEditLength').value =($( '#cumulativeEditLength' ).val(),'"',cumulativeEditLength[currentCut],'",');
-					currentCut++;
 				}
 				
 				document.getElementById('outputLoadingBar').style.display ="";
 				
 				$('#collapseAltLink').html(inputYTLink);
 				
-				document.getElementById("createLink").click();
+				// document.getElementById("createLink").click();
+				
 				$("form").slideUp();
 				
 				//document.getElementById('videoPlayback').style.display ="";
