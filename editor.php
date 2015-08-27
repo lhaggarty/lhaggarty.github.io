@@ -442,6 +442,7 @@
 				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
 				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
 				<input type="text" name="ytVideoTitle" id="ytVideoTitle" style="display:none"/>
+				<input type="text" name="VideoSource" id="VideoSource" value="1" style="display:none"/>
 				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
 			</form>
 			<div class="well" id="search-raw-data" style="display:none;width:100px;height:100px"></div>

@@ -26,10 +26,11 @@ function postToFeed(){
 	$videoStart = $_GET['InTimeCode'];
 	$videoStop = $_GET['OutTimeCode'];
 	$ytVidCode = $_GET['ytVidCode'];
-	if ($VideoSource == 0){
-		$ytLink=$ytVidCode;
-	}else {
+	if ($VideoSource == 1){
 		$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+		
+	}else {
+		$ytLink=$ytVidCode;
 	}
 	
 	$ytVideoTitle = $_GET['ytVideoTitle'];
@@ -320,10 +321,11 @@ function templateVideoHTML() {
 	$videoStart = $_GET['InTimeCode'];
 	$videoStop = $_GET['OutTimeCode'];
 	$ytVidCode = $_GET['ytVidCode'];
-	if ($VideoSource == 0){
-		$ytLink=$ytVidCode;
-	}else {
+	if ($VideoSource == 1){
 		$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+		
+	}else {
+		$ytLink=$ytVidCode;
 	}
 	
 	$ytVideoTitle = $_GET['ytVideoTitle'];
@@ -532,10 +534,11 @@ $ytVideoTitle = $_GET['ytVideoTitle'];
 $videoStart = $_GET['InTimeCode'];
 $videoStop = $_GET['OutTimeCode'];
 $ytVidCode = $_GET['ytVidCode'];
-if ($VideoSource == 0){
-	$ytLink=$ytVidCode;
-}else {
+if ($VideoSource == 1){
 	$ytLink = 'https://www.youtube.com/watch?v='.$ytVidCode;
+	
+}else {
+	$ytLink=$ytVidCode;
 }
 $ytVideoTitle = $_GET['ytVideoTitle'];
 $html = generateRandomStringFiveC().'.html';

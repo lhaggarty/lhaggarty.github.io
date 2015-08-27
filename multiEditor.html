@@ -102,6 +102,7 @@
 			var videoLoadSwitch = 0;
 			var relativePos;
 			
+			
 			var shortYTLink;
 			var inputYTLink = "https://www.youtube.com/watch?v=yJDRop2ocFo";
 			var vidWidth=$("#responsiveVideoFrame").width();
@@ -283,7 +284,8 @@
 				<input type="text" name="ytVidCode" id="ytVidCode" style="display:none"/>
 				<input type="text" name="InTimeCode" id="InTimeCode" style="">
 				<input type="text" name="OutTimeCode" id="OutTimeCode" style=""/>
-				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
+				<input type="text" name="SingleOrMulti" id="SingleOrMulti" value="0"/>
+				<input type="submit" class="button" name="createLink" id="createLink" style=""/>
 			</form>
 		</div>
 	</div>
@@ -327,8 +329,8 @@
 				</button>
 			</div></div>
 			
-			<div class="row">
-			<div class="col-md-6 col-md-offset-3" id="editTimelineButtons" style="display:none">
+		<div class="row">
+		<div class="col-md-6 col-md-offset-3" id="editTimelineButtons" style="display:none">
 			<button type="button" class="btn btn-default" id="playbackAllEdits" onclick="playbackAllEdits();" style="">
 			<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 			<span> PLAY ALL</span>
@@ -411,6 +413,7 @@
 			function addEdit(){
 					totalCutNumber++;
 					currentCut++;
+					document.getElementById('SingleOrMulti').value=1;
 					document.getElementById('previousEdit').style.display="";
 					document.getElementById('lastEdit').style.display="";
 					document.getElementById('nextEdit').style.display="";
@@ -453,8 +456,8 @@
 				document.getElementById('InTimeCode').value="";
 				document.getElementById('OutTimeCode').value="";
 				for (currentCut=0;currentCut<=(totalCutNumber);currentCut++) {
-					document.getElementById('InTimeCode').value =($( '#InTimeCode' ).val()+'"'+inPoint[currentCut]+'", ');
-					document.getElementById('OutTimeCode').value =($( '#OutTimeCode' ).val()+'"'+outPoint[currentCut]+'", ');
+					document.getElementById('InTimeCode').value =($( '#InTimeCode' ).val()+'videoStart[]='+inPoint[currentCut]+'&');
+					document.getElementById('OutTimeCode').value =($( '#OutTimeCode' ).val()+'videoStop[]='+outPoint[currentCut]+'&');
 					
 					// document.getElementById('editLength').value =($( '#editLength' ).val(),'"',editLength[currentCut],'",');
 // 					document.getElementById('cumulativeEditLength').value =($( '#cumulativeEditLength' ).val(),'"',cumulativeEditLength[currentCut],'",');

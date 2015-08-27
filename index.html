@@ -60,11 +60,11 @@
 	        </div>
   	        <div class="navbar-collapse collapse">
   	          <ul class="nav nav-pills" style="padding-left:4.7%;">
-				<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
+				<li role="presentation" class="active"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
 			
 				<li role="presentation"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
 			
-  	            <li role="presentation" class="active"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
 			
   				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
   				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
@@ -336,7 +336,6 @@
 				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
 				getYouTubeVideoIdData();
 				waitForUserSelection=-2;
-				launchEditor();
 			   }else if (userInput.indexOf("youtu.be") > -1){
 			   		vars = userInput.split( ".be/" );
 					query = vars[1].split("?");
@@ -345,7 +344,7 @@
 					inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
 					getYouTubeVideoIdData();
 					waitForUserSelection=-2;
-					launchEditor();
+					
 			   }else if (videoSource==1){
 				   waitForUserSelection=1;
 				   getYouTubeVideoSearchData();
@@ -357,6 +356,7 @@
 				   inputYTLink = (shortYTLink);
 				   waitForUserSelection=-2;
 				   launchEditor();
+				   
 			   }
 			}
 	  		// Search for a specified string.
@@ -425,6 +425,7 @@
 	  			title = query[1].split('"');
 	  			document.getElementById("ytVideoTitle").value=(title[0]);
 	     		document.getElementById("video-title").innerHTML="<h3>"+title[0]+"</h3>";
+				launchEditor();
 	  		  });
 	  		  // setTimeout(function(){turnYtVideoIdDataIntoPresentableInformation()},315);
 	  		}
@@ -456,6 +457,7 @@
 			
 			function inputVideoType (inputType){
 				videoSource=inputType;
+				document.getElementById("VideoSource").value=inputType;
 				if (inputType==0){
 					document.getElementById("InputYouTubeLink").placeholder="Enter a Web Video Link";
 				}
@@ -486,6 +488,7 @@
 			function switchDemoImage(videoValue){
 				if (videoValue==0){
 					document.getElementById("demo-video-img").src="css/video-demo-no-transarency.png";
+					
 				}else if (videoValue==1){
 					document.getElementById("demo-video-img").src="css/finding-a-video.png";
 				}else if (videoValue==2){
@@ -510,7 +513,7 @@
 				</div>
 		</div>
 		<div class="col-xs-8" style="padding-left:75px">
-		<form role="form" action="originalVideoFeedToEditor.php" method="get">
+		<form role="form" action="indexToEditor.php" method="get">
 			<div class="form-group">
 		    <!-- <label for="InputYouTubeLink"></label> -->
 		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick='checkAuth()' placeholder="Enter Keyword Or Web Link" style="color:#000">
@@ -518,7 +521,7 @@
 				</div>
 				<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style="display:none"/>
 				
-				<input type="text" name="ytVideoTitle" id="ytVideoTitle" style="display:none"/>
+				<input type="text" name="ytVideoTitle" id="ytVideoTitle" value="" style="display:none"/>
 				<input type="text" name="VideoSource" id="VideoSource" value="1" style="display:none"/>
 				<input type="submit" class="button" name="originalVideo-to-editor" id="originalVideo-to-editor" style="display:none"/>
 			</form>
