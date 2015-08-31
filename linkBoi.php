@@ -743,13 +743,11 @@ echo '<!DOCTYPE html>
 		</div>
 	  
 	  			<div class = "row">
-				 
 				<div class="col-md-6 col-md-offset-3" style="">
 				
 						<div class="well" style="color:#000" id="OutputYouTubeLink">www.hotpotato.me/single_edits/'.$html.'</div>
 						
 				</div>
-				
 				</div>
 	</div>
 	<div class="dashboard-part">		

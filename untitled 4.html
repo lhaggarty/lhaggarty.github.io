@@ -27,7 +27,7 @@ function originalVideoToEditor(){
 			<link rel="stylesheet" type="text/css" href="css/style.css"/>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
 	        
-	        
+	        <script type="text/javascript" src="js/jquery.zclip.js"></script>
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			
@@ -213,6 +213,11 @@ function originalVideoToEditor(){
 			var vidWidth=$("#responsiveVideoFrame").width();
 			var vidHeight=(vidWidth*0.5625);
 			
+			$(function () {
+				for (var i=0;i<=outPoint.length;i++){
+					document.getElementById("cut"+i+"-tableElement").style.display="";
+				}
+			})
 			
 		    jwplayer("videoPlaybackFrame").setup({
 		        file: inputYTLink,
@@ -553,148 +558,67 @@ function originalVideoToEditor(){
 		    <input type="text" class="form-control commentarea" name="InputYouTubeLink" id="InputYouTubeLink" onclick="checkAuth()" placeholder="Enter Keyword Or YouTube Link" style="color:#000;display:none" value="'.$ytLink.'">
 			<input id="videoLinkArray" type="text" style="display:none"/>
 				</div>
+				<input type="text" name="hotPotatoLink" value="'.$html.'" id="hotPotatoLink" style="display:none"/>
 				<input type="text" name="ytVidCode" id="ytVidCode" value="'.$ytVidCode.'" style="display:none"/>
 				<input type="text" name="InTimeCode" id="InTimeCode" style="display:none">
 				<input type="text" name="OutTimeCode" id="OutTimeCode" style="display:none"/>
 				<input type="text" name="VideoSource" id="VideoSource" value="'.$VideoSource.'" style="display:none"/>
 				<input type="text" name="ytVideoTitle" id="ytVideoTitle" value="'.$ytVideoTitle.'" style="display:none"/>
 				<input type="text" name="SingleOrMulti" id="SingleOrMulti" value="0" style="display:none"/>
-				<input type="submit" class="button" name="createLink" id="createLink" style="display:none"/>
+				<input type="submit" class="button" name="resubmitLink" id="resubmitLink" style="display:none"/>
 			</form>
-			<div class="well" id="search-raw-data" style="display:none;width:100px;height:100px"></div>
+			
 		</div>
 		
 	</div>
-		<div class="row">
-		<div class="col-sm-6 col-sm-offset-3" id="resultListing" style="padding-top:0.5%;display:none">
-		<table class="table table-hover">
-		<tr onclick="assignSearchVideoPlayback(1)">
-			<td>
-				<img id="videoThumbnail1" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:88%"/>
-			</td>
-			
-			<td>
-				<h3 id="videoTitle1">Title</h3>
-			</td>
-		</tr>
-		<tr onclick="assignSearchVideoPlayback(2)">
-			<td>
-				<img id="videoThumbnail2" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:88%"/>
-			</td>
-			
-			<td>
-				<h3 id="videoTitle2">Title</h3>
-			</td>
-		</tr>
-		<tr onclick="assignSearchVideoPlayback(3)">
-			<td>
-				<img id="videoThumbnail3" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:88%"/>
-			</td>
-			
-			<td>
-				<h3 id="videoTitle3">Title</h3>
-			</td>
-		</tr>
-		<tr onclick="assignSearchVideoPlayback(4)">
-			<td>
-				<img id="videoThumbnail4" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:88%"/>
-			</td>
-			
-			<td>
-				<h3 id="videoTitle4">Title</h3>
-			</td>
-		</tr>
-		<tr onclick="assignSearchVideoPlayback(5)">
-			<td>
-				<img id="videoThumbnail5" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:88%"/>
-			</td>
-			
-			<td>
-				<h3 id="videoTitle5">Title</h3>
-			</td>
-		</tr>
-		</table>
-		</div></div>
+		
+		
+	<div class = "row">
+	<div class="col-md-6 col-md-offset-3" style="">
 	
+			<div class="well" style="color:#000" id="OutputYouTubeLink">www.hotpotato.me/single_edits/'.$html.'</div>
+			
+	</div>
+	</div>
 		
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons" style="padding-bottom:20px">
-				<button type="button" class="btn btn-default bg-dark" id="loadVideoButton" onclick="initiateLiveVideoPlayer();" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Click here, or press enter, when you have a video input" style="display:none">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
-					<span> LOAD</span>
-				</button>
-				
-				<button type="button" class="btn btn-default bg-dark" id="playPauseButton" onclick="playPauseVideo();">
-					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"> </span>
-				</button>
-				<button type="button" class="btn btn-default bg-dark" id="videoInPoint" onclick="videoInPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Begin your edit">
-					<img src="css/scissors-open-white.png" class="whiteImage" width="15.1" height="14">
-					<img src="css/scissors-open-black.png" class="blackImage" width="15.1" height="14">
-					<span> START</span>
-				</button>
-				<button type="button" class="btn btn-default bg-dark" id="videoNoPoint" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Edit in progress" style="display:none">
-					<img src="css/scissors-closed-white.png" class="whiteImage" width="15.1" height="14">
-					<img src="css/scissors-closed-black.png" class="blackImage" width="15.1" height="14">
-					<span> CUT</span>
-				</button>
-				<button type="button" class="btn btn-warning" id="videoOutPoint" onclick="videoOutPoint()" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="End your edit" style="color:#000;display:none">
-					<img src="css/scissors-open-white.png" class="whiteImage" width="15.1" height="14">
-					<img src="css/scissors-open-black.png" class="blackImage" width="15.1" height="14">
-					<span> END</span>
-				</button>
-				
-				<button type="button" class="btn btn-default bg-dark" id="submitEdit" onclick="submitEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Creates a web link of the video edit" disabled>
-					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
-					<span> SUBMIT</span>
-				</button>
-			
-			<button type="button" class="btn btn-default bg-dark col-xs-offset-4" id="previewEdit" onclick="previewEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Video will playback from the &quot;IN&quot; to the &quot;OUT&quot; time selected" style="visibility:hidden" disabled>
-				<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
-				<span> PREVIEW</span>
-			</button>
-			
-			<button type="button" class="btn btn-default bg-dark" id="changeVideoButton" onclick="reloadVideoInput()" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Change the video input source" style="display:none">
-				<span class="glyphicon glyphicon-refresh" aria-hidden="true"> </span>
-					<span> RESET</span>
-				</button>	
-			</div>
+				<button type="button" class="btn btn-default bg-dark" id="copy-button">
+				<span class="glyphicon glyphicon-link" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button>
+						<button type="button" class="btn btn-default bg-dark" name="openLink" id="openLink" onclick="openLink()">
+							<span class="glyphicon glyphicon-file" aria-hidden="true"> </span><span> Open</span></button>
+						<button type="button" class="btn btn-default bg-dark" name="postToFeed" id="postToFeed" onclick="postToFeed()">
+								<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"> </span><span> Post To Feed</span></button>
+						<button type="button" class="btn btn-default bg-dark" id="backToTool" name="backToTool" onclick="backToTool()">
+						<span class="glyphicon glyphicon-refresh" aria-hidden="true"> </span>
+							<span> Reset</span>
+						</button>
+						<button class="btn btn-default bg-dark" type="button" data-toggle="collapse" data-target="#collapseAlt" aria-expanded="false" aria-controls="collapseAlt">
+							<span class="glyphicon glyphicon-sort" aria-hidden="true"> </span>
+							<span> Embed</span>
+						</button>
+					<div class="collapse" id="collapseAlt" style="padding-top:1%">
+						<div class="well" id="collapseAltLink" style="color:#000">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://www.hotpotato.me/single_edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
+					</div>
 		</div>
-		
+		<script>
+		function openLink(){
+			window.location="http://www.hotpotato.me/single_edits/'.$html.'";
+		}
+		function postToFeed(){
+			document.getElementById("postToFeed").innerHTML=" Posted";
+			document.getElementById("resubmitLink").click();
+		}
+		function backToTool(){
+			window.location="http://www.hotpotato.me/editor.php";
+			
+		}
+		</script>
 		</div>
 		<div class="dashboard-part" style="padding-bottom:259px">
-			<div class ="row">
-			<div class="col-md-6 col-md-offset-3" style="padding-top: 1%;"> 
-				<div class="progress-bar progress-bar-warning progress-bar-striped active" id="outputLoadingBar" role="progressbar" style="width:100%;display:none">EXPORTING</div>
-			</div></div>
+			
 				
-			<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="col-xs-1" style="padding:0px">
-				<button type="button" class="btn btn-default bg-dark" id="addEdit" onclick="addEdit();" style="visibility:hidden">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				<span> CUT</span>
-				</button>
-			</div>
-				<div id="editTimelineButtons" style="display:none">
-				<button type="button" class="btn btn-default bg-dark" id="playbackAllEdits" onclick="playbackAllEdits();" style="">
-				<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-				<span> PLAY ALL EDITS</span>
-				</button>
-				</div>
-				<!-- <button type="button" class="btn btn-default bg-dark" id="previousEdit" onclick="previousEdit();" style="">
-				<span class="glyphicon glyphicon-import" aria-hidden="true"></span>
-				<span id="previousEditText"> PREVIOUS CUT</span>
-				</button>
-				<button type="button" class="btn btn-default bg-dark" id="nextEdit" onclick="nextEdit();" style="">
-				<span class="glyphicon glyphicon-export" aria-hidden="true"></span>
-				<span id="nextEditText"> NEXT CUT</span>
-				</button>
-				<button type="button" class="btn btn-default bg-dark" id="lastEdit" onclick="lastEdit();" style="">
-				<span class="glyphicon glyphicon-object-align-right" aria-hidden="true"></span>
-				<span> LAST CUT</span>
-				</button> -->
-			</div>
-			</div>
+			
 				
 			<div class ="row">
 			<div class="col-md-6 col-md-offset-3" style="display: none;" id="outputButtons">
@@ -724,6 +648,20 @@ function originalVideoToEditor(){
 				         }
 				    });
 				});
+				
+				$(document).ready(function(){				
+				    $("button#copy-button").zclip({
+				        path:"js/ZeroClipboard.swf",
+				        copy:$("div#OutputYouTubeLink").text(),
+						afterCopy:function(){
+							setTimeout(function(){myTimer()},500);
+							function myTimer() {
+							document.getElementById("copy-button-text").innerHTML=" Copied To Clipboard";
+							}
+						}
+				    });
+				});
+				
 				function assignVideoPlayback (editNumber){
 					currentCut=editNumber;
 					userEditCounter=1;
