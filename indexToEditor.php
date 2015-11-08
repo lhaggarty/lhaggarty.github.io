@@ -32,7 +32,7 @@ function originalVideoToEditor(){
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			
 			<script src="https://apis.google.com/js/client.js"></script>
-			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
+			<script src="http://content.jwplatform.com/libraries/FxXAImPG.js"></script>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			
 			
@@ -83,7 +83,7 @@ function originalVideoToEditor(){
 						
   						<li role="presentation"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
 						
-  		  	            <li role="presentation" class="active"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+  		  	            <!-- <li role="presentation" class="active"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li> -->
 						
   		  				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
   		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
@@ -94,7 +94,7 @@ function originalVideoToEditor(){
   		  	      </div>
 	    
 	</div>
-	<div class="video-part">		
+	<div class="video-part" style="overflow-x:hidden">		
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
 					<div id="video-title" style="text-align:center">
@@ -618,7 +618,7 @@ function originalVideoToEditor(){
 	
 		
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons" style="padding-bottom:20px">
+			<div class="col-md-6 col-md-offset-3" id="videoPlayerButtons" style="padding-bottom:40px">
 				<button type="button" class="btn btn-default bg-dark" id="loadVideoButton" onclick="initiateLiveVideoPlayer();" data-toggle="tooltip" data-placement="bottom" data-delay="400" title="Click here, or press enter, when you have a video input" style="display:none">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
@@ -675,7 +675,7 @@ function originalVideoToEditor(){
 				<span> CUT</span>
 				</button>
 			</div>
-				<div id="editTimelineButtons" style="display:none">
+				<div id="editTimelineButtons" style="padding-left:72px;display:none">
 				<button type="button" class="btn btn-default bg-dark" id="playbackAllEdits" onclick="playbackAllEdits();" style="">
 				<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 				<span> PLAY ALL EDITS</span>
@@ -745,6 +745,7 @@ function originalVideoToEditor(){
 					// document.getElementById("submitEdit").style.display="none";
 					document.getElementById("previewEdit").style.display="";
 					document.getElementById("previewEdit").disabled=true;
+					document.getElementById("SingleOrMulti").value=0;
 					inPoint = [];
 					outPoint = [];
 					videoLoadSwitch=1;

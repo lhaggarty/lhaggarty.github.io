@@ -146,11 +146,11 @@ a.howToGallery {
 }
 
 #closing-window-intro{
-	background: url(closing-yt-video6.png)  no-repeat 50% -130%;
+	background: url(closing-yt-video6.png) no-repeat 50% -130%;
 	
 }
 #indexIntro {
-	background: url(sergeiEisenstein-05pct.png)  no-repeat 50% 10%;
+	background: url(sergeiEisenstein-05pct.png) no-repeat fixed 50% 5%;
 	background-size: 99%;
 }
 #uncutVideoIntro {

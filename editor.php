@@ -7,8 +7,8 @@
 			<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
-	        
-	        
+
+
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			<link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -16,7 +16,7 @@
 			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<meta property="og:image" content="http://www.hotpotato.me/css/web-thumbnail.png"/>
-			
+
 			<link rel="apple-touch-icon" sizes="57x57" href="css/favicon/apple-icon-57x57.png">
 			<link rel="apple-touch-icon" sizes="60x60" href="css/favicon/apple-icon-60x60.png">
 			<link rel="apple-touch-icon" sizes="72x72" href="css/favicon/apple-icon-72x72.png">
@@ -31,10 +31,10 @@
 			<link rel="icon" type="image/png" sizes="96x96" href="css/favicon/favicon-96x96.png">
 			<link rel="icon" type="image/png" sizes="16x16" href="css/favicon/favicon-16x16.png">
 			<link rel="manifest" href="css/favicon/manifest.json">
-			
+
 			<meta name="msapplication-TileImage" content="css/favicon/ms-icon-144x144.png">
 		</head>
-		<!-- 
+		<!--
 		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 		  Button with data-target
 		</button>
@@ -45,9 +45,9 @@
 		</div>
 			-->
 <body>
-	
+
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="padding-left:4.7%">
-	      
+
 	        <div class="navbar-header" style="height:30px">
 	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 	            <span class="sr-only">Toggle navigation</span>
@@ -61,35 +61,35 @@
   	        <div class="navbar-collapse collapse">
   	          <ul class="nav nav-pills" style="padding-left:4.7%;">
 				<li role="presentation"><a href="index.html"><img src="css/hot-potato-black-text-with-logo.png" class="blackImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"><img src="css/hot-potato-white-text-with-logo.png" class="whiteImage" alt="Hot Potato" width="101.48" height="22" style="padding-bottom:0px;"></a></li>
-			
+
 				<li role="presentation"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
-			
-  	            <li role="presentation" class="active"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
-			
+
+  	            <!-- <li role="presentation" class="active"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li> -->
+
   				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
   				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
-	
+
   	            <li role="presentation"><a href="about.html">About &amp; Contact</a></li>
-				
+
   	        </div><!--/.nav-collapse -->
   	      </div>
-	    
+
 	</div>
-	<div class="video-part">		
+	<div class="video-part" style="overflow-x:hidden">
 				<div class="row">
 					<div class="col-md-12" id="editorIntro">
 					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
 						<div id="video-title" style="text-align:center">
-							
+
 						</div>
 					</div>
-				
+
 			<div class="col-md-6 col-md-offset-3">
 				<div class ="embed-responsive embed-responsive-16by9" id="responsiveVideoFrame">
 			 	<div id="videoPlaybackFrame"></div></div>
 			</div></div>
 			</div>
-			
+
 			<script>
 			$(function () {
 				$('[data-toggle="tooltip"]').tooltip();
@@ -104,14 +104,14 @@
 			var videoLoadSwitch = 0;
 			var videoProgress;
 			var waitForUserSelection=0;
-			
+
 			var shortYTLink;
 			var tempOutputYoutubeLink;
 			var inputYTLink = "https://www.youtube.com/watch?v=OFu_cHz4_ww";
 			var vidWidth=$("#responsiveVideoFrame").width();
 			var vidHeight=(vidWidth*0.5625);
-			
-			
+
+
 		    jwplayer("videoPlaybackFrame").setup({
 		        file: inputYTLink,
 		        width: vidWidth,
@@ -119,23 +119,23 @@
 				stretching: "fill",
 				image: "css/demo-video-dark.jpg",
 		    });
-			
+
 			// if (matchMedia('only screen and (max-width: 650px)').matches) {
 			//     jwplayer().load([{width: 960,height: 540}]);
 			// };
-			
+
 			jwplayer("videoPlaybackFrame").onPlay(function() {
-				
+
 			});
-			
+
 			function initiateLiveVideoPlayer(){
-				
+
 				if ($( '#InputYouTubeLink' ).val() != "" && waitForUserSelection==0){
 					getQueryVariable();
 					document.getElementById('videoTimeline').style.display="";
 				}else if (shortYTLink = "" && waitForUserSelection==0) {
 					shortYTLink = "OFu_cHz4_ww";
-					
+
 				}
 				if (waitForUserSelection<1){
 				jwplayer("videoPlaybackFrame").load([{file:inputYTLink}]);
@@ -143,18 +143,18 @@
 				document.getElementById('loadVideoButton').style.display ="none";
 				document.getElementById("playPauseSpan").className="glyphicon glyphicon-pause";
 				document.getElementById('playPauseButton').style.display ="";
-				
+
 				document.getElementById('editVis').style.width ="";
 				document.getElementById('postOutVis').style.width ="";
 				document.getElementById('inputRowOne').style.display="none";
 				document.getElementById('changeVideoButton').style.display="";
 				document.getElementById('videoInPoint').disabled=false;
-				
+
 				userEditCounter=0;
 				jwplayer("videoPlaybackFrame").play();
 			}
 			};
-			
+
 			function playPauseVideo(){
 			jwplayer("videoPlaybackFrame").play();
 			if (jwplayer("videoPlaybackFrame").getState()=="PLAYING"){
@@ -173,14 +173,14 @@
 				// document.getElementById('submitEdit').style.display="none";
 				// document.getElementById('previewEdit').style.display="";
 				document.getElementById('videoOutPoint').disabled=false;
-				
+
 				setTimeout(function(){myTimer()},200);
 				function myTimer() {
 					document.getElementById('videoNoPoint').style.display="none";
 					document.getElementById('videoOutPoint').style.display="";
 				}
 			};
-			
+
 			function videoOutPoint(){
 				outPoint= jwplayer("videoPlaybackFrame").getPosition();
 				videoLoadSwitch=1;
@@ -193,69 +193,69 @@
 				document.getElementById('videoNoPoint').style.display="";
 				document.getElementById("submitEdit").className = "btn btn-warning";
 				document.getElementById("submitEdit").style.color="#000";
-				
+
 				setTimeout(function(){myTimer()},200);
 				function myTimer() {
 					document.getElementById('videoNoPoint').style.display="none";
 					document.getElementById('videoInPoint').style.display="";
 				}
-				
+
 			};
-			
-			
+
+
 			jwplayer("videoPlaybackFrame").onTime(function (event){
 				var realVal = event.position;
-				
+
 				vidDuration = jwplayer("videoPlaybackFrame").getDuration();
-				
+
 				if (userEditCounter==0){
 				ProgressBarBefore = (realVal/vidDuration);
 				ProgressBarBefore = ProgressBarBefore*100;
 				ProgressBarBefore = ProgressBarBefore.toPrecision(2);
-				
+
 				document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
-				
+
 				} else if (userEditCounter==1){
 					ProgressBarBefore = ((inPoint)/vidDuration);
 					ProgressBarBefore = ProgressBarBefore*100;
 					ProgressBarBefore = ProgressBarBefore.toPrecision(2);
 					document.getElementById('preInVis').style.width =(ProgressBarBefore+"%");
-					
+
 					ProgressBarDuring = ((realVal-inPoint)/vidDuration);
 					ProgressBarDuring = ProgressBarDuring*100;
 					ProgressBarDuring = ProgressBarDuring.toPrecision(2);
 					document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
-					
+
 					document.getElementById('postOutVis').style.width ="";
 				} else if (userEditCounter==2){
 				ProgressBarDuring = ((outPoint-inPoint)/vidDuration);
 				ProgressBarDuring = ProgressBarDuring*100;
 				ProgressBarDuring = ProgressBarDuring.toPrecision(2);
 				document.getElementById('editVis').style.width =(ProgressBarDuring+"%");
-				
+
 				ProgressBarAfter = ((realVal-outPoint)/vidDuration);
 				ProgressBarAfter = ProgressBarAfter*100;
 				ProgressBarAfter = ProgressBarAfter.toPrecision(2);
 				//$('#OutputYouTubeLink').html(progressBar1);
 				document.getElementById('postOutVis').style.width =(ProgressBarAfter+"%");
 				}
-			
+
 			if (videoLoadSwitch==5){
 			if (realVal < inPoint || realVal > outPoint){
 				jwplayer("videoPlaybackFrame").seek(inPoint);
-				
+
 			}
 			}
 			return;
 			});
 			</script>
-		
-		
+
+
   		<div class="row">
   		<div class="col-md-6 col-md-offset-3" style="">
-  			<div class="progress" id="videoTimeline" style="display:none">	  
+  			<div class="progress" id="videoTimeline" style="display:none">
   		  <div class="progress-bar progress-bar-info" id="preInVis" role="progressbar" style="">
-  		</div>	
+  		</div>
   		  <div class="progress-bar progress-bar-warning progress-bar-striped" id="editVis" role="progressbar" style=""> NEW VIDEO</div>
     		  <div class="progress-bar progress-bar-info" id="postOutVis" role="progressbar" style="">
     			</div>
@@ -284,7 +284,7 @@
 	  		    $('.pre-auth').hide();
 	  		    $('.post-auth').show();
 	  		    loadAPIClientInterfaces();
-			
+
 	  		  } else {
 	  		  }
 	  	  }
@@ -296,11 +296,11 @@
 	  	      handleAPILoaded();
 	  	    });
 	  	  }
-		
+
 	  		// After the API loads, call a function to enable the search box.
 	  		function handleAPILoaded() {
 	  		  $('#createLink').attr('disabled', false);
-		  
+
 	  		}
 
 			function getQueryVariable() {
@@ -310,13 +310,13 @@
 				if (userInput.indexOf("youtube") > -1){
 				   query = userInput.split( "?" );
 			       vars = query[1].split("&");
-				   
+
 			       for (var i=0;i<vars.length;i++) {
 			               var pair = vars[i].split("=");
 			               if(pair[0] == "v"){query= pair[1];}
 			       }
 				shortYTLink = query;
-				
+
 				document.getElementById('ytVidCode').value=shortYTLink;
 				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
 				getYouTubeVideoIdData();
@@ -338,7 +338,7 @@
 	  		// Search for a specified string.
 	  		function getYouTubeVideoSearchData() {
 	  		  var searchTerm = $('#InputYouTubeLink').val();
-		  
+
 	  		  var request = gapi.client.youtube.search.list({
 	  			type: 'video',
 	  			// videoSyndicated: 'true',
@@ -348,24 +348,24 @@
 	  		  request.execute(function(response) {
 	  		    var str = JSON.stringify(response.result);
 	  		    $('#search-raw-data').html('<pre>' + str + '</pre>');
-			
+
 	  		  });
 	  		  setTimeout(function(){turnYouTubeDataIntoPresentableInformation()},315);
 	  		}
-	  		
+
 	  		function turnYouTubeDataIntoPresentableInformation() {
 	  			var searchResult = $('#search-raw-data').html();
 				var queryMatch = searchResult.match(/videoId/g);
 	  			var maxQuery = queryMatch.length;
 	  			var query;
 				var title;
-				
+
 	  			query = searchResult.split("videoId");
 	  			videoLinkArray[1] = query[1].substr(3,11);
-	  			
+
 	  			document.getElementById("videoThumbnail"+1).src=("https://i.ytimg.com/vi/"+videoLinkArray[1]+"/mqdefault.jpg");
 	  			// var value[maxQuery];
-			
+
 	  		    for (var i=2;i<=maxQuery;i++) {
 	  				query[i].split("videoId");
 	  				videoLinkArray[i] = query[i].substr(3,11);
@@ -383,7 +383,7 @@
 						videoTitleArray[i]=title[0];
 	     				document.getElementById("videoTitle"+[i]).innerHTML=(videoTitleArray[i]);
 	     		    }
-	  			document.getElementById("resultListing").style.display="";  
+	  			document.getElementById("resultListing").style.display="";
 	  			  // $('#search-results').html(value);
 	  		}
 	  		function getYouTubeVideoIdData() {
@@ -421,7 +421,7 @@
 			function assignSearchVideoPlayback(videoSearchNumber){
 				shortYTLink=videoLinkArray[videoSearchNumber];
 				waitForUserSelection=-1;
-				
+
 				document.getElementById('ytVidCode').value=shortYTLink;
 				inputYTLink = ( "https://www.youtube.com/watch?v=" + shortYTLink);
 				document.getElementById('ytVideoTitle').value=(videoTitleArray[videoSearchNumber]);
@@ -431,7 +431,7 @@
 			}
 	  	</script>
 		<div class="row">
-		<div class="col-md-6 col-md-offset-3" style="height:62.5px" id="inputRowOne"> 
+		<div class="col-md-6 col-md-offset-3" style="height:62.5px" id="inputRowOne">
 		<form role="form" action="linkBoi.php" method="get">
 			<div class="form-group">
 		    <label for="InputYouTubeLink"></label>
@@ -447,7 +447,7 @@
 			</form>
 			<div class="well" id="search-raw-data" style="display:none;width:100px;height:100px"></div>
 		</div>
-		
+
 	</div>
 		<div class="row">
 		<div class="col-sm-6 col-sm-offset-3" id="resultListing" style="padding-top:0.5%;display:none">
@@ -456,7 +456,7 @@
 			<td>
 				<img id="videoThumbnail1" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:88%"/>
 			</td>
-			
+
 			<td>
 				<h3 id="videoTitle1">Title</h3>
 			</td>
@@ -465,7 +465,7 @@
 			<td>
 				<img id="videoThumbnail2" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:88%"/>
 			</td>
-			
+
 			<td>
 				<h3 id="videoTitle2">Title</h3>
 			</td>
@@ -474,7 +474,7 @@
 			<td>
 				<img id="videoThumbnail3" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:88%"/>
 			</td>
-			
+
 			<td>
 				<h3 id="videoTitle3">Title</h3>
 			</td>
@@ -483,7 +483,7 @@
 			<td>
 				<img id="videoThumbnail4" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:88%"/>
 			</td>
-			
+
 			<td>
 				<h3 id="videoTitle4">Title</h3>
 			</td>
@@ -492,7 +492,7 @@
 			<td>
 				<img id="videoThumbnail5" class="img-responsive" src="https://i.ytimg.com/vi/KlE--TWCsX0/mqdefault.jpg" style="width:88%"/>
 			</td>
-			
+
 			<td>
 				<h3 id="videoTitle5">Title</h3>
 			</td>
@@ -507,7 +507,7 @@
 					<span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
 					<span> LOAD</span>
 				</button>
-				
+
 				<button type="button" class="btn btn-default bg-dark" id="playPauseButton" onclick="playPauseVideo();" style="display:none">
 					<span class="glyphicon glyphicon-play" id="playPauseSpan" aria-hidden="true"> </span>
 				</button>
@@ -526,29 +526,29 @@
 					<img src="css/scissors-open-black.png" class="blackImage" width="15.1" height="14">
 					<span> CUT</span>
 				</button>
-				
+
 				<button type="button" class="btn btn-default bg-dark" id="submitEdit" onclick="submitEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Creates a web link of the video edit" disabled>
 					<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 					<span> SUBMIT</span>
 				</button>
-			
+
 			<button type="button" class="btn btn-default bg-dark col-xs-offset-4" id="previewEdit" onclick="previewEdit();" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Video will playback from the &quot;IN&quot; to the &quot;OUT&quot; time selected" style="visibility:hidden" disabled>
 				<span class="glyphicon glyphicon-film" aria-hidden="true"> </span>
 				<span> PREVIEW</span>
 			</button>
-			
+
 			<button type="button" class="btn btn-default bg-dark" id="changeVideoButton" onclick="reloadVideoInput()" data-toggle="tooltip" data-placement="bottom" data-delay="450" title="Change the video input source" style="display:none">
 				<span class="glyphicon glyphicon-refresh" aria-hidden="true"> </span>
 					<span> RESET</span>
-				</button>	
+				</button>
 			</div>
 		</div>
-		
+
 				<div class ="row">
-				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%;"> 
+				<div class="col-md-6 col-md-offset-3" style="padding-top: 1%;">
 						<div class="progress-bar progress-bar-warning progress-bar-striped active" id="outputLoadingBar" role="progressbar" style="width:100%;display:none">EXPORTING</div>
 				</div></div>
-				
+
 			<div class ="row">
 			<div class="col-md-6 col-md-offset-3" style="display: none;" id="outputButtons">
 					<button type="button" class="btn btn-default" id="selectAllButton" onclick="selectText('OutputYouTubeLink')">
@@ -570,14 +570,14 @@
 				$(document).ready(function() {
 				    $('.commentarea').keydown(function(event) {
 				        if (event.keyCode == 13) {
-							
+
 							initiateLiveVideoPlayer();
 							//this.form.submit();
 				            return false;
 				         }
 				    });
 				});
-				
+
 				function reloadVideoInput(){
 					// location.reload();
 					document.getElementById('InputYouTubeLink').value="";
@@ -597,9 +597,9 @@
 					jwplayer("videoPlaybackFrame").pause(true);
 					waitForUserSelection=0;
 				}
-				
-			
-			
+
+
+
 			function previewEdit(){
 				document.getElementById('submitEdit').style.display="";
 				document.getElementById('previewEdit').style.display="none";
@@ -609,25 +609,25 @@
 			}
 			function submitEdit(){
 				document.getElementById('outputLoadingBar').style.display ="";
-				
+
 				$('#collapseAltLink').html(inputYTLink);
-				
+
 				document.getElementById("createLink").click();
 				$("form").slideUp();
-				
+
 				//document.getElementById('videoPlayback').style.display ="";
 				document.getElementById('outputButtons').style.display ="";
 			}
 			</script>
-			
+
 			<script>
 			function backFunction(){
-				
+
 				//document.getElementById('videoPlayback').style.display ="none";
 				document.getElementById('outputButtons').style.display ="none";
 				document.getElementById('outputLoadingBar').style.display ="";
 				$("form").slideDown();
-				
+
 			}
 			</script>
 			<script type="text/javascript">
@@ -660,4 +660,4 @@
   ga("send", "pageview");
 
 </script>
-</html> 
+</html>

@@ -3,7 +3,7 @@
 // echo "hello world";
 // include_once("http://localhost/hotpotatome/mysql_1edit_connect.php");
 
-//$db = mysql_select_db('single_edits');
+//$db = mysql_select_db('edits');
 if($_GET){
     if(isset($_GET['createLink'])){
         createLink();
@@ -17,7 +17,7 @@ if($_GET){
 
 function openLink(){
 	$html=$_GET['hotPotatoLink'];
-	header('Location: http://www.hotpotato.me/single_edits/'.$html);
+	header('Location: http://www.hotpotato.me/edits/'.$html);
 	die();
 }
 
@@ -55,7 +55,7 @@ function templateVideoHTML() {
 			<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-			<script src="https://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
+			<script src="http://content.jwplatform.com/libraries/FxXAImPG.js"></script>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="apple-touch-icon" sizes="57x57" href="../css/favicon/apple-icon-57x57.png">
 			<link rel="apple-touch-icon" sizes="60x60" href="../css/favicon/apple-icon-60x60.png">
@@ -206,7 +206,7 @@ $videoStop = $_GET['OutTimeCode'];
 $html = 'jsTj5.html';
 
 // mysqlconnect('localhost','root','');
-// mysql_select_db('single_edits');
+// mysql_select_db('edits');
 
 // $sql="insert into LinksEditTimesDate(OutputLink) value ('$html');"
 // if (mysql_query($sql)){
@@ -224,7 +224,7 @@ $html = 'jsTj5.html';
 // 		echo "Please try again";
 // 	}
 
-$create = fopen('single_edits/'.$html, 'w') or die("can't open file");
+$create = fopen('edits/'.$html, 'w') or die("can't open file");
 fwrite($create, templateVideoHTML());
 fclose($create);
 
@@ -411,7 +411,7 @@ echo '<!DOCTYPE html>
 				 
 				<div class="col-md-6 col-md-offset-3" style="">
 				
-						<div class="well" style="" id="OutputYouTubeLink">www.hotpotato.me/single_edits/'.$html.'</div>
+						<div class="well" style="" id="OutputYouTubeLink">www.hotpotato.me/edits/'.$html.'</div>
 						
 				</div>
 				
@@ -436,14 +436,14 @@ echo '<!DOCTYPE html>
 						<span> Embed</span>
 					</button>
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
-					<div class="well" id="collapseAltLink" style="color:#000">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://www.hotpotato.me/single_edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
+					<div class="well" id="collapseAltLink" style="color:#000">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://www.hotpotato.me/edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
 				</div>
 				
 			</div>
 			</div>
 			<script>
 			function openLink(){
-				window.location="http://www.hotpotato.me/single_edits/'.$html.'";
+				window.location="http://www.hotpotato.me/edits/'.$html.'";
 				
 			}
 			

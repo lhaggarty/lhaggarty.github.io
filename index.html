@@ -13,7 +13,7 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			<link rel="stylesheet" type="text/css" href="css/style.css"/>
 			<script src="https://apis.google.com/js/client.js"></script>
-			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
+			<script src="http://content.jwplatform.com/libraries/FxXAImPG.js"></script>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<meta property="og:image" content="http://www.hotpotato.me/css/web-thumbnail.png"/>
 			
@@ -64,7 +64,7 @@
 			
 				<li role="presentation"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
 			
-  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+  	            <!-- <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li> -->
 			
   				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
   				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
@@ -75,7 +75,7 @@
   	      </div>
 	    
 	</div>
-	<div class="video-part">
+	<div class="video-part" style="overflow-x:hidden">
 	<div>	
 				<div class="row" id="indexIntro">
 					<div class="col-md-12">
@@ -147,7 +147,6 @@
 				
 				if ($( '#InputYouTubeLink' ).val() != "" && waitForUserSelection==0){
 					getQueryVariable();
-					document.getElementById('videoTimeline').style.display="";
 				}else if (shortYTLink = "" && waitForUserSelection==0) {
 					shortYTLink = "OFu_cHz4_ww";
 					
@@ -164,7 +163,7 @@
 				document.getElementById('inputRowOne').style.display="none";
 				document.getElementById('changeVideoButton').style.display="";
 				document.getElementById('videoInPoint').disabled=false;
-				
+				document.getElementById('videoTimeline').style.display="";
 				userEditCounter=0;
 				jwplayer("videoPlaybackFrame").play();
 			}
@@ -412,7 +411,20 @@
 	  			document.getElementById("resultListing").style.display="";  
 	  			  // $('#search-results').html(value);
 				  },322);
+		 		 setTimeout(function(){
+		 		 	if (document.getElementById("resultListing").style.display=="none"){
+		  				getYouTubeVideoSearchData();
+		 		 	}
+		 		 },360);
 	  		}
+		// function YtApiRunCheck(){
+// 		 setTimeout(function(){
+// 		 	if (document.getElementById("resultListing").style.display=="none"){
+//
+// 		 	}
+// 		 },375);
+// 	 	}
+			
 	  		function getYouTubeVideoIdData() {
 	  		  // var videoId = shortYTLink;
 	  		  var request = gapi.client.youtube.videos.list({
@@ -611,12 +623,12 @@
 	</div>
 	
 	</div>
-	<div class="dashboard-part" style="padding-bottom:150px" onmouseenter="switchDemoImage(0)">	
+	<div class="dashboard-part" style="padding-bottom:150px" onmouseenter="switchDemoImage(0);changeDemoImage(0)">	
 	
 		<div class="row" style="padding-left:2.5%">
 		<div class="col-md-7 col-md-offset-2">
 			<h1 style="text-align:center;">Edit a Video & Pass it Along</h1>
-			<h2 style="text-align:center;"><a href="#three-hp-steps"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="color:#000"></a></span></h2>
+			<h2 style="text-align:center;"><a href="#three-hp-steps" id="dashboardChevronLink" onclick="switchDashboardChevron()"><span id="dashboardChevron" class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="color:#000"></a></span></h2>
 			<h3 style="text-align:center">Works On Any Platform</h3>
 			<div class="col-xs-offset-3" style="padding-left:2.5%">
 			<img src="css/laptop-icon.png" style="width:23%">
@@ -659,6 +671,20 @@
 			</div>
 		
 		</div>
+		<script>
+		function switchDashboardChevron(){
+			if (document.getElementById('dashboardChevron').className=="glyphicon glyphicon-chevron-up"){
+				document.getElementById('dashboardChevron').className="glyphicon glyphicon-chevron-down";
+				document.getElementById('dashboardChevronLink').href="#indexIntro";
+			}
+			else if (document.getElementById('dashboardChevron').className=="glyphicon glyphicon-chevron-down"){
+				document.getElementById('dashboardChevron').className="glyphicon glyphicon-chevron-up";
+				document.getElementById('dashboardChevronLink').href="#three-hp-steps";
+				
+			}
+		}
+		</script>
+		
 			<script>
 				$(document).ready(function() {
 				    $('.commentarea').keydown(function(event) {

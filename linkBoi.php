@@ -2,7 +2,7 @@
 
 // echo "hello world";
 
-//$db = mysql_select_db('single_edits');
+//$db = mysql_select_db('edits');
 if($_GET){
     if(isset($_GET['createLink'])){
         createLink();
@@ -17,7 +17,7 @@ if($_GET){
 
 function openLink(){
 	$html=$_GET['hotPotatoLink'];
-	header('Location: http://www.hotpotato.me/single_edits/'.$html);
+	header('Location: http://www.hotpotato.me/edits/'.$html);
 	die();
 }
 function postToFeed(){
@@ -38,13 +38,13 @@ function postToFeed(){
 	if (mysqli_connect_errno()){
 	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	  }
-	$query=mysqli_query($conn,"SELECT id FROM single_edits WHERE OutputLink LIKE '%".$html."%'");
+	$query=mysqli_query($conn,"SELECT id FROM edits WHERE OutputLink LIKE '%".$html."%'");
 	  if ($query==""){
 	  	echo "nothing";
 	  }
 	  else{
 	  	while ($obj=mysqli_fetch_object($query)){
-		mysqli_query($conn,"UPDATE single_edits SET PostToFeed=1 WHERE id=$obj->id");
+		mysqli_query($conn,"UPDATE edits SET PostToFeed=1 WHERE id=$obj->id");
 		}
 	}
 	mysqli_close($conn);
@@ -52,7 +52,7 @@ function postToFeed(){
 	echo '<!DOCTYPE html>
 	<html>
 			<head>
-				<title>Hot Potato Tool</title>
+				<title>Spud Output: "'.$ytVideoTitle.'"</title>
 				<meta name="description" content="Hot Potato - The Online Video Editor. Try the tool and share your edits!  No rendering required.">
 				<meta name="keywords" content="Hot Potato, YouTube, video, editor, edits, sharing, cut, personalize, render, free, online">
 				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -215,7 +215,7 @@ function postToFeed(){
 				 
 					<div class="col-md-6 col-md-offset-3" style="">
 				
-							<div class="well" style="color:#000" id="OutputYouTubeLink">www.hotpotato.me/single_edits/'.$html.'</div>
+							<div class="well" style="color:#000" id="OutputYouTubeLink">www.hotpotato.me/edits/'.$html.'</div>
 						
 					</div>
 				
@@ -239,14 +239,14 @@ function postToFeed(){
 							<span> Embed</span>
 						</button>
 					<div class="collapse" id="collapseAlt" style="padding-top:1%">
-						<div class="well" id="collapseAltLink" style="color:#000">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://www.hotpotato.me/single_edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
+						<div class="well" id="collapseAltLink" style="color:#000">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://www.hotpotato.me/edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
 					</div>
 				
 				</div>
 				</div>
 				<script>
 				function openLink(){
-					window.location="http://www.hotpotato.me/single_edits/'.$html.'";
+					window.location="http://www.hotpotato.me/edits/'.$html.'";
 				}
 				
 				function backToTool(){
@@ -342,7 +342,7 @@ function templateVideoHTML() {
 			<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-			<script src="https://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
+			<script src="http://content.jwplatform.com/libraries/FxXAImPG.js"></script>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="apple-touch-icon" sizes="57x57" href="../css/favicon/apple-icon-57x57.png">
 			<link rel="apple-touch-icon" sizes="60x60" href="../css/favicon/apple-icon-60x60.png">
@@ -544,7 +544,7 @@ $ytVideoTitle = $_GET['ytVideoTitle'];
 $html = generateRandomStringFiveC().'.html';
 
 // mysqlconnect('localhost','root','');
-// mysql_select_db('single_edits');
+// mysql_select_db('edits');
 
 // $sql="insert into LinksEditTimesDate(OutputLink) value ('$html');"
 // if (mysql_query($sql)){
@@ -565,26 +565,26 @@ $html = generateRandomStringFiveC().'.html';
 if (mysqli_connect_errno()){
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-$query = mysqli_query($conn,"SELECT OutputLink FROM single_edits WHERE OutputLink LIKE '%".$html."%'");
+$query = mysqli_query($conn,"SELECT OutputLink FROM edits WHERE OutputLink LIKE '%".$html."%'");
 while ($html==$query){
 	$html = generateRandomStringFiveC().'.html';
 }
 
 // Perform queries 
-// mysqli_query($conn,"SELECT * FROM single_edits");
-mysqli_query($conn,"INSERT INTO single_edits (OutputLink,OriginalLink,EditIn,EditOut,title) 
+// mysqli_query($conn,"SELECT * FROM edits");
+mysqli_query($conn,"INSERT INTO edits (OutputLink,OriginalLink,EditIn,EditOut,title) 
 VALUES ('".$html."','".$ytLink."','".$videoStart."','".$videoStop."','".$ytVideoTitle."')");
 
 mysqli_close($conn);
 
-$create = fopen('single_edits/'.$html, 'w') or die("can't open file");
+$create = fopen('edits/'.$html, 'w') or die("can't open file");
 fwrite($create, templateVideoHTML());
 fclose($create);
 
 echo '<!DOCTYPE html>
 <html>
 		<head>
-			<title>'.$ytVideoTitle.'</title>
+			<title>Spud Output: "'.$ytVideoTitle.'"</title>
 			<meta charset="UTF-8">
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 			<link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -735,6 +735,7 @@ echo '<!DOCTYPE html>
 				
 				<input type="text" name="hotPotatoLink" value="'.$html.'" id="hotPotatoLink" style="display:none"/>
 				<input type="text" name="ytLink" value="'.$ytLink.'" id="ytLink" style="display:none"/>
+				<input type="text" name="VideoSource" value="'.$VideoSource.'" id="VideoSource" style="display:none"/>
 				<input type="text" name="ytVidCode" value="'.$ytVidCode.'" id="ytVidCode" style="display:none"/>
 				<input type="text" name="InTimeCode" value="'.$videoStart.'" id="InTimeCode" style="display:none">
 				<input type="text" name="OutTimeCode" value="'.$videoStop.'" id="OutTimeCode" style="display:none"/>
@@ -745,7 +746,7 @@ echo '<!DOCTYPE html>
 	  			<div class = "row">
 				<div class="col-md-6 col-md-offset-3" style="">
 				
-						<div class="well" style="color:#000" id="OutputYouTubeLink">www.hotpotato.me/single_edits/'.$html.'</div>
+						<div class="well" style="color:#000" id="OutputYouTubeLink">www.hotpotato.me/edits/'.$html.'</div>
 						
 				</div>
 				</div>
@@ -768,14 +769,14 @@ echo '<!DOCTYPE html>
 						<span> Embed</span>
 					</button>
 				<div class="collapse" id="collapseAlt" style="padding-top:1%">
-					<div class="well" id="collapseAltLink" style="color:#000">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://www.hotpotato.me/single_edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
+					<div class="well" id="collapseAltLink" style="color:#000">&lt;iframe width=&quot;662&quot; height=&quot;450&quot; src=&quot;http://www.hotpotato.me/edits/'.$html.'&quot; style=&quot;position: relative; top: -94px; left: -24px; overflow: hidden&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</div>
 				</div>
 				
 			</div>
 			</div>
 			<script>
 			function openLink(){
-				window.location="http://www.hotpotato.me/single_edits/'.$html.'";
+				window.location="http://www.hotpotato.me/edits/'.$html.'";
 			}
 			function postToFeed(){
 				document.getElementById("postToFeed").innerHTML=" Posted";
@@ -789,7 +790,7 @@ echo '<!DOCTYPE html>
 			<script>
 			function selectText( containerid ) {
 
-			        var node = document.getElementById( containerid );
+			        var node = 
 
 			        if ( document.selection ) {
 			            var range = document.body.createTextRange();

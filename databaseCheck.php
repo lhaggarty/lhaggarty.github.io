@@ -7,10 +7,10 @@ $conn = mysqli_connect('141.117.161.98','leonhaggarty','mdm123','hotpotato');
 if (mysqli_errno()){
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-// mysqli_query($conn,"SELECT * FROM single_edits");
-// $test=mysqli_query($conn,"SELECT * FROM single_edits ORDER BY id DESC LIMIT 1");
-// $query = mysqli_query($conn,"SELECT id,OutputLink FROM single_edits WHERE MAX(id) LIKE 'qs1Nm.html'");
-$query = mysqli_query($conn,"SELECT * FROM single_edits WHERE PostToFeed=1 ORDER BY id DESC");
+// mysqli_query($conn,"SELECT * FROM edits");
+// $test=mysqli_query($conn,"SELECT * FROM edits ORDER BY id DESC LIMIT 1");
+// $query = mysqli_query($conn,"SELECT id,OutputLink FROM edits WHERE MAX(id) LIKE 'qs1Nm.html'");
+$query = mysqli_query($conn,"SELECT * FROM edits WHERE PostToFeed=1 ORDER BY id DESC");
 if ($query==""){
 	echo "nothing";
 }

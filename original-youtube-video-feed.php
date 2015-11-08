@@ -12,7 +12,7 @@ function grabLink (){
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
+			<script src="http://content.jwplatform.com/libraries/FxXAImPG.js"></script>
 			
 			<link rel="stylesheet" type="text/css" href="css/style.css"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@ function grabLink (){
 						
     						<li role="presentation" class="active"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
 						
-    		  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+    		  	            <!-- <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li> -->
 						
     		  				<li role="presentation"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
     		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
@@ -51,11 +51,11 @@ function grabLink (){
 			<div id="rss-info" style="display:none">
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3" style="padding-top:30px">
-					<form role="form" action="originalVideoFeedToEditor.php" method="get">
+					<form role="form" action="indexToEditor.php" method="get">
 						<div class="form-group">
-						<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style=""/>
+						<input type="text" name="ytVidCode" id="ytVidCode" value="yJDRop2ocFo" style="display:none"/>
+						<input type="text" name="ytVideoTitle" id="ytVideoTitle" value="" style="display:none"/>
 						<input type="text" name="VideoSource" id="VideoSource" value="1" style="display:none"/>
-						<input type="text" name="ytVideoTitle" id="ytVideoTitle" style=""/>
 						<input type="submit" class="button" name="originalVideo-to-editor" id="originalVideo-to-editor" style="display:none"/>
 						</div>
 					</form>

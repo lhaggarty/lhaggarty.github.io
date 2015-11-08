@@ -8,10 +8,10 @@ $conn = mysqli_connect('141.117.161.98','leonhaggarty','mdm123','hotpotato');
 if (mysqli_errno()){
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-// mysqli_query($conn,"SELECT * FROM single_edits");
-// $test=mysqli_query($conn,"SELECT * FROM single_edits ORDER BY id DESC LIMIT 1");
-// $query = mysqli_query($conn,"SELECT id,OutputLink FROM single_edits WHERE MAX(id) LIKE 'qs1Nm.html'");
-$query = mysqli_query($conn,"SELECT * FROM single_edits WHERE PostToFeed=1 ORDER BY id DESC");
+// mysqli_query($conn,"SELECT * FROM edits");
+// $test=mysqli_query($conn,"SELECT * FROM edits ORDER BY id DESC LIMIT 1");
+// $query = mysqli_query($conn,"SELECT id,OutputLink FROM edits WHERE MAX(id) LIKE 'qs1Nm.html'");
+$query = mysqli_query($conn,"SELECT * FROM edits WHERE PostToFeed=1 ORDER BY id DESC");
 if ($query==""){
 	echo "nothing";
 }
@@ -37,7 +37,7 @@ $i=0;
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-			<script src="http://jwpsrv.com/library/F3JbossrEeSDgg4AfQhyIQ.js"></script>
+			<script src="http://content.jwplatform.com/libraries/FxXAImPG.js"></script>
 			<script type="text/javascript" src="js/jquery.zclip.js"></script>
 			<link rel="stylesheet" type="text/css" href="css/style.css"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,7 +62,7 @@ $i=0;
 						
     						<li role="presentation"><a href="original-youtube-video-feed.php"><img src="css/find-video-black-resize.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"><img src="css/find-video-white-resize.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:1px"> Uncut Videos</a></li>
 						
-    		  	            <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li>
+    		  	            <!-- <li role="presentation"><a href="editor.php"><img src="css/cut-video-image-black.png" class="blackImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"><img src="css/cut-video-image-white.png" class="whiteImage" alt="Hot Potato" width="35.24" height="23.5" style="padding-top:2px"> Editor</a></li> -->
 						
     		  				<li role="presentation" class="active"><a href="feed.php"><img src="css/share-image-black.png" class="blackImage" alt="Hot Potato" width="55" height="21" style=""><img src="css/share-image-white.png" class="whiteImage" alt="Hot Potato" width="55" height="21" style=""> Feed</a></li>
     		  				<li role="presentation"><a href="sign-up.html">Sign Up</a></li>
@@ -88,7 +88,7 @@ $i=0;
 					<div id="videoPlaybackFrame0"></div>
 				</div>
 				<div class="col-sm-7 noLeftPadding">
-				<div class="well well-sm" id="outputLink0" style="color: #000;text-align:center">www.hotpotato.me/single_edits/'.$OutputLink[0].'</div></div>
+				<div class="well well-sm" id="outputLink0" style="color: #000;text-align:center">www.hotpotato.me/edits/'.$OutputLink[0].'</div></div>
 				<!-- <button type="button" class="btn btn-default" id="copy-button">
 				<span class="glyphicon glyphicon-link" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button> -->
 				<button type="button" class="btn btn-default bg-dark btn-mod" id="openLink0" onclick="openIndividualVideoPage(this.id)">
@@ -111,7 +111,7 @@ $i=0;
 					<div id="videoPlaybackFrame1"></div>
 				</div>
 				<div class="col-sm-7 noLeftPadding">
-				<div class="well well-sm" id="outputLink1" style="color: #000;text-align:center">www.hotpotato.me/single_edits/'.$OutputLink[1].'</div></div>
+				<div class="well well-sm" id="outputLink1" style="color: #000;text-align:center">www.hotpotato.me/edits/'.$OutputLink[1].'</div></div>
 				<!-- <button type="button" class="btn btn-default" id="copy-button">
 				<span class="glyphicon glyphicon-link" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button> -->
 				<button type="button" class="btn btn-default bg-dark btn-mod" id="openLink1" onclick="openIndividualVideoPage(this.id)">
@@ -131,7 +131,7 @@ $i=0;
 					<div id="videoPlaybackFrame2"></div>
 				</div>
 				<div class="col-sm-7 noLeftPadding">
-				<div class="well well-sm" id="outputLink2" style="color: #000;text-align:center">www.hotpotato.me/single_edits/'.$OutputLink[2].'</div></div>
+				<div class="well well-sm" id="outputLink2" style="color: #000;text-align:center">www.hotpotato.me/edits/'.$OutputLink[2].'</div></div>
 				<!-- <button type="button" class="btn btn-default" id="copy-button">
 				<span class="glyphicon glyphicon-link" aria-hidden="true"> </span><span id="copy-button-text"> Double Click To Copy</span></button> -->
 				<button type="button" class="btn btn-default bg-dark btn-mod" id="openLink2" onclick="openIndividualVideoPage(this.id)">
@@ -242,7 +242,7 @@ $i=0;
 				currentVid=currentVidNumber[1];
 			
 			}
-			window.location="http://www.hotpotato.me/single_edits/"+OutputLink[currentVid];
+			window.location="http://www.hotpotato.me/edits/"+OutputLink[currentVid];
 		}
 		
 		function getYtShortcode(YtLink){
@@ -271,7 +271,7 @@ $i=0;
 				document.getElementById("openLink"+(j)).id="openLink"+(i);
 				
 				document.getElementById("outputLink"+j).id="outputLink"+i;
-				document.getElementById("outputLink"+i).innerHTML="www.hotpotato.me/single_edits/"+OutputLink[i];
+				document.getElementById("outputLink"+i).innerHTML="www.hotpotato.me/edits/"+OutputLink[i];
 				
 				j++;
 			    jwplayer("videoPlaybackFrame"+i).setup({
@@ -310,7 +310,7 @@ $i=0;
 				document.getElementById("openLink"+(j)).id="openLink"+(i);
 				
 				document.getElementById("outputLink"+j).id="outputLink"+i;
-				document.getElementById("outputLink"+i).innerHTML="www.hotpotato.me/single_edits/"+OutputLink[i];
+				document.getElementById("outputLink"+i).innerHTML="www.hotpotato.me/edits/"+OutputLink[i];
 				j++;
 			}
 			initiateVideoPlayer();
